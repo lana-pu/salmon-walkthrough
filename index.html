@@ -855,6 +855,9 @@ html.ac-colour .ac-tile[data-ac="game"] .ac-ctrl-ink{display:none}
 .inv-card .qr-frame{margin-top:16px}
 .inv-qr{padding:16px;margin-top:0}
 .inv-qr .qr-frame{margin-top:0}
+/* QR fills the card: bigger, easier to scan from another phone */
+.inv-qr .qr-frame,.inv-qr .qr-wrap{width:100%!important}
+.inv-qr .qr-frame .qr{width:100%;height:auto;aspect-ratio:1;box-sizing:border-box;padding:12px}
 .jm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:16px}
 .jm-grid .jm{min-width:0}
 .jm-grid .jm .c{white-space:nowrap;color:var(--sec)}
@@ -2842,7 +2845,7 @@ function inviteSheet(){
         setTimeout(() => { if (!lbl.isConnected) return; lbl.animate([{opacity:1},{opacity:0}],{duration:320, easing:'ease-in', fill:'forwards'}).onfinish = () => { lbl.textContent = PL[who].name; lbl.animate([{opacity:0},{opacity:1}],{duration:420, easing:'ease-out', fill:'forwards'}); }; }, 2800);
       };
       if (reduce) return add();
-      o.querySelector('.qr-scan').animate([{transform:'translateY(-30px)', opacity:0},{opacity:.9, offset:.25},{opacity:.9, offset:.7},{transform:'translateY(220px)', opacity:0}], {duration:1100, easing:'cubic-bezier(.45,0,.55,1)'}).onfinish = add;
+      o.querySelector('.qr-scan').animate([{transform:'translateY(-30px)', opacity:0},{opacity:.9, offset:.25},{opacity:.9, offset:.7},{transform:`translateY(${(o.querySelector('.qr-wrap').offsetHeight || 220) + 10}px)`, opacity:0}], {duration:1300, easing:'cubic-bezier(.45,0,.55,1)'}).onfinish = add;
     }, 1300);
   });
 }
