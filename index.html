@@ -2821,7 +2821,7 @@ SC.a4 = {flow:'games', label:'Game settings', parent:'a3', render:()=>{ const n 
 const guesser = () => S.players[(S.round + 1) % S.players.length];
 const word = () => WORDS[S.round % WORDS.length];
 SC.c1 = {flow:'games', label:'Round intro', parent:'a3', render:()=>{ const g = guesser(), gn = PL[g].name, you = g==='you'; return `
-  ${topbar({t:`Round ${S.round+1}`, right:S.round>0?R.exit('a1','game'):R.exit('a3',''), tight:true})}
+  ${topbar({t:`Round ${S.round+1}`, right:S.round>0?R.exit('m6','game'):R.exit('m6',''), tight:true})}
   <div class="scroll">${hz('game')}<div class="body">
     <div class="stack" style="align-items:center;text-align:center">${av(g,84)}<h1 class="h2" style="margin-top:16px"><em>Round ${S.round+1}</em><br>${you?'You are':gn+' is'} guessing</h1><p class="bl sec" style="max-width:297px;margin-top:24px">${you?'You guess':gn+' guesses'} this round. Hold the screen facing away from ${you?'you':'them'}.</p></div>
     <div class="sec-h" style="margin:48px 2px 16px"><p class="h4">How it works</p></div>
@@ -2834,7 +2834,7 @@ SC.c1 = {flow:'games', label:'Round intro', parent:'a3', render:()=>{ const g = 
     stagger(el.querySelectorAll('.body h1, .body .bl'), RISE, {step:90, delay:250});
     stagger(el.querySelectorAll('.body .card .row'), RISE, {step:80, delay:520}); }};
 SC.c2 = {flow:'games', label:'Countdown', parent:'c1', render:()=>`
-  ${topbar({t:`Round ${S.round+1}`, right:R.exit('a1','game')})}
+  ${topbar({t:`Round ${S.round+1}`, right:R.exit('m6','game')})}
   <div class="scroll" style="display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;padding-top:264px">
     <div id="cblob" style="position:absolute;left:50%;top:44%;width:330px;height:330px;margin:-165px 0 0 -165px;border-radius:50%;filter:blur(40px);background:radial-gradient(closest-side at 40% 45%,#fcd4b7,transparent),radial-gradient(closest-side at 62% 55%,#f4afcb,transparent),radial-gradient(closest-side at 50% 70%,#c4bde5,transparent)"></div>
     <b id="cnum" style="position:relative;font-size:180px;font-weight:500;line-height:1;letter-spacing:-.04em;text-box:trim-both cap alphabetic">3</b>
@@ -2847,7 +2847,7 @@ SC.c2 = {flow:'games', label:'Countdown', parent:'c1', render:()=>`
     pop(); burst(); later(()=>{n.textContent='2';pop();burst()},1000); later(()=>{n.textContent='1';pop();burst()},2000);
     later(()=>{ n.textContent='Go!'; n.style.fontSize='120px'; pop(); burst(); },2850); later(()=>go('c3',{replace:true}),3250); }};
 SC.c3 = {flow:'games', label:'Round · secret word', parent:'c1', render:()=>{ const w = word(); return `
-  ${topbar({t:`Round ${S.round+1}`, right:R.exit('a1','game'), tight:true})}
+  ${topbar({t:`Round ${S.round+1}`, right:R.exit('m6','game'), tight:true})}
   <div class="scroll"><div class="body" style="display:flex;flex-direction:column;min-height:100%;box-sizing:border-box">
     <div style="width:100%">
       <div class="progress" style="height:8px"><i id="tbar" style="width:100%"></i></div>
@@ -2881,7 +2881,7 @@ const fmtT = s => `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
 // Salmon / Fact tile — one structure for every tile in a row: holder, label, value, detail (Figma 2899:1238)
 const factTile = (tone, icon, label, value, detail, valAttr='') => `<div class="fact-tile ${tone}"><span class="ft-hold">${ic(icon,'i16')}</span><span class="ft-lines"><span class="ft-lbl">${label}</span><b class="ft-val" ${valAttr}>${value}</b></span><span class="ft-det">${detail}</span></div>`;
 SC.c5 = {flow:'games', label:'Round result', parent:'a3', render:()=>{ const L = S.last || {g:'jb',secs:38,pts:150,got:true}; const gn = L.g==='you'?'You':PL[L.g].name; const lastRound = S.round+1 >= S.players.length; return `
-  ${topbar({t:`Round ${S.round+1}`, right:R.exit('a1','game'), tight:true})}
+  ${topbar({t:`Round ${S.round+1}`, right:R.exit('m6','game'), tight:true})}
   <div class="scroll">${hz('soft')}<div class="body">
     <div class="stack" style="align-items:center;text-align:center">${av(L.g,84)}<h1 class="h2" style="margin-top:16px"><em>Round ${S.round+1}</em><br>${L.got?`${gn} got it`:'Time ran out'}</h1></div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:32px">
@@ -2925,7 +2925,7 @@ function podiumHTML(ranked){
 SC.c6 = {flow:'games', label:'Final results', parent:'a1', render:()=>{
   const ranked = [...S.players].sort((a,b)=>(S.scores[b]||0)-(S.scores[a]||0));
   const played = S.played.length ? S.played : [{w:'Mango',who:'JB',t:38,pts:150},{w:'Jeepney',who:'You',t:42,pts:100},{w:'Carabao',who:null}];
-  return `${topbar({t:'Final results', right:R.live()+R.exit('a1',''), tight:true})}
+  return `${topbar({t:'Final results', right:R.live()+R.exit('m6',''), tight:true})}
   <div class="scroll">${hz('actions')}<div class="body">
     <div class="center stack" style="gap:16px"><h1 class="h2">Final results</h1><p class="bl sec">Great game! Here’s how you did.</p></div>
     <div class="podium2" style="position:relative;height:254px;margin-top:39px">${podiumHTML(ranked)}</div>
@@ -2943,7 +2943,7 @@ SC.c6 = {flow:'games', label:'Final results', parent:'a1', render:()=>{
     stagger(el.querySelectorAll('.body .card .kv'), RISE, {step:80, delay:900});
     setTimeout(() => confettiRain(el), 600); }};
 SC.c7 = {flow:'games', label:'Keep this going in Salmon app', parent:'c6', render:()=>`
-  ${topbar({t:'Salmon', right:R.info()+R.exit('a1',''), tight:true})}
+  ${topbar({t:'Salmon', right:R.info()+R.exit('m6',''), tight:true})}
   <div class="scroll">${hz('soft')}<div class="body">
     <div class="stack" style="align-items:center;text-align:center">${pic('a_app',80)}<h1 class="h2" style="margin-top:24px">Keep this going<br><em>in Salmon app</em></h1><p class="b sec" style="max-width:297px;margin-top:16px">Today’s scores stay on this device until you close the tab.</p></div>
     <div style="margin-top:48px">${strip(84)}</div>
