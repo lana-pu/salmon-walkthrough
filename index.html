@@ -207,6 +207,7 @@ html.ft-warm{--ft-light:255,251,240}
 .grab{width:46px;height:4px;border-radius:9px;background:var(--hair);margin:0 auto}
 .sh-in{padding:24px 24px 32px}
 .sh-in.flush{padding-bottom:0}
+.sheet > .sh-in.flush:last-child{padding-bottom:calc(var(--ft-b) + 8px)}
 .sh-hd{display:flex;flex-direction:column;gap:8px;margin:0 2px 24px}
 .sh-hd .c{color:var(--sec)}
 .sh-ft{position:relative;padding:32px var(--ft-x) var(--ft-b);display:flex;flex-direction:column;gap:var(--ft-gap);overflow:hidden}
@@ -761,6 +762,10 @@ html.study .stage{flex-direction:column;gap:20px}
 .ya-sheet{position:absolute;left:0;right:0;top:327px;bottom:0;z-index:5;background:#fff;border-radius:28px 28px 0 0;padding-top:8px;display:flex;flex-direction:column;overflow:hidden}
 .ya-in{padding:24px 24px 0;flex:1}
 .ya-sheet .sh-ft{padding-top:24px}
+.sh-ft .btn.ink ~ .btn.soft,.w4-acts .btn.soft{background:#f6f6f6!important;height:46px!important;margin-top:calc(8px - var(--ft-gap))}
+.w4-acts .btn.soft{margin-top:8px!important}
+/* map sheets size to their content, so the footer keeps its full bottom spacing */
+.ya-sheet{top:auto;max-height:calc(100% - 64px)}
 .ya-here{animation:yahalo 2.4s ease-in-out infinite}
 @keyframes yahalo{50%{box-shadow:0 0 0 10px rgba(212,204,250,.45)}}
 @media (max-height:760px){.ya-sheet{top:auto;max-height:calc(100% - 64px)}}
@@ -1253,7 +1258,7 @@ function sheet(html, onMount){
   onMount && onMount(o);
   return o;
 }
-const sheetDoc = ({title, sub, body, note, buttons}) => `<!--S--><div class="sh-in flush"><div class="sh-hd"><p class="h4">${title}</p>${sub?`<p class="c">${sub}</p>`:''}</div>${body}</div><div class="sh-ft">${note?`<p class="ftn" style="margin:0">${note}</p>`:''}${buttons}</div>`;
+const sheetDoc = ({title, sub, body, note, buttons}) => `<!--S--><div class="sh-in flush"><div class="sh-hd"><p class="h4">${title}</p>${sub?`<p class="c">${sub}</p>`:''}</div>${body}</div>${note || buttons ? `<div class="sh-ft">${note?`<p class="ftn" style="margin:0">${note}</p>`:''}${buttons}</div>` : ''}`;
 const later = (fn, ms) => { const id = setTimeout(fn, ms); cur.timers.push(()=>clearTimeout(id)); return id; };
 
 /* ---------- ticket 6.1 → 6.2: scroll-linked dock & shrink ---------- */
@@ -2016,8 +2021,8 @@ function tkIntro(){
 }
 const tkSub = () => { const ph = tkPhase(); return ph === 'ready' ? `Waiting for you · <b class="tk-wait">${fmtWait()}</b>` : ph === 'onway' ? 'Waiting · he knows you’re coming' : ph === 'moved' ? `Walking over to you · about 2 min` : etaFrac() < .55 ? 'Finishing with another customer' : `Walking over to ${S.where.name}`; };
 const tkFoot = () => { const ph = tkPhase();
-  if (ph === 'ready') return foot(btn(`Head to ${S.where.name}`,'data-act="headOut"') + btn('I need a few more minutes','data-act="moreSheet"','paper'));
-  if (ph === 'onway') return foot(btn('I’m at the meeting point','data-act="arrived"') + btn('Show directions','data-act="toMeet"','paper'));
+  if (ph === 'ready') return foot(btn(`Head to ${S.where.name}`,'data-act="headOut"') + btn('I need a few more minutes','data-act="moreSheet"','paper'),'','sec-w');
+  if (ph === 'onway') return foot(btn('I’m at the meeting point','data-act="arrived"') + btn('Show directions','data-act="toMeet"','paper'),'','sec-w');
   if (ph === 'moved') return foot(markArrived() ? btn('I’m with Mark','data-go="m9"') : btn('Manage this meeting','data-act="manage"'));
   return foot(btn('Manage this meeting','data-act="manage"')); };
 const tkChip = () => { const ph = tkPhase(); return ph === 'ready' || ph === 'onway' ? ['Ready','Mark is'] : ph === 'moved' ? ['Coming','Mark is'] : null; };
@@ -2497,7 +2502,7 @@ SC.p6 = {flow:'pay', label:'6 · Check it with the staff', parent:'p5', render:(
       <p class="notice">Don’t confirm until everything checks out.</p>
     </div>
   </div></div>
-  ${foot(btn('I’ve got it',`data-go="p7" id="gotit" ${all?'':'disabled'}`)+btn('Something’s wrong','data-act="wrong"','paper'),'','sec-w')}`;}};
+  ${foot(btn('I’ve got it',`data-go="p7" id="gotit" ${all?'':'disabled'}`)+btn('Something’s wrong','data-act="wrong"','plain'))}`;}};
 
 HZ.blush = '<img src="data:image/svg+xml;base64,PHN2ZyBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIiBvdmVyZmxvdz0idmlzaWJsZSIgc3R5bGU9ImRpc3BsYXk6IGJsb2NrOyIgd2lkdGg9IjM5MyIgaGVpZ2h0PSI4NTIiIHZpZXdCb3g9IjAgMCAzOTMgODUyIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxnIGlkPSJTYWxtb24gLyBTY3JlZW4gYmFja2dyb3VuZCIgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwXzBfNTM4KSI+PGcgaWQ9ImJsb29tIDEiIG9wYWNpdHk9IjAuNDIiIGZpbHRlcj0idXJsKCNmaWx0ZXIwX2ZfMF81MzgpIj48ZWxsaXBzZSBjeD0iMTMzIiBjeT0iMjQiIHJ4PSIxMzMiIHJ5PSIyNCIgdHJhbnNmb3JtPSJtYXRyaXgoMSAwIDAgLTEgLTM0IDg2NCkiIGZpbGw9IiNCNkMzRTgiLz48L2c+PGcgaWQ9ImJsb29tIDIiIG9wYWNpdHk9IjAuNDIiIGZpbHRlcj0idXJsKCNmaWx0ZXIxX2ZfMF81MzgpIj48ZWxsaXBzZSBjeD0iMjE2LjUiIGN5PSI5My41IiByeD0iMjE2LjUiIHJ5PSI5My41IiB0cmFuc2Zvcm09Im1hdHJpeCgxIDAgMCAtMSA3MCA5NzMpIiBmaWxsPSIjRTVDM0M1Ii8+PC9nPjxnIGlkPSJibG9vbSAzIiBvcGFjaXR5PSIwLjQyIiBmaWx0ZXI9InVybCgjZmlsdGVyMl9mXzBfNTM4KSI+PGVsbGlwc2UgY3g9IjM5LjUiIGN5PSI4MzUiIHJ4PSIxNDMuNSIgcnk9IjU5IiBmaWxsPSIjRUFEQUYzIi8+PC9nPjxnIGlkPSJibG9vbSA0IiBmaWx0ZXI9InVybCgjZmlsdGVyM19mXzBfNTM4KSI+PGVsbGlwc2UgY3g9IjUxLjgwMzYiIGN5PSIyNDEiIHJ4PSI1MS44MDM2IiByeT0iMjQxIiB0cmFuc2Zvcm09Im1hdHJpeCgwLjgwMTY4NCAwLjU5Nzc0OCAwLjU5Nzc0OCAtMC44MDE2ODQgMjUxLjQyOSA5NTEuNzEzKSIgZmlsbD0iI0ZGRTlGNSIvPjwvZz48ZyBpZD0iYmxvb20gNSIgZmlsdGVyPSJ1cmwoI2ZpbHRlcjRfZl8wXzUzOCkiPjxlbGxpcHNlIGN4PSIyOC42MDQ0IiBjeT0iMjQ4LjI0NCIgcng9IjI4LjYwNDQiIHJ5PSIyNDguMjQ0IiB0cmFuc2Zvcm09Im1hdHJpeCgwLjAxMTMzNjkgLTAuOTk5OTM2IC0wLjk5OTkzNiAtMC4wMTEzMzY5IDQzNC45NjkgODExLjQ2MikiIGZpbGw9IiNGRkY5REMiLz48L2c+PC9nPjxkZWZzPjxmaWx0ZXIgaWQ9ImZpbHRlcjBfZl8wXzUzOCIgeD0iLTE4NCIgeT0iNjY2IiB3aWR0aD0iNTY2IiBoZWlnaHQ9IjM0OCIgZmlsdGVyVW5pdHM9InVzZXJTcGFjZU9uVXNlIiBjb2xvci1pbnRlcnBvbGF0aW9uLWZpbHRlcnM9InNSR0IiPjxmZUZsb29kIGZsb29kLW9wYWNpdHk9IjAiIHJlc3VsdD0iQmFja2dyb3VuZEltYWdlRml4Ii8+PGZlQmxlbmQgbW9kZT0ibm9ybWFsIiBpbj0iU291cmNlR3JhcGhpYyIgaW4yPSJCYWNrZ3JvdW5kSW1hZ2VGaXgiIHJlc3VsdD0ic2hhcGUiLz48ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSI3NSIgcmVzdWx0PSJlZmZlY3QxX2ZvcmVncm91bmRCbHVyXzBfNTM4Ii8+PC9maWx0ZXI+PGZpbHRlciBpZD0iZmlsdGVyMV9mXzBfNTM4IiB4PSItODAiIHk9IjYzNiIgd2lkdGg9IjczMyIgaGVpZ2h0PSI0ODciIGZpbHRlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY29sb3ItaW50ZXJwb2xhdGlvbi1maWx0ZXJzPSJzUkdCIj48ZmVGbG9vZCBmbG9vZC1vcGFjaXR5PSIwIiByZXN1bHQ9IkJhY2tncm91bmRJbWFnZUZpeCIvPjxmZUJsZW5kIG1vZGU9Im5vcm1hbCIgaW49IlNvdXJjZUdyYXBoaWMiIGluMj0iQmFja2dyb3VuZEltYWdlRml4IiByZXN1bHQ9InNoYXBlIi8+PGZlR2F1c3NpYW5CbHVyIHN0ZERldmlhdGlvbj0iNzUiIHJlc3VsdD0iZWZmZWN0MV9mb3JlZ3JvdW5kQmx1cl8wXzUzOCIvPjwvZmlsdGVyPjxmaWx0ZXIgaWQ9ImZpbHRlcjJfZl8wXzUzOCIgeD0iLTE1NCIgeT0iNzI2IiB3aWR0aD0iMzg3IiBoZWlnaHQ9IjIxOCIgZmlsdGVyVW5pdHM9InVzZXJTcGFjZU9uVXNlIiBjb2xvci1pbnRlcnBvbGF0aW9uLWZpbHRlcnM9InNSR0IiPjxmZUZsb29kIGZsb29kLW9wYWNpdHk9IjAiIHJlc3VsdD0iQmFja2dyb3VuZEltYWdlRml4Ii8+PGZlQmxlbmQgbW9kZT0ibm9ybWFsIiBpbj0iU291cmNlR3JhcGhpYyIgaW4yPSJCYWNrZ3JvdW5kSW1hZ2VGaXgiIHJlc3VsdD0ic2hhcGUiLz48ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSIyNSIgcmVzdWx0PSJlZmZlY3QxX2ZvcmVncm91bmRCbHVyXzBfNTM4Ii8+PC9maWx0ZXI+PGZpbHRlciBpZD0iZmlsdGVyM19mXzBfNTM4IiB4PSIxNDcuMDUzIiB5PSI0NTMuNzcyIiB3aWR0aD0iNTc5LjkyNiIgaGVpZ2h0PSI2NzEuNDAxIiBmaWx0ZXJVbml0cz0idXNlclNwYWNlT25Vc2UiIGNvbG9yLWludGVycG9sYXRpb24tZmlsdGVycz0ic1JHQiI+PGZlRmxvb2QgZmxvb2Qtb3BhY2l0eT0iMCIgcmVzdWx0PSJCYWNrZ3JvdW5kSW1hZ2VGaXgiLz48ZmVCbGVuZCBtb2RlPSJub3JtYWwiIGluPSJTb3VyY2VHcmFwaGljIiBpbjI9IkJhY2tncm91bmRJbWFnZUZpeCIgcmVzdWx0PSJzaGFwZSIvPjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjcwIiByZXN1bHQ9ImVmZmVjdDFfZm9yZWdyb3VuZEJsdXJfMF81MzgiLz48L2ZpbHRlcj48ZmlsdGVyIGlkPSJmaWx0ZXI0X2ZfMF81MzgiIHg9Ii0yMDEuMTYzIiB5PSI2MTEuMzAyIiB3aWR0aD0iNzc2LjQ1NyIgaGVpZ2h0PSIzMzcuNDg1IiBmaWx0ZXJVbml0cz0idXNlclNwYWNlT25Vc2UiIGNvbG9yLWludGVycG9sYXRpb24tZmlsdGVycz0ic1JHQiI+PGZlRmxvb2QgZmxvb2Qtb3BhY2l0eT0iMCIgcmVzdWx0PSJCYWNrZ3JvdW5kSW1hZ2VGaXgiLz48ZmVCbGVuZCBtb2RlPSJub3JtYWwiIGluPSJTb3VyY2VHcmFwaGljIiBpbjI9IkJhY2tncm91bmRJbWFnZUZpeCIgcmVzdWx0PSJzaGFwZSIvPjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjcwIiByZXN1bHQ9ImVmZmVjdDFfZm9yZWdyb3VuZEJsdXJfMF81MzgiLz48L2ZpbHRlcj48Y2xpcFBhdGggaWQ9ImNsaXAwXzBfNTM4Ij48cmVjdCB3aWR0aD0iMzkzIiBoZWlnaHQ9Ijg1MiIgZmlsbD0id2hpdGUiLz48L2NsaXBQYXRoPjwvZGVmcz48L3N2Zz4K" alt="" style="position:absolute;left:0;top:0;width:393px;height:852px;max-width:none">';
 HZ.blushGlow = HZ.blush + `<span class="ub-glow" style="top:108px;height:216px;bottom:auto"><i style="left:269.4px;top:-152.5px;width:243.0px;height:202.5px;background:#D1BFFF;opacity:0.23;filter:blur(28.35px)"></i><i style="left:42.6px;top:139.1px;width:222.8px;height:182.2px;background:#FFD1B3;opacity:0.16;filter:blur(29.7px)"></i><i style="left:-119.4px;top:147.2px;width:276.8px;height:209.2px;background:#FFB5D1;opacity:0.18;filter:blur(31.05px)"></i><i style="left:127.6px;top:-40.4px;width:97.2px;height:91.8px;background:#FFC99E;opacity:0.18;filter:blur(13.5px)"></i><i style="left:188.4px;top:-39.1px;width:94.5px;height:91.8px;background:#B89CFF;opacity:0.18;filter:blur(14.175px)"></i><i style="left:142.5px;top:-32.3px;width:110.7px;height:94.5px;background:#FFBAC7;opacity:0.22;filter:blur(14.85px)"></i></span>`;
@@ -2557,7 +2562,7 @@ SC.w3 = {flow:'wait', label:'Meeting point', parent:'m6', render:()=>{ const p =
       ${leadRow('pin','How to find it', p.about)}
     </div>
   </div></div>
-  ${foot(btn('Show directions','data-act="toMeet"')+btn('Change the meeting point','data-go="w2"','paper'))}`;}};
+  ${foot(btn('Show directions','data-act="toMeet"')+btn('Change the meeting point','data-go="w2"','paper'),'','sec-w')}`;}};
 // where the directions lead: to a place to wait, or to the meeting itself
 const toMeetDest = () => S.dest === 'meet';
 const meetDest = () => S.moved ? (p => ({name:p.name, meta:`${p.meta.split(' · ').slice(2).join(' · ')||'2 min walk'} · Level ${p.lvl.slice(1)}`, how:p.about}))(PLACES[S.place])
@@ -2585,7 +2590,7 @@ SC.w4 = {flow:'wait', label:'Directions', parent:'w2', render:()=>{ const p = to
     <div class="grab" style="margin-bottom:14px"></div>
     <div class="stack g12" style="margin-bottom:12px">${meet?'<p class="c sec">Meeting point</p>':''}<p class="h3" style="font-weight:600">${p.name}</p><p class="b sec">${meet ? p.meta : `${p.meta.split(' · ').slice(2).join(' · ')||'2 min walk'} · Level ${p.lvl.slice(1)}`}</p><p class="b sec">${meet ? p.how : 'Take the escalator down to Level 1. The lounge is beside the central atrium.'}</p></div>
     ${meet ? meetBanner('margin:20px 0 24px') : statusBanner('cal',meetIn(),`Original meeting point · ${S.where.name}`,'margin:20px 0 32px')}
-    <div class="stack w4-acts" style="gap:0">${btn('Start walking','data-act="walk" id="walkb"')}${meet ? btn('Chat with Mark','data-act="msgMark" id="chatb"','paper') : ''}</div>
+    <div class="stack w4-acts" style="gap:0">${btn('Start walking','data-act="walk" id="walkb"')}${meet ? btn('Chat with Mark','data-act="msgMark" id="chatb"','soft') : ''}</div>
   </div>`;},
   mount(el){ const path = el.querySelector('#route'), me = el.querySelector('#me'); const s = path.getPointAtLength(0); me.setAttribute('transform',`translate(${s.x} ${s.y})`); path.style.strokeDasharray = path.getTotalLength(); path.style.strokeDashoffset = path.getTotalLength(); path.animate([{strokeDashoffset:path.getTotalLength()},{strokeDashoffset:0}],{duration:reduce?1:900,fill:'forwards',easing:'ease-out'}); }};
 function walk(el){
@@ -2732,7 +2737,7 @@ SC.w6 = {flow:'wait', label:'Your meeting · what Mark is doing', parent:'m6', r
     </div>
     ${near ? '' : codeCard}
   </div></div>
-  ${w6Btns(ph) ? foot(w6Btns(ph) + (ph === 'ready' ? btn('I need a few more minutes','data-act="moreSheet"','paper') : ph === 'onway' ? btn('Show directions','data-act="toMeet"','paper') : '')) : ''}`;},
+  ${w6Btns(ph) ? foot(w6Btns(ph) + (ph === 'ready' ? btn('I need a few more minutes','data-act="moreSheet"','paper') : ph === 'onway' ? btn('Show directions','data-act="toMeet"','paper') : ''), '', 'sec-w') : ''}`;},
   mount(el){ w6MapTick(el); if (reduce) return;
     // a live update (Mark arrives, phase changes) keeps the page in place: only the headline and the footer cross-fade
     if (el._mounted){ el.querySelectorAll('.intro, :scope > .ft').forEach(n => n.animate([{opacity:.25},{opacity:1}], {duration:420, easing:'ease-out'})); return; }
@@ -2761,7 +2766,7 @@ function moreSheet(){
   sheet(sheetDoc({title:'Need a few more minutes?', sub:'Mark will wait — the meeting simply moves.',
     body:`<div class="stack" style="gap:8px;margin-top:16px">${[['5','5 more minutes'],['10','10 more minutes']].map(([v,t])=>`<button class="card row" data-more="${v}" style="padding:16px;width:100%;gap:12px"><span class="lead-ic" style="width:36px;height:36px">${ic('clock','i16')}</span><span class="tx"><b class="bm">${t}</b><span class="c">Mark gets a message right away</span></span>${ic('chevR','chev')}</button>`).join('')}
       <button class="card row" data-go="x3" data-close style="padding:16px;width:100%;gap:12px"><span class="lead-ic" style="width:36px;height:36px">${ic('cal','i16')}</span><span class="tx"><b class="bm">I can’t make it now</b><span class="c">Pick another time or place</span></span>${ic('chevR','chev')}</button></div>`,
-    buttons:btn('Cancel','data-close','paper')}), o => {
+    buttons:''}), o => {
       o.addEventListener('click', e => { const b = e.target.closest('[data-more]'); if (!b) return;
         const m = +b.dataset.more; S.etaEnd = Date.now() + WAIT_MS * m / 5; S.onWay = false; S.pushed = false;
         const c = o.querySelector('[data-close]'); if (c) c.click(); toast(`Mark knows — he’ll be ready in ${m} min`); if (cur.id === 'm6') tkRefresh(); else rerender(); });
@@ -2805,7 +2810,7 @@ function inviteSheet(){
     <div class="inv-card inv-qr">${head('Scan to join','Point their phone camera at the code')}
       <div class="qr-frame"><div class="qr-wrap" style="position:relative;width:max-content;margin:0 auto"><div class="qr" aria-label="QR code to join">${qrCells()}</div><span class="qr-scan" aria-hidden="true"></span></div></div></div>
     <div class="inv-card" aria-live="polite">${head('Joined players',`<span class="jm-n">${S.players.length}</span> of ${MAX} in this game`)}<div class="jm-grid">${slots()}</div></div>`,
-    buttons: btn('Done','data-close') + btn('Share a link instead','data-share','paper')}), o => {
+    buttons: btn('Done','data-close') + btn('Share a link instead','data-share','soft')}), o => {
     o.querySelector('[data-share]').addEventListener('click', () => { navigator.clipboard && navigator.clipboard.writeText('https://salmon.app/play/henyo').catch(()=>{}); toast('Link copied'); });
     const who = next(); if (!who || S.players.length >= MAX) return;
     setTimeout(() => {
@@ -3014,7 +3019,7 @@ SC.x1 = {flow:'miss', label:'What’s missing?', parent:'m3', render:()=>`
     <div class="intro">${title2('What’s<br><em>missing?</em>')}<p class="b">Tell us what you don’t have — there’s usually a way around it. You don’t have to answer.</p></div>
     <div class="stack g8">${MISSING.map(([k,i,t,s])=>`<button class="boxrow" data-act="missing" data-v="${k}"><span class="lead-ic">${ic(i)}</span><span class="tx"><b class="bm">${t}</b><span class="c">${s}</span></span>${ic('chevR','chev')}</button>`).join('')}</div>
   </div></div>
-  ${foot(btn('Leave anyway','data-go="x7"','paper'))}`};
+  ${foot(btn('Leave anyway','data-go="x7"'))}`};
 
 const HELD = () => `<div class="card" style="padding:4px 16px">
   <div class="kv"><span>iPhone 14 256GB · Midnight</span><span>₱21,999</span></div>
@@ -3208,9 +3213,9 @@ const ACT = {
   shared:()=>toast('Link copied'),
   term:b=>{ const old = TERMS[S.term]; S.term = +b.dataset.v; groupToggle(b,'.tile'); centerTerm(cur.el, true); countUp(cur.el.querySelector('#mpay'), old, TERMS[S.term], 600, v=>v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})); },
   when:b=>{ S.when = b.dataset.v; groupToggle(b,'.tile'); if (S.when==='later') toast('Pick a time — Mark’s next free slot is 4:00 PM'); },
-  mark:()=>sheet(`<div style="display:flex;gap:16px;align-items:center"><img src="${A.mark}" alt="" style="width:88px;height:88px;border-radius:16px;object-fit:cover"><div class="stack g8"><b class="h3">Mark Reyes</b><span class="badge" style="align-self:flex-start">${ic('shield')}Verified ambassador</span></div></div>
+  mark:()=>sheet(`<!--S--><div class="sh-in flush"><div style="display:flex;gap:16px;align-items:center"><img src="${A.mark}" alt="" style="width:88px;height:88px;border-radius:16px;object-fit:cover"><div class="stack g8"><b class="h3">Mark Reyes</b><span class="badge" style="align-self:flex-start">${ic('shield')}Verified ambassador</span></div></div>
     <div class="card mt24" style="background:var(--bg);padding:4px 16px">${leadRow('idcard','How to spot him','Salmon ID badge · red Salmon shirt')}${leadRow('msg','Speaks','English, Filipino')}${leadRow('sparkle','Meetings this month','42 · rated 4.9')}</div>
-    <div class="mt24">${btn(ic('msg','i16')+'Chat with Mark','data-chat')}</div>`, o=>{
+    </div><div class="sh-ft">${btn(ic('msg','i16')+'Chat with Mark','data-chat')}</div>`, o=>{
       o.querySelector('[data-chat]').addEventListener('click', ()=>{ o.close(); setTimeout(()=>toast('Chat with Mark opens in the Salmon app'), 200); });
     }),
   about:()=>go('ab'),
@@ -3252,7 +3257,7 @@ const ACT = {
   place:b=>{ S.place = +b.dataset.v; rerender(); placeSheet(S.place); },
   walk:()=>walk(cur.el),
   move:()=>{ const p = PLACES[S.place]; S.moved = true; S.where = {name:p.name, sub:`${p.lvl} · you’re here`}; go('w4h'); },
-  note:()=>sheet(`<p class="h4">Add a note for Mark</p><p class="c sec" style="margin:6px 0 16px">What should he look for?</p><textarea class="field" rows="3" id="nt" placeholder="E.g. “table beside the escalator”">${S.note}</textarea><div class="mt24 stack g12">${btn('Save note','data-save')}${btn('Cancel','data-close','paper')}</div>`, o=>{
+  note:()=>sheet(`<!--S--><div class="sh-in flush"><p class="h4">Add a note for Mark</p><p class="c sec" style="margin:6px 0 16px">What should he look for?</p><textarea class="field" rows="3" id="nt" placeholder="E.g. “table beside the escalator”">${S.note}</textarea></div><div class="sh-ft">${btn('Save note','data-save')}${btn('Cancel','data-close','plain')}</div>`, o=>{
     setTimeout(()=>o.querySelector('#nt').focus(),350);
     o.querySelector('[data-save]').addEventListener('click',()=>{ const v = o.querySelector('#nt').value.trim(); if (!v) return o.querySelector('#nt').focus(); S.note = v; o.close(); const first = !S.noteAdded; S.noteAdded = true; rerender(); if (first) addPoints(10); });
   }),
@@ -3276,7 +3281,7 @@ const ACT = {
       ${tkPhase() === 'coming' ? row('data-mg="time"','clock','Change the time',`Now around ${protoClock(etaMins())}`) : row('data-mg="more"','clock','I need a few more minutes','Mark will wait')}
       ${row('data-mg="w2"','pin','Change the place', `Now at ${S.where.name}`)}
       ${row('data-mg="msg"','help','Ask a question','Mark replies in the chat')}
-      ${row('data-mg="x7"','x','Cancel the meeting','You can book again anytime')}</div>`, buttons:btn('Close','data-close','paper')}), o => {
+      ${row('data-mg="x7"','x','Cancel the meeting','You can book again anytime')}</div>`, buttons:''}), o => {
       o.addEventListener('click', e => { const b = e.target.closest('[data-mg]'); if (!b) return; const k = b.dataset.mg; o.close();
         setTimeout(() => k === 'more' ? moreSheet() : k === 'time' ? timeSheet() : k === 'msg' ? ACT.msgMark() : go(k), 220); }); }); },
   mpHelp:()=>toast('Mark can call a Salmon specialist for you'),
