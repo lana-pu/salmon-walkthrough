@@ -1675,7 +1675,8 @@ function ticketSwap(el){
       wrap.style.cssText = `position:absolute;left:0;top:0;border-radius:${lb.rad};overflow:hidden;z-index:${key==='game'?3:key==='getready'?2:1};will-change:transform,width,height`;
       // surface: the new look underneath, the old look on top melting away over the whole move
       const s1 = surface(lb), s0 = surface(o.look);
-      if (PAINT && recolour){ wrap.append(s0, s1);       // the new colour spreads from the middle like ink, the old surface stays under it
+      const ink = PAINT && recolour && key === 'game';   // only Game break fills with colour; Take a seat simply dissolves to black (an ink blot read as a dirty shadow)
+      if (ink){ wrap.append(s0, s1);       // the new colour spreads from the middle like ink, the old surface stays under it
         const m = 'radial-gradient(circle at 50% 55%, #000 0 50%, transparent 64%) center / 0% 0% no-repeat';
         s1.style.mask = m; s1.style.webkitMask = m;
         s1.animate([{maskSize:'0% 0%', webkitMaskSize:'0% 0%'},{maskSize:'320% 320%', webkitMaskSize:'320% 320%'}], {duration:D*.8, delay:lag + D*.05, easing:'cubic-bezier(.35,0,.2,1)', fill:'both'});
@@ -1694,13 +1695,13 @@ function ticketSwap(el){
       layer.appendChild(wrap);
       const kf = r => ({transform:`translate(${r.x}px,${r.y}px)`, width:r.w+'px', height:r.h+'px'});
       wrap.animate([kf(a), kf(b)], {duration:D, delay:lag, easing:MOVE_S, fill:'both'});
-      if (!(PAINT && recolour)) s0.animate([{opacity:1},{opacity:0}], {duration:D*.9, delay:lag + D*.05, easing:'cubic-bezier(.45,0,.55,1)', fill:'both'});
+      if (!ink) s0.animate([{opacity:1},{opacity:0}], {duration:D*.9, delay:lag + D*.05, easing:'cubic-bezier(.45,0,.55,1)', fill:'both'});
       const up = key === 'game', main = key === 'game' || key === 'getready';
       if (ARC && main && moved){        // the two cards pass each other on gentle arcs: the rising one in front, lifted; the other dips behind
         const dx = b.x - a.x, dy = b.y - a.y, L = Math.hypot(dx, dy) || 1, sg = up ? 1 : -1, amp = Math.min(54, L * .24);
         const px = -dy / L * amp * sg, py = dx / L * amp * sg;
         wrap.animate([{transform:'translate(0,0) scale(1)'},{transform:`translate(${px}px,${py}px) scale(${up?1.07:.92})`, offset:.45},{transform:'translate(0,0) scale(1)'}], {duration:D*.92, delay:lag, easing:'cubic-bezier(.4,0,.3,1)', fill:'both', composite:'add'});
-        wrap.animate([{boxShadow:'0 0 0 rgba(27,26,27,0)', filter:'brightness(1)'},{boxShadow: up ? '0 26px 50px rgba(27,26,27,.24)' : '0 2px 6px rgba(27,26,27,.05)', filter: up ? 'brightness(1.03)' : 'brightness(.88)', offset:.45},{boxShadow:'0 0 0 rgba(27,26,27,0)', filter:'brightness(1)'}], {duration:D, delay:lag, easing:'ease-in-out', fill:'both'});
+        if (!up) wrap.animate([{filter:'brightness(1)'},{filter:'brightness(.94)', offset:.45},{filter:'brightness(1)'}], {duration:D, delay:lag, easing:'ease-in-out', fill:'both'});
       }
       if (LIFT && moved){               // picked up first, set down with a small bounce; the rest of the grid answers in a wave
         if (main) wrap.animate([{transform:'scale(1) rotate(0deg)', boxShadow:'0 0 0 rgba(27,26,27,0)'},{transform:`scale(1.08) rotate(${up?-2.5:2}deg)`, boxShadow:'0 22px 40px rgba(27,26,27,.22)', offset:.25},{transform:`scale(1.06) rotate(${up?-1.5:1.2}deg)`, boxShadow:'0 22px 40px rgba(27,26,27,.22)', offset:.68},{transform:'scale(1) rotate(0deg)', boxShadow:'0 0 0 rgba(27,26,27,0)'}], {duration:PICK + D, delay:lag - PICK, easing:'cubic-bezier(.3,0,.3,1)', fill:'both', composite:'add'});
@@ -3383,7 +3384,7 @@ setSec(secInit==='compact' ? 'compact' : 'std');
 let ftlInit = new URLSearchParams(location.search).get('light'); if (!ftlInit){ try{ ftlInit = localStorage.getItem('ftl'); }catch(e){} }
 setFtl(ftlInit==='warm' ? 'warm' : 'white');
 let acsInit = new URLSearchParams(location.search).get('cards'); if (!acsInit){ try{ acsInit = localStorage.getItem('acs'); }catch(e){} }
-setAcs(acsInit==='colour' ? 'colour' : 'mono');
+setAcs(acsInit==='mono' ? 'mono' : 'colour');   // colour action cards by default
 if (window.STUDY === 'swap'){
   document.documentElement.classList.add('test','study');
   const bar = document.createElement('div'); bar.className = 'study-bar';
