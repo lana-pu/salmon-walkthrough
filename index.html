@@ -3538,7 +3538,7 @@ function stepOf(){ const r = stepOfRaw(); return r === null ? shown : r > 2 ? r 
 function stepOfRaw(){
   const id = cur.id, ph = tkPhase();
   if (id==='m1') return 0; if (id==='m2') return 1; if (id==='m3') return 2; if (id[0]==='x') return 6; if (id==='m4') return 3; if (id==='m5') return 4;
-  if (id==='m6' || id==='ab' || id==='pp') return (ph==='ready'||ph==='onway'||ph==='moved') ? 10 : 5;
+  if (id==='m6' || id==='ab' || id==='pp') return (ph==='ready'||ph==='onway'||ph==='moved'||(S.markGo && ph==='coming')) ? 10 : 5;   // Mark already on his way counts as the “Mark is ready” step
   if (id[0]==='i') return 6;
   if (id==='w2' || id==='w3') return (ph==='ready'||ph==='onway') ? 11 : 7;
   if (['w4','w4a','w4h','w4c'].includes(id)) return (S.dest==='place' && ph==='coming') ? 7 : 11;
@@ -3570,7 +3570,11 @@ setInterval(() => {
   if (!S.markGo && S.etaEnd && tkPhase() === 'coming' && S.etaEnd - Date.now() < 15000) S.etaEnd = Date.now() + 15000;
   const mb = $('storyMark'); mb.disabled = !(S.etaEnd && tkPhase() === 'coming' && !S.markGo);
 }, 300);                       // Mark becoming ready changes the step without a tap
-const goStep = i => { i = Math.max(0, Math.min(N-1, i)); phone.querySelectorAll('.ovl').forEach(o=>o.remove()); STEPS[i].go(); render(i); };
+const MARK_STEP = STEPS.findIndex(s => s.ey === 'Mark is ready');
+const goStep = i => { i = Math.max(0, Math.min(N-1, i)); phone.querySelectorAll('.ovl').forEach(o=>o.remove());
+  // stepping back before “Mark is ready”: Mark is still on his way again
+  if (i < MARK_STEP && typeof S !== 'undefined'){ S.markGo = false; if (tkPhase() !== 'coming'){ S.etaEnd = Date.now() + WAIT_MS; S.onWay = false; S.moved = false; S.pushed = false; S.inMeeting = false; } }
+  STEPS[i].go(); render(i); };
 $('storyPrev').onclick = () => goStep(shown-1);
 $('storyNext').onclick = () => goStep(shown+1);
 $('storyRestart').onclick = () => goStep(0);
