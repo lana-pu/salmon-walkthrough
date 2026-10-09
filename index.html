@@ -210,6 +210,9 @@ html.ft-warm{--ft-light:255,251,240}
 .sheet > .sh-in.flush:last-child{padding-bottom:calc(var(--ft-b) + 8px)}
 .sh-hd{display:flex;flex-direction:column;gap:8px;margin:0 0 24px}
 .sh-hd .c{color:var(--sec)}
+.sh-in textarea.field{display:block}
+/* a sheet that opens with a photo: the close button sits inside the photo corner instead of overlapping its edge */
+.sheet:has(.ph-first) .sh-x{top:48px;right:36px;background:rgba(255,255,255,.92)}
 .sh-ft{position:relative;padding:32px var(--ft-x) var(--ft-b);display:flex;flex-direction:column;gap:var(--ft-gap);overflow:hidden}
 .sh-ft::before{content:"";position:absolute;left:0;right:0;bottom:0;height:150px;z-index:-1;pointer-events:none;
   background:radial-gradient(60% 55% at 48% 108%,rgba(255,205,168,.6),rgba(255,205,168,0) 100%),radial-gradient(85% 120% at 45% 112%,rgba(196,189,229,1),rgba(196,189,229,0) 100%);
@@ -839,7 +842,7 @@ html.ac-colour .ac-tile[data-ac="game"] .ac-ctrl-ink{display:none}
 .cam-focus i:nth-child(4){right:0;bottom:0;border-left:0;border-top:0}
 .cam-focus::after{content:"";position:absolute;left:50%;top:50%;width:7px;height:7px;margin:-3.5px 0 0 -3.5px;border-radius:99px;background:#ffd60a;opacity:.9}
 .cam-focus.ok i{border-color:#9fe3b8}.cam-focus.ok::after{background:#9fe3b8}
-.inv-card{background:#f6f6f6;border-radius:20px;padding:16px 16px 20px;margin-top:12px}
+.inv-card{background:#f6f6f6;border-radius:20px;padding:16px 16px 20px;margin-top:8px}
 .qr-frame{margin:16px auto 0;width:max-content}
 .qr-frame .qr{background:#fff;border-radius:12px;padding:8px}
 .inv-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
@@ -1747,7 +1750,7 @@ function earnSheet(){
 /* ---------- Wait comfortably: place details sheet ---------- */
 function placeSheet(i){
   const p = PLACES[i], busy = /busy/i.test(p.live);
-  sheet(`<!--S--><div class="sh-in flush">
+  sheet(`<!--S--><div class="sh-in flush ph-first">
       <div style="position:relative;border-radius:16px;overflow:hidden;height:176px;margin-bottom:20px"><img src="${A[p.img]}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;max-width:none">
         <span class="badge" style="position:absolute;left:12px;bottom:12px;background:rgba(255,255,255,.92);color:var(--ink);gap:6px"><i class="dot ${busy?'':'pulse'}" style="background:${busy?'#f0a24b':'var(--live)'}"></i>${p.live}</span></div>
       <div class="sh-hd" style="margin-bottom:20px"><p class="h3" style="font-weight:600">${p.name}</p><p class="c">${p.meta} · ${p.hours}</p></div>
@@ -2764,8 +2767,8 @@ function timeSheet(){
 }
 function moreSheet(){
   sheet(sheetDoc({title:'Need a few more minutes?', sub:'Mark will wait — the meeting simply moves.',
-    body:`<div class="stack" style="gap:8px;margin-top:16px">${[['5','5 more minutes'],['10','10 more minutes']].map(([v,t])=>`<button class="card row" data-more="${v}" style="padding:16px;width:100%;gap:12px"><span class="lead-ic" style="width:36px;height:36px">${ic('clock','i16')}</span><span class="tx"><b class="bm">${t}</b><span class="c">Mark gets a message right away</span></span>${ic('chevR','chev')}</button>`).join('')}
-      <button class="card row" data-go="x3" data-close style="padding:16px;width:100%;gap:12px"><span class="lead-ic" style="width:36px;height:36px">${ic('cal','i16')}</span><span class="tx"><b class="bm">I can’t make it now</b><span class="c">Pick another time or place</span></span>${ic('chevR','chev')}</button></div>`,
+    body:`<div class="stack" style="gap:8px;margin-top:16px">${[['5','5 more minutes'],['10','10 more minutes']].map(([v,t])=>`<button class="boxrow" data-more="${v}"><span class="lead-ic" style="width:36px;height:36px">${ic('clock','i16')}</span><span class="tx"><b class="bm">${t}</b><span class="c">Mark gets a message right away</span></span>${ic('chevR','chev')}</button>`).join('')}
+      <button class="boxrow" data-go="x3" data-close><span class="lead-ic" style="width:36px;height:36px">${ic('cal','i16')}</span><span class="tx"><b class="bm">I can’t make it now</b><span class="c">Pick another time or place</span></span>${ic('chevR','chev')}</button></div>`,
     buttons:''}), o => {
       o.addEventListener('click', e => { const b = e.target.closest('[data-more]'); if (!b) return;
         const m = +b.dataset.more; S.etaEnd = Date.now() + WAIT_MS * m / 5; S.onWay = false; S.pushed = false;
@@ -3257,7 +3260,7 @@ const ACT = {
   place:b=>{ S.place = +b.dataset.v; rerender(); placeSheet(S.place); },
   walk:()=>walk(cur.el),
   move:()=>{ const p = PLACES[S.place]; S.moved = true; S.where = {name:p.name, sub:`${p.lvl} · you’re here`}; go('w4h'); },
-  note:()=>sheet(`<!--S--><div class="sh-in flush"><p class="h4">Add a note for Mark</p><p class="c sec" style="margin:6px 0 16px">What should he look for?</p><textarea class="field" rows="3" id="nt" placeholder="E.g. “table beside the escalator”">${S.note}</textarea></div><div class="sh-ft">${btn('Save note','data-save')}${btn('Cancel','data-close','plain')}</div>`, o=>{
+  note:()=>sheet(sheetDoc({title:'Add a note for Mark', sub:'What should he look for?', body:`<textarea class="field" rows="3" id="nt" placeholder="E.g. “table beside the escalator”">${S.note}</textarea>`, buttons:btn('Save note','data-save')+btn('Cancel','data-close','plain')}), o=>{
     setTimeout(()=>o.querySelector('#nt').focus(),350);
     o.querySelector('[data-save]').addEventListener('click',()=>{ const v = o.querySelector('#nt').value.trim(); if (!v) return o.querySelector('#nt').focus(); S.note = v; o.close(); const first = !S.noteAdded; S.noteAdded = true; rerender(); if (first) addPoints(10); });
   }),
