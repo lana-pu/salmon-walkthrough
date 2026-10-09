@@ -16,7 +16,7 @@
   box-sizing:border-box;
   padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
   /* Salmon Design tokens */
-  --bg:#f6f6f6;--paper:#fff;--ink:#1b1a1b;--sec:#876e73;--muted:#b29aa0;--hair:#e7dfe1;--tint:#6b5a76;--live:#5384ed;--island:#0b0b0d;
+  --bg:#f6f6f6;--paper:#fff;--ink:#1b1a1b;--sec:#7e666b;--muted:#a4878e;--hair:#e7dfe1;--tint:#6b5a76;--live:#5384ed;--island:#0b0b0d;
   --lilac:#eadaf3;--pink:#e5c3c5;--blue:#d0d9f1;--cool:#b6c3e8;--warm:#fcd4b7;--blush:#ffe9f5;--cream:#fff9dc;--sky:#eaf9ff;--apricot:#ffe5d0;
   --r-xs:8px;--r-in:12px;--r-card:20px;--r-screen:32px;--r-panel:40px;
   --g-tile:linear-gradient(112deg,#c3d6f6 0%,#dccfe6 45%,#f6c9c0 82%,#f9bfb0 100%);
@@ -35,6 +35,8 @@ body{-webkit-text-size-adjust:100%;text-size-adjust:100%;text-rendering:optimize
 button{font:inherit;font-variation-settings:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:inherit}
 input,textarea{font:inherit}
 :focus-visible{outline:2px solid var(--live);outline-offset:2px;border-radius:6px}
+/* headings and sheets receive focus only to guide screen readers: no ring on them */
+[tabindex="-1"]:focus,[tabindex="-1"]:focus-visible{outline:none}
 img{max-width:100%;display:block}
 
 /* ---------- stage ---------- */
@@ -77,7 +79,7 @@ img{max-width:100%;display:block}
 .ib::after{content:"";position:absolute;inset:-12px}
 .ib svg{width:20px;height:20px}
 .ib svg.i14{width:14px;height:14px}
-.info{width:20px;height:20px;border-radius:999px;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:600;font-style:normal}
+.info{position:relative;width:20px;height:20px;border-radius:999px;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:600;font-style:normal}
 .pts{display:inline-flex;align-items:center;gap:6px;background:var(--ink);color:#fff;border-radius:999px;padding:6px 11px 6px 9px;font-size:14px;line-height:1}
 .pts svg{width:14px;height:14px}
 .pts.lg{padding:8px 12px;gap:8px;font-size:16px;margin:0 0 -12px;align-self:flex-start}
@@ -722,7 +724,12 @@ html.study .stage{flex-direction:column;gap:20px}
 .mp-step .mp-st{width:22px;height:22px;display:grid;place-items:center;flex:none}
 .mp-step.done .mp-st{border-radius:99px;background:var(--ink);color:#fff}
 .mp-step.done .mp-st svg{width:12px;height:12px}
-.mp-step.next{opacity:.5}
+.mp-step.next .lead-ic,.mp-step.next .mp-st{opacity:.45}.mp-step.next b{color:var(--sec)}
+/* tap areas: small chips and the info dot catch taps in a 44px-tall zone, look unchanged */
+.info::after{content:"";position:absolute;inset:-12px}
+.pts,.livel{position:relative}
+.pts::after{content:"";position:absolute;inset:-12px -4px}
+.livel::after{content:"";position:absolute;inset:-13px -4px}
 .mp-spin{width:16px;height:16px;border-radius:99px;border:2px solid #e7dfe1;border-top-color:var(--ink);animation:spin .8s linear infinite}
 @media (prefers-reduced-motion:reduce){.mp-link i,.mp-spin{animation:none}}
 .sbanner{display:flex;gap:12px;align-items:flex-start;padding:16px 12px;border-radius:12px;background:#f6f6f6}
@@ -835,6 +842,7 @@ html.ac-colour .ac-tile[data-ac="game"] .ac-ctrl-ink{display:none}
 .inv-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .inv-row .inv-pill{margin:-3px 0}
 .inv-card .qr-frame{margin-top:16px}
+.inv-qr{padding-bottom:16px;margin-top:0}
 .jm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:16px}
 .jm-grid .jm{min-width:0}
 .jm-grid .jm .c{white-space:nowrap;color:var(--sec)}
@@ -2764,18 +2772,17 @@ function inviteSheet(){
                            : `<span class="jm empty ${i===S.players.length && next()?'waiting':''}"><span class="jm-wait">${i===S.players.length && next()?'<i></i><i></i><i></i>':''}</span><span class="c">${i===S.players.length && next()?'Waiting…':'Free'}</span></span>`;
   const slots = () => Array.from({length:MAX}, (_,i) => slot(S.players[i], i)).join('');
   const head = (t, sub) => `<div class="inv-hd"><p class="bm">${t}</p><p class="c">${sub}</p></div>`;
-  sheet(`<p class="h3" style="margin:4px 0 0">Invite players</p><p class="b sec" style="margin:8px 0 16px">Add up to three friends to play with you</p>
-    <div class="inv-card center">${head('Scan to join','Point their phone camera at the code')}
+  sheet(sheetDoc({title:'Invite players', sub:'Up to three friends can join you', body:`
+    <div class="inv-card inv-qr">${head('Scan to join','Point their phone camera at the code')}
       <div class="qr-frame"><div class="qr-wrap" style="position:relative;width:max-content;margin:0 auto"><div class="qr" aria-label="QR code to join">${qrCells()}</div><span class="qr-scan" aria-hidden="true"></span></div></div></div>
-    <div class="inv-card inv-row">${head('Share a link','Send it in any chat')}<button class="inv-pill" data-share>${ic('link','i14')}Share link</button></div>
-    <div class="inv-card" aria-live="polite">${head('Joined players',`Up to ${MAX} in one game`)}<div class="jm-grid">${slots()}</div></div>
-    <div id="invBtns" style="margin-top:24px">${btn('Done','data-close')}</div>`, o => {
+    <div class="inv-card" aria-live="polite">${head('Joined players',`<span class="jm-n">${S.players.length}</span> of ${MAX} in this game`)}<div class="jm-grid">${slots()}</div></div>`,
+    buttons: btn('Done','data-close') + btn('Share a link instead','data-share','paper')}), o => {
     o.querySelector('[data-share]').addEventListener('click', () => { navigator.clipboard && navigator.clipboard.writeText('https://salmon.app/play/henyo').catch(()=>{}); toast('Link copied'); });
     const who = next(); if (!who || S.players.length >= MAX) return;
     setTimeout(() => {
       if (!o.isConnected) return;
       const add = () => {
-        const idx = S.players.length; S.players.push(who); rerender();      // the screen under the sheet updates quietly
+        const idx = S.players.length; S.players.push(who); rerender(); const jn = o.querySelector('.jm-n'); if (jn) jn.textContent = S.players.length;      // the screen under the sheet updates quietly
         const grid = o.querySelector('.jm-grid'), old = grid.children[idx];
         const tmp = document.createElement('div'); tmp.innerHTML = slot(who, idx); const m = tmp.firstChild;
         m.style.gridArea = `1 / ${idx+1}`; old.style.gridArea = `1 / ${idx+1}`;
