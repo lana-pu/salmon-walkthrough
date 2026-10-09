@@ -1156,6 +1156,8 @@ const fmtWait = () => { const t = waitLeft(); return `${Math.floor(t/60)}:${Stri
 const etaMins = () => Math.max(1, Math.ceil(Math.max(0, S.etaEnd - Date.now()) / WAIT_MS * 5));
 
 const liveLabel = () => { if (typeof S === 'undefined' || !S.etaEnd || S.meetAt) return '5 min'; const left = S.etaEnd - Date.now(); return left <= 0 ? (S.moved ? 'Mark is coming' : S.onWay ? 'On your way' : 'Mark is ready') : `${Math.max(1, Math.ceil(left / WAIT_MS * 5))} min`; };   // 5 minutes of waiting before Mark arrives, compressed for the prototype
+const meetIn = () => { if (typeof S === 'undefined') return 'Meeting in 5 min'; if (S.meetAt) return S.meetAt[0]==='tmr' ? 'Meeting tomorrow' : `Meeting at ${S.meetAt[2].split(' ·')[0]}`; const ph = tkPhase(); return ph === 'coming' ? `Meeting in ${S.etaEnd ? etaMins() : 5} min` : 'Mark is ready for you'; };
+const monthly = () => Math.round(17599 / S.term);
 const scaleOf = el => { const r = el.getBoundingClientRect(); return (el.offsetWidth ? r.width / el.offsetWidth : 1) || 1; };
 const decoSvg = `<svg class="deco" viewBox="0 0 300 180" fill="none" stroke="#1b1a1b" stroke-width="1.1" stroke-linecap="round" aria-hidden="true"><path d="M40 112c14-12 34-10 42 6 4 9-6 14-10 6"/><path d="M262 104c-6-12-20-18-34-14"/><path d="M58 64l3 8 8 3-8 3-3 8-3-8-8-3 8-3z" fill="#fff"/><path d="M246 60l2.5 7 7 2.5-7 2.5-2.5 7-2.5-7-7-2.5 7-2.5z" fill="#fff"/><circle cx="84" cy="80" r="2.6" fill="#f3a7c2" stroke="none"/><circle cx="234" cy="128" r="3" fill="#f3a7c2" stroke="none"/></svg>`;
 const rays = `<svg width="36" height="16" viewBox="0 0 36 16" fill="none" stroke="#1b1a1b" stroke-width="1.2" stroke-linecap="round" aria-hidden="true"><path d="M18 2v8M8 5l4 6M28 5l-4 6"/></svg>`;
@@ -1701,7 +1703,7 @@ function placeSheet(i){
       <div class="sh-hd" style="margin-bottom:20px"><p class="h3" style="font-weight:600">${p.name}</p><p class="c">${p.meta} · ${p.hours}</p></div>
       <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px">${p.am.map(([icn,t])=>`<span class="chip" style="height:32px;background:#f6f6f6;gap:6px">${ic(icn,'i14')}${t}</span>`).join('')}</div>
       <p class="b sec" style="margin-bottom:20px">${p.about}</p>
-      ${statusBanner('cal','Meeting in 14 min','Mark can come here, or you head back to the meeting point')}
+      ${statusBanner('cal',meetIn(),'Mark can come here, or you head back to the meeting point')}
     </div>
     <div class="sh-ft">${btn(`Wait at ${p.short}`,'data-wait')}${btn('Back to places','data-close','paper')}</div>`, o => {
       o.querySelector('[data-wait]').addEventListener('click', () => { S.place = i; S.dest = 'place'; o.close(); setTimeout(() => go('w4'), 220); });
@@ -1794,13 +1796,13 @@ SC.m2 = {flow:'main', label:'Preliminary terms', parent:'m1', render:()=>{
     <div class="stack g16 mt24">
       <p class="bm sec">Monthly payment</p>
       <p style="margin:0;font-size:48px;text-box:trim-both cap alphabetic;line-height:1.1"><span style="font-size:24px;font-weight:600;margin-right:2px">₱</span><span style="letter-spacing:-.05em" id="mpay">${m.toLocaleString('en-US',{minimumFractionDigits:2})}</span></p>
-      <p class="bl">0% interest · ₱0 down payment</p>
+      <p class="bl">0% interest · down payment set at approval</p>
     </div>
     <div style="margin-top:25px">
       <div class="kv" style="font-size:17px;font-weight:600;line-height:1.2"><span style="color:var(--ink)">Total you pay</span><span>₱21,999</span></div>
       <div class="kv"><span>Of which cost of credit</span><span>₱0</span></div>
       <div class="kv"><span>What you pay</span><span>₱21,999</span></div>
-      <div class="kv"><span>First payment</span><span>2 Sep 2026</span></div>
+      <div class="kv"><span>First payment</span><span>7 Nov 2026</span></div>
     </div>
     <div class="sec-h" style="margin-top:63px"><p class="h4">Choose how long to pay</p><p class="c">A longer term means a smaller monthly payment.</p></div>
     <div class="terms-row" role="radiogroup" aria-label="Term">
@@ -1836,13 +1838,13 @@ SC.m4 = {flow:'main', label:'Meeting details', parent:'m3', render:()=>`
       <span class="stack g12" style="flex:1"><span class="stack g8"><b class="h4">Mark Reyes</b><span class="badge" style="align-self:flex-start">${ic('shield')}Verified ambassador</span></span><span class="cm sec">English, Filipino</span></span>
       ${ic('chevR','chev')}
     </button>
-    <div class="sec-h" style="margin:24px 2px 12px"><p class="h4">When</p><p class="c">Mark can meet you in about 15 min</p></div>
+    <div class="sec-h" style="margin:24px 2px 12px"><p class="h4">When</p><p class="c">Mark can meet you in about 5 min</p></div>
     <div style="display:grid;grid-template-columns:2fr 1fr;gap:12px" role="radiogroup" aria-label="When">
       <button class="tile ${S.when=='asap'?'on':''}" style="height:98px" data-act="when" data-v="asap" role="radio" aria-checked="${S.when=='asap'}"><span class="stack g8"><b class="bm">Meet ASAP</b><span class="c tint">3:20 PM · recommended</span></span><span class="sel">${ic('check')}</span></button>
       <button class="tile ${S.when=='later'?'on':''}" style="height:98px" data-act="when" data-v="later" role="radio" aria-checked="${S.when=='later'}"><span class="stack g8"><b class="bm">Later</b><span class="c sec">Choose time</span></span><span class="sel">${ic('check')}</span></button>
     </div>
     <div class="sec-h mt24"><p class="h4">Where</p><p class="c">Find directions or change the meeting point.</p></div>
-    <button class="card rows" style="width:100%;padding:4px 16px" data-go="w2">${leadRow('pin','TechHub entrance, Level 2','Standing only · Store Wi-Fi · 2 min',ic('chevR','chev'))}</button>
+    <button class="card rows" style="width:100%;padding:4px 16px" data-go="w2">${leadRow('pin',`${S.where.name}, Level 2`,'Seats · Store Wi-Fi · 2 min walk',ic('chevR','chev'))}</button>
     <div class="sec-h" style="margin-top:48px"><p class="h4">SMS updates</p><p class="c">Add a Philippine mobile number if you want SMS meeting updates.</p></div>
     <input class="field" type="tel" inputmode="tel" placeholder="+63 mobile number" aria-label="Mobile number" value="${S.phone}" data-input="phone">
     <p class="c sec" style="margin-top:16px">Used only for meeting updates. Prefer not to share it? Keep updates in this ticket.</p>
@@ -1852,7 +1854,7 @@ SC.m4 = {flow:'main', label:'Meeting details', parent:'m3', render:()=>`
 SC.m5 = {flow:'main', label:'Meeting confirmed', parent:'m4', render:()=>`
   ${topbar({t:'Meeting confirmed', back:false, right:R.info()+R.exit('m6',''), cls:'clear', tight:true})}
   <div class="scroll">${hz('soft')}<div class="body">
-    <div class="stack" id="hero" style="align-items:center;text-align:center">${heroMeeting(80)}<h1 class="h2 rise" style="margin-top:16px"><em>Thanks!</em><br>Mark is getting<br>ready</h1><p class="b sec rise" style="max-width:297px;margin-top:24px;--d:.12s">Your meeting with Mark is confirmed. He can meet you in about 15 minutes — we’ll keep you updated.</p></div>
+    <div class="stack" id="hero" style="align-items:center;text-align:center">${heroMeeting(80)}<h1 class="h2 rise" style="margin-top:16px"><em>Thanks!</em><br>Mark is getting<br>ready</h1><p class="b sec rise" style="max-width:297px;margin-top:24px;--d:.12s">Your meeting with Mark is confirmed. He can meet you in about 5 minutes — we’ll keep you updated.</p></div>
     <div class="reward" id="rw" style="margin-top:48px">${rewardGlow}
       ${rewardArt()}
       <p class="num" id="rwn" style="margin-top:28px">0</p>
@@ -2051,7 +2053,7 @@ const CHECKS = [
 ];
 const IDS = [['philsys','PhilSys National ID','The national ID card'],['licence','Driver’s licence','LTO card'],['passport','Passport','DFA-issued'],['umid','UMID','SSS, GSIS or PhilHealth']];
 SC.i1 = {flow:'id', label:'Are you ready? · checklist', parent:'m6', render:()=>`
-  ${topbar({t:'Preliminary terms', right:R.info()+R.pts(), cls:'clear'})}
+  ${topbar({t:'Get ready', right:R.info()+R.pts(), cls:'clear'})}
   <div class="scroll">${hz('check')}<div class="body">
     <div class="intro">${title2('Are you ready<br><em>for the meeting?</em>')}<p class="b">Check the essentials before Mark arrives.</p></div>
     <div class="card checklist" style="padding:16px 16px 20px;background:#fff;box-shadow:none">
@@ -2093,7 +2095,7 @@ function setCheck(k, on){
 }
 
 SC.i4 = {flow:'id', label:'You have all you need', parent:'i1', render:()=>`
-  ${topbar({t:'Meeting confirmed', right:R.info()+R.pts()})}
+  ${topbar({t:'Get ready', right:R.info()+R.pts()})}
   <div class="scroll">${hz('ready')}<div class="body" style="padding-top:127px">
     <div class="stack" id="hero" style="align-items:center;text-align:center">${heroPrepare(80)}<h1 class="h2 rise" style="margin-top:16px"><em>You have</em><br>all you need</h1><p class="b sec rise" style="max-width:297px;margin-top:24px;--d:.12s">You can photograph your ID now — then the meeting starts with the terms instead.</p></div>
     <div class="feature" id="earn" style="margin-top:100px;background:var(--g-tile);padding:16px 12px;border-radius:12px;gap:12px;align-items:flex-start"><span style="width:40px;height:40px;border-radius:99px;background:#f6f6f6;display:grid;place-items:center;flex:none;color:var(--sec)">${ic('gift','i14')}</span><span class="stack" style="gap:8px;flex:1"><b class="bm">Earn +60 Salmon Points</b><span class="c tint">Mark arrives in 9 min — enough time to prepare your ID.</span></span></div>
@@ -2204,8 +2206,7 @@ SC.i10 = {flow:'id', label:'Scanning your ID', parent:'i8', render:()=>`
     <p class="c sec center" style="margin-top:16px">Nothing is saved until you review the details</p>
     <div class="card mt40" style="padding:16px;background:rgba(255,255,255,.7)"><div class="progress"><i id="pg"></i></div><p class="c sec center" style="margin-top:12px" id="pgt">Reading the front…</p></div>
   </div></div>
-  <span class="scanbeam" aria-hidden="true"></span>
-  ${foot(btn('Back to ticket','data-go="m6"'))}`,
+  <span class="scanbeam" aria-hidden="true"></span>`,
   mount(el){
     const pg = el.querySelector('#pg'), t = el.querySelector('#pgt');
     pg.animate([{width:'0%'},{width:'100%'}],{duration:reduce?300:3200,easing:'cubic-bezier(.4,.1,.3,1)',fill:'forwards'});
@@ -2223,7 +2224,7 @@ SC.i11 = {flow:'id', label:'Check your ID details', parent:'i8', render:()=>`
     </div>
     <p class="h4" style="margin:27px 2px 17px">Information we read</p>
     <div class="card kvl" style="padding:11px 16px;background:#f6f6f6">
-      <div class="kv"><span>Name</span><span>Riley Park</span></div>
+      <div class="kv"><span>Name</span><span>Jamie Santos</span></div>
       <div class="kv"><span>ID type</span><span>${(IDS.find(i=>i[0]===S.idType)||IDS[1])[1]}</span></div>
       <div class="kv"><span>Number</span><span>N01-23-456789</span></div>
       <div class="kv"><span>Date of birth</span><span>14 April 1996</span></div>
@@ -2289,7 +2290,7 @@ SC.pp = {flow:'pay', label:'Your purchase · before the meeting', parent:'m6', r
   return `
   ${topbar({t:'Your purchase', right:R.info()})}
   <div class="scroll"><div class="body" style="padding-top:8px">
-    <div class="pp-hero"><img src="${A.product}" alt="iPhone 14 in Midnight"><span class="badge" style="position:absolute;right:12px;bottom:12px;background:#fff;color:var(--ink);font-size:14px;font-weight:600;padding:7px 12px;gap:8px"><i class="dot pulse"></i>Reserved until 3:15</span></div>
+    <div class="pp-hero"><img src="${A.product}" alt="iPhone 14 in Midnight"><span class="badge" style="position:absolute;right:12px;bottom:12px;background:#fff;color:var(--ink);font-size:14px;font-weight:600;padding:7px 12px;gap:8px"><i class="dot pulse"></i>Reserved until 3:45</span></div>
     <div style="display:flex;justify-content:space-between;gap:24px;margin:24px 0">
       <div class="stack g12"><p class="h4">iPhone 14 256GB · Midnight</p><p class="c sec">MobileWorld · SM Megamall</p></div>
       <p class="h3" style="font-weight:600">₱21,999</p>
@@ -2326,13 +2327,13 @@ SC.p1 = {flow:'pay', label:'1 · Approved', parent:'m6', render:()=>`
       ${prodCard()}
       <div><p class="h4" style="margin:0 2px 16px">Your payment</p>
       <div class="card rows-c" style="padding:20px 16px;--g:20px">
-        ${leadRow('pct','You pay today','Down payment','<span class="b sec">₱4,400</span>')}
-        ${leadRow('cal','Remaining balance','₱2,933/month × 6 · 0% interest','<span class="b sec">₱17,599</span>')}
+        ${leadRow('pct','You pay today','Down payment · set at approval','<span class="b sec">₱4,400</span>')}
+        ${leadRow('cal','Remaining balance',`${peso(monthly())}/month × ${S.term} · 0% interest`,'<span class="b sec">₱17,599</span>')}
       </div></div>
       ${''/* hidden for now: statusBanner('gift','Updated after approval','A ₱4,400 down payment lowers your monthly from ₱3,666.50 to ₱2,933.','background:#fff') */}
     </div>
   </div></div>
-  ${foot(btn(`Continue`,'data-go="p2"'),'Price held until 3:15 · terms locked for this purchase')}`,
+  ${foot(btn(`Continue`,'data-go="p2"'),'Price held until 3:45 · terms locked for this purchase')}`,
   mount(el){ successIntro(el); }};
 
 SC.p2 = {flow:'pay', label:'2 · How to get it', parent:'p1', render:()=>{
@@ -2374,8 +2375,8 @@ SC.p3 = {flow:'pay', label:'3 · Review & pay', parent:'p2', render:()=>{
     ${payIntro('Review','and pay','Check the details before you pay.')}
     <div class="prows">
       ${pRow('phone','iPhone 14 256GB · Midnight','₱21,999 · MobileWorld, SM Megamall')}
-      ${pRow('clock',`Due today · ${peso(dueToday())}`, del ? `Down payment + ${peso(DELIVERY_FEE)} delivery · price held until 3:15` : 'Down payment · price held until 3:15')}
-      ${pRow('cal','Then ₱2,933 a month','6 payments · 0% interest · first on 7 Nov 2026')}
+      ${pRow('clock',`Due today · ${peso(dueToday())}`, del ? `Down payment + ${peso(DELIVERY_FEE)} delivery · price held until 3:45` : 'Down payment · price held until 3:45')}
+      ${pRow('cal',`Then ${peso(monthly())} a month`,`${S.term} payments · 0% interest · first on 7 Nov 2026`)}
       ${del ? pRow('truck','Delivery in 2–3 business days', (S.addr_street||'Unit 12B, 88 Kapitolyo St.')+' · Pasig', 'data-go="p2a"', true)
             : pRow('store','Pick up today','MobileWorld, SM Megamall · Level 3')}
       ${pRow(S.payBy==='card'?'wallet':'landmark','Payment method', payWith(), 'data-act="payMethod"', true)}
@@ -2393,10 +2394,10 @@ SC.p3b = {flow:'pay', label:'3b · Card details', parent:'p3', render:()=>{
       ${f('num','Card number','4386 2810 7752 1290','inputmode="numeric" autocomplete="cc-number"')}
       <div class="pf-row">${f('exp','Expiry','09 / 29','inputmode="numeric" autocomplete="cc-exp"')}${f('cvc','CVC','•••','inputmode="numeric" autocomplete="cc-csc"')}</div>
       ${f('name','Name on card','JAMIE SANTOS','autocomplete="cc-name"')}
-      <button class="tgl-row" data-act="cardMonthly" role="switch" aria-checked="${S.cardMonthly!==false}" style="margin-top:8px"><span class="stack" style="gap:8px;flex:1"><span class="bm">Use this card for monthly payments</span><span class="c sec">₱2,933 on the 7th of each month. Change anytime in the app.</span></span><span class="tgl ${S.cardMonthly!==false?'on':''}"></span></button>
+      <button class="tgl-row" data-act="cardMonthly" role="switch" aria-checked="${S.cardMonthly!==false}" style="margin-top:8px"><span class="stack" style="gap:8px;flex:1"><span class="bm">Use this card for monthly payments</span><span class="c sec">${peso(monthly())} on the 7th of each month. Change anytime in the app.</span></span><span class="tgl ${S.cardMonthly!==false?'on':''}"></span></button>
     </div>
   </div></div>
-  ${foot(payBtn(),'Price held until 3:15 · secured by 3-D Secure')}`;}};
+  ${foot(payBtn(),'Price held until 3:45 · secured by 3-D Secure')}`;}};
 
 SC.p4 = {flow:'pay', label:'4 · Paid', parent:'p3', render:()=>{
   const del = S.fulfil === 'delivery';
@@ -2462,7 +2463,7 @@ SC.p7 = {flow:'pay', label:'7 · It’s yours', parent:'p6', render:()=>{
     <div class="stack sr-hero" style="align-items:center;text-align:center">${HERO_UNBOX}
     <div class="stack center" style="gap:24px;margin-top:-4px"><h1 class="h2"><em>All done.</em><br>It's yours</h1><p class="bl sec">${del?'Your iPhone 14 arrives in 2–3 days.':'Your iPhone 14 is in your hands.'}<br>The rest happens in the Salmon app.</p></div></div>
     <div class="card rows-c" style="margin-top:32px;padding:16px 16px 20px;--g:4px">
-      ${leadRow('calclock','First payment · ₱2,933','7 Nov 2026 · we’ll remind you','','style="min-height:44px;padding:8px 0"')}
+      ${leadRow('calclock',`First payment · ${peso(monthly())}`,'7 Nov 2026 · we’ll remind you','','style="min-height:44px;padding:8px 0"')}
       ${leadRow('shield','Receipt & warranty','Saved in one place','','style="min-height:44px;padding:8px 0"')}
       ${leadRow('gem','Salmon Points','+200 for this purchase','','style="min-height:44px;padding:8px 0"')}
     </div>
@@ -2483,7 +2484,7 @@ SC.w2 = {flow:'wait', label:'Wait comfortably', parent:'m6', render:()=>{
     return `<button class="card row" data-act="place" data-v="${i}" aria-pressed="${on}" style="padding:16px;gap:12px;height:104px;transition:background .25s;${on?'background:var(--g-tile)':''}"><img src="${A[p.img]}" alt="" class="place-photo"><span class="tx" style="gap:8px"><b class="h4">${p.name}</b><span class="c ${on?'tint':'sec'}">${p.meta}</span><span class="b ${on?'tint':'sec'}">${p.desc}</span></span>${ic('chevR','chev')}</button>`; };
   return `${topbar({t:'Where to wait', right:R.info(), tight:true})}
   <div class="scroll"><div class="body">
-    <div class="intro" style="margin-bottom:0">${title2('Wait comfortably')}<p class="b">About 15 minutes to spare. Pick a spot nearby — Mark can meet you there.</p></div>
+    <div class="intro" style="margin-bottom:0">${title2('Wait comfortably')}<p class="b">About 5 minutes to spare. Pick a spot nearby — Mark can meet you there.</p></div>
     <div class="chips" role="tablist" style="margin-top:32px">${CATS.map(([c,i])=>`<button class="chip lg wcat ${S.cat===c?'on':''}" role="tab" aria-selected="${S.cat===c}" data-act="cat" data-v="${c}">${ic(i)}${c}</button>`).join('')}</div>
     <p class="h4" style="margin:0 2px 15px">Best for your wait</p>
     ${card(order[0])}
@@ -2537,7 +2538,7 @@ SC.w4 = {flow:'wait', label:'Directions', parent:'w2', render:()=>{ const p = to
   <div class="ft sheet-ft" style="background:#fff;border-radius:32px 32px 0 0;padding:12px 24px 32px;box-shadow:none">
     <div class="grab" style="margin-bottom:14px"></div>
     <div class="stack g12" style="margin-bottom:12px">${meet?'<p class="c sec">Meeting point</p>':''}<p class="h3" style="font-weight:600">${p.name}</p><p class="b sec">${meet ? p.meta : `${p.meta.split(' · ').slice(2).join(' · ')||'2 min walk'} · Level ${p.lvl.slice(1)}`}</p><p class="b sec">${meet ? p.how : 'Take the escalator down to Level 1. The lounge is beside the central atrium.'}</p></div>
-    ${meet ? meetBanner('margin:20px 0 24px') : statusBanner('cal','Meeting in 14 min','Original meeting point · Salmon desk','margin:20px 0 32px')}
+    ${meet ? meetBanner('margin:20px 0 24px') : statusBanner('cal',meetIn(),`Original meeting point · ${S.where.name}`,'margin:20px 0 32px')}
     <div class="stack w4-acts" style="gap:0">${btn('Start walking','data-act="walk" id="walkb"')}${meet ? btn('Chat with Mark','data-act="msgMark" id="chatb"','paper') : ''}</div>
   </div>`;},
   mount(el){ const path = el.querySelector('#route'), me = el.querySelector('#me'); const s = path.getPointAtLength(0); me.setAttribute('transform',`translate(${s.x} ${s.y})`); path.style.strokeDasharray = path.getTotalLength(); path.style.strokeDashoffset = path.getTotalLength(); path.animate([{strokeDashoffset:path.getTotalLength()},{strokeDashoffset:0}],{duration:reduce?1:900,fill:'forwards',easing:'ease-out'}); }};
@@ -2585,8 +2586,8 @@ SC.w4a = {flow:'wait', label:'You’re here · move the meeting?', parent:'w2', 
   <div class="ya-sheet">
     <div class="grab"></div>
     <div class="ya-in">
-      <div class="stack" style="align-items:center;text-align:center">${heroMeeting(80)}<h1 class="h2 ya-r" style="margin-top:16px"><em>You’re here.</em><br>Move the meeting?</h1><p class="bl sec ya-r" style="max-width:297px;margin-top:24px">Mark can come straight to this table instead of the entrance.</p></div>
-      <div class="ya-r">${statusBanner('cal','Meeting in 14 min','Original meeting point · Salmon desk','margin-top:48px')}</div>
+      <div class="stack" style="align-items:center;text-align:center">${heroMeeting(80)}<h1 class="h2 ya-r" style="margin-top:16px"><em>You’re here.</em><br>Move the meeting?</h1><p class="bl sec ya-r" style="max-width:297px;margin-top:24px">Mark can come straight to this table instead of the meeting point.</p></div>
+      <div class="ya-r">${statusBanner('cal',meetIn(),`Original meeting point · ${S.where.name}`,'margin-top:48px')}</div>
     </div>
     <div class="sh-ft ya-r">${btn('Move meeting here','data-act="move"')}${btn('I’ll head back later','data-go="m6"','paper')}</div>
   </div>`;},
@@ -2741,7 +2742,7 @@ SC.a1 = {flow:'games', label:'Pick a tiny escape', parent:'m6', render:()=>`
     </button>
     <div class="stack g12" style="margin-top:24px">${GAMES.map(([k,t,s,m,bg])=>`<button class="tile ${bg}" data-act="game" data-v="${k}" style="flex-direction:row;align-items:center;gap:16px;padding:16px 24px 16px 16px;height:118px">${gameSlot(k, GAMES.findIndex(g=>g[0]===k))}<span class="stack" style="gap:24px;flex:1"><span class="stack g8"><b class="h4">${t}</b><span class="b sec">${s}</span></span><span class="cm">${m}</span></span></button>`).join('')}</div>
   </div></div>
-  ${foot(btn('Back to the ticket','data-go="m6"','paper'))}`,
+  ${foot(btn('Back to the ticket','data-go="m6"'))}`,
   mount(el){ el.classList.add('scr-white'); stagger(el.querySelectorAll('[data-act="game"]'), RISE, {step:60, delay:120}); }};
 function inviteSheet(){
   const qrCells = () => { const cells = []; let seed = 7 + S.players.length*13; const rnd = () => (seed = (seed*9301+49297)%233280)/233280;
@@ -2862,7 +2863,7 @@ SC.c3 = {flow:'games', label:'Round · secret word', parent:'c1', render:()=>{ c
       <div class="center stack" style="gap:12px;margin-top:48px"><p class="h3">${w.clue}</p><p class="bl sec">Answer Yes, No or Maybe</p></div>
     </div>
   </div></div>
-  ${foot(btn('Got it','data-act="gotIt"')+btn('Pass — time ran out','data-act="pass"','plain'))}`;},
+  ${foot(btn('Got it','data-act="gotIt"')+btn('Skip word','data-act="pass"','plain'))}`;},
   mount(el){ const total = S.len*60, t0 = performance.now(); el._t0 = t0;
     const sec = el.querySelector('#secret');
     sec.animate([{transform:'perspective(800px) rotateY(-90deg) scale(.9)',opacity:0},{transform:'perspective(800px) rotateY(8deg)',opacity:1,offset:.7},{transform:'none',opacity:1}],{duration:reduce?1:760,easing:'cubic-bezier(.2,1.1,.3,1)'}).onfinish = () => sec.classList.add('secret-float');
@@ -2947,7 +2948,7 @@ SC.c6 = {flow:'games', label:'Final results', parent:'a1', render:()=>{
     stagger(el.querySelectorAll('.body .card .kv'), RISE, {step:80, delay:900});
     setTimeout(() => confettiRain(el), 600); }};
 SC.c7 = {flow:'games', label:'Keep this going in Salmon app', parent:'c6', render:()=>`
-  ${topbar({t:'Salmon', right:R.info()+R.exit('m6',''), tight:true})}
+  ${topbar({t:'Salmon app', right:R.info()+R.exit('m6',''), tight:true})}
   <div class="scroll">${hz('soft')}<div class="body">
     <div class="stack" style="align-items:center;text-align:center">${pic('a_app',80)}<h1 class="h2" style="margin-top:24px">Keep this going<br><em>in Salmon app</em></h1><p class="b sec" style="max-width:297px;margin-top:16px">Today’s scores stay on this device until you close the tab.</p></div>
     <div style="margin-top:48px">${strip(84)}</div>
@@ -2963,7 +2964,7 @@ const MISSING = [
   ['battery','battery','Enough battery','My phone may not last'],
 ];
 SC.x1 = {flow:'miss', label:'What’s missing?', parent:'m3', render:()=>`
-  ${topbar({t:'Before you start', right:R.info()})}
+  ${topbar({t:'Missing something', right:R.info()})}
   <div class="scroll">${hz('warm')}<div class="body">
     <div class="intro">${title2('What’s<br><em>missing?</em>')}<p class="b">Tell us what you don’t have — there’s usually a way around it. You don’t have to answer.</p></div>
     <div class="stack g8">${MISSING.map(([k,i,t,s])=>`<button class="boxrow" data-act="missing" data-v="${k}"><span class="lead-ic">${ic(i)}</span><span class="tx"><b class="bm">${t}</b><span class="c">${s}</span></span>${ic('chevR','chev')}</button>`).join('')}</div>
@@ -2976,7 +2977,7 @@ const HELD = () => `<div class="card" style="padding:4px 16px">
   <div class="kv"><span>Salmon cashback</span><span>₱500</span></div>
 </div>`;
 SC.x2 = {flow:'miss', label:'No ID with you', parent:'x1', render:()=>`
-  ${topbar({t:'Before you start', right:R.info()+R.exit('m3','')})}
+  ${topbar({t:'Missing something', right:R.info()+R.exit('m3','')})}
   <div class="scroll">${hz('warm')}<div class="body">
     <div class="intro">${title2('No ID<br><em>with you?</em>')}<p class="b">Your price and discounts can wait. Go get your ID — we’ll move the meeting so you don’t lose your place.</p></div>
     <div class="sec-h"><p class="h4">Held for you</p><p class="c">Nothing changes while you’re away.</p></div>
@@ -3014,7 +3015,7 @@ const ALT = {
   battery:['Keep a copy<br><em>by SMS</em>','If your phone dies, show the text message at the meeting — it works as your ticket.'],
 };
 SC.x8 = {flow:'miss', label:'Other missing items', parent:'x1', render:()=>{ const a = ALT[S.missing]||ALT.phone; return `
-  ${topbar({t:'Before you start', right:R.info()+R.exit('m3','')})}
+  ${topbar({t:'Missing something', right:R.info()+R.exit('m3','')})}
   <div class="scroll">${hz('warm')}<div class="body">
     <div class="intro">${title2(a[0])}<p class="b">${a[1]}</p></div>
   </div></div>
