@@ -2654,6 +2654,9 @@ const w6Now = ph => ph === 'moved' ? (markArrived() ? [2,'Mark is at your spot',
 const w6Btns = ph => ph === 'ready' ? btn(`Head to ${S.where.name}`,'data-act="headOut"') : ph === 'onway' ? btn('I’m at the meeting point','data-act="arrived"') : ph === 'moved' ? (markArrived() ? btn('I’m with Mark','data-go="m9"') : '') : btn('Show directions','data-act="toMeet"');
 const MEET_CODE = '48';
 SC.w6 = {flow:'wait', label:'Your meeting · what Mark is doing', parent:'m6', render:()=>{ const ph = tkPhase(), [h, sub] = w6Head(ph), seg = w6Segs(ph), [k, now, hint] = w6Now(ph);
+  // the meeting code matters when Mark is about to greet you: right under his profile then, at the end of the page before that
+  const near = ['ready','onway','moved'].includes(ph);
+  const codeCard = `<div class="card w6-code"><span class="stack" style="gap:8px;flex:1"><b class="bm">Meeting code</b><span class="c sec">Mark says it when he greets you — so you know it’s him.</span></span><span class="w6-digits">${MEET_CODE.split('').map(d=>`<b>${d}</b>`).join('')}</span></div>`;
   const place = ph === 'moved' ? PLACES[S.place] : null;
   return `
   ${topbar({t:'Your meeting', right:R.info(), tight:true})}
@@ -2673,13 +2676,14 @@ SC.w6 = {flow:'wait', label:'Your meeting · what Mark is doing', parent:'m6', r
       <p class="c sec" style="margin:0">Look for a red Salmon shirt and an ID badge on a lanyard.</p>
       <div class="w6-acts"><button class="chip" data-act="msgMark">${ic('help','i16')}Ask a question</button><button class="chip" data-act="mark">${ic('user','i16')}Profile</button></div>
     </div>
-    <div class="card w6-code"><span class="stack" style="gap:8px;flex:1"><b class="bm">Meeting code</b><span class="c sec">Mark says it when he greets you — so you know it’s him.</span></span><span class="w6-digits">${MEET_CODE.split('').map(d=>`<b>${d}</b>`).join('')}</span></div>
+    ${near ? codeCard : ''}
     <div class="card rows-c w6-list">
       ${ph === 'coming' ? leadRow('clock', `Around ${protoClock(etaMins())}`, 'When you meet · Change the time', ic('chevR','chev'), 'data-act="timeSheet" role="button" tabindex="0"') : ''}
       ${leadRow('pin', place ? place.name : S.where.name, place ? 'You’re here · Mark is coming' : `${S.where.sub} · View place`, ic('chevR','chev'), 'data-go="w3" role="button" tabindex="0"')}
       ${leadRow('msgPlus', S.note ? 'Your note for Mark' : 'Add a note for Mark', S.note ? S.note : 'E.g. “table beside the escalator”', ic('chevR','chev'), 'data-act="note" role="button" tabindex="0"')}
       ${ph === 'coming' || ph === 'moved' ? `<button class="row" data-act="buzz" role="switch" aria-checked="${S.buzz!==false}"><span class="lead-ic">${ic('phone')}</span><span class="tx"><span class="b">Buzz me when he’s ready</span><span class="c">Your phone vibrates once</span></span><span class="tgl ${S.buzz!==false?'on':''}"></span></button>` : ''}
     </div>
+    ${near ? '' : codeCard}
   </div></div>
   ${w6Btns(ph) ? foot(w6Btns(ph) + (ph === 'ready' ? btn('I need a few more minutes','data-act="moreSheet"','paper') : ph === 'onway' ? btn('Show directions','data-act="toMeet"','paper') : '')) : ''}`;},
   mount(el){ w6MapTick(el); if (reduce) return;
