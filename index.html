@@ -787,11 +787,10 @@ html.study .stage{flex-direction:column;gap:20px}
 .ac-body{position:relative;width:219px;height:100%;box-sizing:border-box;padding:16px;display:flex;flex-direction:column;justify-content:space-between;flex:none}
 .ac-text{font-size:14px;line-height:1.1;color:var(--sec);text-box:trim-both cap alphabetic}
 .ac-foot{display:flex;gap:8px;align-items:center;font-weight:600}
-.ac-done{display:inline-flex;align-self:flex-start;align-items:center;gap:6px;height:26px;padding:0 11px 0 4px;border-radius:99px;background:var(--paper);color:var(--ink);font-size:12px;font-weight:600;line-height:1;white-space:nowrap}
-.ac-done i{width:18px;height:18px;border-radius:99px;background:var(--ink);color:#fff;display:grid;place-items:center;flex:none}
-.ac-done i svg{width:11px;height:11px;stroke-width:2.4}
-.ac-tile .ac-done{align-self:flex-end;margin-bottom:3px}   /* centred on the 32px arrow */
-.ac-tile.after[data-ac="getready"] .ac-done{background:var(--bg)}   /* on the white tile the badge sits on the light grey */
+.ac-done{display:inline-flex;align-self:flex-start;align-items:center;gap:4px;font-size:12px;font-weight:500;line-height:1;color:var(--ink);white-space:nowrap}   /* same line as 'Recommended', check sized to the text */
+.ac-done i{display:grid;place-items:center;width:14px;height:14px;flex:none}
+.ac-done i svg{width:14px;height:14px;stroke-width:2.2}
+.ac-tile .ac-done{align-self:flex-end;margin-bottom:9px}   /* centred on the 32px arrow */
 .ac-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px 15px}
 .ac-tile{flex-direction:column;align-items:stretch;height:168px;padding:16px;background:#fff;color:var(--ink)}
 .ac-tile>*:not(.ac-art){position:relative}
