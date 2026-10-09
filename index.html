@@ -965,7 +965,7 @@ const P = {
   baby:'<path d="M9 12h.01M15 12h.01M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5"/><path d="M19 6.3a9 9 0 0 1 1.8 3.9 2 2 0 0 1 0 3.6 9 9 0 0 1-17.6 0 2 2 0 0 1 0-3.6A9 9 0 0 1 12 3c2 0 3.5 1.1 3.5 2.5s-.9 2.5-2 2.5c-.8 0-1.5-.4-1.5-1"/>',
 };
 const ic = (n, cls='') => `<svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${P[n]}</svg>`;
-const SB = `<div class="sb"><span>15:41</span><span class="lv"><svg width="18" height="11" viewBox="0 0 18 11" aria-hidden="true"><rect x="0" y="7" width="3" height="4" rx="1" fill="currentColor"/><rect x="5" y="5" width="3" height="6" rx="1" fill="currentColor"/><rect x="10" y="2.5" width="3" height="8.5" rx="1" fill="currentColor"/><rect x="15" y="0" width="3" height="11" rx="1" fill="currentColor"/></svg><svg width="16" height="11" viewBox="0 0 16 11" aria-hidden="true"><path d="M8 2.2c2.2 0 4.2.9 5.7 2.3l1.1-1.1A9.6 9.6 0 0 0 8 .6 9.6 9.6 0 0 0 1.2 3.4l1.1 1.1A8 8 0 0 1 8 2.2zm0 3.3c1.3 0 2.5.5 3.4 1.4l1.1-1.1A6.4 6.4 0 0 0 8 3.9a6.4 6.4 0 0 0-4.5 1.9l1.1 1.1c.9-.9 2.1-1.4 3.4-1.4zM8 8.8l1.9-1.9a2.7 2.7 0 0 0-3.8 0z" fill="currentColor"/></svg><svg width="26" height="12" viewBox="0 0 26 12" aria-hidden="true"><rect x=".5" y=".5" width="22" height="11" rx="3.5" fill="none" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="19" height="8" rx="2" fill="currentColor"/><path d="M24 4v4c.8-.3 1.3-1 1.3-2s-.5-1.7-1.3-2z" fill="currentColor" opacity=".45"/></svg></span></div>`;
+const SB = `<div class="sb"><span>15:15</span><span class="lv"><svg width="18" height="11" viewBox="0 0 18 11" aria-hidden="true"><rect x="0" y="7" width="3" height="4" rx="1" fill="currentColor"/><rect x="5" y="5" width="3" height="6" rx="1" fill="currentColor"/><rect x="10" y="2.5" width="3" height="8.5" rx="1" fill="currentColor"/><rect x="15" y="0" width="3" height="11" rx="1" fill="currentColor"/></svg><svg width="16" height="11" viewBox="0 0 16 11" aria-hidden="true"><path d="M8 2.2c2.2 0 4.2.9 5.7 2.3l1.1-1.1A9.6 9.6 0 0 0 8 .6 9.6 9.6 0 0 0 1.2 3.4l1.1 1.1A8 8 0 0 1 8 2.2zm0 3.3c1.3 0 2.5.5 3.4 1.4l1.1-1.1A6.4 6.4 0 0 0 8 3.9a6.4 6.4 0 0 0-4.5 1.9l1.1 1.1c.9-.9 2.1-1.4 3.4-1.4zM8 8.8l1.9-1.9a2.7 2.7 0 0 0-3.8 0z" fill="currentColor"/></svg><svg width="26" height="12" viewBox="0 0 26 12" aria-hidden="true"><rect x=".5" y=".5" width="22" height="11" rx="3.5" fill="none" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="19" height="8" rx="2" fill="currentColor"/><path d="M24 4v4c.8-.3 1.3-1 1.3-2s-.5-1.7-1.3-2z" fill="currentColor" opacity=".45"/></svg></span></div>`;
 
 /* ---------- state ---------- */
 const fresh = () => ({
@@ -1219,14 +1219,23 @@ function toast(msg){
   phone.appendChild(t);
   t.animate([{opacity:0,transform:'translate(-50%,10px)'},{opacity:1,transform:'translate(-50%,0)',offset:.12},{opacity:1,transform:'translate(-50%,0)',offset:.85},{opacity:0,transform:'translate(-50%,0)'}],{duration:2200,fill:'forwards'}).onfinish=()=>t.remove();
 }
+// keyboard & screen-reader support: focus moves only when this page already has it (never pulled out of an embedding page)
+const canFocus = () => document.hasFocus() && (document.activeElement === document.body || phone.contains(document.activeElement) || !document.activeElement);
+function inertBehind(o, on){ if (!o.parentNode) return; [...o.parentNode.children].forEach(n => { if (n !== o && !n.classList.contains('ovl')) n.inert = on; }); }
+function focusScreen(el){ const h = ['.scroll h1','.ya-in h1','h1','.scroll .h2','.top .ht'].map(q => [...el.querySelectorAll(q)].find(n => n.textContent.trim() && !n.closest('.ovl'))).find(Boolean); const t = h || el;
+  if (!t.hasAttribute('tabindex')) t.tabIndex = -1; t.focus({preventScroll:true}); }
 function sheet(html, onMount){
   const o = document.createElement('div'); o.className='ovl';
   o.innerHTML = `<div class="dim" data-close></div><div class="sheet" role="dialog" aria-modal="true"><div class="grab"></div><button class="sh-x" data-close aria-label="Close">${ic('x','i14')}</button>${html.startsWith('<!--S-->')?html:`<div class="sh-in">${html}</div>`}</div>`;
   cur.el.appendChild(o);
-  o.querySelector('.dim').animate([{opacity:0},{opacity:1}],{duration:reduce?1:250,fill:'backwards'});
+  const sh = o.querySelector('.sheet'), opener = document.activeElement, hd = sh.querySelector('.sh-hd .h4, .sh-hd .h3, .h4, .h3, h1, h2');
+  if (hd){ hd.id = hd.id || 'sh-t' + Date.now(); sh.setAttribute('aria-labelledby', hd.id); }
+  sh.tabIndex = -1; inertBehind(o, true);
+  if (canFocus()) sh.focus({preventScroll:true});
   o.querySelector('.sheet').animate([{transform:'translateY(100%)'},{transform:'none'}],{duration:reduce?1:380,easing:'cubic-bezier(.2,.9,.25,1)'});
   // hold the end state of both fades: without it the dim snaps back to full dark for the last frames before the sheet is removed
-  o.close = () => { if (o._closing) return; o._closing = true; o.style.pointerEvents = 'none';
+  o.close = () => { if (o._closing) return; o._closing = true; o.style.pointerEvents = 'none'; inertBehind(o, false);
+    if (canFocus() && opener && opener.isConnected && cur.el.contains(opener)) opener.focus({preventScroll:true}); else if (canFocus()) focusScreen(cur.el);
     o.querySelector('.dim').animate([{opacity:1},{opacity:0}],{duration:reduce?1:260,easing:'ease-in',fill:'forwards'});
     o.querySelector('.sheet').animate([{transform:'none'},{transform:'translateY(100%)'}],{duration:reduce?1:260,easing:'ease-in',fill:'forwards'}).onfinish=()=>o.remove(); };
   o.addEventListener('click', e => { if (e.target.closest('[data-close]')) o.close(); });
@@ -3080,8 +3089,9 @@ function go(id, {replace=false, dir='fwd'}={}){
   cur = {id, el, timers:[]};
   phone.insertBefore(el, phone.querySelector('.island'));
   el.classList.add('cur');
+  const hadFocus = canFocus();
   if (prev){
-    prev.timers.forEach(f=>f()); prev.el.classList.remove('cur'); prev.el.style.pointerEvents='none';
+    prev.timers.forEach(f=>f()); prev.el.classList.remove('cur'); prev.el.style.pointerEvents='none'; prev.el.inert = true;
     if (!replace && dir==='fwd') hist.push(prev.id);
     const D = reduce ? 1 : 400, E = 'cubic-bezier(.2,.85,.25,1)';
     if (replace){
@@ -3097,6 +3107,7 @@ function go(id, {replace=false, dir='fwd'}={}){
   }
   fitBottom(el);
   scr.mount && scr.mount(el);
+  if (prev && hadFocus) focusScreen(el);
   syncPanel();
   if (!TEST) history.replaceState(null,'','#'+id);
 }
@@ -3144,6 +3155,7 @@ function rerender(){
   const keep = [...cur.el.querySelectorAll(':scope > .ovl, :scope > .prize-layer')];   // open sheets and live particles survive a re-render
   cur.el.innerHTML = SC[cur.id].render();
   keep.forEach(n => cur.el.appendChild(n));
+  keep.forEach(n => n.classList.contains('ovl') && !n._closing && inertBehind(n, true));
   const sc2 = cur.el.querySelector('.scroll'); if (sc2) sc2.scrollTop = y;
   fitBottom(cur.el);
   if (cur.id === 'm6' || cur.id === 'm8' || cur.id === 'w6') SC[cur.id].mount(cur.el);
