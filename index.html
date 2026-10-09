@@ -787,7 +787,11 @@ html.study .stage{flex-direction:column;gap:20px}
 .ac-body{position:relative;width:219px;height:100%;box-sizing:border-box;padding:16px;display:flex;flex-direction:column;justify-content:space-between;flex:none}
 .ac-text{font-size:14px;line-height:1.1;color:var(--sec);text-box:trim-both cap alphabetic}
 .ac-foot{display:flex;gap:8px;align-items:center;font-weight:600}
-.ac-done{display:flex;gap:8px;align-items:center}
+.ac-done{display:inline-flex;align-self:flex-start;align-items:center;gap:6px;height:26px;padding:0 11px 0 4px;border-radius:99px;background:var(--paper);color:var(--ink);font-size:12px;font-weight:600;line-height:1;white-space:nowrap}
+.ac-done i{width:18px;height:18px;border-radius:99px;background:var(--ink);color:#fff;display:grid;place-items:center;flex:none}
+.ac-done i svg{width:11px;height:11px;stroke-width:2.4}
+.ac-tile .ac-done{align-self:flex-end;margin-bottom:3px}   /* centred on the 32px arrow */
+.ac-tile.after[data-ac="getready"] .ac-done{background:var(--bg)}   /* on the white tile the badge sits on the light grey */
 .ac-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px 15px}
 .ac-tile{flex-direction:column;align-items:stretch;height:168px;padding:16px;background:#fff;color:var(--ink)}
 .ac-tile>*:not(.ac-art){position:relative}
@@ -1598,7 +1602,7 @@ function ticketSwap(el){
     const eyebrow = f0.querySelector('.ac-eyebrow'), doneTpl = ref.querySelector('.ac-done');
     eyebrow.animate([{opacity:1},{opacity:0, transform:'translateY(-4px)'}], {duration:T(170), easing:'ease-in', fill:'forwards'}).onfinish = () => {
       const done = doneTpl.cloneNode(true); eyebrow.replaceWith(done); f0.dataset.v = 'done';
-      const tick = done.querySelector('img'); done.style.transformOrigin = '0 50%';
+      const tick = done.querySelector('i'); done.style.transformOrigin = '0 50%';
       done.animate([{opacity:0, transform:'scale(.9)'},{opacity:1, transform:'scale(1.22)', offset:.45},{opacity:1, transform:'scale(1)'}], {duration:T(760), easing:'cubic-bezier(.45,0,.2,1)', fill:'backwards'});
       if (tick) tick.animate([{transform:'scale(0) rotate(-40deg)', opacity:0},{transform:'scale(1.7) rotate(6deg)', opacity:1, offset:.55},{transform:'none', opacity:1}], {duration:T(640), delay:T(60), easing:'cubic-bezier(.3,1.5,.5,1)', fill:'backwards'});
       setTimeout(() => { if (!el.isConnected) return; const e = el.getBoundingClientRect(), q = (tick||done).getBoundingClientRect(); prizeBurst(el, (q.left-e.left+q.width/2)/k, (q.top-e.top+q.height/2)/k, {n:10, r0:6, r1:[26,52], dur:[900,1300], kinds:['star','dot','star'], scale:.6}); }, T(320));
@@ -1925,11 +1929,11 @@ function acFeat(key){ const v = AC_FEAT[key], ak = key==='done' ? 'getready' : k
   return `<button class="feature tk-banner ac-card ac-feat" data-ac="${ak}" data-v="${key}" data-go="${v.go}">
     ${acBlobs(key)}${v.art()}
     <span class="ac-side" aria-hidden="true"></span>
-    <span class="ac-body"><span class="stack g12">${v.done?`<span class="ac-done c sec" data-share="done">${acImg(A.ac_check,'0',';position:relative;display:inline-block;width:12px;height:12px')}Done</span>`:`<span class="c sec ac-eyebrow">Recommended</span>`}<span class="stack g12"><b class="h4" data-share="title">${v.t}</b><span class="ac-text">${v.b}</span></span></span>
+    <span class="ac-body"><span class="stack g12">${v.done?`<span class="ac-done" data-share="done"><i>${ic('check')}</i>Done</span>`:`<span class="c sec ac-eyebrow">Recommended</span>`}<span class="stack g12"><b class="h4" data-share="title">${v.t}</b><span class="ac-text">${v.b}</span></span></span>
       <span class="bm ac-foot">${v.f}${acImg(A.ac_arrow14,'0',';position:relative;display:inline-block;width:14px;height:14px')}</span></span>
   </button>`; }
 const AC_TILE = {
-  getready:{t:'Get ready', s:'Save time and earn Salmon Points', go:'i12', foot:()=>`<span class="ac-foot2" style="flex:1;align-items:flex-end;padding-top:16px"><span class="ac-done c sec" data-share="done" style="height:32px">${acImg(A.ac_check,'0',';position:relative;display:inline-block;width:12px;height:12px')}Done</span>${acGo()}</span>`},
+  getready:{t:'Get ready', s:'Save time and earn Salmon Points', go:'i12', foot:()=>`<span class="ac-foot2" style="flex:1;align-items:flex-end;padding-top:16px"><span class="ac-done" data-share="done"><i>${ic('check')}</i>Done</span>${acGo()}</span>`},
   seat:{t:'Take a seat', s:'Or meet somewhere else', go:'w2', foot:()=>`<span style="flex:1"></span><span class="ac-foot2"><span style="display:flex;gap:10px;align-items:center">${['armchair','baby','soup'].map(k=>`<img src="${A['ac_ic_'+k]}" alt="" style="width:16px;height:16px">`).join('')}</span>${acGo()}</span>`},
   about:{t:'About Salmon', s:'Who we are and how it works', act:'about', art:()=>`<span class="ac-art" style="left:.5px;top:94px;width:114.5px;height:67.5px">${acImg(A.ac_signpost,'-1.69% -0.34% -0.67% -0.38%')}</span>`, foot:()=>`<span class="ac-foot2" style="flex:1;align-items:flex-end;justify-content:flex-end;padding-top:16px">${acGo()}</span>`},
   game:{t:'Game break', s:'Play mini-games solo or with friends', go:'a1', art:()=>`<span class="ac-art ac-ctrl-ink" style="left:3px;top:86px;width:157px;height:68.589px">${acImg(A.ac_ctrl,'-11.55% -3.16% -1.22% -1.19%')}</span><span class="ac-art ac-ctrl-light" style="left:3px;top:86px;width:157px;height:68.589px">${acImg(A.ac_ctrl_light,'-11.55% -3.16% -1.22% -1.19%')}</span>`, foot:()=>`<span style="height:12px;flex:none"></span><span style="flex:1"></span><span class="ac-foot2" style="justify-content:flex-end">${acGo()}</span>`},
