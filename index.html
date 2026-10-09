@@ -866,6 +866,7 @@ html.show .stage{display:flex;align-items:center;justify-content:center;gap:clam
 @media (max-width:500px){ .story{display:none} html.show .stage{padding:0} }
 @media (prefers-reduced-motion:reduce){ .story-txt,.story-bar i{transition:none} }
 </style>
+<script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window, document, "clarity", "script", "yuzgjnwreq");</script>
 </head>
 <body>
 <div class="stage"><section class="story" aria-live="polite">
@@ -3409,6 +3410,7 @@ const $ = id => document.getElementById(id);
 let shown = -1;
 function render(i, instant){
   if (i === shown) return; shown = i;
+  try { window.clarity && clarity('event', 'step_' + String(i+1).padStart(2,'0')); } catch(e){}
   const st = STEPS[i], box = $('storyTxt');
   const put = () => { $('storyTi').innerHTML = st.ti; box.classList.remove('out'); };
   if (instant || matchMedia('(prefers-reduced-motion: reduce)').matches) put(); else { box.classList.add('out'); setTimeout(put, 220); }
@@ -3416,7 +3418,9 @@ function render(i, instant){
   $('storyN').innerHTML = `${String(i+1).padStart(2,'0')} <span>/ ${N}</span>`;
   $('storyPrev').disabled = i === 0; $('storyNext').disabled = i === N-1;
 }
-const sync = () => { if (cur) render(stepOf()); };
+let lastScr = '';
+const track = () => { if (!window.clarity || !cur || cur.id === lastScr) return; lastScr = cur.id; try { clarity('set', 'screen', cur.id); clarity('event', 'screen_' + cur.id); } catch(e){} };
+const sync = () => { if (cur){ render(stepOf()); track(); } };
 const _sp = syncPanel; syncPanel = function(){ _sp(); sync(); };
 setInterval(sync, 400);                       // Mark becoming ready changes the step without a tap
 const goStep = i => { i = Math.max(0, Math.min(N-1, i)); phone.querySelectorAll('.ovl').forEach(o=>o.remove()); STEPS[i].go(); render(i); };
