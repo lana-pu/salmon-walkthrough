@@ -1587,27 +1587,33 @@ function ticketSwap(el){
   const target = Math.max(0, Math.min(sc.scrollHeight - sc.clientHeight, rect(f0).y + sc.scrollTop - 188));
   sc.scrollTop = target; sc.dispatchEvent(new Event('scroll'));
   const MOVE = 'cubic-bezier(.32,.72,0,1)', IN = 'cubic-bezier(0,0,.2,1)';
-  // 1 — the recommended card confirms: Get ready → Your details are ready · ✓ Done
+  // Three readable beats: (1) the card says ✓ Done, (2) its text says the details were submitted, (3) the cards trade places
+  const cross = (n, html, d=0) => n.animate([{opacity:1, transform:'none', filter:'blur(0px)'},{opacity:0, transform:'translateY(-5px)', filter:'blur(2px)'}], {duration:T(200), delay:T(d), easing:'ease-in', fill:'forwards'}).onfinish = () => {
+    n.innerHTML = html; n.getAnimations().forEach(a => a.cancel());
+    n.animate([{opacity:0, transform:'translateY(6px)', filter:'blur(2px)'},{opacity:1, transform:'none', filter:'blur(0px)'}], {duration:T(380), easing:IN, fill:'backwards'}); };
+  const ref = document.createElement('div'); ref.innerHTML = acFeat('done');
+  // 1 — ✓ Done takes the place of "Recommended": the tick lands big, the card glows once, a few sparks leave it
   setTimeout(() => {
     if (!el.isConnected) return;
-    const body = f0.querySelector('.ac-body'), tmp = document.createElement('div'); tmp.innerHTML = acFeat('done');
-    body.animate([{opacity:1},{opacity:0, transform:'translateY(-4px)'}], {duration:T(170), easing:'ease-in', fill:'forwards'}).onfinish = () => {
-      body.innerHTML = tmp.querySelector('.ac-body').innerHTML; f0.dataset.v = 'done';
-      body.getAnimations().forEach(a => a.cancel());
-      [...body.querySelectorAll('.ac-done, .h4, .ac-text, .ac-foot')].forEach((n,i) => n.animate([{opacity:0, transform:'translateY(6px)'},{opacity:1, transform:'none'}], {duration:T(320), delay:T(i*60), easing:IN, fill:'backwards'}));
-      const done = body.querySelector('.ac-done'), tick = done && done.querySelector('img');
-      if (done){
-        // a clear "done" beat: the tick lands big, the row glows once, a few sparks leave it
-        done.style.transformOrigin = '0 50%';
-        done.animate([{transform:'scale(1)'},{transform:'scale(1.18)', offset:.45},{transform:'scale(1)'}], {duration:T(700), delay:T(120), easing:'cubic-bezier(.45,0,.2,1)', fill:'backwards'});
-        if (tick) tick.animate([{transform:'scale(0) rotate(-40deg)', opacity:0},{transform:'scale(1.6) rotate(6deg)', opacity:1, offset:.55},{transform:'none', opacity:1}], {duration:T(620), delay:T(60), easing:'cubic-bezier(.3,1.5,.5,1)', fill:'backwards'});
-        setTimeout(() => { if (!el.isConnected) return; const e = el.getBoundingClientRect(), q = (tick||done).getBoundingClientRect(); prizeBurst(el, (q.left-e.left+q.width/2)/k, (q.top-e.top+q.height/2)/k, {n:9, r0:6, r1:[26,48], dur:[900,1300], kinds:['star','dot','star'], scale:.55}); }, T(320));
-      }
-      const glow = document.createElement('span'); glow.style.cssText = 'position:absolute;inset:0;border-radius:20px;pointer-events:none;background:radial-gradient(60% 90% at 60% 50%,rgba(255,255,255,.55),rgba(255,255,255,0))';
-      f0.appendChild(glow); glow.animate([{opacity:0},{opacity:1, offset:.35},{opacity:0}], {duration:T(900), easing:'ease-in-out', fill:'forwards'}).onfinish = () => glow.remove();
+    const eyebrow = f0.querySelector('.ac-eyebrow'), doneTpl = ref.querySelector('.ac-done');
+    eyebrow.animate([{opacity:1},{opacity:0, transform:'translateY(-4px)'}], {duration:T(170), easing:'ease-in', fill:'forwards'}).onfinish = () => {
+      const done = doneTpl.cloneNode(true); eyebrow.replaceWith(done); f0.dataset.v = 'done';
+      const tick = done.querySelector('img'); done.style.transformOrigin = '0 50%';
+      done.animate([{opacity:0, transform:'scale(.9)'},{opacity:1, transform:'scale(1.22)', offset:.45},{opacity:1, transform:'scale(1)'}], {duration:T(760), easing:'cubic-bezier(.45,0,.2,1)', fill:'backwards'});
+      if (tick) tick.animate([{transform:'scale(0) rotate(-40deg)', opacity:0},{transform:'scale(1.7) rotate(6deg)', opacity:1, offset:.55},{transform:'none', opacity:1}], {duration:T(640), delay:T(60), easing:'cubic-bezier(.3,1.5,.5,1)', fill:'backwards'});
+      setTimeout(() => { if (!el.isConnected) return; const e = el.getBoundingClientRect(), q = (tick||done).getBoundingClientRect(); prizeBurst(el, (q.left-e.left+q.width/2)/k, (q.top-e.top+q.height/2)/k, {n:10, r0:6, r1:[26,52], dur:[900,1300], kinds:['star','dot','star'], scale:.6}); }, T(320));
+      const glow = document.createElement('span'); glow.style.cssText = 'position:absolute;inset:0;border-radius:20px;pointer-events:none;background:radial-gradient(60% 90% at 60% 50%,rgba(255,255,255,.6),rgba(255,255,255,0))';
+      f0.appendChild(glow); glow.animate([{opacity:0},{opacity:1, offset:.35},{opacity:0}], {duration:T(1000), easing:'ease-in-out', fill:'forwards'}).onfinish = () => glow.remove();
       f0.animate([{transform:'scale(1)'},{transform:'scale(.985)', offset:.3},{transform:'scale(1)'}], {duration:T(600), easing:'cubic-bezier(.45,0,.2,1)'});
     };
-    setTimeout(() => el.isConnected && swap(), T(1700));
+    // 2 — the words follow: submitted, nothing else to fill in
+    setTimeout(() => {
+      if (!el.isConnected) return;
+      const h = f0.querySelector('.h4'), tx = f0.querySelector('.ac-text'), ft = f0.querySelector('.ac-foot');
+      cross(h, ref.querySelector('.h4').innerHTML, 0); cross(tx, ref.querySelector('.ac-text').innerHTML, 70); cross(ft, ref.querySelector('.ac-foot').innerHTML, 140);
+    }, T(1400));
+    // 3 — then the cards trade places
+    setTimeout(() => el.isConnected && swap(), T(3100));
   }, T(900));
   // 2 — every card moves to its new place; Game break grows into the slot, Get ready settles first in the grid
   function swap(){
@@ -1907,7 +1913,7 @@ const acBlobs = (v) => v === 'game'
 const AC_FEAT = {
   getready:{t:'Get ready', b:'Fill in details early and earn Salmon Points.', get f(){ return S.idStep && S.idStep !== 'i1' ? 'Continue' : 'About 3 min'; }, go:'i1',
     art:()=>`<span class="ac-art" style="left:-9px;top:37.39px;width:169.154px;height:96.166px">${acImg(A.ac_clock,'-0.87% 0 0 0')}</span>`},
-  done:{t:'Your details are ready', b:'Documents and copies are saved. Review them anytime.', f:'Review', go:'i12', done:true,
+  done:{t:'Details submitted', b:'Mark has your ID and details. Nothing else to fill in.', f:'Review', go:'i12', done:true,
     art:()=>`<span class="ac-art" style="left:-9px;top:37.39px;width:169.154px;height:96.166px">${acImg(A.ac_clock,'-0.87% 0 0 0')}</span>`},
   game:{t:'Game break', b:'Play mini-games solo or with friends', f:'Play now', go:'a1',
     art:()=>`<span class="ac-art" style="left:-29.73px;top:33.15px;width:186.259px;height:110.684px;display:flex;align-items:center;justify-content:center"><span style="position:relative;width:174.24px;height:76.12px;transform:rotate(-12deg);flex:none">${acImg(A.ac_gamepad,'-55.04% 0 -1.22% -1.19%')}</span></span>
