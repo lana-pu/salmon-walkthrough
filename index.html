@@ -770,11 +770,6 @@ html.study .stage{flex-direction:column;gap:20px}
 
 /* ---- Salmon / Action card ---- */
 .ac-block{margin-top:16px}
-/* colour version: the grid keeps its places (Take a seat top left, About Salmon top right); the recommended card sits under it */
-html.ac-colour .ac-block{display:flex;flex-direction:column}
-html.ac-colour .ac-block > .ac-hd{order:0}
-html.ac-colour .ac-block > .ac-grid{order:1}
-html.ac-colour .ac-block > .ac-feat{order:2;margin-top:16px}
 .ac-card{position:relative;overflow:hidden;border-radius:20px;text-align:left;display:flex}
 .ac-feat{width:100%;height:155px;padding:0!important;gap:16px;align-items:flex-start;background-image:linear-gradient(90deg,rgba(214,234,246,.2),rgba(214,234,246,.2)),url("data:image/svg+xml;utf8,<svg viewBox='0 0 345 155' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><rect width='100%' height='100%' fill='url(%23g)' opacity='.5'/><defs><radialGradient id='g' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='10' gradientTransform='matrix(5.8 3.3 -3.3654 5.9149 115 54)'><stop stop-color='rgba(255,250,247,1)' offset='0'/><stop stop-color='rgba(255,237,212,0)' offset='1'/></radialGradient></defs></svg>"),url("data:image/svg+xml;utf8,<svg viewBox='0 0 345 155' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><rect width='100%' height='100%' fill='url(%23g)' opacity='.5'/><defs><radialGradient id='g' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='10' gradientTransform='matrix(2.4 -5.65 7.1705 3.0459 44.5 115)'><stop stop-color='rgba(255,237,204,1)' offset='.48155'/><stop stop-color='rgba(255,199,199,0)' offset='1'/></radialGradient></defs></svg>"),url("data:image/svg+xml;utf8,<svg viewBox='0 0 345 155' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><rect width='100%' height='100%' fill='url(%23g)' opacity='.5'/><defs><radialGradient id='g' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='10' gradientTransform='matrix(-11.95 11 -24.484 -26.598 320 0)'><stop stop-color='rgba(218,215,255,1)' offset='.14629'/><stop stop-color='rgba(255,217,217,0)' offset='.81363'/></radialGradient></defs></svg>"),linear-gradient(117.58deg,rgb(194,184,226) 7.76%,rgb(255,221,214) 37.85%,rgb(255,250,243) 72.14%,rgb(255,198,198) 107.16%);background-size:100% 100%;color:var(--ink)}
 .ac-blobs{position:absolute;left:0;right:63.48%;top:50%;transform:translateY(-50%);aspect-ratio:119/123;filter:blur(6px);overflow:hidden;pointer-events:none}
@@ -1304,8 +1299,7 @@ function ticketMorph(el){
   if (tChip) tChip.style.top = (130 - tChip.offsetHeight/2 - top0) + 'px';   // centred on the chips, one line or two
   // where things dock (content scroll offsets)
   items.forEach(it => { it.dock = it.T.y - it.sp.chip.y; });
-  // the first block under the chips docks 32px below them: the banner, or in the colour version the 'While you wait' grid
-  const banner = el.querySelector(document.documentElement.classList.contains('ac-colour') ? '.ac-hd' : '.feature'); const sEnd = banner ? R(banner).y - 188 : 420;
+  const banner = el.querySelector('.feature'); const sEnd = banner ? R(banner).y - 188 : 420;
   // make sure the page can actually scroll far enough to reach the 6.2 composition (banner 32px under the chips)
   { const body = el.querySelector('.body'), need = sEnd - (sc.scrollHeight - sc.clientHeight);
     if (body && need > 0) body.style.paddingBottom = (parseFloat(getComputedStyle(body).paddingBottom) + need) + 'px'; }
@@ -1917,7 +1911,7 @@ function acTile(key){ const v = AC_TILE[key];
   </button>`; }
 function acBlock(featured){
   const fk = featured === 'done' ? 'getready' : featured;
-  // colour version: Take a seat and About Salmon keep the top row; a finished Get ready joins the grid last
+  // colour version: when Game break takes the top slot, Take a seat and About Salmon keep the top row and the finished Get ready goes to the end of the grid
   const order = document.documentElement.classList.contains('ac-colour') ? ['seat','about','game','purchase','getready'] : AC_ORDER;
   const grid = order.filter(k => k !== fk && (k !== 'getready' || S.idReady || featured === 'done'));
   return `${acFeat(featured)}<p class="h4 ac-hd" style="margin:24px 0 16px">While you wait</p><div class="ac-grid">${grid.map(acTile).join('')}</div>`;
