@@ -1684,9 +1684,17 @@ function exitFlow(to, kind){
   const leave = () => { hist = []; if (to === 'restart'){ S = fresh(); jump('m1'); } else go(to, {dir:'back'}); };
   const copy = EXIT_COPY[kind];
   if (!copy) return leave();
-  sheet(sheetDoc({title:copy.t, sub:copy.s, body:'', note:'', buttons: btn(copy.stay,'data-close') + btn(copy.leave,'data-leave','paper')}), o => {
-    o.querySelector('[data-leave]').addEventListener('click', () => { o.close(); setTimeout(leave, 200); });
+  // the game holds still while the person decides: countdown stops, round timer pauses
+  const el = cur.el, id = cur.id; let leaving = false;
+  el._pausedAt = performance.now();
+  if (id === 'c2'){ cur.timers.forEach(f => f()); cur.timers = []; }
+  const resume = () => { if (leaving || cur.el !== el) return;
+    if (el._t0) el._t0 += performance.now() - el._pausedAt; el._pausedAt = 0;
+    if (id === 'c2'){ el.innerHTML = SC.c2.render(); fitBottom(el); SC.c2.mount(el); } };   // the countdown starts again from 3
+  const o = sheet(sheetDoc({title:copy.t, sub:copy.s, body:'', note:'', buttons: btn(copy.stay,'data-close') + btn(copy.leave,'data-leave','paper')}), o => {
+    o.querySelector('[data-leave]').addEventListener('click', () => { leaving = true; o.close(); setTimeout(leave, 200); });
   });
+  const close0 = o.close; o.close = () => { const first = !o._closing; close0(); if (first && !leaving) setTimeout(resume, 280); };
 }
 
 /* ---------- games: liveliness helpers ---------- */
@@ -2683,7 +2691,7 @@ const GAMES = [
 ];
 const strip = (size=84, add=true) => { const n = S.players.length + (add?1:0); if (n>3) size = Math.min(size,70); const gap = Math.max(10, Math.min(32, Math.floor((329 - n*size)/(n-1||1)))); return `<div style="display:flex;gap:${gap}px;align-items:center;justify-content:center">${S.players.map(p=>av(p,size)).join('')}${add?`<button data-act="invite" aria-label="Add someone" style="width:${size}px;height:${size}px;border-radius:99px;border:2px dashed #cfc8cb;background:#fff;display:grid;place-items:center;color:var(--ink)">${ic('plus','i20')}</button>`:''}</div>`; };
 SC.a1 = {flow:'games', label:'Pick a tiny escape', parent:'m6', render:()=>`
-  ${topbar({t:'Quick break', right:R.live(), tight:true})}
+  ${topbar({t:'Quick break', right:R.live()+R.exit('m6',''), tight:true})}
   <div class="scroll">${hz('top')}<div class="body" style="padding-bottom:140px">
     <div class="intro" style="margin-bottom:32px">${title2('Pick a tiny escape')}<p class="b">5 minutes to play — solo or together.</p></div>
     <p class="cm sec" style="margin:0 0 12px">Playing</p>
@@ -2744,7 +2752,7 @@ function inviteSheet(){
   });
 }
 SC.a3 = {flow:'games', label:'Set up · Pinoy Henyo', parent:'a1', render:()=>`
-  ${topbar({t:'Set up game', right:R.live()})}
+  ${topbar({t:'Set up game', right:R.live()+R.exit('m6','')})}
   <div class="scroll">${hz('soft')}<div class="body">
     <div class="stack" style="align-items:center;text-align:center">
       <div class="pic g-pic" style="width:80px;height:80px"><img class="g-bob" src="${A.g_henyo}" alt="" style="width:96px;height:96px;max-width:none;margin:-8px"></div>
@@ -2766,7 +2774,7 @@ SC.a3 = {flow:'games', label:'Set up · Pinoy Henyo', parent:'a1', render:()=>`
     const add = el.querySelector('.body [data-act="invite"]'); if (add) add.classList.add('g-add'); }};
 const CAT_IC = {Food:'bowl',Objects:'box',Places:'pin',Animals:'paw',Culture:'landmark',People:'user'};
 SC.a4 = {flow:'games', label:'Game settings', parent:'a3', render:()=>{ const n = Object.values(S.cats).filter(Boolean).length; return `
-  ${topbar({t:'Set up game', right:R.live(), tight:true})}
+  ${topbar({t:'Set up game', right:R.live()+R.exit('m6',''), tight:true})}
   <div class="scroll"><div class="body">
     <div class="sec-h" style="margin:0 2px 16px"><p class="h4">Round length</p></div>
     <div class="seg seg36" role="radiogroup" aria-label="Round length"><span class="knob" style="left:calc(4px + (100% - 8px)/3*${S.len-1});width:calc((100% - 8px)/3 - 2px)"></span>${[1,2,3].map(v=>`<button role="radio" aria-checked="${S.len===v}" data-act="len" data-v="${v}">${v} min</button>`).join('')}</div>
@@ -2820,7 +2828,7 @@ SC.c3 = {flow:'games', label:'Round · secret word', parent:'c1', render:()=>{ c
     sec.animate([{transform:'perspective(800px) rotateY(-90deg) scale(.9)',opacity:0},{transform:'perspective(800px) rotateY(8deg)',opacity:1,offset:.7},{transform:'none',opacity:1}],{duration:reduce?1:760,easing:'cubic-bezier(.2,1.1,.3,1)'}).onfinish = () => sec.classList.add('secret-float');
     stagger(el.querySelectorAll('.center p'), RISE, {step:90, delay:420});
     const bar = el.querySelector('#tbar'), tl = el.querySelector('#tleft');
-    const id = setInterval(()=>{ const s = (performance.now()-t0)/1000, left = Math.max(0,total-s); bar.style.width = (left/total*100)+'%'; tl.textContent = `${Math.floor(left/60)}:${String(Math.floor(left%60)).padStart(2,'0')}`; el.classList.toggle('timer-hot', left <= 10); if (left<=0){ clearInterval(id); finishRound(el,false); } }, 200);
+    const id = setInterval(()=>{ if (el._pausedAt) return; const s = (performance.now()-el._t0)/1000, left = Math.max(0,total-s); bar.style.width = (left/total*100)+'%'; tl.textContent = `${Math.floor(left/60)}:${String(Math.floor(left%60)).padStart(2,'0')}`; el.classList.toggle('timer-hot', left <= 10); if (left<=0){ clearInterval(id); finishRound(el,false); } }, 200);
     cur.timers.push(()=>clearInterval(id)); }};
 function finishRound(el, got){
   if (got && !reduce && !el._celebrated){ el._celebrated = true; const sec = el.querySelector('#secret');
@@ -2881,7 +2889,7 @@ function podiumHTML(ranked){
 SC.c6 = {flow:'games', label:'Final results', parent:'a1', render:()=>{
   const ranked = [...S.players].sort((a,b)=>(S.scores[b]||0)-(S.scores[a]||0));
   const played = S.played.length ? S.played : [{w:'Mango',who:'JB',t:38,pts:150},{w:'Jeepney',who:'You',t:42,pts:100},{w:'Carabao',who:null}];
-  return `${topbar({t:'Final results', right:R.live(), tight:true})}
+  return `${topbar({t:'Final results', right:R.live()+R.exit('a1',''), tight:true})}
   <div class="scroll">${hz('actions')}<div class="body">
     <div class="center stack" style="gap:16px"><h1 class="h2">Final results</h1><p class="bl sec">Great game! Here’s how you did.</p></div>
     <div class="podium2" style="position:relative;height:254px;margin-top:39px">${podiumHTML(ranked)}</div>
@@ -2899,7 +2907,7 @@ SC.c6 = {flow:'games', label:'Final results', parent:'a1', render:()=>{
     stagger(el.querySelectorAll('.body .card .kv'), RISE, {step:80, delay:900});
     setTimeout(() => confettiRain(el), 600); }};
 SC.c7 = {flow:'games', label:'Keep this going in Salmon app', parent:'c6', render:()=>`
-  ${topbar({t:'Salmon', right:R.info(), tight:true})}
+  ${topbar({t:'Salmon', right:R.info()+R.exit('a1',''), tight:true})}
   <div class="scroll">${hz('soft')}<div class="body">
     <div class="stack" style="align-items:center;text-align:center">${pic('a_app',80)}<h1 class="h2" style="margin-top:24px">Keep this going<br><em>in Salmon app</em></h1><p class="b sec" style="max-width:297px;margin-top:16px">Today’s scores stay on this device until you close the tab.</p></div>
     <div style="margin-top:48px">${strip(84)}</div>
