@@ -3109,7 +3109,18 @@ function backTo(id){
   while (hist.length && hist[hist.length-1] !== id) hist.pop();
   hist.pop(); go(id,{dir:'back'});
 }
+// players joining a game: avatars already there glide to their new places, the newcomer grows in (iOS-style spring)
+const avKey = n => n.matches('[data-act=invite]') ? 'add' : ([...n.classList].find(c => c.startsWith('av-')) || '');
+function avSnap(el){ const m = new Map(); el.querySelectorAll('.scroll .avatar, .scroll [data-act=invite]').forEach(n => { const k = avKey(n); if (k && !n.closest('.ovl') && !m.has(k)) m.set(k, n.getBoundingClientRect()); }); return m; }
+function avFlip(el, before){ if (reduce || !before || !before.size) return; const k = scaleOf(el), SPR = springEase(.86, 150);
+  el.querySelectorAll('.scroll .avatar, .scroll [data-act=invite]').forEach(n => { if (n.closest('.ovl')) return;
+    const key = avKey(n), a = before.get(key), b = n.getBoundingClientRect(); before.delete(key);
+    if (a){ const dx = (a.left - b.left)/k, dy = (a.top - b.top)/k, s = a.width / b.width;
+      if (Math.abs(dx) + Math.abs(dy) + Math.abs(1-s)*40 < .5) return;
+      n.animate([{transform:`translate(${dx}px,${dy}px) scale(${s})`},{transform:'none'}], {duration:SPR.ms, easing:SPR.easing}); }
+    else n.animate([{transform:'scale(.4)', opacity:0},{transform:'none', opacity:1}], {duration:SPR.ms, delay:90, easing:SPR.easing, fill:'backwards'}); }); }
 function rerender(){
+  const avBefore = ['a1','a3'].includes(cur.id) ? avSnap(cur.el) : null;
   const sc = cur.el.querySelector('.scroll'), y = sc ? sc.scrollTop : 0;
   const keep = [...cur.el.querySelectorAll(':scope > .ovl, :scope > .prize-layer')];   // open sheets and live particles survive a re-render
   cur.el.innerHTML = SC[cur.id].render();
@@ -3117,6 +3128,7 @@ function rerender(){
   const sc2 = cur.el.querySelector('.scroll'); if (sc2) sc2.scrollTop = y;
   fitBottom(cur.el);
   if (cur.id === 'm6' || cur.id === 'm8' || cur.id === 'w6') SC[cur.id].mount(cur.el);
+  avFlip(cur.el, avBefore);
 }
 function jump(id){
   if (id === 'm6' && !S.meetAt){ S.etaEnd = Date.now() + WAIT_MS; S.onWay = false; S.pushed = false; S.inMeeting = false; }
