@@ -864,13 +864,16 @@ html.show .stage{display:flex;align-items:center;justify-content:center;gap:clam
 .story-bar i{display:block;height:100%;width:0;border-radius:inherit;background:var(--page-ink);transition:width .5s cubic-bezier(.2,.8,.2,1)}
 .story-n{font-size:15px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:.02em;color:var(--page-ink)}
 .story-n span{color:var(--page-sec);font-weight:500}
-.story-nav{display:flex;align-items:center;gap:8px}
+.story-nav{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .story-nav button{width:44px;height:44px;border-radius:99px;display:grid;place-items:center;background:var(--page-card);box-shadow:inset 0 0 0 1px var(--page-line);color:var(--page-ink);transition:background .2s,transform .12s}
 .story-nav button:hover{background:color-mix(in srgb, var(--page-card) 50%, var(--page-ink) 8%)}
 .story-nav button:active{transform:scale(.96)}
 .story-nav button[disabled]{opacity:.35;pointer-events:none}
 .story-nav svg{width:18px;height:18px}
 .story-nav .restart{width:auto;padding:0 18px;font-size:14px;font-weight:600;margin-left:8px}
+.story-nav .mark{gap:8px;padding:0 16px 0 6px;display:inline-flex;align-items:center;background:var(--page-ink);color:var(--page);box-shadow:none}
+.story-nav .mark img{width:32px;height:32px;border-radius:99px;object-fit:cover}
+.story-nav .mark:hover{background:color-mix(in srgb, var(--page-ink) 88%, var(--page))}
 .story-hint{font-size:13px;color:var(--page-sec);margin:0;display:flex;align-items:center;gap:8px}
 .story-hint i{width:8px;height:8px;border-radius:99px;background:var(--live);box-shadow:0 0 0 4px color-mix(in srgb, var(--live) 18%, transparent)}
 @media (max-width:900px){ html.show .stage{flex-direction:column;justify-content:flex-start;gap:24px;padding-block:24px} .story{gap:16px} .story-title{min-height:0} .story-hint{display:none} }
@@ -887,6 +890,7 @@ html.show .stage{display:flex;align-items:center;justify-content:center;gap:clam
     <button id="storyPrev" aria-label="Previous step"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
     <button id="storyNext" aria-label="Next step"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
     <button class="restart" id="storyRestart">Start over</button>
+    <button class="restart mark" id="storyMark" disabled><img alt="" id="storyMarkImg">Mark arrives</button>
   </div>
   <p class="story-hint"><i></i>Tap the phone to try it yourself</p>
 </section><nav class="panel" id="panel" aria-label="Prototype screens"></nav>
@@ -3451,8 +3455,8 @@ const STEPS = [
   {ey:'Wait your way',    ti:'Find a comfortable spot<br><em>nearby</em>', go:()=>jump('w2')},
   {ey:'Game break',       ti:'Play a quick game<br><em>solo or with friends</em>', go:()=>jump('a1')},
   {ey:'Rewards',          ti:'Points turn<br><em>into real perks</em>', go:()=>jump('m8')},
-  {ey:'Mark is ready',    ti:'Know the moment<br><em>Mark is ready</em>', go:()=>{ S.gamesDone=true; jump('m6'); S.etaEnd=Date.now()+3500; S.moved=false; S.onWay=false; S.pushed=false; }},
-  {ey:'Find each other',  ti:'Walk over<br><em>or let Mark come to you</em>', go:()=>{ S.gamesDone=true; S.etaEnd=Date.now()-1000; S.onWay=true; S.dest='meet'; jump('w4'); }},
+  {ey:'Mark is ready',    ti:'Know the moment<br><em>Mark is ready</em>', go:()=>{ S.markGo=true; jump('m6'); S.etaEnd=Date.now()+3500; S.moved=false; S.onWay=false; S.pushed=false; }},
+  {ey:'Find each other',  ti:'Walk over<br><em>or let Mark come to you</em>', go:()=>{ S.markGo=true; S.etaEnd=Date.now()-1000; S.onWay=true; S.dest='meet'; jump('w4'); }},
   {ey:'With Mark',        ti:'The meeting<br><em>takes minutes</em>', go:()=>jump('m9')},
   {ey:'Approved',         ti:'Financing approved<br><em>on the spot</em>', go:()=>jump('p1')},
   {ey:'Checkout',         ti:'Pick it up today<br><em>pay the first part</em>', go:()=>jump('p2')},
@@ -3490,16 +3494,19 @@ const track = () => { if (!window.clarity || !cur || cur.id === lastScr) return;
 const sync = () => { if (cur){ render(stepOf()); track(); } };
 const _sp = syncPanel; syncPanel = function(){ _sp(); sync(); };
 setInterval(sync, 400);
-// Mark only becomes ready once the game flow is played through: until then his countdown stops at "1 minute"
+// Mark never turns up by himself on the showcase: his countdown waits at "1 minute" until the presenter presses "Mark arrives"
 setInterval(() => {
   if (!cur || typeof S === 'undefined') return;
-  if (cur.id === 'c6' && !S.gamesDone){ S.gamesDone = true; if (tkPhase() === 'coming') S.etaEnd = Math.min(S.etaEnd || Infinity, Date.now() + 6000); }
-  if (!S.gamesDone && S.etaEnd && tkPhase() === 'coming' && S.etaEnd - Date.now() < 15000) S.etaEnd = Date.now() + 15000;
+  if (!S.markGo && S.etaEnd && tkPhase() === 'coming' && S.etaEnd - Date.now() < 15000) S.etaEnd = Date.now() + 15000;
+  const mb = $('storyMark'); mb.disabled = !(S.etaEnd && tkPhase() === 'coming' && !S.markGo);
 }, 300);                       // Mark becoming ready changes the step without a tap
 const goStep = i => { i = Math.max(0, Math.min(N-1, i)); phone.querySelectorAll('.ovl').forEach(o=>o.remove()); STEPS[i].go(); render(i); };
 $('storyPrev').onclick = () => goStep(shown-1);
 $('storyNext').onclick = () => goStep(shown+1);
 $('storyRestart').onclick = () => goStep(0);
+// the presenter decides when Mark shows up: ready at the meeting point, or walking over if the meeting was moved
+$('storyMarkImg').src = A.mark;
+$('storyMark').onclick = () => { if (tkPhase() !== 'coming') return; S.markGo = true; S.pushed = false; S.etaEnd = Date.now() + 1200; $('storyMark').disabled = true; };
 addEventListener('keydown', e => { if (e.target.matches('input,textarea')) return; if (e.key==='ArrowRight') goStep(shown+1); if (e.key==='ArrowLeft') goStep(shown-1); });
 // the phone shares the row with the story column
 fit = function(){
