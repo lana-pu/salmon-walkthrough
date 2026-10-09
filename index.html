@@ -813,7 +813,10 @@ html.ac-colour .ac-tile.after[data-ac="about"] .ac-art,html.ac-colour .ac-tile.a
 html.ac-colour .ac-tile[data-ac="purchase"]{background-image:linear-gradient(90deg,rgba(255,255,255,.49),rgba(255,255,255,.49)),url("data:image/svg+xml;utf8,<svg viewBox='0 0 164.5 168' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><rect width='100%' height='100%' fill='url(%23g)' opacity='1'/><defs><radialGradient id='g' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='10' gradientTransform='matrix(23.5 0 0 24 -58.75 252)'><stop stop-color='rgba(255,220,200,0.5)' offset='0'/><stop stop-color='rgba(220,200,240,0)' offset='1'/></radialGradient></defs></svg>"),url("data:image/svg+xml;utf8,<svg viewBox='0 0 164.5 168' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><rect width='100%' height='100%' fill='url(%23g)' opacity='1'/><defs><radialGradient id='g' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='10' gradientTransform='matrix(16.45 0 0 16.8 197.4 184.8)'><stop stop-color='rgba(170,180,255,0.45)' offset='0'/><stop stop-color='rgba(240,200,190,0)' offset='1'/></radialGradient></defs></svg>"),url("data:image/svg+xml;utf8,<svg viewBox='0 0 164.5 168' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><rect width='100%' height='100%' fill='url(%23g)' opacity='1'/><defs><radialGradient id='g' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='10' gradientTransform='matrix(9.1389 0 0 21 73.111 -21)'><stop stop-color='rgba(255,100,100,0.65)' offset='0'/><stop stop-color='rgba(255,170,140,0.25)' offset='.5'/><stop stop-color='rgba(160,190,250,0)' offset='1'/></radialGradient></defs></svg>"),linear-gradient(70.38deg,rgb(200,190,240) 26.685%,rgb(245,195,175) 53.992%,rgb(250,150,140) 81.299%,rgb(180,195,235) 104.71%);background-size:100% 100%}
 html.ac-colour .ac-tile[data-ac="seat"] .ac-go,html.ac-colour .ac-tile[data-ac="about"] .ac-go,html.ac-colour .ac-tile[data-ac="purchase"] .ac-go,html.ac-colour .ac-tile[data-ac="game"] .ac-go{background:#fff}
 html.ac-colour .ac-tile[data-ac="about"] .ac-sub,html.ac-colour .ac-tile[data-ac="purchase"] .sec{color:#6b5a76}
-html.ac-colour .ac-tile[data-ac="game"]{background:#1b1a1b}
+html.ac-colour .ac-tile[data-ac="game"],html.ac-colour .ac-tile.after[data-ac="seat"]{background:#1b1a1b}
+html.ac-colour .ac-tile.after[data-ac="seat"] .h4{color:#fff}
+html.ac-colour .ac-tile.after[data-ac="seat"] .ac-sub{color:#b29aa0}
+html.ac-colour .ac-tile.after[data-ac="seat"] .ac-foot2 > span:not(.ac-go) img{filter:invert(1) brightness(1.6)}
 html.ac-colour .ac-tile[data-ac="game"] .h4{color:#fff}
 html.ac-colour .ac-tile[data-ac="game"] .ac-sub{color:#b29aa0}
 .ac-ctrl-light{display:none}
@@ -1610,8 +1613,11 @@ function ticketSwap(el){
   sc.scrollTop = target; sc.dispatchEvent(new Event('scroll'));
   const MOVE = 'cubic-bezier(.32,.72,0,1)', IN = 'cubic-bezier(0,0,.2,1)';
   // Three readable beats: (1) the card says ✓ Done, (2) its text says the details were submitted, (3) the cards trade places
+  const glide = (fn, ms = 620) => { const ns = [...f0.querySelectorAll('.ac-body .h4, .ac-body .ac-text, .ac-body .ac-foot')], y0 = ns.map(n => n.getBoundingClientRect().top);
+    fn(); ns.forEach((n, i) => { if (!n.isConnected) return; const dy = (y0[i] - n.getBoundingClientRect().top) / k; if (Math.abs(dy) < .5) return;
+      n.animate([{transform:`translateY(${dy}px)`},{transform:'none'}], {duration:T(ms), delay:T(i*25), easing:'cubic-bezier(.32,.72,0,1)', fill:'backwards', composite:'add'}); }); };
   const cross = (n, html, d=0) => n.animate([{opacity:1, transform:'none', filter:'blur(0px)'},{opacity:0, transform:'translateY(-5px)', filter:'blur(2px)'}], {duration:T(200), delay:T(d), easing:'ease-in', fill:'forwards'}).onfinish = () => {
-    n.innerHTML = html; n.getAnimations().forEach(a => a.cancel());
+    glide(() => { n.innerHTML = html; n.getAnimations().forEach(a => a.cancel()); }, 520);
     n.animate([{opacity:0, transform:'translateY(6px)', filter:'blur(2px)'},{opacity:1, transform:'none', filter:'blur(0px)'}], {duration:T(380), easing:IN, fill:'backwards'}); };
   const ref = document.createElement('div'); ref.innerHTML = acFeat('done');
   // 1 — ✓ Done takes the place of "Recommended": the tick lands big, the card glows once, a few sparks leave it
@@ -1619,7 +1625,7 @@ function ticketSwap(el){
     if (!el.isConnected) return;
     const eyebrow = f0.querySelector('.ac-eyebrow'), doneTpl = ref.querySelector('.ac-done');
     eyebrow.animate([{opacity:1},{opacity:0, transform:'translateY(-4px)'}], {duration:T(170), easing:'ease-in', fill:'forwards'}).onfinish = () => {
-      const done = doneTpl.cloneNode(true); eyebrow.replaceWith(done); f0.dataset.v = 'done';
+      const done = doneTpl.cloneNode(true); glide(() => eyebrow.replaceWith(done)); f0.dataset.v = 'done';
       const tick = done.querySelector('i'); done.style.transformOrigin = '0 50%';
       done.animate([{opacity:0, transform:'scale(.9)'},{opacity:1, transform:'scale(1.22)', offset:.45},{opacity:1, transform:'scale(1)'}], {duration:T(760), easing:'cubic-bezier(.45,0,.2,1)', fill:'backwards'});
       if (tick) tick.animate([{transform:'scale(0) rotate(-40deg)', opacity:0},{transform:'scale(1.7) rotate(6deg)', opacity:1, offset:.55},{transform:'none', opacity:1}], {duration:T(640), delay:T(60), easing:'cubic-bezier(.3,1.5,.5,1)', fill:'backwards'});
@@ -1649,7 +1655,10 @@ function ticketSwap(el){
     const now = new Map([...block.querySelectorAll('[data-ac]')].map(n => [n.dataset.ac, {n, look:look(n), text:n.textContent.replace(/\s+/g,' ').trim(), r:rect(n)}]));
     const layer = document.createElement('div'); layer.style.cssText = 'position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden'; el.appendChild(layer);
     // iOS "smooth" spring: response ≈ .55 s, damping ≈ .9 — no visible overshoot, long soft landing
-    const SPR = springEase(.9, 130), D = T(SPR.ms), MOVE_S = SPR.easing, EASE = 'cubic-bezier(.4,0,.2,1)';
+    // motion style (preview switch): now · arc (shuffle with depth) · lift (pick up & set down) · paint (colour spreads) · combo (arc + paint + soft landing)
+    const ST = window.__swapStyle || 'combo', ARC = ST === 'arc' || ST === 'combo', LIFT = ST === 'lift' || ST === 'combo2', PAINT = ST === 'paint' || ST === 'combo' || ST === 'combo2';
+    const SPR = LIFT ? springEase(.6, 150) : ST === 'combo' ? springEase(.8, 120) : ARC ? springEase(.86, 120) : springEase(.9, 130), D = T(SPR.ms), MOVE_S = SPR.easing, EASE = 'cubic-bezier(.4,0,.2,1)';
+    const PICK = LIFT ? T(300) : 0;
     const plain = c => { Object.assign(c.style, {background:'transparent', backgroundImage:'none', boxShadow:'none', transform:'none'}); return c; };
     const sized = (c, r) => { Object.assign(c.style, {position:'absolute', left:'0', top:'0', margin:'0', width:r.w+'px', height:r.h+'px', flex:'none', visibility:''}); return c; };
     const surface = (lk) => { const d = document.createElement('div'); d.style.cssText = `position:absolute;inset:0;border-radius:inherit;background-color:${lk.col};background-image:${lk.img};background-size:100% 100%`; return d; };
@@ -1658,15 +1667,20 @@ function ticketSwap(el){
       const o = old.get(key); if (!o) return; const a = o.r;
       const moved = Math.abs(a.x-b.x) + Math.abs(a.y-b.y) + Math.abs(a.w-b.w) + Math.abs(a.h-b.h) > 1;
       const recolour = o.look.img !== lb.img || o.look.col !== lb.col;
-      const reshape = Math.abs(a.w-b.w) + Math.abs(a.h-b.h) > 1 || o.text !== tb;
+      const reshape = Math.abs(a.w-b.w) + Math.abs(a.h-b.h) > 1 || o.text !== tb || recolour;   // a new surface may flip the text colour too (Take a seat turns black)
       if (!moved && !recolour && !reshape) return;
       n.style.visibility = 'hidden';
-      const lag = T(key==='game' ? 0 : key==='getready' ? 40 : 80 + (order++)*40);
+      const lag = PICK + T(key==='game' ? 0 : key==='getready' ? 40 : (LIFT ? 120 : 80) + (order++)*(LIFT ? 55 : 40));
       const wrap = document.createElement('div');
       wrap.style.cssText = `position:absolute;left:0;top:0;border-radius:${lb.rad};overflow:hidden;z-index:${key==='game'?3:key==='getready'?2:1};will-change:transform,width,height`;
       // surface: the new look underneath, the old look on top melting away over the whole move
-      wrap.appendChild(surface(lb));
-      const s0 = surface(o.look); wrap.appendChild(s0);
+      const s1 = surface(lb), s0 = surface(o.look);
+      if (PAINT && recolour){ wrap.append(s0, s1);       // the new colour spreads from the middle like ink, the old surface stays under it
+        const m = 'radial-gradient(circle at 50% 55%, #000 0 50%, transparent 64%) center / 0% 0% no-repeat';
+        s1.style.mask = m; s1.style.webkitMask = m;
+        s1.animate([{maskSize:'0% 0%', webkitMaskSize:'0% 0%'},{maskSize:'320% 320%', webkitMaskSize:'320% 320%'}], {duration:D*.8, delay:lag + D*.05, easing:'cubic-bezier(.35,0,.2,1)', fill:'both'});
+        s0.animate([{opacity:1},{opacity:.85, offset:.3},{opacity:0}], {duration:D*.75, delay:lag + D*.1, easing:'ease-in-out', fill:'both'});
+      } else { wrap.appendChild(s1); wrap.appendChild(s0); }
       // content
       if (reshape){
         const oc = sized(plain(oldClones.get(key)), a), nc = sized(plain(n.cloneNode(true)), b);
@@ -1680,7 +1694,20 @@ function ticketSwap(el){
       layer.appendChild(wrap);
       const kf = r => ({transform:`translate(${r.x}px,${r.y}px)`, width:r.w+'px', height:r.h+'px'});
       wrap.animate([kf(a), kf(b)], {duration:D, delay:lag, easing:MOVE_S, fill:'both'});
-      s0.animate([{opacity:1},{opacity:0}], {duration:D*.9, delay:lag + D*.05, easing:'cubic-bezier(.45,0,.55,1)', fill:'both'});
+      if (!(PAINT && recolour)) s0.animate([{opacity:1},{opacity:0}], {duration:D*.9, delay:lag + D*.05, easing:'cubic-bezier(.45,0,.55,1)', fill:'both'});
+      const up = key === 'game', main = key === 'game' || key === 'getready';
+      if (ARC && main && moved){        // the two cards pass each other on gentle arcs: the rising one in front, lifted; the other dips behind
+        const dx = b.x - a.x, dy = b.y - a.y, L = Math.hypot(dx, dy) || 1, sg = up ? 1 : -1, amp = Math.min(54, L * .24);
+        const px = -dy / L * amp * sg, py = dx / L * amp * sg;
+        wrap.animate([{transform:'translate(0,0) scale(1)'},{transform:`translate(${px}px,${py}px) scale(${up?1.07:.92})`, offset:.45},{transform:'translate(0,0) scale(1)'}], {duration:D*.92, delay:lag, easing:'cubic-bezier(.4,0,.3,1)', fill:'both', composite:'add'});
+        wrap.animate([{boxShadow:'0 0 0 rgba(27,26,27,0)', filter:'brightness(1)'},{boxShadow: up ? '0 26px 50px rgba(27,26,27,.24)' : '0 2px 6px rgba(27,26,27,.05)', filter: up ? 'brightness(1.03)' : 'brightness(.88)', offset:.45},{boxShadow:'0 0 0 rgba(27,26,27,0)', filter:'brightness(1)'}], {duration:D, delay:lag, easing:'ease-in-out', fill:'both'});
+      }
+      if (LIFT && moved){               // picked up first, set down with a small bounce; the rest of the grid answers in a wave
+        if (main) wrap.animate([{transform:'scale(1) rotate(0deg)', boxShadow:'0 0 0 rgba(27,26,27,0)'},{transform:`scale(1.08) rotate(${up?-2.5:2}deg)`, boxShadow:'0 22px 40px rgba(27,26,27,.22)', offset:.25},{transform:`scale(1.06) rotate(${up?-1.5:1.2}deg)`, boxShadow:'0 22px 40px rgba(27,26,27,.22)', offset:.68},{transform:'scale(1) rotate(0deg)', boxShadow:'0 0 0 rgba(27,26,27,0)'}], {duration:PICK + D, delay:lag - PICK, easing:'cubic-bezier(.3,0,.3,1)', fill:'both', composite:'add'});
+        wrap.animate([{transform:'scale(1)'},{transform:'scale(.95,1.035)', offset:.35},{transform:'scale(1.015,.99)', offset:.7},{transform:'scale(1)'}], {duration:T(420), delay:lag + D*.55, easing:'ease-out', composite:'add'});
+        if (up) setTimeout(() => { try { navigator.vibrate && navigator.vibrate(8); } catch(e){} }, lag + D*.62);
+      }
+      if (ST === 'combo' && moved) wrap.animate([{transform:'scale(1)'},{transform:'scale(.985)', offset:.5},{transform:'scale(1)'}], {duration:T(360), delay:lag + D*.7, easing:'ease-out', composite:'add'});
       last = Math.max(last, lag + D);
     });
     setTimeout(() => {
@@ -1963,9 +1990,10 @@ function acTile(key, after=false){ const v = AC_TILE[key];
   </button>`; }
 function acBlock(featured){
   const fk = featured === 'done' ? 'getready' : featured;
-  // colour version: when Game break takes the top slot, Take a seat and About Salmon keep the top row and the finished Get ready goes to the end of the grid
+  // colour version keeps one colour composition in both states: gradient · white / black · gradient.
+  // When Game break takes the top slot, Take a seat drops to its black corner and About Salmon takes the gradient corner.
   const colour = document.documentElement.classList.contains('ac-colour'), after = featured === 'game';
-  const order = colour ? (after ? ['seat','getready','purchase','about'] : ['seat','about','game','purchase']) : AC_ORDER;
+  const order = colour ? (after ? ['about','getready','seat','purchase'] : ['seat','about','game','purchase']) : AC_ORDER;
   const grid = order.filter(k => k !== fk && (k !== 'getready' || S.idReady || featured === 'done'));
   return `${acFeat(featured)}<p class="h4 ac-hd" style="margin:24px 0 16px">While you wait</p><div class="ac-grid${featured === 'game' ? ' after' : ''}">${grid.map(k => acTile(k, featured === 'game')).join('')}</div>`;
 }
@@ -3359,10 +3387,12 @@ setAcs(acsInit==='colour' ? 'colour' : 'mono');
 if (window.STUDY === 'swap'){
   document.documentElement.classList.add('test','study');
   const bar = document.createElement('div'); bar.className = 'study-bar';
-  bar.innerHTML = `<button data-replay>Replay</button><span class="sep"></span>${[1,.5,.25].map(v=>`<button data-speed="${v}" aria-pressed="${v===1}">${v===1?'1×':v===.5?'½×':'¼×'}</button>`).join('')}`;
+  const STY = [['now','Now'],['arc','1 · Shuffle'],['lift','2 · Pick up'],['paint','3 · Paint'],['combo','1 + 3'],['combo2','2 + 3']];
+  if (!window.__swapStyle) window.__swapStyle = 'now';
+  bar.innerHTML = `${STY.map(([v,t])=>`<button data-sty="${v}" aria-pressed="${v===window.__swapStyle}">${t}</button>`).join('')}<span class="sep"></span><button data-replay>Replay</button><span class="sep"></span>${[1,.5,.25].map(v=>`<button data-speed="${v}" aria-pressed="${v===1}">${v===1?'1×':v===.5?'½×':'¼×'}</button>`).join('')}`;
   document.body.appendChild(bar);
   const play = () => { S = fresh(); Object.assign(S, {greeted:true, points:160, idType:'licence', idReady:true, swapShown:false, checks:{id:true,phone:false,email:false,battery:false}}); hist = []; go('m6', {replace:true}); };
-  bar.addEventListener('click', e => { const sp = e.target.closest('[data-speed]'); if (sp){ window.__speed = +sp.dataset.speed; bar.querySelectorAll('[data-speed]').forEach(b=>b.setAttribute('aria-pressed', b===sp)); play(); } if (e.target.closest('[data-replay]')) play(); });
+  bar.addEventListener('click', e => { const sp = e.target.closest('[data-speed]'); if (sp){ window.__speed = +sp.dataset.speed; bar.querySelectorAll('[data-speed]').forEach(b=>b.setAttribute('aria-pressed', b===sp)); play(); } if (e.target.closest('[data-replay]')) play(); const st = e.target.closest('[data-sty]'); if (st){ window.__swapStyle = st.dataset.sty; bar.querySelectorAll('[data-sty]').forEach(b=>b.setAttribute('aria-pressed', b===st)); play(); } });
   window.__studyPlay = play;
 }
 const start = location.hash.slice(1);
