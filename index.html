@@ -3393,8 +3393,8 @@ const STEPS = [
   {ey:'Wait your way',    ti:'Find a comfortable spot<br><em>nearby</em>', go:()=>jump('w2')},
   {ey:'Game break',       ti:'Play a quick game<br><em>solo or with friends</em>', go:()=>jump('a1')},
   {ey:'Rewards',          ti:'Points turn<br><em>into real perks</em>', go:()=>jump('m8')},
-  {ey:'Mark is ready',    ti:'Know the moment<br><em>Mark is ready</em>', go:()=>{ jump('m6'); S.etaEnd=Date.now()+3500; S.moved=false; S.onWay=false; S.pushed=false; }},
-  {ey:'Find each other',  ti:'Walk over<br><em>or let Mark come to you</em>', go:()=>{ S.etaEnd=Date.now()-1000; S.onWay=true; S.dest='meet'; jump('w4'); }},
+  {ey:'Mark is ready',    ti:'Know the moment<br><em>Mark is ready</em>', go:()=>{ S.gamesDone=true; jump('m6'); S.etaEnd=Date.now()+3500; S.moved=false; S.onWay=false; S.pushed=false; }},
+  {ey:'Find each other',  ti:'Walk over<br><em>or let Mark come to you</em>', go:()=>{ S.gamesDone=true; S.etaEnd=Date.now()-1000; S.onWay=true; S.dest='meet'; jump('w4'); }},
   {ey:'With Mark',        ti:'The meeting<br><em>takes minutes</em>', go:()=>jump('m9')},
   {ey:'Approved',         ti:'Financing approved<br><em>on the spot</em>', go:()=>jump('p1')},
   {ey:'Checkout',         ti:'Pick it up today<br><em>pay the first part</em>', go:()=>jump('p2')},
@@ -3431,7 +3431,13 @@ let lastScr = '';
 const track = () => { if (!window.clarity || !cur || cur.id === lastScr) return; lastScr = cur.id; try { clarity('set', 'screen', cur.id); clarity('event', 'screen_' + cur.id); } catch(e){} };
 const sync = () => { if (cur){ render(stepOf()); track(); } };
 const _sp = syncPanel; syncPanel = function(){ _sp(); sync(); };
-setInterval(sync, 400);                       // Mark becoming ready changes the step without a tap
+setInterval(sync, 400);
+// Mark only becomes ready once the game flow is played through: until then his countdown stops at "1 minute"
+setInterval(() => {
+  if (!cur || typeof S === 'undefined') return;
+  if (cur.id === 'c6' && !S.gamesDone){ S.gamesDone = true; if (tkPhase() === 'coming') S.etaEnd = Math.min(S.etaEnd || Infinity, Date.now() + 6000); }
+  if (!S.gamesDone && S.etaEnd && tkPhase() === 'coming' && S.etaEnd - Date.now() < 15000) S.etaEnd = Date.now() + 15000;
+}, 300);                       // Mark becoming ready changes the step without a tap
 const goStep = i => { i = Math.max(0, Math.min(N-1, i)); phone.querySelectorAll('.ovl').forEach(o=>o.remove()); STEPS[i].go(); render(i); };
 $('storyPrev').onclick = () => goStep(shown-1);
 $('storyNext').onclick = () => goStep(shown+1);
