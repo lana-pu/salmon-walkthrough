@@ -3381,6 +3381,7 @@ setInterval(() => {
 <script>
 (()=>{
 document.documentElement.classList.add('show');
+setAcs('colour');                              // published version: colour action cards on the ticket
 const STEPS = [
   {ey:'The product',      ti:'Pay for your phone<br><em>in monthly parts</em>', go:()=>{ S=fresh(); jump('m1'); }},
   {ey:'Terms',            ti:'See the monthly cost<br><em>before you commit</em>', go:()=>jump('m2')},
