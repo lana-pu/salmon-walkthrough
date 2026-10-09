@@ -198,17 +198,17 @@ html.ft-warm{--ft-light:255,251,240}
 @keyframes breathe{50%{transform:scale(1.1) translate(3%,-3%);opacity:1}}
 .avatar{border-radius:999px;background:#fff;overflow:hidden;flex:none;display:grid;place-items:center}
 .avatar img{width:100%;height:100%;object-fit:cover}
-.av-you{box-shadow:inset 0 0 0 1.5px #eadaf3}.av-jb{box-shadow:inset 0 0 0 1.5px #fcd4b7}.av-tuna{box-shadow:inset 0 0 0 1.5px #e4c7cc}
+/* avatars: no ring — holders carry no stroke */
 
 /* ---------- overlays ---------- */
 .ovl{position:absolute;inset:0;z-index:40;display:flex;flex-direction:column;justify-content:flex-end}
 .ovl .dim{position:absolute;inset:0;background:rgba(27,26,27,.45)}
-.sheet{position:relative;background:var(--paper);border-radius:28px 28px 0 0;padding-top:8px;max-height:88%;overflow:auto;isolation:isolate}
+.sheet{position:relative;background:var(--paper);border-radius:28px 28px 0 0;padding-top:6px;max-height:88%;overflow:auto;isolation:isolate}
 .grab{width:46px;height:4px;border-radius:9px;background:var(--hair);margin:0 auto}
-.sh-in{padding:24px 24px 32px}
+.sh-in{padding:26px 24px 32px}
 .sh-in.flush{padding-bottom:0}
 .sheet > .sh-in.flush:last-child{padding-bottom:calc(var(--ft-b) + 8px)}
-.sh-hd{display:flex;flex-direction:column;gap:8px;margin:0 2px 24px}
+.sh-hd{display:flex;flex-direction:column;gap:8px;margin:0 0 24px}
 .sh-hd .c{color:var(--sec)}
 .sh-ft{position:relative;padding:32px var(--ft-x) var(--ft-b);display:flex;flex-direction:column;gap:var(--ft-gap);overflow:hidden}
 .sh-ft::before{content:"";position:absolute;left:0;right:0;bottom:0;height:150px;z-index:-1;pointer-events:none;
@@ -712,12 +712,12 @@ html.study .stage{flex-direction:column;gap:20px}
 .qr-wrap{border-radius:16px;overflow:hidden}
 .qr-scan{position:absolute;left:-10%;right:-10%;top:0;height:46px;pointer-events:none;opacity:0;background:linear-gradient(180deg,rgba(196,189,229,0),rgba(196,189,229,.55) 50%,rgba(255,255,255,0));filter:blur(4px)}
 .qr-join{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);opacity:0;pointer-events:none}
-.qr-join .avatar{box-shadow:0 0 0 4px #fff}
+
 .qr-tick{position:absolute;right:-4px;bottom:-2px;width:26px;height:26px;border-radius:99px;background:var(--ink);color:#fff;display:grid;place-items:center;box-shadow:0 0 0 3px #fff}
 .qr-tick svg{width:14px;height:14px}
 /* ---- meeting in progress ---- */
 .mp-duo{display:flex;align-items:center;gap:6px}
-.mp-duo .avatar{box-shadow:0 0 0 3px #fff}
+
 .mp-link{display:flex;gap:6px;padding:0 6px}
 .mp-link i{width:6px;height:6px;border-radius:99px;background:var(--live);animation:mpdot 1.2s ease-in-out infinite}
 .mp-link i:nth-child(2){animation-delay:.15s}.mp-link i:nth-child(3){animation-delay:.3s}
@@ -734,7 +734,7 @@ html.study .stage{flex-direction:column;gap:20px}
 .mp-spin{width:16px;height:16px;border-radius:99px;border:2px solid #e7dfe1;border-top-color:var(--ink);animation:spin .8s linear infinite}
 @media (prefers-reduced-motion:reduce){.mp-link i,.mp-spin{animation:none}}
 .sbanner{display:flex;gap:12px;align-items:flex-start;padding:16px 12px;border-radius:12px;background:#f6f6f6}
-.sb-ic{width:26px;height:26px;border-radius:999px;background:#fff;display:grid;place-items:center;flex:none;color:var(--sec)}
+.sb-ic{width:26px;height:26px;min-width:26px;border-radius:999px;background:#fff;display:grid;place-items:center;flex:none;color:var(--sec)}
 .chips:has(.wcat){gap:4px}
 .chip.wcat{height:36px;padding:0 12px;gap:8px;font-size:12px;font-weight:500}
 .chip.wcat svg{width:16px;height:16px}
@@ -759,8 +759,8 @@ html.study .stage{flex-direction:column;gap:20px}
 .la-btns button{height:32px;padding:0 16px;border-radius:99px;font-size:13px;font-weight:600;color:#fff;background:rgba(255,255,255,.14)}
 .la-btns .pri{background:#fff;color:#1b1a1b}
 @media (max-width:500px){.live-act{top:max(8px, env(safe-area-inset-top,0px))}}
-.ya-sheet{position:absolute;left:0;right:0;top:327px;bottom:0;z-index:5;background:#fff;border-radius:28px 28px 0 0;padding-top:8px;display:flex;flex-direction:column;overflow:hidden}
-.ya-in{padding:24px 24px 0;flex:1}
+.ya-sheet{position:absolute;left:0;right:0;top:327px;bottom:0;z-index:5;background:#fff;border-radius:28px 28px 0 0;padding-top:6px;display:flex;flex-direction:column;overflow:hidden}
+.ya-in{padding:26px 24px 0;flex:1}
 .ya-sheet .sh-ft{padding-top:24px}
 .sh-ft .btn.ink ~ .btn.soft,.w4-acts .btn.soft{background:#f6f6f6!important;height:46px!important;margin-top:calc(8px - var(--ft-gap))}
 .w4-acts .btn.soft{margin-top:8px!important}
@@ -949,7 +949,7 @@ const P = {
   gift:'<rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/>',
   gem:'<path d="M6 3h12l4 6-10 13L2 9z"/><path d="M11 3 8 9l4 13 4-13-3-6M2 9h20"/>',
   lock:'<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',
-  sparkle:'<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/>',
+  sparkle:'<path d="M12 5l1.8 5.2L19 12l-5.2 1.8L12 19l-1.8-5.2L5 12l5.2-1.8z"/>',
   sparkleF:'<path d="M12 2.5l2 6.5 6.5 2-6.5 2-2 6.5-2-6.5-6.5-2 6.5-2z" fill="currentColor" stroke="none"/>',
   store:'<path d="M3 9l1.5-5h15L21 9M4 9v11h16V9M3 9c0 1.7 1.3 3 3 3s3-1.3 3-3c0 1.7 1.3 3 3 3s3-1.3 3-3c0 1.7 1.3 3 3 3s3-1.3 3-3M9.5 20v-5h5v5"/>',
   box:'<path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/>',
@@ -1734,7 +1734,7 @@ function earnSheet(){
   ];
   const o = sheet(sheetDoc({title:'Earn more points', sub:'Every step that saves time at the meeting adds points.',
     body:`<div class="stack g8">${rows.map(r => `<button class="boxrow" ${r.done ? 'disabled aria-disabled="true"' : `data-earn="${r.go}"`} style="${r.done?'opacity:.6':''}">
-        <span class="lead-ic" style="width:32px;height:32px">${ic(r.icon,'i16')}</span>
+        <span class="lead-ic" style="width:36px;height:36px">${ic(r.icon,'i16')}</span>
         <span class="tx"><b class="bm">${r.t}</b><span class="c">${r.s}</span></span>
         ${r.done ? `<span class="badge" style="background:#f6f6f6;color:var(--ink);gap:6px">${ic('check')}Done</span>` : `<span class="pts" style="font-size:12px;padding:5px 9px 5px 8px">${ic('gem')}${r.pts}</span>${ic('chevR','chev')}`}
       </button>`).join('')}</div>`,
@@ -2586,8 +2586,8 @@ SC.w4 = {flow:'wait', label:'Directions', parent:'w2', render:()=>{ const p = to
     </div>
     <div style="position:absolute;right:24px;top:345px;background:#fff;border-radius:16px;padding:4px;display:flex;flex-direction:column;gap:4px;box-shadow:none"><span class="chip on" style="height:30px;padding:0 10px">L2</span><span class="chip" style="height:30px;padding:0 10px;background:var(--bg)">L1</span></div>
   </div>
-  <div class="ft sheet-ft" style="background:#fff;border-radius:32px 32px 0 0;padding:12px 24px 32px;box-shadow:none">
-    <div class="grab" style="margin-bottom:14px"></div>
+  <div class="ft sheet-ft" style="background:#fff;border-radius:32px 32px 0 0;padding:6px 24px 32px;box-shadow:none">
+    <div class="grab" style="margin-bottom:10px"></div>
     <div class="stack g12" style="margin-bottom:12px">${meet?'<p class="c sec">Meeting point</p>':''}<p class="h3" style="font-weight:600">${p.name}</p><p class="b sec">${meet ? p.meta : `${p.meta.split(' · ').slice(2).join(' · ')||'2 min walk'} · Level ${p.lvl.slice(1)}`}</p><p class="b sec">${meet ? p.how : 'Take the escalator down to Level 1. The lounge is beside the central atrium.'}</p></div>
     ${meet ? meetBanner('margin:20px 0 24px') : statusBanner('cal',meetIn(),`Original meeting point · ${S.where.name}`,'margin:20px 0 32px')}
     <div class="stack w4-acts" style="gap:0">${btn('Start walking','data-act="walk" id="walkb"')}${meet ? btn('Chat with Mark','data-act="msgMark" id="chatb"','soft') : ''}</div>
@@ -2788,12 +2788,12 @@ SC.a1 = {flow:'games', label:'Pick a tiny escape', parent:'m6', render:()=>`
     <div class="intro" style="margin-bottom:32px">${title2('Pick a tiny escape')}<p class="b">5 minutes to play — solo or together.</p></div>
     <p class="cm sec" style="margin:0 0 12px">Playing</p>
     <button class="row" data-act="invite" style="padding:0;gap:16px">
-      <span style="display:flex">${S.players.map((p,i)=>`<span style="margin-left:${i?-8:0}px">${av(p,44)}</span>`).join('')}<span class="g-add" style="margin-left:-8px;width:44px;height:44px;box-sizing:border-box;border-radius:99px;border:2px dashed #cfc8cb;background:#fff;display:grid;place-items:center">${ic('plus','i20')}</span></span>
+      <span style="display:flex">${S.players.map((p,i)=>`<span style="margin-left:${i?6:0}px">${av(p,44)}</span>`).join('')}<span class="g-add" style="margin-left:6px;width:44px;height:44px;box-sizing:border-box;border-radius:99px;border:2px dashed #cfc8cb;background:#fff;display:grid;place-items:center">${ic('plus','i20')}</span></span>
       <span class="tx" style="gap:8px"><b class="bm">${S.players.length>1?S.players.slice(1).map(p=>PL[p].name).join(', ')+' joined':'Add someone'}</b><span class="c sec">${S.players.length>1?'Add more from their phone':'They join from their phone'}</span></span>
     </button>
     <div class="stack g12" style="margin-top:24px">${GAMES.map(([k,t,s,m,bg])=>`<button class="tile ${bg}" data-act="game" data-v="${k}" style="flex-direction:row;align-items:center;gap:16px;padding:16px 24px 16px 16px;height:118px">${gameSlot(k, GAMES.findIndex(g=>g[0]===k))}<span class="stack" style="gap:24px;flex:1"><span class="stack g8"><b class="h4">${t}</b><span class="b sec">${s}</span></span><span class="cm">${m}</span></span></button>`).join('')}</div>
   </div></div>
-  ${foot(btn('Back to the ticket','data-go="m6"'))}`,
+  ${foot(btn(`${ic('userplus','i16')}Invite a friend`,'data-act="invite"'))}`,
   mount(el){ el.classList.add('scr-white'); stagger(el.querySelectorAll('[data-act="game"]'), RISE, {step:60, delay:120}); }};
 function inviteSheet(){
   const qrCells = () => { const cells = []; let seed = 7 + S.players.length*13; const rnd = () => (seed = (seed*9301+49297)%233280)/233280;
