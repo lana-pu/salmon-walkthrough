@@ -350,7 +350,8 @@ html.sec-compact{--ft-gap:8px;--ft-b:24px}
 .prize{position:absolute;left:0;top:0;pointer-events:none;will-change:transform,opacity}
 .prize-layer{position:absolute;inset:0;z-index:7;pointer-events:none;overflow:hidden}
 .w4-acts .btn.paper{background:transparent}
-.w4-acts .btn+.btn{margin-top:4px;height:40px}
+.w4-acts .btn+.btn{margin-top:8px!important;height:40px}
+.ft:has(.w4-acts #chatb){padding-bottom:calc(var(--ft-b) - 8px)!important}   /* two buttons: 8 between, 24 under, like every footer */
 .w4-acts #walkb[disabled]{opacity:1;color:var(--sec)}
 
 .ab-legal{gap:12px;margin-top:32px}.ab-legal .c{line-height:1.45;text-box:none}.nw{white-space:nowrap}
@@ -1597,48 +1598,54 @@ function ticketSwap(el){
   }, T(900));
   // 2 — every card moves to its new place; Game break grows into the slot, Get ready settles first in the grid
   function swap(){
-    const surf = n => { const c = getComputedStyle(n); return c.backgroundImage + '|' + c.backgroundColor; };
-    const old = new Map([...block.querySelectorAll('[data-ac]')].map(n => [n.dataset.ac, {n, bg:surf(n), r:rect(n), share:[...n.querySelectorAll('[data-share]')].map(x => ({key:x.dataset.share, r:rect(x)}))}]));
+    // Matched-geometry swap, the way iOS moves a card to a new home: each card is ONE shape that springs
+    // from its old frame to its new one; its surface (gradient / white / ink) morphs inside that shape,
+    // and only the content that really changes cross-dissolves — briefly, with a soft blur, mid-flight.
+    const look = n => { const c = getComputedStyle(n); return {img:c.backgroundImage, col:c.backgroundColor, rad:c.borderTopLeftRadius}; };
+    const old = new Map([...block.querySelectorAll('[data-ac]')].map(n => [n.dataset.ac, {n, look:look(n), text:n.textContent.replace(/\s+/g,' ').trim(), r:rect(n)}]));
     const oldClones = new Map([...old].map(([key, o]) => [key, o.n.cloneNode(true)]));
     block.innerHTML = acBlock('game');
-    const now = new Map([...block.querySelectorAll('[data-ac]')].map(n => [n.dataset.ac, {n, r:rect(n)}]));
+    const now = new Map([...block.querySelectorAll('[data-ac]')].map(n => [n.dataset.ac, {n, look:look(n), text:n.textContent.replace(/\s+/g,' ').trim(), r:rect(n)}]));
     const layer = document.createElement('div'); layer.style.cssText = 'position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden'; el.appendChild(layer);
-    const SPR = springEase(.88, 95), D = T(SPR.ms), MOVE_S = SPR.easing; let order = 0;
-    const place = (c, r) => { Object.assign(c.style, {position:'absolute', left:'0', top:'0', margin:'0', width:r.w+'px', height:r.h+'px', flex:'none'}); };
-    now.forEach(({n, r:b}, key) => {
+    // iOS "smooth" spring: response ≈ .55 s, damping ≈ .9 — no visible overshoot, long soft landing
+    const SPR = springEase(.9, 130), D = T(SPR.ms), MOVE_S = SPR.easing, EASE = 'cubic-bezier(.4,0,.2,1)';
+    const plain = c => { Object.assign(c.style, {background:'transparent', backgroundImage:'none', boxShadow:'none', transform:'none'}); return c; };
+    const sized = (c, r) => { Object.assign(c.style, {position:'absolute', left:'0', top:'0', margin:'0', width:r.w+'px', height:r.h+'px', flex:'none', visibility:''}); return c; };
+    const surface = (lk) => { const d = document.createElement('div'); d.style.cssText = `position:absolute;inset:0;border-radius:inherit;background-color:${lk.col};background-image:${lk.img};background-size:100% 100%`; return d; };
+    let order = 0, last = 0;
+    now.forEach(({n, r:b, look:lb, text:tb}, key) => {
       const o = old.get(key); if (!o) return; const a = o.r;
+      const moved = Math.abs(a.x-b.x) + Math.abs(a.y-b.y) + Math.abs(a.w-b.w) + Math.abs(a.h-b.h) > 1;
+      const recolour = o.look.img !== lb.img || o.look.col !== lb.col;
+      const reshape = Math.abs(a.w-b.w) + Math.abs(a.h-b.h) > 1 || o.text !== tb;
+      if (!moved && !recolour && !reshape) return;
       n.style.visibility = 'hidden';
+      const lag = T(key==='game' ? 0 : key==='getready' ? 40 : 80 + (order++)*40);
       const wrap = document.createElement('div');
-      wrap.style.cssText = `position:absolute;left:0;top:0;border-radius:20px;overflow:hidden;z-index:${key==='game'?3:key==='getready'?2:1}`;
-      const oc = oldClones.get(key), nc = n.cloneNode(true); nc.style.visibility = '';
-      place(oc, a); place(nc, b); nc.style.opacity = 0;
-      wrap.append(oc, nc); layer.appendChild(wrap);
+      wrap.style.cssText = `position:absolute;left:0;top:0;border-radius:${lb.rad};overflow:hidden;z-index:${key==='game'?3:key==='getready'?2:1};will-change:transform,width,height`;
+      // surface: the new look underneath, the old look on top melting away over the whole move
+      wrap.appendChild(surface(lb));
+      const s0 = surface(o.look); wrap.appendChild(s0);
+      // content
+      if (reshape){
+        const oc = sized(plain(oldClones.get(key)), a), nc = sized(plain(n.cloneNode(true)), b);
+        wrap.append(oc, nc);
+        oc.animate([{opacity:1, filter:'blur(0px)', transform:'scale(1)'},{opacity:0, filter:'blur(3px)', transform:'scale(.97)'}], {duration:D*.32, delay:lag + D*.04, easing:EASE, fill:'both'});
+        nc.animate([{opacity:0, filter:'blur(3px)', transform:'scale(.97)'},{opacity:1, filter:'blur(0px)', transform:'scale(1)'}], {duration:D*.42, delay:lag + D*.26, easing:EASE, fill:'both'});
+        oc.style.transformOrigin = nc.style.transformOrigin = '0 0';
+      } else {
+        wrap.appendChild(sized(plain(n.cloneNode(true)), b));     // same content: it simply rides along
+      }
+      layer.appendChild(wrap);
       const kf = r => ({transform:`translate(${r.x}px,${r.y}px)`, width:r.w+'px', height:r.h+'px'});
-      const moved = Math.abs(a.x-b.x) + Math.abs(a.y-b.y) + Math.abs(a.w-b.w) > 1;
-      const lag = T(key==='game' ? 0 : key==='getready' ? 30 : 60 + (order++)*25);
       wrap.animate([kf(a), kf(b)], {duration:D, delay:lag, easing:MOVE_S, fill:'both'});
-      // shared pieces (title, ✓ Done) travel on their own from where they were to where they land
-      const shared = [];
-      o.share.forEach(sh => {
-        const to = n.querySelector(`[data-share="${sh.key}"]`); if (!to) return;
-        const tr = rect(to), g = to.cloneNode(true);
-        oc.querySelectorAll(`[data-share="${sh.key}"]`).forEach(x => x.style.visibility = 'hidden');
-        nc.querySelectorAll(`[data-share="${sh.key}"]`).forEach(x => x.style.visibility = 'hidden');
-        Object.assign(g.style, {position:'absolute', left:'0', top:'0', margin:'0', width:tr.w+'px', zIndex:5, whiteSpace:'nowrap'});
-        layer.appendChild(g); shared.push(g);
-        g.animate([{transform:`translate(${sh.r.x}px,${sh.r.y}px)`},{transform:`translate(${tr.x}px,${tr.y}px)`}], {duration:D, delay:lag, easing:MOVE_S, fill:'both'});
-      });
-      if (a.w !== b.w || a.h !== b.h || o.bg !== surf(n)){
-        // the new look slowly comes up over the old one (no dip through the page in between), then the old one goes
-        const BLEND = Math.max(D*1.6, T(1100));                       // colour settles well after the move
-        nc.animate([{opacity:0},{opacity:1}], {duration:BLEND, delay:lag, easing:'cubic-bezier(.4,0,.2,1)', fill:'both'});
-        oc.animate([{opacity:1},{opacity:0}], {duration:T(200), delay:lag + BLEND - T(120), easing:'linear', fill:'both'});
-      } else { oc.style.opacity = 0; nc.style.opacity = 1; }
+      s0.animate([{opacity:1},{opacity:0}], {duration:D*.9, delay:lag + D*.05, easing:'cubic-bezier(.45,0,.55,1)', fill:'both'});
+      last = Math.max(last, lag + D);
     });
     setTimeout(() => {
       now.forEach(({n}) => n.style.visibility = '');
       requestAnimationFrame(() => layer.remove());
-    }, Math.max(D*1.6, T(1100)) + T(400));
+    }, last + T(60));
   }
 }
 
