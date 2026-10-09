@@ -853,7 +853,8 @@ html.ac-colour .ac-tile[data-ac="game"] .ac-ctrl-ink{display:none}
 .inv-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .inv-row .inv-pill{margin:-3px 0}
 .inv-card .qr-frame{margin-top:16px}
-.inv-qr{padding-bottom:16px;margin-top:0}
+.inv-qr{padding:16px;margin-top:0}
+.inv-qr .qr-frame{margin-top:0}
 .jm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:16px}
 .jm-grid .jm{min-width:0}
 .jm-grid .jm .c{white-space:nowrap;color:var(--sec)}
@@ -2545,7 +2546,7 @@ SC.w2 = {flow:'wait', label:'Wait comfortably', parent:'m6', render:()=>{
     <p class="h4" style="margin:24px 2px 10px">Other nearby places</p>
     <div class="stack g8 places-list">${order.slice(1).map(i=>card(i)).join('')}</div>
   </div></div>
-  ${foot(btn(`Wait at ${PLACES[S.place].short}`,'data-act="toPlace"'),'Add a phone number so we can reach you even without mobile data.')}`;}};
+  ${foot(btn(`Wait at ${PLACES[S.place].short}`,'data-act="toPlace"'))}`;}};
 
 const ROUTE = 'M70 346 C 104 348, 116 318, 118 286 C 121 246, 134 214, 165 205';
 
@@ -2809,8 +2810,8 @@ function inviteSheet(){
                            : `<span class="jm empty ${i===S.players.length && next()?'waiting':''}"><span class="jm-wait">${i===S.players.length && next()?'<i></i><i></i><i></i>':''}</span><span class="c">${i===S.players.length && next()?'Waiting…':'Free'}</span></span>`;
   const slots = () => Array.from({length:MAX}, (_,i) => slot(S.players[i], i)).join('');
   const head = (t, sub) => `<div class="inv-hd"><p class="bm">${t}</p><p class="c">${sub}</p></div>`;
-  sheet(sheetDoc({title:'Invite players', sub:'Up to three friends can join you', body:`
-    <div class="inv-card inv-qr">${head('Scan to join','Point their phone camera at the code')}
+  sheet(sheetDoc({title:'Invite players', sub:'Friends scan this code to join you. Up to three.', body:`
+    <div class="inv-card inv-qr">
       <div class="qr-frame"><div class="qr-wrap" style="position:relative;width:max-content;margin:0 auto"><div class="qr" aria-label="QR code to join">${qrCells()}</div><span class="qr-scan" aria-hidden="true"></span></div></div></div>
     <div class="inv-card" aria-live="polite">${head('Joined players',`<span class="jm-n">${S.players.length}</span> of ${MAX} in this game`)}<div class="jm-grid">${slots()}</div></div>`,
     buttons: btn('Done','data-close') + btn('Share a link instead','data-share','soft')}), o => {
