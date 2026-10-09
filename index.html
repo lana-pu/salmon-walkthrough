@@ -1859,7 +1859,7 @@ SC.m2 = {flow:'main', label:'Preliminary terms', parent:'m1', render:()=>{
       ${TERM_LIST.map(t=>`<button class="tile ${S.term==t?'on':''}" style="height:118px" role="radio" aria-checked="${S.term==t}" data-act="term" data-v="${t}"><span class="stack" style="gap:11px;padding-top:3px"><b class="bm">${t} months</b><span class="c sec">${peso(TERMS[t])} / mo</span></span><span class="sel">${ic('check')}</span></button>`).join('')}
     </div>
   </div></div>
-  ${foot(btn('Check what you’ll need','data-go="m3"'),'Nothing is submitted yet — play with the terms')}`;},
+  ${foot(btn('Set up meeting','data-go="m4"'),'Nothing is submitted yet — play with the terms')}`;},
   mount(el){ centerTerm(el, false); }};
 // the selected term sits in the middle of the row
 function centerTerm(el, smooth){ const row = el.querySelector('.terms-row'), on = row && row.querySelector('.tile.on'); if (!on) return;
@@ -1879,7 +1879,7 @@ SC.m3 = {flow:'main', label:'Before you start', parent:'m2', render:()=>`
   </div></div>
   ${foot(btn('Set up meeting','data-go="m4"')+btn('Missing something?','data-go="x1"','plain'))}`};
 
-SC.m4 = {flow:'main', label:'Meeting details', parent:'m3', render:()=>`
+SC.m4 = {flow:'main', label:'Meeting details', parent:'m2',   /* m3 “Make sure you’re ready” is hidden from the flow for now (kept in code) */ render:()=>`
   ${topbar({t:'Meeting details', right:R.share()+R.info()})}
   <div class="scroll"><div class="body">
     <div class="intro">${title2('Review <em>the details</em>')}<p class="b">Confirm when and where to meet Mark. You can change it later.</p></div>
@@ -2111,7 +2111,7 @@ SC.i1 = {flow:'id', label:'Are you ready? · checklist', parent:'m6', render:()=
       ${CHECKS.map(([k,t,s])=>`<button class="row" data-act="check" data-v="${k}" role="checkbox" aria-checked="${S.checks[k]}"><span class="chk ${S.checks[k]?'on':''}">${ic('check')}</span><span class="tx"><span class="b">${t}</span><span class="c">${k==='id' && S.idType ? idName()+' · you’ll bring it' : s}</span></span><span class="plus10 ${S.checks[k]?'on':''}">+10</span></button>`).join('')}
     </div>
   </div></div>
-  ${foot(btn('Continue','data-act="toI4"'),'This prepares you for the meeting — it doesn’t check eligibility.')}`};
+  ${foot(btn('Continue','data-act="toI4"')+btn('Missing something?','data-go="x1"','plain'),'This prepares you for the meeting — it doesn’t check eligibility.')}`};
 
 const idName = () => (IDS.find(i=>i[0]===S.idType)||[])[1] || '';
 const idShort = () => ({philsys:'PhilSys ID', licence:'driver’s licence', passport:'passport', umid:'UMID'})[S.idType] || 'ID';
@@ -3013,7 +3013,7 @@ const MISSING = [
   ['email','mail','Access to my email','I can’t open it on this phone'],
   ['battery','battery','Enough battery','My phone may not last'],
 ];
-SC.x1 = {flow:'miss', label:'What’s missing?', parent:'m3', render:()=>`
+SC.x1 = {flow:'miss', label:'What’s missing?', parent:'i1', render:()=>`
   ${topbar({t:'Missing something', right:R.info()})}
   <div class="scroll">${hz('warm')}<div class="body">
     <div class="intro">${title2('What’s<br><em>missing?</em>')}<p class="b">Tell us what you don’t have — there’s usually a way around it. You don’t have to answer.</p></div>
@@ -3027,7 +3027,7 @@ const HELD = () => `<div class="card" style="padding:4px 16px">
   <div class="kv"><span>Salmon cashback</span><span>₱500</span></div>
 </div>`;
 SC.x2 = {flow:'miss', label:'No ID with you', parent:'x1', render:()=>`
-  ${topbar({t:'Missing something', right:R.info()+R.exit('m3','')})}
+  ${topbar({t:'Missing something', right:R.info()+R.exit('i1','')})}
   <div class="scroll">${hz('warm')}<div class="body">
     <div class="intro">${title2('No ID<br><em>with you?</em>')}<p class="b">Your price and discounts can wait. Go get your ID — we’ll move the meeting so you don’t lose your place.</p></div>
     <div class="sec-h"><p class="h4">Held for you</p><p class="c">Nothing changes while you’re away.</p></div>
@@ -3039,7 +3039,7 @@ SC.x2 = {flow:'miss', label:'No ID with you', parent:'x1', render:()=>`
 
 const SLOTS = [['1h','In 1 hour','4:20 PM · same place'],['eve','Later today','6:00 PM · same place'],['tmr','Tomorrow','Pick a time with Mark']];
 SC.x3 = {flow:'miss', label:'Move the meeting', parent:'x2', render:()=>{ const sel = S.slot||'eve'; return `
-  ${topbar({t:'Move the meeting', right:R.info()+R.exit('m3','')})}
+  ${topbar({t:'Move the meeting', right:R.info()+R.exit('i1','')})}
   <div class="scroll"><div class="body">
     <div class="intro">${title2('When can you<br><em>be back?</em>')}<p class="b">Mark keeps your item, price and discounts until then.</p></div>
     <div class="stack g8" role="radiogroup" aria-label="New time">${SLOTS.map(([k,t,s])=>`<button class="boxrow ${sel===k?'on':''}" data-act="slot" data-v="${k}" role="radio" aria-checked="${sel===k}"><span class="radio"></span><span class="tx"><b class="bm">${t}</b><span class="c">${s}</span></span></button>`).join('')}</div>
@@ -3065,7 +3065,7 @@ const ALT = {
   battery:['Keep a copy<br><em>by SMS</em>','If your phone dies, show the text message at the meeting — it works as your ticket.'],
 };
 SC.x8 = {flow:'miss', label:'Other missing items', parent:'x1', render:()=>{ const a = ALT[S.missing]||ALT.phone; return `
-  ${topbar({t:'Missing something', right:R.info()+R.exit('m3','')})}
+  ${topbar({t:'Missing something', right:R.info()+R.exit('i1','')})}
   <div class="scroll">${hz('warm')}<div class="body">
     <div class="intro">${title2(a[0])}<p class="b">${a[1]}</p></div>
   </div></div>
@@ -3106,7 +3106,7 @@ SC.m9 = {flow:'wait', label:'Meeting in progress', parent:'m6', render:()=>{ con
 
 /* ================= ROUTER ================= */
 const FLOWS = [
-  ['main','Main path','Product → meeting → ticket',['m1','m2','m3','m4','m5','m6','m8']],
+  ['main','Main path','Product → meeting → ticket',['m1','m2','m4','m5','m6','m8']],
   ['id','ID check','Checklist → photos → ready',['i1','i4','i5','i6','i7','i8','i9','i10','i11','i12']],
   ['pay','Purchase','Your purchase → approved → pay → pick up → it’s yours',['pp','p1','p2','p2a','p3','p3b','p4','p5','p6','p7']],
   ['wait','Waiting & meeting point','Places → map → move meeting → Mark arrives',['w6','w3','w2','w4','w4a','w4m','w4h','w4c','m9']],
@@ -3516,7 +3516,7 @@ setAcs('colour');                              // published version: colour acti
 const STEPS = [
   {ey:'The product',      ti:'Pay for your phone<br><em>in monthly parts</em>', go:()=>{ S=fresh(); jump('m1'); }},
   {ey:'Terms',            ti:'See the monthly cost<br><em>before you commit</em>', go:()=>jump('m2')},
-  {ey:'Before you start', ti:'Know what to bring<br><em>to the meeting</em>', go:()=>jump('m3')},
+  // hidden for now: {ey:'Before you start', ti:'Know what to bring<br><em>to the meeting</em>', go:()=>jump('m3')},
   {ey:'Meeting',          ti:'Meet a real person<br><em>right in the mall</em>', go:()=>jump('m4')},
   {ey:'Confirmed',        ti:'Your meeting is set<br><em>and points start coming</em>', go:()=>{ S.greeted=false; S.points=0; jump('m5'); }},
   {ey:'Your ticket',      ti:'One ticket<br><em>for the whole wait</em>', go:()=>jump('m6')},
@@ -3534,9 +3534,10 @@ const STEPS = [
 ];
 const N = STEPS.length;
 // which step the live screen belongs to
-function stepOf(){
+function stepOf(){ const r = stepOfRaw(); return r === null ? shown : r > 2 ? r - 1 : r === 2 ? 1 : r; }   // step 2 (Before you start) is hidden
+function stepOfRaw(){
   const id = cur.id, ph = tkPhase();
-  if (id==='m1') return 0; if (id==='m2') return 1; if (id==='m3' || id[0]==='x') return 2; if (id==='m4') return 3; if (id==='m5') return 4;
+  if (id==='m1') return 0; if (id==='m2') return 1; if (id==='m3') return 2; if (id[0]==='x') return 6; if (id==='m4') return 3; if (id==='m5') return 4;
   if (id==='m6' || id==='ab' || id==='pp') return (ph==='ready'||ph==='onway'||ph==='moved') ? 10 : 5;
   if (id[0]==='i') return 6;
   if (id==='w2' || id==='w3') return (ph==='ready'||ph==='onway') ? 11 : 7;
@@ -3544,7 +3545,7 @@ function stepOf(){
   if (id==='w4m') return 11; if (id==='w6') return 10;
   if (id[0]==='a' || id[0]==='c') return 8; if (id==='m8') return 9; if (id==='m9') return 12; if (id==='p1') return 13;
   if (['p2','p2a','p3','p3b'].includes(id)) return 14; if (['p4','p5','p6'].includes(id)) return 15; if (id==='p7') return 16;
-  return shown;
+  return null;
 }
 const $ = id => document.getElementById(id);
 let shown = -1;
