@@ -3418,6 +3418,15 @@ if (window.STUDY === 'swap'){
 }
 const start = location.hash.slice(1);
 if (window.STUDY === 'swap') window.__studyPlay(); else jump(!TEST && SC[start] ? start : 'm1');
+/* ?debug: shows the real visible area on the phone, to check that nothing hides behind the browser's bars */
+if (/[?&]debug\b/.test(location.search)) (()=>{ const d = document.createElement('div');
+  d.style.cssText = 'position:fixed;left:8px;right:8px;top:50%;z-index:9999;transform:translateY(-50%);background:rgba(27,26,27,.88);color:#fff;font:12px/1.5 ui-monospace,monospace;padding:10px 12px;border-radius:12px;pointer-events:none;white-space:pre-wrap';
+  const box = document.createElement('div'); box.style.cssText = 'position:fixed;inset:0;z-index:9998;pointer-events:none;box-shadow:inset 0 0 0 3px #e5484d';
+  document.body.append(box, d);
+  const upd = () => { const st = document.querySelector('.stage').getBoundingClientRect(), b = cur && cur.el.querySelector(':scope > .ft .btn'), t = cur && cur.el.querySelector(':scope > .top'), vv = window.visualViewport;
+    d.textContent = `window ${innerWidth}×${innerHeight}\nvisual ${vv ? Math.round(vv.width)+'×'+Math.round(vv.height) : '–'}\nscreen ${screen.width}×${screen.height}\napp ${Math.round(st.top)}…${Math.round(st.bottom)}\ntop bar ${t ? Math.round(t.getBoundingClientRect().top)+'…'+Math.round(t.getBoundingClientRect().bottom) : '–'}\nbutton bottom ${b ? Math.round(b.getBoundingClientRect().bottom) : '–'}  (gap ${b ? Math.round(innerHeight - b.getBoundingClientRect().bottom) : '–'})\n${navigator.userAgent.replace(/.*?\((.*?)\).*?(Version\/[\d.]+|Chrome\/[\d.]+|CriOS\/[\d.]+)?.*/, '$1 $2')}`; };
+  upd(); setInterval(upd, 500); addEventListener('resize', upd); window.visualViewport && visualViewport.addEventListener('resize', upd);
+})();
 /* phones that allow it (Chrome on Android): the first tap anywhere takes the prototype full screen, hiding the browser's bars.
    iPhone Safari doesn't allow pages to go full screen, so nothing happens there. If the person leaves full screen, we don't force it again. */
 (()=>{ const root = document.documentElement, can = root.requestFullscreen && document.fullscreenEnabled;
