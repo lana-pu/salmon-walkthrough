@@ -82,7 +82,7 @@ img{max-width:100%;display:block}
 .info{position:relative;width:20px;height:20px;border-radius:999px;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:600;font-style:normal}
 .pts{display:inline-flex;align-items:center;gap:6px;background:var(--ink);color:#fff;border-radius:999px;padding:6px 11px 6px 9px;font-size:14px;line-height:1}
 .pts svg{width:14px;height:14px}
-.pts.lg{padding:8px 12px;gap:8px;font-size:16px;margin:0 0 -12px;align-self:flex-start}
+.pts.lg{padding:8px 12px;gap:8px;font-size:16px;margin:-6px 0;align-self:center}   /* centred on the back arrow, overhangs the 20px row equally */
 .pts.lg svg{width:16px;height:16px}
 .pts.sm.dim{opacity:.8}
 .checklist .plus10:not(.on){background:#f6f6f6}
@@ -296,6 +296,8 @@ html.ft-warm{--ft-light:255,251,240}
   .stage{height:100%;height:100dvh}
   .sb{height:6px;visibility:hidden}
   .field{font-size:16px}
+  .push{top:calc(8px + env(safe-area-inset-top,0px))}               /* arrival chip clears the notch on a real phone */
+  .join-note{top:calc(var(--sbh) + 52px + env(safe-area-inset-top,0px))}
   :root{--ft-b:max(24px, calc(10px + env(safe-area-inset-bottom,0px)))}
   .scr.typing .ft{display:none}
   .menu-fab{width:14px;height:52px;margin-top:-26px;right:0;border-radius:10px 0 0 10px;background:rgba(27,26,27,.28)}
@@ -1272,6 +1274,9 @@ const later = (fn, ms) => { const id = setTimeout(fn, ms); cur.timers.push(()=>c
 function ticketMorph(el){
   const sc = el.querySelector('.scroll'), st = el.querySelector('.stick'), bg = el.querySelector('.tk-bg');
   if (!sc || !st) return;
+  // the docked bar sits right under the top bar, wherever that ends: 88px in the phone frame, lower under a real phone's notch, higher without a status bar
+  const topBar = el.querySelector(':scope > .top'), DY = topBar ? Math.round(topBar.offsetTop + topBar.offsetHeight - 88) : 0;
+  st.style.top = (88 + DY) + 'px';
   const clamp = (v,a=0,b=1) => Math.max(a, Math.min(b, v));
   const ease = t => t<.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2;
   const lerp = (a,b,t) => a + (b-a)*t;
@@ -1284,8 +1289,8 @@ function ticketMorph(el){
   const top0 = st.offsetTop, topEl = el.querySelector('.top');
   // Figma 6.2 targets (screen coords)
   const SPEC = [
-    {tile:'.t-mark', chip:{x:24,y:108,w:133,h:44}, img:{x:4,y:4,s:36}, lbl:{x:48,cap:18}, act:'data-act="mark"'},
-    {tile:'.t-where', chip:{x:165,y:108,w:132,h:44}, img:{x:4,y:4,s:36}, lbl:{x:48,cap:18}, act:'data-go="w3"', icon2:'sofa'},
+    {tile:'.t-mark', chip:{x:24,y:108+DY,w:133,h:44}, img:{x:4,y:4,s:36}, lbl:{x:48,cap:18}, act:'data-act="mark"'},
+    {tile:'.t-where', chip:{x:165,y:108+DY,w:132,h:44}, img:{x:4,y:4,s:36}, lbl:{x:48,cap:18}, act:'data-go="w3"', icon2:'sofa'},
   ];
   const items = SPEC.map(sp => {
     const tile = el.querySelector(sp.tile); if (!tile) return null;
@@ -1348,10 +1353,10 @@ function ticketMorph(el){
     });
     if (tChip){ tW(mode); if (tChip.classList.contains('st-chip')){ tChip.style.right = 'auto'; tChip.style.left = x + 'px'; } }   // status chip follows the others with the same 8px gap
   })();
-  if (tChip) tChip.style.top = (130 - tChip.offsetHeight/2 - top0) + 'px';   // centred on the chips, one line or two
+  if (tChip) tChip.style.top = (130 + DY - tChip.offsetHeight/2 - top0) + 'px';   // centred on the chips, one line or two
   // where things dock (content scroll offsets)
   items.forEach(it => { it.dock = it.T.y - it.sp.chip.y; });
-  const banner = el.querySelector('.feature'); const sEnd = banner ? R(banner).y - 188 : 420;
+  const banner = el.querySelector('.feature'); const sEnd = banner ? R(banner).y - 188 - DY : 420;
   // make sure the page can actually scroll far enough to reach the 6.2 composition (banner 32px under the chips)
   { const body = el.querySelector('.body'), need = sEnd - (sc.scrollHeight - sc.clientHeight);
     if (body && need > 0) body.style.paddingBottom = (parseFloat(getComputedStyle(body).paddingBottom) + need) + 'px'; }
@@ -1621,7 +1626,7 @@ function ticketSwap(el){
   // start from the previous arrangement: Get ready recommended, Game break in the grid
   block.innerHTML = acBlock('getready');
   const f0 = block.querySelector('.ac-feat');
-  const target = Math.max(0, Math.min(sc.scrollHeight - sc.clientHeight, rect(f0).y + sc.scrollTop - 188));
+  const target = Math.max(0, Math.min(sc.scrollHeight - sc.clientHeight, rect(f0).y + sc.scrollTop - 188 - ((t => t ? t.offsetTop + t.offsetHeight - 88 : 0)(el.querySelector(':scope > .top')))));
   sc.scrollTop = target; sc.dispatchEvent(new Event('scroll'));
   const MOVE = 'cubic-bezier(.32,.72,0,1)', IN = 'cubic-bezier(0,0,.2,1)';
   // Three readable beats: (1) the card says ✓ Done, (2) its text says the details were submitted, (3) the cards trade places
