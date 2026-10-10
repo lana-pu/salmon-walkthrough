@@ -3418,6 +3418,15 @@ if (window.STUDY === 'swap'){
 }
 const start = location.hash.slice(1);
 if (window.STUDY === 'swap') window.__studyPlay(); else jump(!TEST && SC[start] ? start : 'm1');
+/* phones that allow it (Chrome on Android): the first tap anywhere takes the prototype full screen, hiding the browser's bars.
+   iPhone Safari doesn't allow pages to go full screen, so nothing happens there. If the person leaves full screen, we don't force it again. */
+(()=>{ const root = document.documentElement, can = root.requestFullscreen && document.fullscreenEnabled;
+  if (!can || !matchMedia('(max-width:500px) and (pointer:coarse)').matches) return;
+  const go = () => { removeEventListener('pointerup', go, true);
+    if (document.fullscreenElement) return;
+    root.requestFullscreen({navigationUI:'hide'}).then(() => { try { screen.orientation && screen.orientation.lock && screen.orientation.lock('portrait').catch(()=>{}); } catch(e){} }).catch(()=>{}); };
+  addEventListener('pointerup', go, true);
+})();
 /* facilitator reset: press and hold the top-left corner for 2 s */
 (()=>{ let t=null; const zone = e => { const r = phone.getBoundingClientRect(), p = e.touches ? e.touches[0] : e; return p.clientX - r.left < 70 && p.clientY - r.top < 70; };
   const start = e => { if (!zone(e)) return; t = setTimeout(()=>{ S = fresh(); hist = []; phone.querySelectorAll('.ovl').forEach(o=>o.remove()); jump('m1'); toast('Reset'); }, 2000); };
