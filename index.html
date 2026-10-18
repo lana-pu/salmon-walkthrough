@@ -723,7 +723,7 @@ button.row{text-align:left}
 .ft.solo{padding-bottom:calc(var(--ft-b) - var(--space-8))}
 .ft.solo .btn{height:40px}
 /* ---- Rewards (Salmon / Reward card) ---- */
-.rw-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-12)}
+.rw-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-grid-gap)}
 .rw-card{position:relative;height:172px;border-radius:var(--radius-card);overflow:hidden;background:var(--color-background-white);text-align:left;display:block;width:100%}
 .rw-card .in{position:absolute;inset:0;padding:var(--space-16);display:flex;flex-direction:column;z-index:1}
 .rw-card .go{z-index:2}
@@ -977,12 +977,10 @@ html.ac-colour .ac-tile[data-ac="game"] .ac-ctrl-ink{display:none}
 .qr-frame{margin:var(--space-16) auto 0;width:max-content}
 .qr-frame .qr{background:var(--color-background-white);border-radius:var(--radius-inner);padding:var(--space-8)}
 .inv-row{display:flex;align-items:center;justify-content:space-between;gap:var(--space-12)}
-.inv-pill{display:inline-flex;align-items:center;gap:var(--space-pill-icon-gap);height:32px;padding:0 var(--space-14);border-radius:var(--radius-pill);background:var(--color-background-white);font-size:var(--font-size-12);font-weight:var(--font-weight-semibold);color:var(--color-text-text)}
 .inv-hd{display:flex;flex-direction:column;gap:var(--space-8)}
 .inv-card.center .inv-hd{align-items:center;text-align:center}
 .inv-hd .c{color:var(--color-text-muted)}
 .inv-row{display:flex;align-items:center;justify-content:space-between;gap:var(--space-12)}
-.inv-row .inv-pill{margin:-4px 0}
 .inv-card .qr-frame{margin-top:var(--space-16)}
 .inv-qr{padding:var(--space-16);margin-top:0}
 .inv-qr .qr-frame{margin-top:0}
@@ -3162,7 +3160,7 @@ SC.c6 = {flow:'games', label:'Final results', parent:'a1', render:()=>{
 SC.c7 = {flow:'games', label:'Keep this going in Salmon app', parent:'c6', render:()=>`
   ${topbar({t:'Salmon app', right:R.info()+R.exit('m6',''), tight:true})}
   <div class="scroll">${hz('soft')}<div class="body">
-    <div class="stack" style="align-items:center;text-align:center">${pic('a_app',80)}<h1 class="h2 text-screen-title" style="margin-top:var(--space-24)">Keep this going<br><em>in Salmon app</em></h1><p class="b sec text-body" style="max-width:297px;margin-top:var(--space-16)">Today’s scores stay on this device until you close the tab.</p></div>
+    <div class="stack" style="align-items:center;text-align:center">${pic('a_app',80)}<h1 class="h2 text-screen-title" style="margin-top:var(--space-hero-title)">Keep this going<br><em>in Salmon app</em></h1><p class="b sec text-body" style="max-width:297px;margin-top:var(--space-16)">Today’s scores stay on this device until you close the tab.</p></div>
     <div style="margin-top:var(--space-page-pause)">${strip(84)}</div>
     <div class="card" style="padding:var(--space-card-pad-lg) var(--space-card-pad-lg) var(--space-card-pad-bottom-lg);margin-top:var(--space-page-between)">${leadRow('gem','Scores that stick between days','')}${leadRow('userplus','Play in teams, not just solo','')}${leadRow('plus','More categories and your own words','')}${leadRow('image','The other games in one place','')}</div>
   </div></div>
@@ -3243,7 +3241,7 @@ SC.m9 = {flow:'wait', label:'Meeting in progress', parent:'m6', render:()=>{ con
   <div class="scroll">${hz('soft')}<div class="body">
     <div class="stack" style="align-items:center;text-align:center">
       <div class="mp-duo"><span class="mp-a">${av('you',72)}</span><span class="mp-link"><i></i><i></i><i></i></span><span class="mp-b"><img src="${A.mark}" alt="" style="width:72px;height:72px;border-radius:var(--radius-pill);object-fit:cover;box-shadow:0 0 0 3px var(--color-paper)"></span></div>
-      <h1 class="h2 text-screen-title" style="margin-top:var(--space-24)"><em>Meeting</em><br>in progress</h1>
+      <h1 class="h2 text-screen-title" style="margin-top:var(--space-hero-title)"><em>Meeting</em><br>in progress</h1>
       <p class="b sec text-body" style="max-width:297px;margin-top:var(--space-16)">Mark is with you now. Keep this screen open — approval arrives here.</p>
     </div>
     <div class="card help-card" style="padding:var(--space-card-pad-lg) var(--space-card-pad-lg) var(--space-card-pad-bottom-lg);margin-top:var(--space-40)" id="mpSteps">
