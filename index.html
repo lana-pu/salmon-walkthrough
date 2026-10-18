@@ -51,7 +51,7 @@
   --color-camera-bg:var(--color-system-island);--color-camera-on:var(--color-paper);--color-camera-on-muted:var(--color-muted);--color-camera-focus-mark:var(--color-camera-focus);
   --space-inline-tight:var(--space-2);--space-text-inline:var(--space-4);--space-card-tight:var(--space-4);--space-card-line:var(--space-8);--space-card-pad-sm:var(--space-12);--space-card-pad-lg:var(--space-16);
   --space-card-pad-bottom-lg:var(--space-20);--space-card-icon-gap:var(--space-12);--space-card-line-desc:var(--space-12);--space-card-before-action:var(--space-40);--space-page-edge:var(--space-32);--space-page-margin:var(--space-24);
-  --space-page-group:var(--space-16);--space-page-between:var(--space-24);--space-page-pause:var(--space-48);--space-hero-title:var(--space-16);--space-text-line-h1:var(--space-12);--space-control-pad-y:var(--space-14);--space-control-pad-y-lg:var(--space-18);
+  --space-page-group:var(--space-16);--space-page-between:var(--space-24);--space-page-pause:var(--space-48);--space-group-break:var(--space-32);--space-hero-title:var(--space-16);--space-text-line-h1:var(--space-12);--space-control-pad-y:var(--space-14);--space-control-pad-y-lg:var(--space-18);
   --space-control-pad-x:var(--space-24);--space-pill-pad-y:var(--space-8);--space-pill-pad-x:var(--space-12);--space-pill-icon-gap:var(--space-6);--space-grid-gap:var(--space-16);--space-avatar-gap:var(--space-6);
   --space-sheet-grabber:var(--space-6);--space-sheet-pad-top:var(--space-28);--space-sheet-head:var(--space-24);--space-sheet-end:var(--space-32);--space-list-row-y:var(--space-24);--space-footer-x:var(--space-24);--space-footer-bottom:var(--space-32);
   --space-footer-gap:var(--space-16);--space-footer-fade:var(--space-28);
@@ -229,7 +229,7 @@ html.ft-warm{--ft-light:255,251,240}
 .g8{gap:var(--space-card-line)}.g12{gap:var(--space-12)}.g16{gap:var(--space-grid-gap)}.g24{gap:var(--space-24)}.g32{gap:var(--space-32)}
 .sec-h{display:flex;flex-direction:column;gap:var(--space-card-line);margin:0 var(--space-inline-tight) var(--space-page-group)}
 .sec-h .c{color:var(--color-text-muted)}
-.mt24{margin-top:var(--space-page-between)}.mt32{margin-top:var(--space-32)}.mt40{margin-top:var(--space-40)}
+.mt24{margin-top:var(--space-page-between)}.mt32{margin-top:var(--space-group-break)}.mt40{margin-top:var(--space-40)}
 
 /* ---------- controls ---------- */
 .btn{height:var(--size-button-height);border-radius:var(--radius-pill);display:flex;align-items:center;justify-content:center;gap:var(--space-card-line);font-size:var(--text-button-size);font-weight:var(--text-button-weight);width:100%;transition:transform .12s,background-color .2s,opacity .2s;flex:none}
@@ -491,7 +491,7 @@ html.sec-compact{--ft-gap:8px;--ft-b:24px}
 .ft:has(.w4-acts #chatb){padding-bottom:calc(var(--ft-b) - var(--space-8))!important}   /* two buttons: 8 between, 24 under, like every footer */
 .w4-acts #walkb[disabled]{opacity:1;color:var(--color-text-muted)}
 
-.ab-legal{gap:var(--space-card-icon-gap);margin-top:var(--space-32)}.ab-legal .c{line-height:1.45;text-box:none}.nw{white-space:nowrap}
+.ab-legal{gap:var(--space-card-icon-gap);margin-top:var(--space-group-break)}.ab-legal .c{line-height:1.45;text-box:none}.nw{white-space:nowrap}
 .ab-stat{height:auto;padding:var(--space-card-pad-lg);gap:var(--space-20);justify-content:flex-start}
 
 .pp-hero{position:relative;height:302px;border-radius:var(--radius-card);overflow:hidden;background:var(--color-background-white)}
@@ -510,7 +510,7 @@ html.sec-compact{--ft-gap:8px;--ft-b:24px}
 
 .w4m-av{width:80px;height:80px;border-radius:var(--radius-pill);padding:var(--space-4);background:var(--color-background-white);box-shadow:none;display:block}
 .w4m-av img{width:100%;height:100%;border-radius:var(--radius-pill);object-fit:cover;display:block}
-.w4m-code{display:flex;gap:var(--space-16);align-items:center;margin-top:var(--space-32);padding:var(--space-card-pad-lg);border-radius:var(--radius-card);background:var(--color-background-muted)}
+.w4m-code{display:flex;gap:var(--space-16);align-items:center;margin-top:var(--space-group-break);padding:var(--space-card-pad-lg);border-radius:var(--radius-card);background:var(--color-background-muted)}
 .w4m-code .w6-digits b{background:var(--color-background-white)}
 
 .w4h-add{display:flex;align-items:center;gap:var(--space-card-icon-gap);width:100%;padding:var(--space-card-pad-lg);border-radius:var(--radius-card);background:var(--color-background-white);border:2px dashed var(--color-border-border);text-align:left}
@@ -2232,7 +2232,7 @@ SC.m8 = {flow:'main', label:'Rewards', parent:'m6', render:()=>{
   return `${topbar({t:'Rewards', back:false, right:R.info()+`<button class="ib" data-back aria-label="Close rewards" style="color:var(--color-text-text)">${ic('x')}</button>`})}
   <div class="scroll"><div class="body" style="padding-bottom:190px">
     <div class="intro">${title2('Rewards')}<p class="b text-body">Scratch cards reveal partner offers. Opening is free — points are spent only when you claim a perk in the Salmon app.</p></div>
-    ${S.rwIntroHidden ? '<div style="height:26px"></div>' : `<div class="card rw-intro" style="margin:var(--space-32) 0 var(--space-page-between);padding:var(--space-card-pad-lg) var(--space-card-pad-lg) var(--space-card-pad-lg);position:relative">
+    ${S.rwIntroHidden ? '<div style="height:26px"></div>' : `<div class="card rw-intro" style="margin:var(--space-group-break) 0 var(--space-page-between);padding:var(--space-card-pad-lg) var(--space-card-pad-lg) var(--space-card-pad-lg);position:relative">
       <b class="h4 text-card-title" style="display:block;margin:0 var(--space-inline-tight) var(--space-20)">How points work</b>
       <div class="rows-c" style="--g:20px">${leadRow('gem','Earn points while you wait','Prepare your ID and help Mark find you')}${leadRow('gift','Unlock more perks','New scratch cards open as you level up')}${leadRow('phone','Redeem in the Salmon app','Claim a perk whenever you’re ready')}</div>
       <button class="rw-got" data-act="rwIntroClose">Got it</button>
@@ -2483,14 +2483,14 @@ SC.ab = {flow:'main', label:'About Salmon', parent:'m6', render:()=>`
       <div class="tile ab-stat"><span class="lead-ic" style="background:var(--color-background-muted)">${ic('people')}</span><span class="stack g12"><b class="h3 text-place-title" style="font-weight:var(--font-weight-semibold);letter-spacing:var(--tracking-tight)">1.5M+</b><span class="b sec text-body">Filipinos use Salmon</span></span></div>
       <div class="tile ab-stat"><span class="lead-ic" style="background:var(--color-background-muted)">${ic('sparkle')}</span><span class="stack g12"><b class="h3 text-place-title" style="font-weight:var(--font-weight-semibold);letter-spacing:var(--tracking-tight)">4.8</b><span class="b sec text-body">App Store rating</span></span></div>
     </div>
-    <div class="sec-h" style="margin-top:var(--space-32)"><p class="h4 text-section-title">How you’re protected</p></div>
+    <div class="sec-h" style="margin-top:var(--space-group-break)"><p class="h4 text-section-title">How you’re protected</p></div>
     <div class="card rows-c" style="padding:var(--space-20) var(--space-card-pad-lg);--g:20px">
       ${leadRow('shield','Licensed and regulated','SEC-registered · bank supervised by BSP')}
       ${leadRow('receipt','No hidden fees','Every payment shown before you sign')}
       ${leadRow('lock','Your data stays private','Data Privacy Act · never sold')}
       ${leadRow('idcard','Bank-grade security','Face ID, encryption, 24/7 monitoring')}
     </div>
-    <div class="sec-h" style="margin-top:var(--space-32)"><p class="h4 text-section-title">Need help?</p></div>
+    <div class="sec-h" style="margin-top:var(--space-group-break)"><p class="h4 text-section-title">Need help?</p></div>
     <div class="card rows-c" style="padding:var(--space-20) var(--space-card-pad-lg);--g:20px">
       ${leadRow('msg','Chat with a real person','In the Salmon app · 24/7',ic('chevR','chev'),'data-act="msgMark" role="button" tabindex="0" style="cursor:pointer"')}
       ${leadRow('phone','Call us','+63 49 534 1126 · head office')}
@@ -2513,13 +2513,13 @@ SC.pp = {flow:'pay', label:'Your purchase · before the meeting', parent:'m6', r
       <div class="kv"><span>Financed by</span><span>Salmon · approved</span></div>
       <div class="kv"><span>Warranty</span><span>1 year · Apple</span></div>
     </div>
-    <div class="sec-h" style="margin-top:var(--space-32)"><p class="h4 text-section-title">In the box</p></div>
+    <div class="sec-h" style="margin-top:var(--space-group-break)"><p class="h4 text-section-title">In the box</p></div>
     <div class="card rows-c" style="padding:var(--space-20) var(--space-card-pad-lg);--g:20px;background:var(--color-background-muted)">
       ${leadRow('phone','iPhone 14','256GB · Midnight')}
       ${leadRow('link','USB-C to Lightning cable','No power adapter included')}
       ${leadRow('receipt','Documents','Warranty card and official receipt')}
     </div>
-    <div class="sec-h" style="margin-top:var(--space-32)"><p class="h4 text-section-title">How to get it</p><p class="c text-caption">Choose now or decide with Mark.</p></div>
+    <div class="sec-h" style="margin-top:var(--space-group-break)"><p class="h4 text-section-title">How to get it</p><p class="c text-caption">Choose now or decide with Mark.</p></div>
     <div class="stack" style="gap:var(--space-16)" role="radiogroup" aria-label="How to get it">
       ${opt('pickup','store','Pick up in store','Ready today · Free')}
       ${opt('delivery','box','Delivery','2–3 business days · ₱150')}
@@ -2536,7 +2536,7 @@ SC.p1 = {flow:'pay', label:'1 · Approved', parent:'m6', render:()=>`
   ${topbar({t:'Complete purchase', right:R.info()})}
   <div class="scroll">${hz('soft')}<div class="body" style="padding-top:var(--space-16)">
     ${screenResult({hero:heroParts('app'), title:'Approved!<br><em>Your financing<br>is ready</em>', text:'Complete the purchase to keep your reserved price.', tc:'bl'})}
-    <div class="stack" style="gap:var(--space-24);margin-top:var(--space-32)">
+    <div class="stack" style="gap:var(--space-24);margin-top:var(--space-group-break)">
       ${prodCard()}
       <div><p class="h4 text-card-title" style="margin:0 var(--space-inline-tight) var(--space-page-group)">Your payment</p>
       <div class="card rows-c" style="padding:var(--space-20) var(--space-card-pad-lg);--g:20px">
@@ -2645,7 +2645,7 @@ SC.p5 = {flow:'pay', label:'5 · Pickup code', parent:'p4', render:()=>`
         <div><span class="c text-caption">Bring</span><b class="bm text-row-title">Driver’s licence ··· 4821</b></div>
       </div>
     </div>
-    <div class="prows" style="margin-top:var(--space-32)">
+    <div class="prows" style="margin-top:var(--space-group-break)">
       ${pRow('idcard','At the counter','Show the code and your ID, then sign for your iPhone')}
       ${pRow('userplus','Someone else picking up?','They need an authorization letter, a copy of your ID and their own ID')}
     </div>
@@ -2675,7 +2675,7 @@ SC.p7 = {flow:'pay', label:'7 · It’s yours', parent:'p6', render:()=>{
   <div class="scroll">${hz('blushGlow')}<div class="body" style="padding-top:var(--space-20)">
     <div class="stack sr-hero" style="align-items:center;text-align:center">${HERO_UNBOX}
     <div class="stack center" style="gap:var(--space-24);margin-top:-4px"><h1 class="h2 text-screen-title"><em>All done.</em><br>It's yours</h1><p class="bl sec text-screen-lead">${del?'Your iPhone 14 arrives in 2–3 days.':'Your iPhone 14 is in your hands.'}<br>The rest happens in the Salmon app.</p></div></div>
-    <div class="card rows-c" style="margin-top:var(--space-32);padding:var(--space-card-pad-lg) var(--space-card-pad-lg) var(--space-card-pad-bottom-lg);--g:4px">
+    <div class="card rows-c" style="margin-top:var(--space-group-break);padding:var(--space-card-pad-lg) var(--space-card-pad-lg) var(--space-card-pad-bottom-lg);--g:4px">
       ${leadRow('calclock',`First payment · ${peso(monthly())}`,'7 Nov 2026 · we’ll remind you','','style="min-height:44px;padding:var(--space-8) 0"')}
       ${leadRow('shield','Receipt & warranty','Saved in one place','','style="min-height:44px;padding:var(--space-8) 0"')}
       ${leadRow('gem','Salmon Points','+200 for this purchase','','style="min-height:44px;padding:var(--space-8) 0"')}
@@ -2698,7 +2698,7 @@ SC.w2 = {flow:'wait', label:'Wait comfortably', parent:'m6', render:()=>{
   return `${topbar({t:'Where to wait', right:R.info(), tight:true})}
   <div class="scroll"><div class="body">
     <div class="intro" style="margin-bottom:0">${title2('Wait comfortably')}<p class="b text-body">About 5 minutes to spare. Pick a spot nearby — Mark can meet you there.</p></div>
-    <div class="chips" role="tablist" style="margin-top:var(--space-32)">${CATS.map(([c,i])=>`<button class="chip lg wcat ${S.cat===c?'on':''}" role="tab" aria-selected="${S.cat===c}" data-act="cat" data-v="${c}">${ic(i)}${c}</button>`).join('')}</div>
+    <div class="chips" role="tablist" style="margin-top:var(--space-group-break)">${CATS.map(([c,i])=>`<button class="chip lg wcat ${S.cat===c?'on':''}" role="tab" aria-selected="${S.cat===c}" data-act="cat" data-v="${c}">${ic(i)}${c}</button>`).join('')}</div>
     <p class="h4 text-card-title" style="margin:0 var(--space-inline-tight) var(--space-page-group)">Best for your wait</p>
     ${card(order[0])}
     <p class="h4 text-card-title" style="margin:var(--space-page-between) var(--space-inline-tight) var(--space-10)">Other nearby places</p>
@@ -2815,7 +2815,7 @@ SC.w4h = {flow:'wait', label:'Help Mark find you', parent:'m6', render:()=>{ con
   ${topbar({t:'', back:false, right:R.exit('m6','')})}
   <div class="scroll">${hz('soft')}<div class="body">
     <div class="w4h-ok">${statusBanner('check',`Meeting moved to ${p.name}`,`Mark has the new spot · Level ${p.lvl.slice(1)}`,'background:var(--color-background-white)')}</div>
-    <div class="intro" style="margin-top:var(--space-32)">${title2('<em>Help Mark</em><br>find you')}<p class="b text-body">A photo and a short note — both optional, both help.</p></div>
+    <div class="intro" style="margin-top:var(--space-group-break)">${title2('<em>Help Mark</em><br>find you')}<p class="b text-body">A photo and a short note — both optional, both help.</p></div>
     ${S.photoTaken
       ? `<div class="w4h-photo"><img src="${A.chair}" alt="Your photo of the spot"><button class="chip" data-go="w4c">${ic('camera','i16')}Retake</button></div>`
       : `<button class="w4h-add" data-go="w4c"><span class="lead-ic" style="width:44px;height:44px">${ic('camera','w4h-cam')}</span><span class="tx"><b class="bm text-row-title">Add a photo of your spot</b><span class="c text-row-subtitle">Show the table or what’s around you</span></span><span class="plus10 ${S.photoAdded?'on':''}">${S.photoAdded?'Added':'+10'}</span></button>`}
@@ -2834,7 +2834,7 @@ SC.w4c = {flow:'wait', label:'Take a photo of your spot', parent:'w4h', dark:tru
     <button class="shutter" data-act="shootSpot" aria-label="Take photo"></button><div class="flash"></div>
   </div>`};
 const whoCard = (line, sub) => `
-  <p class="h4 text-card-title" style="margin:var(--space-32) var(--space-inline-tight) var(--space-page-group)">Who is coming</p>
+  <p class="h4 text-card-title" style="margin:var(--space-group-break) var(--space-inline-tight) var(--space-page-group)">Who is coming</p>
   <button class="card" style="display:flex;gap:var(--space-12);align-items:center;padding:var(--space-card-pad-sm) var(--space-card-pad-lg) var(--space-card-pad-sm) var(--space-card-pad-sm);width:100%" data-act="mark"><img src="${A.mark}" alt="" style="width:88px;height:88px;border-radius:var(--radius-inner);object-fit:cover"><span class="stack g8" style="flex:1"><b class="h4 text-card-title">Mark Reyes</b><span class="badge" style="align-self:flex-start">${ic('shield')}Verified ambassador</span><span class="c sec text-caption">Salmon ID badge · red Salmon shirt · English, Filipino</span></span>${ic('chevR','chev')}</button>
   <div class="card" style="display:flex;gap:var(--space-12);align-items:center;padding:var(--space-card-pad-lg) var(--space-card-pad-sm);border-radius:var(--radius-inner);margin-top:var(--space-page-between)"><i class="dot pulse" style="flex:none"></i><span class="stack" style="gap:var(--space-card-line);flex:1"><b class="bm text-row-title">${line}</b><span class="c sec text-row-subtitle">${sub}</span></span></div>`;
 SC.w5b = {flow:'wait', label:'Mark is on his way', parent:'m6', render:()=>{ const p = PLACES[S.place]; return `
@@ -3101,11 +3101,11 @@ SC.c5 = {flow:'games', label:'Round result', parent:'a3', render:()=>{ const L =
   ${topbar({t:`Round ${S.round+1}`, right:R.exit('m6','game'), tight:true})}
   <div class="scroll">${hz('soft')}<div class="body">
     <div class="stack" style="align-items:center;text-align:center">${av(L.g,84)}<h1 class="h2 text-screen-title" style="margin-top:var(--space-hero-title)"><em>Round ${S.round+1}</em><br>${L.got?`${gn} got it`:'Time ran out'}</h1></div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-10);margin-top:var(--space-32)">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-10);margin-top:var(--space-group-break)">
       ${factTile('ft-ambient','clock','Time taken', fmtT(L.secs), L.got ? `of ${S.len}:00 on the clock` : 'Nobody guessed it')}
       ${factTile('ft-gradient','gem','Points', '+0', L.got?(L.pts>100?'100 + 50 for speed':'100 for the word'):'Nobody scored', 'id="rpts"')}
     </div>
-    <div class="sec-h" style="margin:var(--space-32) var(--space-inline-tight) var(--space-page-group)"><p class="h4 text-section-title">Score so far</p></div>
+    <div class="sec-h" style="margin:var(--space-group-break) var(--space-inline-tight) var(--space-page-group)"><p class="h4 text-section-title">Score so far</p></div>
     <div class="card" style="padding:var(--space-card-pad-lg) var(--space-card-pad-lg) var(--space-card-pad-bottom-lg)">${[...S.players].sort((a,b)=>(S.scores[b]||0)-(S.scores[a]||0)).map(p=>`<div class="row">${av(p,36)}<span class="tx b text-body">${PL[p].name}</span><b class="b text-body" style="font-weight:var(--font-weight-regular);color:var(--color-text-muted)">${S.scores[p]||0}</b></div>`).join('')}</div>
   </div></div>
   ${foot(btn(lastRound?'See final results':'Next player',`data-act="${lastRound?'final':'nextRound'}"`)+btn('Stop here','data-act="final"','paper'))}`;},
