@@ -147,8 +147,8 @@ img{max-width:100%;display:block}
 .ib::after{content:"";position:absolute;inset:-12px}
 .ib svg{width:20px;height:20px}
 .ib svg.i14{width:14px;height:14px}
-.info{position:relative;width:20px;height:20px;border-radius:var(--radius-full);background:var(--color-background-inverse);color:#fff;display:grid;place-items:center;font-size:var(--font-size-12);font-weight:var(--font-weight-semibold);font-style:normal}
-.pts{display:inline-flex;align-items:center;gap:var(--space-6);background:var(--color-background-interactive);color:#fff;border-radius:var(--radius-full);padding:var(--space-6) var(--space-12) var(--space-6) var(--space-10);font-size:var(--font-size-14);line-height:var(--leading-solid)}
+.info{position:relative;width:20px;height:20px;border-radius:var(--radius-full);background:var(--color-background-inverse);color:var(--color-text-on-inverse);display:grid;place-items:center;font-size:var(--font-size-12);font-weight:var(--font-weight-semibold);font-style:normal}
+.pts{display:inline-flex;align-items:center;gap:var(--space-6);background:var(--color-background-interactive);color:var(--color-text-on-inverse);border-radius:var(--radius-full);padding:var(--space-6) var(--space-12) var(--space-6) var(--space-10);font-size:var(--font-size-14);line-height:var(--leading-solid)}
 .pts svg{width:14px;height:14px}
 .pts.lg{padding:var(--space-8) var(--space-12);gap:var(--space-8);font-size:var(--font-size-16);margin:-6px 0;align-self:center}   /* centred on the back arrow, overhangs the 20px row equally */
 .pts.lg svg{width:16px;height:16px}
@@ -173,7 +173,7 @@ html.ft-warm{--ft-light:255,251,240}
    variants: P · P+T · note+P · note+P+T · W (lone white) · T (lone text, optical) · custom (component inside) */
 .ft{position:absolute;left:0;right:0;bottom:0;z-index:6;padding:var(--ft-fade) var(--ft-x) var(--ft-b);display:flex;flex-direction:column;gap:var(--ft-gap);
   background:linear-gradient(rgba(var(--ft-light),0) 0,rgba(var(--ft-light),.7) calc(var(--ft-fade)*.5),rgb(var(--ft-light)) var(--ft-fade));pointer-events:none}
-.ft.sheet-ft{background:#fff}
+.ft.sheet-ft{background:var(--color-background-white)}
 .ft.sheet-ft::before,.ft.sheet-ft::after{display:none}
 .ft::before{content:"";position:absolute;left:0;right:0;bottom:0;height:150px;z-index:-1;pointer-events:none;
   background:radial-gradient(60% 55% at 48% 108%,rgba(255,205,168,.6),rgba(255,205,168,0) 100%),radial-gradient(85% 120% at 45% 112%,rgba(196,189,229,1),rgba(196,189,229,0) 100%);
@@ -197,6 +197,19 @@ html.ft-warm{--ft-light:255,251,240}
 .bm{font-size:var(--font-size-14);line-height:var(--leading-snug);text-box:trim-both cap alphabetic;font-weight:var(--font-weight-semibold);margin:0}
 .c{font-size:var(--font-size-12);line-height:var(--leading-snug);text-box:trim-both cap alphabetic;margin:0}
 .cm{font-size:var(--font-size-12);line-height:var(--leading-snug);text-box:trim-both cap alphabetic;font-weight:var(--font-weight-medium);margin:0}
+/* Text roles: what a piece of text is for → the style that draws it. Change a role here to restyle every element with that role. */
+.text-screen-title{font-size:var(--font-size-36);line-height:37px;text-box:trim-both cap alphabetic;font-weight:var(--font-weight-medium);letter-spacing:var(--tracking-tightest);margin:0}
+.text-screen-lead{font-size:var(--font-size-16);line-height:var(--leading-tight);text-box:trim-both cap alphabetic;letter-spacing:var(--tracking-wide);margin:0}
+.text-hero-number{font-size:var(--font-size-48);line-height:var(--leading-tight);text-box:trim-both cap alphabetic;font-weight:var(--font-weight-regular);letter-spacing:var(--tracking-tighter);margin:0}
+.text-place-title{font-size:var(--font-size-24);line-height:var(--leading-tight);text-box:trim-both cap alphabetic;font-weight:var(--font-weight-semibold);letter-spacing:var(--tracking-snug);margin:0}
+.text-section-title{font-size:var(--font-size-17);line-height:var(--leading-snug);text-box:trim-both cap alphabetic;font-weight:var(--font-weight-semibold);margin:0}
+.text-sheet-title{font-size:var(--font-size-17);line-height:var(--leading-snug);text-box:trim-both cap alphabetic;font-weight:var(--font-weight-semibold);margin:0}
+.text-card-title{font-size:var(--font-size-17);line-height:var(--leading-snug);text-box:trim-both cap alphabetic;font-weight:var(--font-weight-semibold);margin:0}
+.text-body{font-size:var(--font-size-14);line-height:var(--leading-tight);text-box:trim-both cap alphabetic;margin:0}
+.text-row-title{font-size:var(--font-size-14);line-height:var(--leading-snug);text-box:trim-both cap alphabetic;font-weight:var(--font-weight-semibold);margin:0}
+.text-row-subtitle{font-size:var(--font-size-12);line-height:var(--leading-snug);text-box:trim-both cap alphabetic;margin:0}
+.text-caption{font-size:var(--font-size-12);line-height:var(--leading-snug);text-box:trim-both cap alphabetic;margin:0}
+.text-label{font-size:var(--font-size-12);line-height:var(--leading-snug);text-box:trim-both cap alphabetic;font-weight:var(--font-weight-medium);margin:0}
 .sec{color:var(--color-text-muted)}.mut{color:var(--color-text-soft)}.tint{color:var(--color-secondary-on-tint)}
 .center{text-align:center}
 .intro{display:flex;flex-direction:column;gap:var(--space-16);margin-bottom:var(--space-32)}
@@ -229,11 +242,11 @@ html.ft-warm{--ft-light:255,251,240}
 .tile:active{transform:scale(.98)}
 .tile.on{background:var(--gradient-tile)}
 .sel{width:var(--size-control-checkbox);height:var(--size-control-checkbox);border-radius:var(--radius-pill);border:var(--stroke-select) solid var(--color-border-control);display:grid;place-items:center;flex:none;align-self:flex-end;transition:all .2s;background:rgba(255,255,255,.5)}
-.sel svg{width:14px;height:14px;color:#fff;opacity:0;transform:scale(.5);transition:all .2s}
+.sel svg{width:14px;height:14px;color:var(--color-text-on-inverse);opacity:0;transform:scale(.5);transition:all .2s}
 .on .sel,.sel.on{background:var(--color-background-interactive);border-color:var(--color-border-strong)}
 .on .sel svg,.sel.on svg{opacity:1;transform:none}
-.chk{width:24px;height:24px;border-radius:var(--radius-8);border:2px solid var(--color-muted);background:#fff;box-sizing:border-box;display:grid;place-items:center;flex:none;transition:all .2s}
-.chk svg{width:14px;height:14px;color:#fff;opacity:0;transform:scale(.4);transition:all .25s cubic-bezier(.3,1.6,.5,1)}
+.chk{width:24px;height:24px;border-radius:var(--radius-8);border:2px solid var(--color-muted);background:var(--color-background-white);box-sizing:border-box;display:grid;place-items:center;flex:none;transition:all .2s}
+.chk svg{width:14px;height:14px;color:var(--color-text-on-inverse);opacity:0;transform:scale(.4);transition:all .25s cubic-bezier(.3,1.6,.5,1)}
 .chk.on{background:var(--color-background-interactive);border-color:var(--color-border-strong)}.chk.on svg{opacity:1;transform:none}
 .radio{width:var(--size-control-radio);height:var(--size-control-radio);border-radius:var(--radius-pill);border:var(--stroke-control) solid var(--color-border-border);flex:none;display:grid;place-items:center;transition:all .2s}
 .radio::after{content:"";width:10px;height:10px;border-radius:var(--radius-full);background:var(--color-background-interactive);transform:scale(0);transition:transform .2s}
@@ -241,15 +254,15 @@ html.ft-warm{--ft-light:255,251,240}
 .badge{display:inline-flex;align-items:center;gap:var(--space-6);border-radius:var(--radius-pill);background:var(--color-background-muted);padding:var(--space-text-inline) var(--space-card-line);font-size:var(--font-size-12);color:var(--color-text-muted);white-space:nowrap}
 .badge svg{width:12px;height:12px}
 .plus10{font-size:var(--font-size-12);color:var(--color-text-muted);padding:var(--space-4) var(--space-8);border-radius:var(--radius-full);transition:all .25s}
-.plus10.on{background:var(--color-background-interactive);color:#fff}
+.plus10.on{background:var(--color-background-interactive);color:var(--color-text-on-inverse)}
 .field{width:100%;border:1.5px solid var(--color-border-border);border-radius:var(--radius-12);background:var(--color-background-muted);padding:var(--space-14) var(--space-16);line-height:20px;font-size:var(--font-size-14);color:var(--color-text-text);outline:none;resize:none}
 .field::placeholder{color:var(--color-text-soft)}
-.field:focus{border-color:var(--color-muted);background:#fff}
+.field:focus{border-color:var(--color-muted);background:var(--color-background-white)}
 .chips{display:flex;gap:var(--space-8);overflow-x:auto;margin:0 -24px var(--space-20);padding:0 var(--space-24);scrollbar-width:none}
 .chips::-webkit-scrollbar{display:none}
 .chip{flex:none;height:var(--size-chip-height);display:inline-flex;align-items:center;gap:var(--space-pill-icon-gap);padding:0 var(--space-pill-pad-x);border-radius:var(--radius-pill);background:var(--color-background-white);font-size:var(--font-size-12);font-weight:var(--font-weight-medium);transition:all .2s}
 .chip svg{width:15px;height:15px}
-.chip.on{background:var(--color-background-interactive);color:#fff}
+.chip.on{background:var(--color-background-interactive);color:var(--color-text-on-inverse)}
 .chip.lg{height:36px;padding:0 var(--space-14)}
 .seg{display:flex;background:var(--color-background-white);border-radius:var(--radius-full);padding:var(--space-4);position:relative}
 .seg button{text-align:center;flex:1;height:32px;border-radius:var(--radius-full);font-size:var(--font-size-14);position:relative;z-index:1;transition:color .2s}
@@ -264,7 +277,7 @@ html.ft-warm{--ft-light:255,251,240}
 .pic img{position:relative;width:100%;height:100%;object-fit:contain}
 .pic.breathe>b{animation:breathe 6s ease-in-out infinite}.pic.breathe>b:nth-child(2){animation-delay:-2s}.pic.breathe>b:nth-child(3){animation-delay:-4s}
 @keyframes breathe{50%{transform:scale(1.1) translate(3%,-3%);opacity:1}}
-.avatar{border-radius:var(--radius-full);background:#fff;overflow:hidden;flex:none;display:grid;place-items:center}
+.avatar{border-radius:var(--radius-full);background:var(--color-background-white);overflow:hidden;flex:none;display:grid;place-items:center}
 .avatar img{width:100%;height:100%;object-fit:cover}
 /* avatars: no ring — holders carry no stroke */
 
@@ -285,11 +298,11 @@ html.ft-warm{--ft-light:255,251,240}
 .sh-ft::before{content:"";position:absolute;left:0;right:0;bottom:0;height:150px;z-index:-1;pointer-events:none;
   background:radial-gradient(60% 55% at 48% 108%,rgba(255,205,168,.6),rgba(255,205,168,0) 100%),radial-gradient(85% 120% at 45% 112%,rgba(196,189,229,1),rgba(196,189,229,0) 100%);
   -webkit-mask-image:linear-gradient(transparent 0,#000 62%);mask-image:linear-gradient(transparent 0,#000 62%)}
-.boxrow{display:flex;align-items:center;gap:var(--space-card-icon-gap);padding:var(--space-card-pad-lg);border-radius:var(--radius-card);border:0;box-shadow:inset 0 0 0 2px var(--color-base-bg);background:#fff;width:100%;text-align:left;transition:background .2s,border-color .2s}
+.boxrow{display:flex;align-items:center;gap:var(--space-card-icon-gap);padding:var(--space-card-pad-lg);border-radius:var(--radius-card);border:0;box-shadow:inset 0 0 0 2px var(--color-base-bg);background:var(--color-background-white);width:100%;text-align:left;transition:background .2s,border-color .2s}
 .boxrow .tx{flex:1;display:flex;flex-direction:column;gap:var(--space-card-line);min-width:0}
 .boxrow .tx .c{color:var(--color-text-muted)}
 .boxrow.on{background:var(--gradient-peach);box-shadow:none}
-.toast{position:absolute;left:50%;bottom:120px;z-index:70;transform:translateX(-50%);background:var(--color-background-inverse);color:#fff;font-size:var(--font-size-14);padding:var(--space-12) var(--space-16);border-radius:var(--radius-full);white-space:nowrap;pointer-events:none}
+.toast{position:absolute;left:50%;bottom:120px;z-index:70;transform:translateX(-50%);background:var(--color-background-inverse);color:var(--color-text-on-inverse);font-size:var(--font-size-14);padding:var(--space-12) var(--space-16);border-radius:var(--radius-full);white-space:nowrap;pointer-events:none}
 .ptoast{position:absolute;left:50%;top:50%;z-index:7;width:300px;height:180px;margin:0 0 0 -150px;pointer-events:none;display:grid;place-items:center}
 .ptoast .pc{width:136px;height:134px;border-radius:var(--radius-28);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--space-6);position:relative;overflow:hidden;
   background:radial-gradient(60% 50% at 70% 10%,#ffbac7,transparent),radial-gradient(60% 60% at 10% 90%,#e9dcff,transparent),rgba(255,255,255,.92);box-shadow:none}
@@ -299,22 +312,22 @@ html.ft-warm{--ft-light:255,251,240}
 
 /* ---------- misc components ---------- */
 .feature{display:flex;gap:var(--space-14);align-items:center;border-radius:var(--radius-card);text-align:left;width:100%}
-.reward{border-radius:var(--radius-card);background:#fff;position:relative;overflow:hidden;text-align:center;padding:var(--space-16) var(--space-32) var(--space-20);display:flex;flex-direction:column;align-items:center}
+.reward{border-radius:var(--radius-card);background:var(--color-background-white);position:relative;overflow:hidden;text-align:center;padding:var(--space-16) var(--space-32) var(--space-20);display:flex;flex-direction:column;align-items:center}
 .reward>*{position:relative}
 .reward .num{font-size:var(--font-size-48);font-weight:var(--font-weight-regular);letter-spacing:var(--tracking-tighter);line-height:var(--leading-tight);margin:var(--space-24) 0 var(--space-16);text-box:trim-both cap alphabetic}
 .cam{flex:1;background:var(--color-camera-bg);position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
 .corners{position:relative;width:322px;height:200px}
-.corners i{position:absolute;width:32px;height:32px;border:2px solid #fff;transition:all .35s}
+.corners i{position:absolute;width:32px;height:32px;border:2px solid var(--color-camera-on);transition:all .35s}
 .corners i:nth-child(1){left:0;top:0;border-right:0;border-bottom:0;border-top-left-radius:14px}
 .corners i:nth-child(2){right:0;top:0;border-left:0;border-bottom:0;border-top-right-radius:14px}
 .corners i:nth-child(3){left:0;bottom:0;border-right:0;border-top:0;border-bottom-left-radius:14px}
 .corners i:nth-child(4){right:0;bottom:0;border-left:0;border-top:0;border-bottom-right-radius:14px}
 .corners.lock i{border-color:var(--color-status-success)}
-.corners .hint{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:rgba(40,38,41,.85);color:#fff;font-size:var(--font-size-12);padding:var(--space-8) var(--space-12);border-radius:var(--radius-full);white-space:nowrap}
-.shutter{width:62px;height:62px;border-radius:var(--radius-full);border:3px solid #fff;padding:var(--space-4);position:absolute;bottom:34px;left:50%;margin-left:-32px}
-.shutter::after{content:"";display:block;width:100%;height:100%;border-radius:var(--radius-full);background:#fff;transition:transform .15s}
+.corners .hint{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:rgba(40,38,41,.85);color:var(--color-text-on-inverse);font-size:var(--font-size-12);padding:var(--space-8) var(--space-12);border-radius:var(--radius-full);white-space:nowrap}
+.shutter{width:62px;height:62px;border-radius:var(--radius-full);border:3px solid var(--color-camera-on);padding:var(--space-4);position:absolute;bottom:34px;left:50%;margin-left:-32px}
+.shutter::after{content:"";display:block;width:100%;height:100%;border-radius:var(--radius-full);background:var(--color-camera-on);transition:transform .15s}
 .shutter:active::after{transform:scale(.9)}
-.flash{position:absolute;inset:0;background:#fff;z-index:50;pointer-events:none;opacity:0}
+.flash{position:absolute;inset:0;background:var(--color-camera-on);z-index:50;pointer-events:none;opacity:0}
 .cam-scene{position:absolute;inset:0;background:radial-gradient(70% 45% at 45% 48%,#3a3330 0%,#211d1c 55%,var(--color-camera-bg) 100%);display:flex;align-items:center;justify-content:center;perspective:700px}
 .cam-scene::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,rgba(255,255,255,.018) 0 3px,transparent 3px 11px)}
 .cam-card{position:relative;width:322px;height:200px;margin-top:-36px;border-radius:var(--radius-12);overflow:hidden;opacity:0;box-shadow:none;will-change:transform,filter}
@@ -376,7 +389,7 @@ html.ft-warm{--ft-light:255,251,240}
   .menu-fab svg{display:none}
 }
 @media (max-width:500px) and (max-height:700px){
-  .h2{font-size:var(--font-size-32);line-height:33px}
+  .h2,.text-screen-title{font-size:var(--font-size-32);line-height:33px}
   .body{padding-top:var(--space-24)}
 }
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
@@ -470,7 +483,7 @@ html.sec-compact{--ft-gap:8px;--ft-b:24px}
 .ab-legal{gap:var(--space-12);margin-top:var(--space-32)}.ab-legal .c{line-height:1.45;text-box:none}.nw{white-space:nowrap}
 .ab-stat{height:auto;padding:var(--space-16);gap:var(--space-20);justify-content:flex-start}
 
-.pp-hero{position:relative;height:302px;border-radius:var(--radius-20);overflow:hidden;background:#fff}
+.pp-hero{position:relative;height:302px;border-radius:var(--radius-20);overflow:hidden;background:var(--color-background-white)}
 .pp-hero img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;display:block}
 .pp-price{font-size:var(--font-size-24);font-weight:var(--font-weight-medium);letter-spacing:var(--tracking-tight);line-height:var(--leading-solid);margin:var(--space-20) 0 0}
 
@@ -479,17 +492,17 @@ html.sec-compact{--ft-gap:8px;--ft-b:24px}
 .w6-map::before{content:"";position:absolute;inset:0;background:rgba(255,255,255,.35)}
 .w6-map svg{position:absolute;inset:0;width:100%;height:100%}
 .w6-you{position:absolute;width:0;height:0}
-.w6-you i{position:absolute;left:-8px;top:-8px;width:16px;height:16px;border-radius:var(--radius-full);background:var(--color-status-live);border:3px solid #fff;box-sizing:border-box;box-shadow:0 0 0 8px rgba(83,132,237,.18)}
-.w6-you-l{position:absolute;transform:translate(-50%,14px);font-size:var(--font-size-12);font-weight:var(--font-weight-semibold);color:var(--color-status-live);text-shadow:0 0 3px #fff,0 0 3px #fff}
-.w6-mk{position:absolute;left:0;top:0;width:40px;height:40px;border-radius:var(--radius-full);background:#fff;padding:var(--space-4);box-sizing:border-box;box-shadow:none;transition:transform 1s linear}
+.w6-you i{position:absolute;left:-8px;top:-8px;width:16px;height:16px;border-radius:var(--radius-full);background:var(--color-status-live);border:3px solid var(--color-paper);box-sizing:border-box;box-shadow:0 0 0 8px rgba(83,132,237,.18)}
+.w6-you-l{position:absolute;transform:translate(-50%,14px);font-size:var(--font-size-12);font-weight:var(--font-weight-semibold);color:var(--color-status-live);text-shadow:0 0 3px var(--color-paper),0 0 3px #fff}
+.w6-mk{position:absolute;left:0;top:0;width:40px;height:40px;border-radius:var(--radius-full);background:var(--color-background-white);padding:var(--space-4);box-sizing:border-box;box-shadow:none;transition:transform 1s linear}
 .w6-mk img{width:100%;height:100%;border-radius:var(--radius-full);object-fit:cover;display:block}
 
-.w4m-av{width:80px;height:80px;border-radius:var(--radius-full);padding:var(--space-4);background:#fff;box-shadow:none;display:block}
+.w4m-av{width:80px;height:80px;border-radius:var(--radius-full);padding:var(--space-4);background:var(--color-background-white);box-shadow:none;display:block}
 .w4m-av img{width:100%;height:100%;border-radius:var(--radius-full);object-fit:cover;display:block}
 .w4m-code{display:flex;gap:var(--space-16);align-items:center;margin-top:var(--space-32);padding:var(--space-16);border-radius:var(--radius-20);background:var(--color-background-muted)}
-.w4m-code .w6-digits b{background:#fff}
+.w4m-code .w6-digits b{background:var(--color-background-white)}
 
-.w4h-add{display:flex;align-items:center;gap:var(--space-12);width:100%;padding:var(--space-16);border-radius:var(--radius-20);background:#fff;border:2px dashed var(--color-border-border);text-align:left}
+.w4h-add{display:flex;align-items:center;gap:var(--space-12);width:100%;padding:var(--space-16);border-radius:var(--radius-20);background:var(--color-background-white);border:2px dashed var(--color-border-border);text-align:left}
 .w4h-add .tx{flex:1;display:flex;flex-direction:column;gap:var(--space-8)}.w4h-add .tx .c{color:var(--color-text-muted)}
 .w4h-add .lead-ic svg.w4h-cam{width:20px;height:20px}
 .w4h-photo{position:relative;border-radius:var(--radius-20);overflow:hidden;height:200px}
@@ -517,7 +530,7 @@ html.sec-compact{--ft-gap:8px;--ft-b:24px}
 .w6-list .row{cursor:pointer;text-align:left}
 @media (prefers-reduced-motion:reduce){.w6-seg.live::after{animation:none}}
 
-.ft.sec-w .btn.ink ~ .btn.paper{background:#fff;height:46px;margin-top:calc(var(--space-8) - var(--ft-gap))}
+.ft.sec-w .btn.ink ~ .btn.paper{background:var(--color-background-white);height:46px;margin-top:calc(var(--space-8) - var(--ft-gap))}
 .ft.sec-w{padding-bottom:calc(var(--ft-b) - var(--space-8))!important}
 .ub-hero{position:relative;width:393px;height:216px;margin:0 -24px;flex:none}
 .ub-glow,.ub-blobs{position:absolute;inset:0;pointer-events:none}
@@ -550,7 +563,7 @@ html.sec-compact{--ft-gap:8px;--ft-b:24px}
 .ful{display:flex;align-items:center;gap:var(--space-14);height:128px;padding:0 var(--space-18);border-radius:var(--radius-28);background:var(--color-background-muted);width:100%;text-align:left;transition:transform .15s}
 .ful:active{transform:scale(.98)}
 .ful.on{background-image:var(--gradient-hero);background-size:100% 100%}
-.ful-art{width:44px;height:44px;border-radius:var(--radius-full);background:#fff;display:grid;place-items:center;flex:none;color:var(--color-text-text)}
+.ful-art{width:44px;height:44px;border-radius:var(--radius-full);background:var(--color-background-white);display:grid;place-items:center;flex:none;color:var(--color-text-text)}
 .ful-art svg{width:22px;height:22px}.ful:not(.on) .ful-art{color:var(--color-text-muted)}
 .ful-t{flex:1;display:flex;flex-direction:column;gap:var(--space-6)}
 .ful-t b{font-size:var(--font-size-17);font-weight:var(--font-weight-semibold);color:var(--color-text-text);line-height:22px}
@@ -561,18 +574,18 @@ html.sec-compact{--ft-gap:8px;--ft-b:24px}
 .pform{display:flex;flex-direction:column;gap:var(--space-16)}
 .pf{display:flex;flex-direction:column;gap:var(--space-10);min-width:0}
 .pf label{font-size:var(--font-size-12);font-weight:var(--font-weight-medium);color:var(--color-text-muted);line-height:var(--leading-snug);text-box:trim-both cap alphabetic}
-.pf input{height:48px;border:2px solid var(--color-border-border);border-radius:var(--radius-12);background:#fff;padding:0 var(--space-14);font:inherit;font-size:var(--font-size-14);color:var(--color-text-text);outline:none;width:100%;min-width:0;transition:border-color .2s}
+.pf input{height:48px;border:2px solid var(--color-border-border);border-radius:var(--radius-12);background:var(--color-background-white);padding:0 var(--space-14);font:inherit;font-size:var(--font-size-14);color:var(--color-text-text);outline:none;width:100%;min-width:0;transition:border-color .2s}
 .pf input:focus{border-color:var(--color-border-strong)}
 .pf input::placeholder{color:var(--color-text-soft)}
 .pf-row{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-12)}
 .tgl-row{display:flex;gap:var(--space-16);align-items:center;width:100%;text-align:left}
 .tgl{width:44px;height:26px;border-radius:var(--radius-full);background:var(--color-hairline);position:relative;flex:none;transition:background .2s}
-.tgl::after{content:"";position:absolute;left:3px;top:3px;width:20px;height:20px;border-radius:var(--radius-full);background:#fff;box-shadow:none;transition:transform .25s cubic-bezier(.3,1.4,.5,1)}
+.tgl::after{content:"";position:absolute;left:3px;top:3px;width:20px;height:20px;border-radius:var(--radius-full);background:var(--color-background-white);box-shadow:none;transition:transform .25s cubic-bezier(.3,1.4,.5,1)}
 .tgl.on{background:var(--color-background-interactive)}.tgl.on::after{transform:translateX(18px)}
 .prows .row{padding:var(--space-16) 0}.prows .row+.row{margin-top:var(--space-12)}
 .prows .row .tx .b{color:var(--color-text-text)}
 button.row{text-align:left}
-.pk-card{background:#fff;border-radius:var(--radius-20);padding:var(--space-24) var(--space-24) var(--space-32);display:flex;flex-direction:column;align-items:center;gap:var(--space-20)}
+.pk-card{background:var(--color-background-white);border-radius:var(--radius-20);padding:var(--space-24) var(--space-24) var(--space-32);display:flex;flex-direction:column;align-items:center;gap:var(--space-20)}
 .pk-st{display:inline-flex;align-items:center;gap:var(--space-4);padding:var(--space-4) var(--space-8);border-radius:var(--radius-full);background:var(--color-background-muted);font-size:var(--font-size-12);color:var(--color-text-muted);line-height:var(--leading-snug)}
 .pk-st svg{width:12px;height:12px}
 .pk-code{display:flex;flex-direction:column;gap:var(--space-10);align-items:center;text-align:center}
@@ -583,17 +596,17 @@ button.row{text-align:left}
 .pk-kv{width:100%;display:flex;flex-direction:column;gap:var(--space-20)}
 .pk-kv div{display:flex;justify-content:space-between;align-items:center;gap:var(--space-12);white-space:nowrap}
 .pk-kv .c{color:var(--color-text-muted)}
-.chk-card{background:#fff;border-radius:var(--radius-20);padding:var(--space-16) var(--space-16) var(--space-20);display:flex;flex-direction:column;gap:var(--space-12)}
+.chk-card{background:var(--color-background-white);border-radius:var(--radius-20);padding:var(--space-16) var(--space-16) var(--space-20);display:flex;flex-direction:column;gap:var(--space-12)}
 .chk-card .row{padding:var(--space-16) 0;margin:0!important;cursor:pointer}
 .chk-card .row .tx .b{color:var(--color-text-text)}
 .btn.busy{pointer-events:none}
-.btn .spin{width:16px;height:16px;border-radius:var(--radius-full);border:2px solid rgba(255,255,255,.35);border-top-color:#fff;animation:spin .8s linear infinite}
+.btn .spin{width:16px;height:16px;border-radius:var(--radius-full);border:2px solid rgba(255,255,255,.35);border-top-color:var(--color-paper);animation:spin .8s linear infinite}
 
 .tk-status{display:inline-flex;align-items:center;gap:var(--space-8);align-self:flex-start;margin:0;padding:var(--space-6) var(--space-10) var(--space-6) 0;color:var(--color-text-muted);text-align:left;font:inherit;background:none;border:0;cursor:pointer}
 .tk-status .b{color:var(--color-text-muted)}
 .tk-status .tk-chev{color:var(--color-text-text);flex:none;transition:transform .2s}
 .tk-status:active .tk-chev{transform:translateX(2px)}
-.st-time.st-chip{pointer-events:auto;cursor:pointer;background:#fff;border-radius:var(--radius-full);padding:0 var(--space-14) 0 var(--space-12);height:44px;box-sizing:border-box;font-size:var(--font-size-12)!important;font-weight:var(--font-weight-medium);color:var(--color-text-text)!important;padding:0 var(--space-12)!important}
+.st-time.st-chip{pointer-events:auto;cursor:pointer;background:var(--color-background-white);border-radius:var(--radius-full);padding:0 var(--space-14) 0 var(--space-12);height:44px;box-sizing:border-box;font-size:var(--font-size-12)!important;font-weight:var(--font-weight-medium);color:var(--color-text-text)!important;padding:0 var(--space-12)!important}
 .st-time.st-chip .st-1{font-size:var(--font-size-12);gap:var(--space-6)}
 .st-time.st-chip .dot{width:6px;height:6px}
 
@@ -605,7 +618,7 @@ button.row{text-align:left}
 .w6-line{position:absolute;left:0;right:0;top:9px;height:2px;background:var(--color-progress-track);border-radius:var(--radius-8)}
 .w6-line i{display:block;height:100%;background:var(--color-background-inverse);border-radius:inherit;transition:width 1s linear}
 .w6-node{position:absolute;top:0;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:var(--space-12);width:110px;text-align:center}
-.w6-node .w6-dot{width:20px;height:20px;border-radius:var(--radius-full);display:grid;place-items:center;background:#fff;border:2px solid var(--color-border-border);box-sizing:border-box;color:#fff}
+.w6-node .w6-dot{width:20px;height:20px;border-radius:var(--radius-full);display:grid;place-items:center;background:var(--color-background-white);border:2px solid var(--color-border-border);box-sizing:border-box;color:var(--color-text-on-inverse)}
 .w6-node.done .w6-dot{background:var(--color-background-interactive);border-color:var(--color-border-strong)}
 .w6-node.now .w6-dot{border-color:var(--color-status-live);box-shadow:0 0 0 5px rgba(83,132,237,.16)}
 .w6-node .c{color:var(--color-text-muted)}
@@ -614,7 +627,7 @@ button.row{text-align:left}
 .tk-track{align-self:flex-start;width:auto;display:inline-flex;align-items:center;gap:var(--space-4);margin-top:var(--space-14);padding:var(--space-8) var(--space-12);border-radius:var(--radius-full);background:rgba(255,255,255,.75);font-size:var(--font-size-14);font-weight:var(--font-weight-semibold);color:var(--color-text-text);box-shadow:none}
 
 /* in-app tracker for the approaching meeting (sits above the screen's main button) */
-.eta-dock{position:absolute;left:24px;right:24px;z-index:45;display:none;align-items:center;gap:var(--space-12);padding:var(--space-10) var(--space-14) var(--space-10) var(--space-10);border-radius:var(--radius-20);background:#fff;color:var(--color-text-text);text-align:left;box-shadow:none;font:inherit}
+.eta-dock{position:absolute;left:24px;right:24px;z-index:45;display:none;align-items:center;gap:var(--space-12);padding:var(--space-10) var(--space-14) var(--space-10) var(--space-10);border-radius:var(--radius-20);background:var(--color-background-white);color:var(--color-text-text);text-align:left;box-shadow:none;font:inherit}
 .eta-dock.on{display:flex}
 .eta-dock img{width:36px;height:36px;border-radius:var(--radius-full);object-fit:cover;flex:none}
 .eta-dock .ed-tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:var(--space-6)}
@@ -623,7 +636,7 @@ button.row{text-align:left}
 .eta-dock .ed-bar{display:block;height:4px;border-radius:var(--radius-full);background:var(--color-progress-track);overflow:hidden;margin-top:var(--space-2)}
 .eta-dock .ed-bar i{display:block;height:100%;border-radius:inherit;background:var(--gradient-eta);transition:width 1s linear}
 .eta-dock .chev{color:var(--color-text-soft);flex:none}
-.eta-dock[data-ph="ready"],.eta-dock[data-ph="moved"]{background:var(--color-background-inverse);color:#fff}
+.eta-dock[data-ph="ready"],.eta-dock[data-ph="moved"]{background:var(--color-background-inverse);color:var(--color-text-on-inverse)}
 .eta-dock[data-ph="ready"] .ed-tx>span,.eta-dock[data-ph="moved"] .ed-tx>span{color:rgba(255,255,255,.7)}
 .eta-dock[data-ph="ready"] .chev,.eta-dock[data-ph="moved"] .chev{color:rgba(255,255,255,.6)}
 .eta-dock .ed-w{font-variant-numeric:tabular-nums}
@@ -653,7 +666,7 @@ button.row{text-align:left}
 .gpic>img{position:absolute;left:0;top:0;width:64px;height:64px;opacity:.5}
 
 /* screens that sit on white in Figma (A1 · Quick break) */
-.scr.scr-white{background:#fff}
+.scr.scr-white{background:var(--color-background-white)}
 .scr.scr-white>.top{--tb:linear-gradient(rgba(255,255,255,.92),rgba(255,255,255,.78))}
 
 /* Salmon / Game row tones — fills straight from Figma A1 · Quick break */
@@ -666,7 +679,7 @@ button.row{text-align:left}
 
 /* Salmon / Fact tile (Figma 2899:1238) — fills from the Round result tiles */
 .fact-tile{height:127px;padding:var(--space-12);border-radius:var(--radius-20);display:flex;flex-direction:column;align-items:flex-start;gap:var(--space-12);overflow:hidden;box-sizing:border-box;background-size:100% 100%}
-.ft-hold{width:36px;height:36px;border-radius:var(--radius-full);background:var(--color-background-inverse);color:#fff;display:grid;place-items:center;flex:none}
+.ft-hold{width:36px;height:36px;border-radius:var(--radius-full);background:var(--color-background-inverse);color:var(--color-text-on-inverse);display:grid;place-items:center;flex:none}
 .ft-lines{display:flex;flex-direction:column;gap:var(--space-8);width:100%}
 .ft-lbl{font-size:var(--font-size-12);line-height:var(--leading-snug);color:var(--color-text-muted);text-box:trim-both cap alphabetic}
 .ft-val{font-size:var(--font-size-24);font-weight:var(--font-weight-semibold);line-height:var(--leading-tight);letter-spacing:var(--tracking-tightest);color:var(--color-text-text);text-box:trim-both cap alphabetic}
@@ -679,7 +692,7 @@ button.row{text-align:left}
 .pod-2{background-image:url("data:image/svg+xml;utf8,<svg viewBox='0 0 122 152' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><rect x='0' y='0' height='100%' width='100%' fill='url(%23grad)' opacity='1'/><defs><radialGradient id='grad' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='10' gradientTransform='matrix(9.1 1.1 -0.88289 7.3039 0.0000031521 98.463)'><stop stop-color='rgba(218,212,255,1)' offset='0'/><stop stop-color='rgba(215,195,252,0)' offset='0.95917'/></radialGradient></defs></svg>"),url("data:image/svg+xml;utf8,<svg viewBox='0 0 122 152' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><rect x='0' y='0' height='100%' width='100%' fill='url(%23grad)' opacity='1'/><defs><radialGradient id='grad' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='10' gradientTransform='matrix(-4.25 7.85 -6.3007 -3.4112 113 12.963)'><stop stop-color='rgba(244,212,240,1)' offset='0'/><stop stop-color='rgba(248,237,253,0)' offset='1'/></radialGradient></defs></svg>"),linear-gradient(135.28deg,#e5d3fd 0%,#e7cbf5 35.371%,#ebbfea 69.025%)}
 .pod-3{background-image:var(--gradient-warm);background-size:100% 100%}
 .pod-n{position:absolute;text-align:center;font-weight:var(--font-weight-medium);line-height:var(--leading-none);letter-spacing:0}
-.pod-av{position:absolute;border-radius:var(--radius-full);background:#fff;box-sizing:border-box;display:grid;place-items:center}
+.pod-av{position:absolute;border-radius:var(--radius-full);background:var(--color-background-white);box-sizing:border-box;display:grid;place-items:center}
 
 /* secret word card: the gradient is made of soft blobs that keep drifting while the round runs */
 .secret-bg{position:absolute;inset:0;border-radius:inherit;overflow:hidden;pointer-events:none}
@@ -700,7 +713,7 @@ button.row{text-align:left}
 .ft.solo .btn{height:40px}
 /* ---- Rewards (Salmon / Reward card) ---- */
 .rw-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-12)}
-.rw-card{position:relative;height:172px;border-radius:var(--radius-20);overflow:hidden;background:#fff;text-align:left;display:block;width:100%}
+.rw-card{position:relative;height:172px;border-radius:var(--radius-20);overflow:hidden;background:var(--color-background-white);text-align:left;display:block;width:100%}
 .rw-card .in{position:absolute;inset:0;padding:var(--space-16);display:flex;flex-direction:column;z-index:1}
 .rw-card .go{z-index:2}
 .rw-card .go{position:absolute;right:16px;bottom:16px;width:32px;height:32px;border-radius:var(--radius-full);background:var(--color-background-muted);display:grid;place-items:center;color:var(--color-text-text)}
@@ -716,10 +729,10 @@ button.row{text-align:left}
 .rw-lock .ic{width:56px;height:56px;border-radius:var(--radius-full);background:var(--color-background-muted);display:grid;place-items:center}
 .chip.rwc{height:28px;padding:0 var(--space-16);font-size:var(--font-size-12);background:var(--color-background-muted)}
 .chip.rwc.on{background:var(--color-background-interactive)}
-.sticky-pg{background:var(--color-background-inverse);color:#fff;border-radius:var(--radius-20);padding:var(--space-16);box-shadow:none}
+.sticky-pg{background:var(--color-background-inverse);color:var(--color-text-on-inverse);border-radius:var(--radius-20);padding:var(--space-16);box-shadow:none}
 .sticky-pg .track{width:300px;max-width:100%;height:8px;border-radius:var(--radius-full);background:rgba(255,255,255,.18);overflow:hidden;margin-top:var(--space-14)}
 .sticky-pg .track i{display:block;height:100%;border-radius:var(--radius-full);background:linear-gradient(90deg,#f0bfd2,#bfccee)}
-.sticky-pg .earn{margin-top:var(--space-16);height:42px;border-radius:var(--radius-full);background:#fff;color:var(--color-text-text);display:flex;align-items:center;justify-content:center;gap:var(--space-8);font-size:var(--font-size-14);font-weight:var(--font-weight-semibold);width:100%}
+.sticky-pg .earn{margin-top:var(--space-16);height:42px;border-radius:var(--radius-full);background:var(--color-background-white);color:var(--color-text-text);display:flex;align-items:center;justify-content:center;gap:var(--space-8);font-size:var(--font-size-14);font-weight:var(--font-weight-semibold);width:100%}
 .sticky-pg .earn svg{width:14px;height:14px}
 .ft.custom{background:linear-gradient(rgba(var(--ft-light),0) 0,rgba(var(--ft-light),.6) var(--ft-fade))}
 .ft.custom::before{display:none}
@@ -732,7 +745,7 @@ html.study .stage{flex-direction:column;gap:var(--space-20)}
 .ptoast{width:135px!important;height:133px!important;margin:0 0 0 -67.5px!important}
 .ptoast .pt-draw{position:absolute;left:-70.5px;top:16px;width:296px;height:117px;pointer-events:none}
 .ptoast .pt-draw img{position:absolute;width:auto;height:auto;max-width:none}
-.ptoast .pc{position:absolute;inset:0;border-radius:var(--radius-20);background:#fff;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--space-8);padding:var(--space-16) var(--space-32);box-shadow:none}
+.ptoast .pc{position:absolute;inset:0;border-radius:var(--radius-20);background:var(--color-background-white);overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--space-8);padding:var(--space-16) var(--space-32);box-shadow:none}
 .ptoast .pt-bg{position:absolute;left:2px;top:0;width:150px;height:131px;pointer-events:none}
 .ptoast .pt-bg img{position:absolute;left:-52.67%;top:-70.99%;width:211.34%;height:232.82%;max-width:none}
 .ptoast .pt-rays{position:relative;width:36px;height:18px}
@@ -785,7 +798,7 @@ html.study .stage{flex-direction:column;gap:var(--space-20)}
 .help-card .row{padding:var(--space-10) 0;margin:0}
 .help-card .row+.row{margin-top:var(--space-4)}
 .help-card .plus10{background:var(--color-background-muted);color:var(--color-text-muted);padding:var(--space-4) var(--space-8);border-radius:var(--radius-full);font-size:var(--font-size-12);line-height:8px;text-box:trim-both cap alphabetic}
-.help-card .plus10.on{background:var(--color-background-interactive);color:#fff}
+.help-card .plus10.on{background:var(--color-background-interactive);color:var(--color-text-on-inverse)}
 .rw-cta{display:inline-flex;align-items:center;justify-content:center;height:40px;margin:-14px 0;padding:0 var(--space-12);background:none;color:var(--color-text-muted);font-size:var(--font-size-12);font-weight:var(--font-weight-regular);line-height:var(--leading-snug);transition:opacity .12s}
 .rw-cta:active{opacity:.6}
 .rw-got{display:flex;align-items:center;justify-content:center;width:100%;height:40px;margin-top:var(--space-20);border-radius:var(--radius-full);background:var(--color-background-muted);font-size:var(--font-size-14);font-weight:var(--font-weight-semibold);color:var(--color-text-text);transition:transform .12s}
@@ -800,11 +813,11 @@ html.study .stage{flex-direction:column;gap:var(--space-20)}
 .term-amt span{font-weight:var(--font-weight-regular);color:var(--color-text-muted);font-size:var(--font-size-12);margin-left:var(--space-2)}
 .rows44 .row{padding:var(--space-10) 0;margin:0}
 .rows44 .row+.row{margin-top:var(--space-4)}
-.seg.seg36{height:36px;padding:var(--space-4);background:#fff;border-radius:var(--radius-full)}
+.seg.seg36{height:36px;padding:var(--space-4);background:var(--color-background-white);border-radius:var(--radius-full)}
 .seg.seg36 .knob{top:4px;bottom:4px;background:var(--color-background-muted);box-shadow:none}
 .seg.seg36 button{font-size:var(--font-size-12);font-weight:var(--font-weight-medium);color:var(--color-text-muted)}
 .seg.seg36 button[aria-checked="true"]{color:var(--color-text-text)}
-.cat-tile{height:86px;padding:var(--space-16);flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:var(--space-16);background:#fff}
+.cat-tile{height:86px;padding:var(--space-16);flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:var(--space-16);background:var(--color-background-white)}
 .cat-tile.on{background:linear-gradient(135deg,#e4e0f6,#f6dfe6)}
 .cat-tile .sel{position:static}
 /* ---- games: idle motion ---- */
@@ -823,7 +836,7 @@ html.study .stage{flex-direction:column;gap:var(--space-20)}
 .qr-scan{position:absolute;left:-10%;right:-10%;top:0;height:46px;pointer-events:none;opacity:0;background:linear-gradient(180deg,rgba(196,189,229,0),rgba(196,189,229,.55) 50%,rgba(255,255,255,0));filter:blur(4px)}
 .qr-join{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);opacity:0;pointer-events:none}
 
-.qr-tick{position:absolute;right:-4px;bottom:-2px;width:26px;height:26px;border-radius:var(--radius-full);background:var(--color-background-inverse);color:#fff;display:grid;place-items:center;box-shadow:0 0 0 3px #fff}
+.qr-tick{position:absolute;right:-4px;bottom:-2px;width:26px;height:26px;border-radius:var(--radius-full);background:var(--color-background-inverse);color:var(--color-text-on-inverse);display:grid;place-items:center;box-shadow:0 0 0 3px var(--color-paper)}
 .qr-tick svg{width:14px;height:14px}
 /* ---- meeting in progress ---- */
 .mp-duo{display:flex;align-items:center;gap:var(--space-6)}
@@ -833,7 +846,7 @@ html.study .stage{flex-direction:column;gap:var(--space-20)}
 .mp-link i:nth-child(2){animation-delay:.15s}.mp-link i:nth-child(3){animation-delay:.3s}
 @keyframes mpdot{0%,100%{opacity:.25;transform:scale(.8)}50%{opacity:1;transform:scale(1.15)}}
 .mp-step .mp-st{width:22px;height:22px;display:grid;place-items:center;flex:none}
-.mp-step.done .mp-st{border-radius:var(--radius-full);background:var(--color-background-inverse);color:#fff}
+.mp-step.done .mp-st{border-radius:var(--radius-full);background:var(--color-background-inverse);color:var(--color-text-on-inverse)}
 .mp-step.done .mp-st svg{width:12px;height:12px}
 .mp-step.next .lead-ic,.mp-step.next .mp-st{opacity:.45}.mp-step.next b{color:var(--color-text-muted)}
 /* tap areas: small chips and the info dot catch taps in a 44px-tall zone, look unchanged */
@@ -869,7 +882,7 @@ html.study .stage{flex-direction:column;gap:var(--space-20)}
 .la-btns button{height:32px;padding:0 16px;border-radius:99px;font-size:13px;font-weight:600;color:#fff;background:rgba(255,255,255,.14)}
 .la-btns .pri{background:#fff;color:var(--color-text-text)}
 @media (max-width:500px){.live-act{top:max(8px, env(safe-area-inset-top,0px))}}
-.ya-sheet{position:absolute;left:0;right:0;top:327px;bottom:0;z-index:5;background:#fff;border-radius:var(--radius-28) var(--radius-28) 0 0;padding-top:var(--space-6);display:flex;flex-direction:column;overflow:hidden}
+.ya-sheet{position:absolute;left:0;right:0;top:327px;bottom:0;z-index:5;background:var(--color-background-white);border-radius:var(--radius-28) var(--radius-28) 0 0;padding-top:var(--space-6);display:flex;flex-direction:column;overflow:hidden}
 .ya-in{padding:26px 24px 0;flex:1}
 .ya-sheet .sh-ft{padding-top:var(--space-24)}
 .sh-ft .btn.ink ~ .btn.soft,.w4-acts .btn.soft{background:var(--color-background-muted)!important;height:46px!important;margin-top:calc(var(--space-8) - var(--ft-gap))}
@@ -885,7 +898,7 @@ html.study .stage{flex-direction:column;gap:var(--space-20)}
 .la-w{flex:1;font-size:13px;font-weight:600;display:flex;align-items:center;gap:6px;white-space:nowrap;overflow:hidden}
 .la-view{height:28px;padding:0 12px;border-radius:99px;background:#fff;color:var(--color-text-text);font-size:12px;font-weight:600;flex:none}
 .checklist .plus10{background:var(--color-background-muted);color:var(--color-text-muted);padding:var(--space-4) var(--space-8);border-radius:var(--radius-full);line-height:8px;text-box:trim-both cap alphabetic}
-.checklist .plus10.on{background:var(--color-background-interactive);color:#fff}
+.checklist .plus10.on{background:var(--color-background-interactive);color:var(--color-text-on-inverse)}
 /* footer: primary + text secondary read as one group — the visual gap between them is smaller than the gap to the content */
 .ft .btn.ink + .btn.paper,.ft .btn.ink + .btn.plain,.sh-ft .btn.ink + .btn.paper,.sh-ft .btn.ink + .btn.plain{height:40px;margin-top:calc(var(--space-8) - var(--ft-gap))}
 .ft:has(.btn.ink + .btn.paper),.ft:has(.btn.ink + .btn.plain){padding-bottom:calc(var(--ft-b) - var(--space-8))}
@@ -914,7 +927,7 @@ html.study .stage{flex-direction:column;gap:var(--space-20)}
 .ac-done i svg{width:14px;height:14px;stroke-width:2.2}
 .ac-tile .ac-done{align-self:flex-end;margin-bottom:var(--space-10)}   /* centred on the 32px arrow */
 .ac-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-grid-gap) var(--space-16)}
-.ac-tile{flex-direction:column;align-items:stretch;height:168px;padding:var(--space-card-pad-lg);background:#fff;color:var(--color-text-text)}
+.ac-tile{flex-direction:column;align-items:stretch;height:168px;padding:var(--space-card-pad-lg);background:var(--color-background-white);color:var(--color-text-text)}
 .ac-tile>*:not(.ac-art){position:relative}
 .ac-foot2{display:flex;justify-content:space-between;align-items:center;width:100%}
 .ac-go{position:relative;width:32px;height:32px;border-radius:var(--radius-full);background:var(--color-background-muted);flex:none;overflow:hidden}
@@ -926,20 +939,20 @@ html.ac-colour .ac-tile[data-ac="seat"],html.ac-colour .ac-tile.after[data-ac="a
 html.ac-colour .ac-tile.after[data-ac="getready"]{background:var(--color-background-white);background-image:none}
 html.ac-colour .ac-tile.after[data-ac="about"] .ac-art,html.ac-colour .ac-tile.after[data-ac="about"] .ac-art img{mix-blend-mode:multiply}   /* the signpost art has white fills: on the gradient they must disappear */   /* finished: quiet, black and white */
 html.ac-colour .ac-tile[data-ac="purchase"]{background-image:var(--gradient-hero);background-size:100% 100%}
-html.ac-colour .ac-tile[data-ac="seat"] .ac-go,html.ac-colour .ac-tile[data-ac="about"] .ac-go,html.ac-colour .ac-tile[data-ac="purchase"] .ac-go,html.ac-colour .ac-tile[data-ac="game"] .ac-go{background:#fff}
+html.ac-colour .ac-tile[data-ac="seat"] .ac-go,html.ac-colour .ac-tile[data-ac="about"] .ac-go,html.ac-colour .ac-tile[data-ac="purchase"] .ac-go,html.ac-colour .ac-tile[data-ac="game"] .ac-go{background:var(--color-background-white)}
 html.ac-colour .ac-tile[data-ac="about"] .ac-sub,html.ac-colour .ac-tile[data-ac="purchase"] .sec{color:var(--color-secondary-on-tint)}
 html.ac-colour .ac-tile[data-ac="game"],html.ac-colour .ac-tile.after[data-ac="seat"]{background:var(--color-background-inverse)}
-html.ac-colour .ac-tile.after[data-ac="seat"] .h4{color:#fff}
+html.ac-colour .ac-tile.after[data-ac="seat"] .h4{color:var(--color-text-on-inverse)}
 html.ac-colour .ac-tile.after[data-ac="seat"] .ac-sub{color:var(--color-text-on-inverse-muted)}
 html.ac-colour .ac-tile.after[data-ac="seat"] .ac-foot2 > span:not(.ac-go) img{filter:invert(1) brightness(1.6)}
-html.ac-colour .ac-tile[data-ac="game"] .h4{color:#fff}
+html.ac-colour .ac-tile[data-ac="game"] .h4{color:var(--color-text-on-inverse)}
 html.ac-colour .ac-tile[data-ac="game"] .ac-sub{color:var(--color-text-on-inverse-muted)}
 .ac-ctrl-light{display:none}
 html.ac-colour .ac-tile[data-ac="game"] .ac-ctrl-light{display:block}
 html.ac-colour .ac-tile[data-ac="game"] .ac-ctrl-ink{display:none}
-.join-note{position:absolute;left:24px;right:24px;top:calc(var(--sbh) + 52px);z-index:20;display:flex;gap:var(--space-12);align-items:center;padding:var(--space-12) var(--space-14) var(--space-12) var(--space-12);border-radius:var(--radius-20);background:#fff;box-shadow:none}
+.join-note{position:absolute;left:24px;right:24px;top:calc(var(--sbh) + 52px);z-index:20;display:flex;gap:var(--space-12);align-items:center;padding:var(--space-12) var(--space-14) var(--space-12) var(--space-12);border-radius:var(--radius-20);background:var(--color-background-white);box-shadow:none}
 .join-note .stack{flex:1}
-.jn-tick{width:24px;height:24px;border-radius:var(--radius-full);background:var(--color-background-inverse);color:#fff;display:grid;place-items:center;flex:none}
+.jn-tick{width:24px;height:24px;border-radius:var(--radius-full);background:var(--color-background-inverse);color:var(--color-text-on-inverse);display:grid;place-items:center;flex:none}
 .jn-tick svg{width:13px;height:13px}
 .cam-focus{position:absolute;left:50%;top:calc(50% - 18px);width:96px;height:96px;filter:none;transform:translate(-50%,-50%);pointer-events:none;z-index:2;opacity:0}
 .cam-focus i{position:absolute;width:18px;height:18px;border:2px solid var(--color-camera-focus-mark)}
@@ -951,9 +964,9 @@ html.ac-colour .ac-tile[data-ac="game"] .ac-ctrl-ink{display:none}
 .cam-focus.ok i{border-color:var(--color-status-success)}.cam-focus.ok::after{background:var(--color-status-success)}
 .inv-card{background:var(--color-background-muted);border-radius:var(--radius-20);padding:var(--space-16) var(--space-16) var(--space-20);margin-top:var(--space-8)}
 .qr-frame{margin:var(--space-16) auto 0;width:max-content}
-.qr-frame .qr{background:#fff;border-radius:var(--radius-12);padding:var(--space-8)}
+.qr-frame .qr{background:var(--color-background-white);border-radius:var(--radius-12);padding:var(--space-8)}
 .inv-row{display:flex;align-items:center;justify-content:space-between;gap:var(--space-12)}
-.inv-pill{display:inline-flex;align-items:center;gap:var(--space-6);height:32px;padding:0 var(--space-14);border-radius:var(--radius-full);background:#fff;font-size:var(--font-size-12);font-weight:var(--font-weight-semibold);color:var(--color-text-text)}
+.inv-pill{display:inline-flex;align-items:center;gap:var(--space-6);height:32px;padding:0 var(--space-14);border-radius:var(--radius-full);background:var(--color-background-white);font-size:var(--font-size-12);font-weight:var(--font-weight-semibold);color:var(--color-text-text)}
 .inv-hd{display:flex;flex-direction:column;gap:var(--space-8)}
 .inv-card.center .inv-hd{align-items:center;text-align:center}
 .inv-hd .c{color:var(--color-text-muted)}
@@ -1159,7 +1172,7 @@ const Bc = (cx,cy,w,h,rot,c,op,r) => `<i style="left:${cx-w/2}px;top:${cy-h/2}px
 const B = (x,y,w,h,c,op,r) => `<i style="left:${x}px;top:${y}px;width:${w}px;height:${h}px;background:${c};opacity:${op};filter:blur(${r/2}px)"></i>`;
 const rewardGlow = `<span class="blob" aria-hidden="true" style="position:absolute;inset:0;overflow:hidden;border-radius:inherit">${B(227,-50,180,150,'#d1bfff',.23,42)}${B(59,166,165,135,'#ffd1b2',.16,44)}${B(-61,172,205,155,'#ffb5d1',.18,46)}${B(122,33,72,68,'#ffc99e',.18,20)}${B(167,34,70,68,'#b89cff',.18,21)}${B(133,39,82,70,'#ffbac7',.22,22)}</span>`;
 const av = (who, size=44) => `<span class="avatar av-${who}" style="width:${size}px;height:${size}px"><img src="${A[PL[who].img]}" alt=""></span>`;
-const leadRow = (icon, title, sub, trail='', attrs='', lined=false) => `<div class="row ${lined?'lined':''}" ${attrs}><span class="lead-ic">${ic(icon)}</span><span class="tx"><span class="b">${title}</span>${sub?`<span class="c">${sub}</span>`:''}</span>${trail}</div>`;
+const leadRow = (icon, title, sub, trail='', attrs='', lined=false) => `<div class="row ${lined?'lined':''}" ${attrs}><span class="lead-ic">${ic(icon)}</span><span class="tx"><span class="b text-body">${title}</span>${sub?`<span class="c text-caption">${sub}</span>`:''}</span>${trail}</div>`;
 const HZ = {
   // Salmon / Screen background · scene=actions (Final results)
   actions: B(-48,-52,218,176,'var(--color-base-bg)',1,150)+B(-70,-109,227,171,'var(--color-haze-sky)',1,150)+B(283,186,300,391,'var(--color-haze-apricot)',.16,150)+B(139,297,320,326,'var(--color-haze-cream)',.16,150)+B(323,480,300,320,'var(--color-haze-apricot)',.16,150)+B(131,178,259,217,'var(--color-haze-apricot)',.16,150),
@@ -1212,7 +1225,7 @@ HZ.ready = B(45,-59,351,127,'var(--color-haze-lilac)',.42,140)+B(294,-40,397,135
 const hz = (k='warm') => `<div class="hz">${HZ[k]}</div>`;
 const title2 = (html, cls='') => `<h1 class="h2 ${cls}">${html}</h1>`;
 function screenResult({art, hero, title, text, size=80, tc='bl'}){
-  return `<div class="stack sr-hero" style="align-items:center;text-align:center">${hero || pic(art,size)}<h1 class="h2" style="margin-top:var(--space-16)">${title}</h1>${text?`<p class="${tc} sec" style="max-width:297px;margin-top:var(--space-24)">${text}</p>`:''}</div>`;
+  return `<div class="stack sr-hero" style="align-items:center;text-align:center">${hero || pic(art,size)}<h1 class="h2 text-screen-title" style="margin-top:var(--space-16)">${title}</h1>${text?`<p class="${tc} sec" style="max-width:297px;margin-top:var(--space-24)">${text}</p>`:''}</div>`;
 }
 const heroMeeting = (size=80) => `<div class="pic hero-anim" style="width:${size}px;height:${size}px;--k:${(size/80).toFixed(2)}"><b></b><b></b><b></b><svg viewBox="${MEETING_ART.vb}" style="position:relative;width:100%;height:100%;overflow:visible" aria-hidden="true">${MEETING_ART.parts.map(([cls,d])=>`<path class="${cls}" fill="#876E73" fill-rule="evenodd" clip-rule="evenodd" d="${d}"/>`).join('')}</svg></div>`;
 const heroPrepare = (size=80) => `<div class="pic hero-id" style="width:${size}px;height:${size}px;--k:${(size/80).toFixed(2)}"><b></b><b></b><b></b><svg viewBox="${PREPARE_ART.vb}" style="position:relative;width:100%;height:100%;overflow:visible" aria-hidden="true">${PREPARE_ART.parts.map(([cls,d])=>`<path class="${cls}" fill="#876E73" fill-rule="evenodd" clip-rule="evenodd" d="${d}"/>`).join('')}</svg></div>`;
@@ -1295,7 +1308,7 @@ function prizeBurst(el, cx, cy, {n=14, r0=24, r1=[70,140], dur=[900,1400], delay
 const lerp2 = (a,b,t) => a + (b-a)*t;
 const rnd = (...a) => { let h = 2166136261; for (const v of a){ h ^= (v+1)*374761393; h = Math.imul(h ^ (h>>>13), 1274126177); } h ^= h>>>16; return (h>>>0) / 4294967296; };
 // Salmon / Status banner — grey variant (icon in a 26px holder, text block top-aligned)
-const statusBanner = (icon, title, sub, style='') => `<div class="sbanner" style="${style}"><span class="sb-ic">${ic(icon,'i14')}</span><span class="stack" style="gap:var(--space-8);flex:1"><span class="b" style="color:var(--color-text-text)">${title}</span><span class="c sec">${sub}</span></span></div>`;
+const statusBanner = (icon, title, sub, style='') => `<div class="sbanner" style="${style}"><span class="sb-ic">${ic(icon,'i14')}</span><span class="stack" style="gap:var(--space-8);flex:1"><span class="b text-body" style="color:var(--color-text-text)">${title}</span><span class="c sec text-caption">${sub}</span></span></div>`;
 const WAIT_MS = 75000;
 // Approaching meeting: one ticket, its headline moves through phases (Uber/Bolt/inDrive pattern)
 // coming → ready (Mark waits) → onway (you said you're coming) → meeting;  moved: Mark comes to you
@@ -1393,7 +1406,7 @@ function sheet(html, onMount){
   onMount && onMount(o);
   return o;
 }
-const sheetDoc = ({title, sub, body, note, buttons}) => `<!--S--><div class="sh-in flush"><div class="sh-hd"><p class="h4">${title}</p>${sub?`<p class="c">${sub}</p>`:''}</div>${body}</div>${note || buttons ? `<div class="sh-ft">${note?`<p class="ftn" style="margin:0">${note}</p>`:''}${buttons}</div>` : ''}`;
+const sheetDoc = ({title, sub, body, note, buttons}) => `<!--S--><div class="sh-in flush"><div class="sh-hd"><p class="h4 text-sheet-title">${title}</p>${sub?`<p class="c text-caption">${sub}</p>`:''}</div>${body}</div>${note || buttons ? `<div class="sh-ft">${note?`<p class="ftn" style="margin:0">${note}</p>`:''}${buttons}</div>` : ''}`;
 const later = (fn, ms) => { const id = setTimeout(fn, ms); cur.timers.push(()=>clearTimeout(id)); return id; };
 
 /* ---------- ticket 6.1 → 6.2: scroll-linked dock & shrink ---------- */
@@ -1422,7 +1435,7 @@ function ticketMorph(el){
     const tile = el.querySelector(sp.tile); if (!tile) return null;
     const T = R(tile), ti = tile.querySelector('.t-img'), tl = tile.querySelector('.t-lbl');
     const Ti = R(ti), Tl = TR(tl);
-    const g = document.createElement('div'); g.className = 'ghost'; g.style.cssText += ';background:#fff;display:none';
+    const g = document.createElement('div'); g.className = 'ghost'; g.style.cssText += ';background:var(--color-background-white);display:none';
     g.setAttribute('role','button'); g.setAttribute('tabindex','-1');
     sp.act.split(' ').forEach(a => { const [k,v] = a.split('='); g.setAttribute(k, v.replace(/"/g,'')); });
     const extra = tile.cloneNode(true); extra.removeAttribute('class'); extra.removeAttribute('data-act'); extra.removeAttribute('data-go');
@@ -1873,7 +1886,7 @@ function earnSheet(){
   const o = sheet(sheetDoc({title:'Earn more points', sub:'Every step that saves time at the meeting adds points.',
     body:`<div class="stack g8">${rows.map(r => `<button class="boxrow" ${r.done ? 'disabled aria-disabled="true"' : `data-earn="${r.go}"`} style="${r.done?'opacity:.6':''}">
         <span class="lead-ic" style="width:36px;height:36px">${ic(r.icon,'i16')}</span>
-        <span class="tx"><b class="bm">${r.t}</b><span class="c">${r.s}</span></span>
+        <span class="tx"><b class="bm text-row-title">${r.t}</b><span class="c text-row-subtitle">${r.s}</span></span>
         ${r.done ? `<span class="badge" style="background:var(--color-background-muted);color:var(--color-text-text);gap:var(--space-6)">${ic('check')}Done</span>` : `<span class="pts" style="font-size:var(--font-size-12);padding:var(--space-6) var(--space-10) var(--space-6) var(--space-8)">${ic('gem')}${r.pts}</span>${ic('chevR','chev')}`}
       </button>`).join('')}</div>`,
     note:'Points land in your Salmon account. Spend them on perks in the app.',
@@ -1888,9 +1901,9 @@ function placeSheet(i){
   sheet(`<!--S--><div class="sh-in flush ph-first">
       <div style="position:relative;border-radius:var(--radius-20);overflow:hidden;height:176px;margin-bottom:var(--space-20)"><img src="${A[p.img]}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;max-width:none">
         <span class="badge" style="position:absolute;left:12px;bottom:12px;background:rgba(255,255,255,.92);color:var(--color-text-text);gap:var(--space-6)"><i class="dot ${busy?'':'pulse'}" style="background:${busy?'var(--color-status-busy)':'var(--color-status-live)'}"></i>${p.live}</span></div>
-      <div class="sh-hd" style="margin-bottom:var(--space-20)"><p class="h3" style="font-weight:var(--font-weight-semibold)">${p.name}</p><p class="c">${p.meta} · ${p.hours}</p></div>
+      <div class="sh-hd" style="margin-bottom:var(--space-20)"><p class="h3 text-place-title" style="font-weight:var(--font-weight-semibold)">${p.name}</p><p class="c text-caption">${p.meta} · ${p.hours}</p></div>
       <div style="display:flex;flex-wrap:wrap;gap:var(--space-8);margin-bottom:var(--space-20)">${p.am.map(([icn,t])=>`<span class="chip" style="height:32px;background:var(--color-background-muted);gap:var(--space-6)">${ic(icn,'i14')}${t}</span>`).join('')}</div>
-      <p class="b sec" style="margin-bottom:var(--space-20)">${p.about}</p>
+      <p class="b sec text-body" style="margin-bottom:var(--space-20)">${p.about}</p>
       ${statusBanner('cal',meetIn(),'Mark can come here, or you head back to the meeting point')}
     </div>
     <div class="sh-ft">${btn(`Wait at ${p.short}`,'data-wait')}${btn('Back to places','data-close','paper')}</div>`, o => {
@@ -1956,20 +1969,20 @@ const SC = {};
 SC.m1 = {flow:'main', label:'Start · product', render:()=>`
   ${topbar({back:false, nohd:true})}
   <div class="scroll"><div class="body">
-    <div style="position:relative;height:302px;border-radius:var(--radius-20);overflow:hidden;background:#fff">
+    <div style="position:relative;height:302px;border-radius:var(--radius-20);overflow:hidden;background:var(--color-background-white)">
       <img src="${A.product}" alt="iPhone 14 in Midnight" style="width:100%;height:100%;object-fit:cover">
-      <span class="badge" style="position:absolute;right:12px;bottom:12px;background:#fff;color:var(--color-text-text);font-size:var(--font-size-14);font-weight:var(--font-weight-semibold);padding:var(--space-8) var(--space-12)">Special store price</span>
+      <span class="badge" style="position:absolute;right:12px;bottom:12px;background:var(--color-background-white);color:var(--color-text-text);font-size:var(--font-size-14);font-weight:var(--font-weight-semibold);padding:var(--space-8) var(--space-12)">Special store price</span>
     </div>
     <div style="display:flex;justify-content:space-between;gap:var(--space-24);margin:var(--space-24) 0 var(--space-24)">
-      <div class="stack g12"><p class="h4">iPhone 14 256GB · Midnight</p><p class="c sec">MobileWorld · SM Megamall</p></div>
-      <p class="h3" style="font-weight:var(--font-weight-semibold)">₱21,999</p>
+      <div class="stack g12"><p class="h4 text-card-title">iPhone 14 256GB · Midnight</p><p class="c sec text-caption">MobileWorld · SM Megamall</p></div>
+      <p class="h3 text-place-title" style="font-weight:var(--font-weight-semibold)">₱21,999</p>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-16)">
-      <div class="tile on" style="height:99px;padding:var(--space-12)"><span class="lead-ic" style="background:var(--color-background-muted)">${ic('pct')}</span><span class="stack g12"><b class="h3" style="font-weight:var(--font-weight-semibold);letter-spacing:var(--tracking-tight)">−₱6,000</b><span class="b tint">Store discount</span></span></div>
-      <div class="tile" style="height:99px;padding:var(--space-12)"><span class="lead-ic" style="background:var(--color-background-muted)">${ic('gift')}</span><span class="stack g12"><b class="h3" style="font-weight:var(--font-weight-semibold);letter-spacing:var(--tracking-tight)">₱500</b><span class="b sec">Salmon cashback</span></span></div>
+      <div class="tile on" style="height:99px;padding:var(--space-12)"><span class="lead-ic" style="background:var(--color-background-muted)">${ic('pct')}</span><span class="stack g12"><b class="h3 text-place-title" style="font-weight:var(--font-weight-semibold);letter-spacing:var(--tracking-tight)">−₱6,000</b><span class="b tint text-body">Store discount</span></span></div>
+      <div class="tile" style="height:99px;padding:var(--space-12)"><span class="lead-ic" style="background:var(--color-background-muted)">${ic('gift')}</span><span class="stack g12"><b class="h3 text-place-title" style="font-weight:var(--font-weight-semibold);letter-spacing:var(--tracking-tight)">₱500</b><span class="b sec text-body">Salmon cashback</span></span></div>
     </div>
-    <div class="feature" style="margin-top:var(--space-48);gap:var(--space-8)">${pic('a_bags',64)}<div class="stack g16"><p class="h4">We will reserve your purchase</p><p class="b sec">We’ll hold your item, price and discounts until the meeting is complete.</p></div></div>
-    <p class="h4" style="margin:var(--space-48) var(--space-2) var(--space-16)">How it works</p>
+    <div class="feature" style="margin-top:var(--space-48);gap:var(--space-8)">${pic('a_bags',64)}<div class="stack g16"><p class="h4 text-card-title">We will reserve your purchase</p><p class="b sec text-body">We’ll hold your item, price and discounts until the meeting is complete.</p></div></div>
+    <p class="h4 text-card-title" style="margin:var(--space-48) var(--space-2) var(--space-16)">How it works</p>
     ${leadRow('cal','Set up a meeting','Pick a time and place that suit you')}
     ${leadRow('user','Meet in person','Review your application with your Salmon ambassador.')}
     ${leadRow('phone','Finish the purchase','Complete everything in the Salmon app')}
@@ -1980,11 +1993,11 @@ SC.m2 = {flow:'main', label:'Preliminary terms', parent:'m1', render:()=>{
   const m = TERMS[S.term];
   return `${topbar({t:'Preliminary terms', right:R.share()+R.info()})}
   <div class="scroll">${hz('terms')}<div class="body">
-    <span style="display:inline-flex;background:var(--color-background-inverse);color:#fff;border-radius:var(--radius-12);padding:var(--space-14) var(--space-18)"><span class="b">Estimation only</span></span>
+    <span style="display:inline-flex;background:var(--color-background-inverse);color:var(--color-text-on-inverse);border-radius:var(--radius-12);padding:var(--space-14) var(--space-18)"><span class="b text-body">Estimation only</span></span>
     <div class="stack g16 mt24">
-      <p class="bm sec">Monthly payment</p>
+      <p class="bm sec text-row-title">Monthly payment</p>
       <p style="margin:0;font-size:var(--font-size-48);text-box:trim-both cap alphabetic;line-height:var(--leading-tight)"><span style="font-size:var(--font-size-24);font-weight:var(--font-weight-semibold);margin-right:var(--space-2)">₱</span><span style="letter-spacing:var(--tracking-tighter)" id="mpay">${m.toLocaleString('en-US',{minimumFractionDigits:2})}</span></p>
-      <p class="bl">0% interest · down payment set at approval</p>
+      <p class="bl text-screen-lead">0% interest · down payment set at approval</p>
     </div>
     <div style="margin-top:var(--space-24)">
       <div class="kv" style="font-size:var(--font-size-17);font-weight:var(--font-weight-semibold);line-height:var(--leading-snug)"><span style="color:var(--color-text-text)">Total you pay</span><span>₱21,999</span></div>
@@ -1992,9 +2005,9 @@ SC.m2 = {flow:'main', label:'Preliminary terms', parent:'m1', render:()=>{
       <div class="kv"><span>What you pay</span><span>₱21,999</span></div>
       <div class="kv"><span>First payment</span><span>7 Nov 2026</span></div>
     </div>
-    <div class="sec-h" style="margin-top:63px"><p class="h4">Choose how long to pay</p><p class="c">A longer term means a smaller monthly payment.</p></div>
+    <div class="sec-h" style="margin-top:63px"><p class="h4 text-section-title">Choose how long to pay</p><p class="c text-caption">A longer term means a smaller monthly payment.</p></div>
     <div class="terms-row" role="radiogroup" aria-label="Term">
-      ${TERM_LIST.map(t=>`<button class="tile ${S.term==t?'on':''}" style="height:118px" role="radio" aria-checked="${S.term==t}" data-act="term" data-v="${t}"><span class="stack" style="gap:var(--space-12);padding-top:var(--space-4)"><b class="bm">${t} months</b><span class="c sec">${peso(TERMS[t])} / mo</span></span><span class="sel">${ic('check')}</span></button>`).join('')}
+      ${TERM_LIST.map(t=>`<button class="tile ${S.term==t?'on':''}" style="height:118px" role="radio" aria-checked="${S.term==t}" data-act="term" data-v="${t}"><span class="stack" style="gap:var(--space-12);padding-top:var(--space-4)"><b class="bm text-row-title">${t} months</b><span class="c sec text-row-subtitle">${peso(TERMS[t])} / mo</span></span><span class="sel">${ic('check')}</span></button>`).join('')}
     </div>
   </div></div>
   ${foot(btn('Set up meeting','data-go="m4"'),'Nothing is submitted yet — play with the terms')}`;},
@@ -2007,9 +2020,9 @@ function centerTerm(el, smooth){ const row = el.querySelector('.terms-row'), on 
 SC.m3 = {flow:'main', label:'Before you start', parent:'m2', render:()=>`
   ${topbar({t:'Before you start', right:R.info()})}
   <div class="scroll">${hz('warm')}<div class="body">
-    <div class="intro">${title2('Make sure<br><em>you’re ready</em>')}<p class="b">Check the essentials before you meet Mark. This doesn’t guarantee approval.</p></div>
+    <div class="intro">${title2('Make sure<br><em>you’re ready</em>')}<p class="b text-body">Check the essentials before you meet Mark. This doesn’t guarantee approval.</p></div>
     <div class="card rows" style="padding:var(--space-16) var(--space-16) var(--space-20)">
-      ${leadRow('idcard','A valid government ID', S.idType ? `${idName()} · you’ll bring it` : 'Passport, driver’s licence or UMID', S.idType ? `<span style="width:20px;height:20px;border-radius:var(--radius-full);background:var(--color-background-inverse);color:#fff;display:grid;place-items:center;margin-right:var(--space-2)">${ic('check','i14')}</span>` : `<span class="ib" aria-hidden="true" style="color:var(--color-text-text);width:16px;height:16px;margin-right:var(--space-4)">${ic('infoO','i14')}</span>`, 'data-act="idPick" role="button" tabindex="0" aria-label="Choose the ID you’ll bring" style="cursor:pointer"')}
+      ${leadRow('idcard','A valid government ID', S.idType ? `${idName()} · you’ll bring it` : 'Passport, driver’s licence or UMID', S.idType ? `<span style="width:20px;height:20px;border-radius:var(--radius-full);background:var(--color-background-inverse);color:var(--color-text-on-inverse);display:grid;place-items:center;margin-right:var(--space-2)">${ic('check','i14')}</span>` : `<span class="ib" aria-hidden="true" style="color:var(--color-text-text);width:16px;height:16px;margin-right:var(--space-4)">${ic('infoO','i14')}</span>`, 'data-act="idPick" role="button" tabindex="0" aria-label="Choose the ID you’ll bring" style="cursor:pointer"')}
       ${leadRow('phone','Your own Philippine mobile number','Registered in your name')}
       ${leadRow('mail','Access to your email','Make sure you can open it on this phone')}
       ${leadRow('battery','A charged smartphone','Keep enough battery to show your ticket at the meeting')}
@@ -2020,34 +2033,34 @@ SC.m3 = {flow:'main', label:'Before you start', parent:'m2', render:()=>`
 SC.m4 = {flow:'main', label:'Meeting details', parent:'m2',   /* m3 “Make sure you’re ready” is hidden from the flow for now (kept in code) */ render:()=>`
   ${topbar({t:'Meeting details', right:R.share()+R.info()})}
   <div class="scroll"><div class="body">
-    <div class="intro">${title2('Review <em>the details</em>')}<p class="b">Confirm when and where to meet Mark. You can change it later.</p></div>
+    <div class="intro">${title2('Review <em>the details</em>')}<p class="b text-body">Confirm when and where to meet Mark. You can change it later.</p></div>
     <button class="card" style="display:flex;gap:var(--space-12);align-items:center;padding:var(--space-12) var(--space-16) var(--space-12) var(--space-12);width:100%" data-act="mark">
       <img src="${A.mark}" alt="" style="width:88px;height:88px;border-radius:var(--radius-12);object-fit:cover">
-      <span class="stack g12" style="flex:1"><span class="stack g8"><b class="h4">Mark Reyes</b><span class="badge" style="align-self:flex-start">${ic('shield')}Verified ambassador</span></span><span class="cm sec">English, Filipino</span></span>
+      <span class="stack g12" style="flex:1"><span class="stack g8"><b class="h4 text-card-title">Mark Reyes</b><span class="badge" style="align-self:flex-start">${ic('shield')}Verified ambassador</span></span><span class="cm sec text-label">English, Filipino</span></span>
       ${ic('chevR','chev')}
     </button>
-    <div class="sec-h" style="margin:var(--space-24) var(--space-2) var(--space-12)"><p class="h4">When</p><p class="c">Mark can meet you in about 5 min</p></div>
+    <div class="sec-h" style="margin:var(--space-24) var(--space-2) var(--space-12)"><p class="h4 text-section-title">When</p><p class="c text-caption">Mark can meet you in about 5 min</p></div>
     <div style="display:grid;grid-template-columns:2fr 1fr;gap:var(--space-12)" role="radiogroup" aria-label="When">
-      <button class="tile ${S.when=='asap'?'on':''}" style="height:98px" data-act="when" data-v="asap" role="radio" aria-checked="${S.when=='asap'}"><span class="stack g8"><b class="bm">Meet ASAP</b><span class="c tint">3:20 PM · recommended</span></span><span class="sel">${ic('check')}</span></button>
-      <button class="tile ${S.when=='later'?'on':''}" style="height:98px" data-act="when" data-v="later" role="radio" aria-checked="${S.when=='later'}"><span class="stack g8"><b class="bm">Later</b><span class="c sec">Choose time</span></span><span class="sel">${ic('check')}</span></button>
+      <button class="tile ${S.when=='asap'?'on':''}" style="height:98px" data-act="when" data-v="asap" role="radio" aria-checked="${S.when=='asap'}"><span class="stack g8"><b class="bm text-row-title">Meet ASAP</b><span class="c tint text-row-subtitle">3:20 PM · recommended</span></span><span class="sel">${ic('check')}</span></button>
+      <button class="tile ${S.when=='later'?'on':''}" style="height:98px" data-act="when" data-v="later" role="radio" aria-checked="${S.when=='later'}"><span class="stack g8"><b class="bm text-row-title">Later</b><span class="c sec text-row-subtitle">Choose time</span></span><span class="sel">${ic('check')}</span></button>
     </div>
-    <div class="sec-h mt24"><p class="h4">Where</p><p class="c">Find directions or change the meeting point.</p></div>
+    <div class="sec-h mt24"><p class="h4 text-section-title">Where</p><p class="c text-caption">Find directions or change the meeting point.</p></div>
     <button class="card rows" style="width:100%;padding:var(--space-4) var(--space-16)" data-go="w2">${leadRow('pin',`${S.where.name}, Level 2`,'Seats · Store Wi-Fi · 2 min walk',ic('chevR','chev'))}</button>
-    <div class="sec-h" style="margin-top:var(--space-48)"><p class="h4">SMS updates</p><p class="c">Add a Philippine mobile number if you want SMS meeting updates.</p></div>
+    <div class="sec-h" style="margin-top:var(--space-48)"><p class="h4 text-section-title">SMS updates</p><p class="c text-caption">Add a Philippine mobile number if you want SMS meeting updates.</p></div>
     <input class="field" type="tel" inputmode="tel" placeholder="+63 mobile number" aria-label="Mobile number" value="${S.phone}" data-input="phone">
-    <p class="c sec" style="margin-top:var(--space-16)">Used only for meeting updates. Prefer not to share it? Keep updates in this ticket.</p>
+    <p class="c sec text-caption" style="margin-top:var(--space-16)">Used only for meeting updates. Prefer not to share it? Keep updates in this ticket.</p>
   </div></div>
   ${foot(btn('Confirm','data-go="m5"'))}`};
 
 SC.m5 = {flow:'main', label:'Meeting confirmed', parent:'m4', render:()=>`
   ${topbar({t:'Meeting confirmed', back:false, right:R.info()+R.exit('m6',''), cls:'clear', tight:true})}
   <div class="scroll">${hz('soft')}<div class="body">
-    <div class="stack" id="hero" style="align-items:center;text-align:center">${heroMeeting(80)}<h1 class="h2 rise" style="margin-top:var(--space-16)"><em>Thanks!</em><br>Mark is getting<br>ready</h1><p class="b sec rise" style="max-width:297px;margin-top:var(--space-24);--d:.12s">Your meeting with Mark is confirmed. He can meet you in about 5 minutes — we’ll keep you updated.</p></div>
+    <div class="stack" id="hero" style="align-items:center;text-align:center">${heroMeeting(80)}<h1 class="h2 rise text-screen-title" style="margin-top:var(--space-16)"><em>Thanks!</em><br>Mark is getting<br>ready</h1><p class="b sec rise text-body" style="max-width:297px;margin-top:var(--space-24);--d:.12s">Your meeting with Mark is confirmed. He can meet you in about 5 minutes — we’ll keep you updated.</p></div>
     <div class="reward" id="rw" style="margin-top:var(--space-48)">${rewardGlow}
       ${rewardArt()}
       <p class="num" id="rwn" style="margin-top:var(--space-28)">0</p>
-      <p class="h4">Congrats!</p>
-      <p class="c sec" style="margin:var(--space-16) auto var(--space-20);max-width:230px">You got 100 Salmon Points as a greeting bonus. You can spend them in the Salmon app.</p>
+      <p class="h4 text-card-title">Congrats!</p>
+      <p class="c sec text-caption" style="margin:var(--space-16) auto var(--space-20);max-width:230px">You got 100 Salmon Points as a greeting bonus. You can spend them in the Salmon app.</p>
       <button class="rw-cta" data-go="m8">See my rewards</button>
     </div>
   </div></div>
@@ -2118,19 +2131,19 @@ function acFeat(key){ const v = AC_FEAT[key], ak = key==='done' ? 'getready' : k
   return `<button class="feature tk-banner ac-card ac-feat" data-ac="${ak}" data-v="${key}" data-go="${v.go}">
     ${acBlobs(key)}${v.art()}
     <span class="ac-side" aria-hidden="true"></span>
-    <span class="ac-body"><span class="stack g12">${v.done?`<span class="ac-done" data-share="done"><i>${ic('check')}</i>Done</span>`:`<span class="c sec ac-eyebrow">Recommended</span>`}<span class="stack g12"><b class="h4" data-share="title">${v.t}</b><span class="ac-text">${v.b}</span></span></span>
-      <span class="bm ac-foot">${v.f}${acImg(A.ac_arrow14,'0',';position:relative;display:inline-block;width:14px;height:14px')}</span></span>
+    <span class="ac-body"><span class="stack g12">${v.done?`<span class="ac-done" data-share="done"><i>${ic('check')}</i>Done</span>`:`<span class="c sec ac-eyebrow text-caption">Recommended</span>`}<span class="stack g12"><b class="h4 text-card-title" data-share="title">${v.t}</b><span class="ac-text">${v.b}</span></span></span>
+      <span class="bm ac-foot text-row-title">${v.f}${acImg(A.ac_arrow14,'0',';position:relative;display:inline-block;width:14px;height:14px')}</span></span>
   </button>`; }
 const AC_TILE = {
   getready:{t:'Details submitted', s:'Mark has your ID and details', go:'i12', foot:()=>`<span class="ac-foot2" style="flex:1;align-items:flex-end;padding-top:var(--space-16)"><span class="ac-done" data-share="done"><i>${ic('check')}</i>Done</span>${acGo()}</span>`},
   seat:{t:'Take a seat', s:'Or meet somewhere else', go:'w2', foot:()=>`<span style="flex:1"></span><span class="ac-foot2"><span style="display:flex;gap:var(--space-10);align-items:center">${['armchair','baby','soup'].map(k=>`<img src="${A['ac_ic_'+k]}" alt="" style="width:16px;height:16px">`).join('')}</span>${acGo()}</span>`},
   about:{t:'About Salmon', s:'Who we are and how it works', act:'about', art:()=>`<span class="ac-art" style="left:.5px;top:94px;width:114.5px;height:67.5px">${acImg(A.ac_signpost,'-1.69% -0.34% -0.67% -0.38%')}</span>`, foot:()=>`<span class="ac-foot2" style="flex:1;align-items:flex-end;justify-content:flex-end;padding-top:var(--space-16)">${acGo()}</span>`},
   game:{t:'Game break', s:'Play mini-games solo or with friends', go:'a1', art:()=>`<span class="ac-art ac-ctrl-ink" style="left:3px;top:86px;width:157px;height:68.589px">${acImg(A.ac_ctrl,'-11.55% -3.16% -1.22% -1.19%')}</span><span class="ac-art ac-ctrl-light" style="left:3px;top:86px;width:157px;height:68.589px">${acImg(A.ac_ctrl_light,'-11.55% -3.16% -1.22% -1.19%')}</span>`, foot:()=>`<span style="height:12px;flex:none"></span><span style="flex:1"></span><span class="ac-foot2" style="justify-content:flex-end">${acGo()}</span>`},
-  purchase:{t:'Your Purchase', s:'Purchase, payment and delivery details.', go:'pp', foot:()=>`<span style="flex:1"></span><span class="ac-foot2" style="gap:var(--space-10)"><span style="display:flex;gap:var(--space-8);align-items:center;flex:1" class="c sec"><img src="${A.ac_ellipse}" alt="" style="width:7px;height:7px">Held til 3:15</span>${acGo()}</span>`},
+  purchase:{t:'Your Purchase', s:'Purchase, payment and delivery details.', go:'pp', foot:()=>`<span style="flex:1"></span><span class="ac-foot2" style="gap:var(--space-10)"><span style="display:flex;gap:var(--space-8);align-items:center;flex:1" class="c sec text-caption"><img src="${A.ac_ellipse}" alt="" style="width:7px;height:7px">Held til 3:15</span>${acGo()}</span>`},
 };
 function acTile(key, after=false){ const v = AC_TILE[key];
   return `<button class="ac-card ac-tile${after ? ' after' : ''}" data-ac="${key}" ${v.act?`data-act="${v.act}"`:`data-go="${v.go}"`}>
-    ${v.art?v.art():''}<b class="h4" data-share="title">${v.t}</b><span style="height:16px;flex:none"></span><span class="c sec ac-sub">${v.s}</span>${v.foot()}
+    ${v.art?v.art():''}<b class="h4 text-card-title" data-share="title">${v.t}</b><span style="height:16px;flex:none"></span><span class="c sec ac-sub text-caption">${v.s}</span>${v.foot()}
   </button>`; }
 function acBlock(featured){
   const fk = featured === 'done' ? 'getready' : featured;
@@ -2139,7 +2152,7 @@ function acBlock(featured){
   const colour = document.documentElement.classList.contains('ac-colour'), after = featured === 'game';
   const order = colour ? (after ? ['about','getready','seat','purchase'] : ['seat','about','game','purchase']) : AC_ORDER;
   const grid = order.filter(k => k !== fk && (k !== 'getready' || S.idReady || featured === 'done'));
-  return `${acFeat(featured)}<p class="h4 ac-hd" style="margin:var(--space-24) 0 var(--space-16)">While you wait</p><div class="ac-grid${featured === 'game' ? ' after' : ''}">${grid.map(k => acTile(k, featured === 'game')).join('')}</div>`;
+  return `${acFeat(featured)}<p class="h4 ac-hd text-card-title" style="margin:var(--space-24) 0 var(--space-16)">While you wait</p><div class="ac-grid${featured === 'game' ? ' after' : ''}">${grid.map(k => acTile(k, featured === 'game')).join('')}</div>`;
 }
 // what Mark is doing right now — lives on his card in the ticket (and on his chip when docked)
 const markStatus = () => { const ph = tkPhase();
@@ -2148,9 +2161,9 @@ const markStatus = () => { const ph = tkPhase();
   return `<i class="dot pulse"></i>${t}`; };
 function tkIntro(){
   const ph = tkPhase();
-  if (S.meetAt) return title2(S.meetAt[0]==='tmr'?'<em>See you</em><br><span class="t-time">tomorrow</span>':`<em>See you<br>at</em> <span class="t-time">${S.meetAt[2].split(' ·')[0]}</span>`) + `<p style="display:flex;gap:var(--space-8);align-items:center;margin:0"><i class="dot pulse"></i><span class="b sec">Meeting moved · bring any valid ID</span></p>`;
+  if (S.meetAt) return title2(S.meetAt[0]==='tmr'?'<em>See you</em><br><span class="t-time">tomorrow</span>':`<em>See you<br>at</em> <span class="t-time">${S.meetAt[2].split(' ·')[0]}</span>`) + `<p style="display:flex;gap:var(--space-8);align-items:center;margin:0"><i class="dot pulse"></i><span class="b sec text-body">Meeting moved · bring any valid ID</span></p>`;
   // Mark's live status — one line, tappable: opens “Your meeting”
-  const status = `<button class="tk-status" data-go="w6" aria-label="See what Mark is doing"><i class="dot pulse"></i><span class="b tk-sub">${tkSub()}</span><svg class="tk-chev" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 3.5 9 7l-3.5 3.5"/></svg></button>`;
+  const status = `<button class="tk-status" data-go="w6" aria-label="See what Mark is doing"><i class="dot pulse"></i><span class="b tk-sub text-body">${tkSub()}</span><svg class="tk-chev" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5.5 3.5 9 7l-3.5 3.5"/></svg></button>`;
   if (ph === 'ready') return title2('<em>Mark is</em><br>ready for you') + status;
   if (ph === 'onway') return title2('<em>Mark knows</em><br>you’re coming') + status;
   if (ph === 'moved') return title2('<em>Mark is</em><br>coming to you') + status;
@@ -2169,8 +2182,8 @@ function m6body(){
   <div class="intro tk-intro" data-phase="${tkPhase()}" style="margin-bottom:var(--space-28)">${tkIntro()}</div>
   <div class="facts-wrap" style="position:relative">
     <div class="stack g16" style="width:140px;position:relative">
-      <button class="card t-mark" style="padding:var(--space-12);height:145px;display:flex;flex-direction:column;gap:var(--space-12);text-align:left" data-act="mark"><img class="t-img" src="${A.mark}" alt="" style="width:44px;height:44px;border-radius:var(--radius-full);object-fit:cover;flex:none"><span class="stack g8"><span class="c sec">Ambassador</span><b class="h4 t-lbl">Mark Reyes</b></span><span style="border-top:1px solid var(--color-border-border);padding-top:var(--space-12);height:22px;box-sizing:border-box;line-height:10px;display:flex;justify-content:space-between;align-items:center;flex:none" class="c sec">View profile ${ic('chevR','chev')}</span></button>
-      <button class="card t-where" style="padding:var(--space-12);min-height:155px;display:flex;flex-direction:column;gap:var(--space-12);text-align:left" data-go="w3"><span class="t-img" style="width:36px;height:36px;border-radius:var(--radius-full);background:var(--color-background-inverse);display:grid;place-items:center;color:#fff;flex:none">${ic('pin','i18')}</span><span class="stack g8"><span class="c sec">Where</span><b class="h4 t-lbl">${S.where.name}</b></span><span class="b sec">${S.where.sub}</span><span style="border-top:1px solid var(--color-border-border);padding-top:var(--space-12);height:22px;box-sizing:border-box;line-height:10px;display:flex;justify-content:space-between;align-items:center;flex:none;margin-top:auto" class="c sec">View place ${ic('chevR','chev')}</span></button>
+      <button class="card t-mark" style="padding:var(--space-12);height:145px;display:flex;flex-direction:column;gap:var(--space-12);text-align:left" data-act="mark"><img class="t-img" src="${A.mark}" alt="" style="width:44px;height:44px;border-radius:var(--radius-full);object-fit:cover;flex:none"><span class="stack g8"><span class="c sec text-caption">Ambassador</span><b class="h4 t-lbl text-card-title">Mark Reyes</b></span><span style="border-top:1px solid var(--color-border-border);padding-top:var(--space-12);height:22px;box-sizing:border-box;line-height:10px;display:flex;justify-content:space-between;align-items:center;flex:none" class="c sec text-caption">View profile ${ic('chevR','chev')}</span></button>
+      <button class="card t-where" style="padding:var(--space-12);min-height:155px;display:flex;flex-direction:column;gap:var(--space-12);text-align:left" data-go="w3"><span class="t-img" style="width:36px;height:36px;border-radius:var(--radius-full);background:var(--color-background-inverse);display:grid;place-items:center;color:var(--color-text-on-inverse);flex:none">${ic('pin','i18')}</span><span class="stack g8"><span class="c sec text-caption">Where</span><b class="h4 t-lbl text-card-title">${S.where.name}</b></span><span class="b sec text-body">${S.where.sub}</span><span style="border-top:1px solid var(--color-border-border);padding-top:var(--space-12);height:22px;box-sizing:border-box;line-height:10px;display:flex;justify-content:space-between;align-items:center;flex:none;margin-top:auto" class="c sec text-caption">View place ${ic('chevR','chev')}</span></button>
     </div>
   </div>
   <div class="ac-block" id="acBlock">${acBlock(acFeatured())}</div>`;
@@ -2204,12 +2217,12 @@ SC.m8 = {flow:'main', label:'Rewards', parent:'m6', render:()=>{
     {id:'c',cat:'Food & Drinks',t:'10% off lunch',s:'Central Food Hall', img:'place3', bg:'linear-gradient(140.61deg,#e2dafc 0%,#fefdfe 51.87%,#f6dce4 71.43%)'},
   ].filter(c=>S.rewardFilter==='All'||c.cat===S.rewardFilter);
   const showCoffee = S.rewardFilter!=='Shopping';
-  const offer = (t, sub, img) => `${img?`<span class="rw-photo"><img src="${A[img]}" alt=""></span>`:''}<span class="in"><b class="h4">${t}</b><span class="c" style="color:var(--color-secondary-on-tint);margin-top:var(--space-16)">${sub}</span></span><span class="go">${ic('arrowR')}</span>`;
+  const offer = (t, sub, img) => `${img?`<span class="rw-photo"><img src="${A[img]}" alt=""></span>`:''}<span class="in"><b class="h4 text-card-title">${t}</b><span class="c text-row-subtitle" style="color:var(--color-secondary-on-tint);margin-top:var(--space-16)">${sub}</span></span><span class="go">${ic('arrowR')}</span>`;
   return `${topbar({t:'Rewards', back:false, right:R.info()+`<button class="ib" data-back aria-label="Close rewards" style="color:var(--color-text-text)">${ic('x')}</button>`})}
   <div class="scroll"><div class="body" style="padding-bottom:190px">
-    <div class="intro">${title2('Rewards')}<p class="b">Scratch cards reveal partner offers. Opening is free — points are spent only when you claim a perk in the Salmon app.</p></div>
+    <div class="intro">${title2('Rewards')}<p class="b text-body">Scratch cards reveal partner offers. Opening is free — points are spent only when you claim a perk in the Salmon app.</p></div>
     ${S.rwIntroHidden ? '<div style="height:26px"></div>' : `<div class="card rw-intro" style="margin:var(--space-32) 0 var(--space-24);padding:var(--space-16) var(--space-16) var(--space-16);position:relative">
-      <b class="h4" style="display:block;margin:0 var(--space-2) var(--space-20)">How points work</b>
+      <b class="h4 text-card-title" style="display:block;margin:0 var(--space-2) var(--space-20)">How points work</b>
       <div class="rows-c" style="--g:20px">${leadRow('gem','Earn points while you wait','Prepare your ID and help Mark find you')}${leadRow('gift','Unlock more perks','New scratch cards open as you level up')}${leadRow('phone','Redeem in the Salmon app','Claim a perk whenever you’re ready')}</div>
       <button class="rw-got" data-act="rwIntroClose">Got it</button>
     </div>`}
@@ -2217,11 +2230,11 @@ SC.m8 = {flow:'main', label:'Rewards', parent:'m6', render:()=>{
     <div class="rw-grid">
       ${showCoffee?`<button class="rw-card" data-act="claim"><span class="rw-photo"><img src="${A.rw_pic1}" alt=""><img src="${A.rw_pic2}" alt=""></span>${offer('5% off any drink','Coffee Bean, Metro Manila')}</button>`:''}
       ${cards.map(c=>`<div class="rw-card scratch-card" data-scratch="${c.id}" data-bg="${c.id==='c'?'lilac':'peach'}" ${S.scratched[c.id]?'data-act="claim" role="button" tabindex="0"':''}>${offer(c.t, c.s, c.img)}</div>`).join('')}
-      ${S.rewardFilter==='All'?[['Free movie ticket','Unlocks at 500 points'],['₱300 off headphones','Unlocks at 500 points']].map(([t,c])=>`<div class="rw-card"><div class="rw-lock"><span class="ic"><img src="${A.rw_lock}" alt="" style="width:24px;height:24px"></span><b class="bm" style="margin-top:var(--space-12);color:var(--color-text-muted);text-box:trim-both cap alphabetic">${t}</b><span class="c" style="margin-top:var(--space-8);color:var(--color-text-soft);text-box:trim-both cap alphabetic">${c}</span></div></div>`).join(''):''}
+      ${S.rewardFilter==='All'?[['Free movie ticket','Unlocks at 500 points'],['₱300 off headphones','Unlocks at 500 points']].map(([t,c])=>`<div class="rw-card"><div class="rw-lock"><span class="ic"><img src="${A.rw_lock}" alt="" style="width:24px;height:24px"></span><b class="bm text-row-title" style="margin-top:var(--space-12);color:var(--color-text-muted);text-box:trim-both cap alphabetic">${t}</b><span class="c text-row-subtitle" style="margin-top:var(--space-8);color:var(--color-text-soft);text-box:trim-both cap alphabetic">${c}</span></div></div>`).join(''):''}
     </div>
   </div></div>
   <div class="ft custom"><div class="sticky-pg">
-    <div style="display:flex;gap:var(--space-12);align-items:flex-start"><span class="stack" style="gap:var(--space-8);flex:1"><b class="h4" style="color:#fff">${left} more points</b><span class="c mut">to unlock the next rewards</span></span><b class="h4 ptsv" style="color:#fff;margin-top:var(--space-8)">${S.points}</b></div>
+    <div style="display:flex;gap:var(--space-12);align-items:flex-start"><span class="stack" style="gap:var(--space-8);flex:1"><b class="h4 text-card-title" style="color:var(--color-text-on-inverse)">${left} more points</b><span class="c mut text-row-subtitle">to unlock the next rewards</span></span><b class="h4 ptsv text-card-title" style="color:var(--color-text-on-inverse);margin-top:var(--space-8)">${S.points}</b></div>
     <div class="track"><i style="width:${pct}%"></i></div>
     <button class="earn" data-act="earnSheet">${ic('sparkleF')}Earn more points</button>
   </div></div>`;},
@@ -2244,9 +2257,9 @@ const IDS = [['philsys','PhilSys National ID','The national ID card'],['licence'
 SC.i1 = {flow:'id', label:'Are you ready? · checklist', parent:'m6', render:()=>`
   ${topbar({t:'Get ready', right:R.info()+R.pts(), cls:'clear'})}
   <div class="scroll">${hz('check')}<div class="body">
-    <div class="intro">${title2('Are you ready<br><em>for the meeting?</em>')}<p class="b">Check the essentials before Mark arrives.</p></div>
-    <div class="card checklist" style="padding:var(--space-16) var(--space-16) var(--space-20);background:#fff;box-shadow:none">
-      ${CHECKS.map(([k,t,s])=>`<button class="row" data-act="check" data-v="${k}" role="checkbox" aria-checked="${S.checks[k]}"><span class="chk ${S.checks[k]?'on':''}">${ic('check')}</span><span class="tx"><span class="b">${t}</span><span class="c">${k==='id' && S.idType ? idName()+' · you’ll bring it' : s}</span></span><span class="plus10 ${S.checks[k]?'on':''}">+10</span></button>`).join('')}
+    <div class="intro">${title2('Are you ready<br><em>for the meeting?</em>')}<p class="b text-body">Check the essentials before Mark arrives.</p></div>
+    <div class="card checklist" style="padding:var(--space-16) var(--space-16) var(--space-20);background:var(--color-background-white);box-shadow:none">
+      ${CHECKS.map(([k,t,s])=>`<button class="row" data-act="check" data-v="${k}" role="checkbox" aria-checked="${S.checks[k]}"><span class="chk ${S.checks[k]?'on':''}">${ic('check')}</span><span class="tx"><span class="b text-body">${t}</span><span class="c text-caption">${k==='id' && S.idType ? idName()+' · you’ll bring it' : s}</span></span><span class="plus10 ${S.checks[k]?'on':''}">+10</span></button>`).join('')}
     </div>
   </div></div>
   ${foot(btn('Continue','data-act="toI4"')+btn('Missing something?','data-go="x1"','plain'),'This prepares you for the meeting — it doesn’t check eligibility.')}`};
@@ -2256,7 +2269,7 @@ const idShort = () => ({philsys:'PhilSys ID', licence:'driver’s licence', pass
 function idSheet(){
   let pick = S.idType;
   const o = sheet(sheetDoc({title:'Select your ID', sub:'Bring the original — valid and not expired.',
-    body:`<div class="stack g8" role="radiogroup" aria-label="ID type">${IDS.map(([k,t,s])=>`<button class="boxrow ${pick===k?'on':''}" data-pick="${k}" role="radio" aria-checked="${pick===k}"><span class="radio"></span><span class="tx"><b class="bm">${t}</b><span class="c">${s}</span></span></button>`).join('')}</div>`,
+    body:`<div class="stack g8" role="radiogroup" aria-label="ID type">${IDS.map(([k,t,s])=>`<button class="boxrow ${pick===k?'on':''}" data-pick="${k}" role="radio" aria-checked="${pick===k}"><span class="radio"></span><span class="tx"><b class="bm text-row-title">${t}</b><span class="c text-row-subtitle">${s}</span></span></button>`).join('')}</div>`,
     note:'Only Salmon sees it — the store never receives your document.',
     buttons: btn('Confirm',`data-confirm ${pick?'':'disabled'}`)+btn('I don’t have any of these','data-noid','paper')}), o=>{
       o.addEventListener('click', e=>{
@@ -2272,7 +2285,7 @@ function idSheet(){
 }
 function idListSheet(){
   sheet(sheetDoc({title:'Valid government IDs', sub:'Bring the original — valid and not expired.',
-    body:`<div class="stack g8">${IDS.map(([k,t,s])=>`<div class="boxrow"><span class="tx"><b class="bm">${t}</b><span class="c">${s}</span></span></div>`).join('')}</div>`,
+    body:`<div class="stack g8">${IDS.map(([k,t,s])=>`<div class="boxrow"><span class="tx"><b class="bm text-row-title">${t}</b><span class="c text-row-subtitle">${s}</span></span></div>`).join('')}</div>`,
     note:'Only Salmon sees it — the store never receives your document.',
     buttons: btn('Got it','data-close')}));
 }
@@ -2286,8 +2299,8 @@ function setCheck(k, on){
 SC.i4 = {flow:'id', label:'You have all you need', parent:'i1', render:()=>`
   ${topbar({t:'Get ready', right:R.info()+R.pts()})}
   <div class="scroll">${hz('ready')}<div class="body" style="padding-top:127px">
-    <div class="stack" id="hero" style="align-items:center;text-align:center">${heroPrepare(80)}<h1 class="h2 rise" style="margin-top:var(--space-16)"><em>You have</em><br>all you need</h1><p class="b sec rise" style="max-width:297px;margin-top:var(--space-24);--d:.12s">You can photograph your ID now — then the meeting starts with the terms instead.</p></div>
-    <div class="feature" id="earn" style="margin-top:100px;background:var(--gradient-tile);padding:var(--space-16) var(--space-12);border-radius:var(--radius-12);gap:var(--space-12);align-items:flex-start"><span style="width:40px;height:40px;border-radius:var(--radius-full);background:var(--color-background-muted);display:grid;place-items:center;flex:none;color:var(--color-text-muted)">${ic('gift','i14')}</span><span class="stack" style="gap:var(--space-8);flex:1"><b class="bm">Earn +60 Salmon Points</b><span class="c tint">Mark arrives in 9 min — enough time to prepare your ID.</span></span></div>
+    <div class="stack" id="hero" style="align-items:center;text-align:center">${heroPrepare(80)}<h1 class="h2 rise text-screen-title" style="margin-top:var(--space-16)"><em>You have</em><br>all you need</h1><p class="b sec rise text-body" style="max-width:297px;margin-top:var(--space-24);--d:.12s">You can photograph your ID now — then the meeting starts with the terms instead.</p></div>
+    <div class="feature" id="earn" style="margin-top:100px;background:var(--gradient-tile);padding:var(--space-16) var(--space-12);border-radius:var(--radius-12);gap:var(--space-12);align-items:flex-start"><span style="width:40px;height:40px;border-radius:var(--radius-full);background:var(--color-background-muted);display:grid;place-items:center;flex:none;color:var(--color-text-muted)">${ic('gift','i14')}</span><span class="stack" style="gap:var(--space-8);flex:1"><b class="bm text-row-title">Earn +60 Salmon Points</b><span class="c tint text-row-subtitle">Mark arrives in 9 min — enough time to prepare your ID.</span></span></div>
   </div></div>
   ${foot(btn('Continue','data-go="i5"')+btn('I’ll just wait','data-go="m6"','paper'))}`,
   mount(el){
@@ -2314,11 +2327,11 @@ SC.i4 = {flow:'id', label:'You have all you need', parent:'i1', render:()=>`
 SC.i5 = {flow:'id', label:'Before you add your ID', parent:'i4', render:()=>`
   ${topbar({t:'Prepare your ID', right:R.info()+R.exit('m6',''), tight:true})}
   <div class="scroll">${hz('soft')}<div class="body">
-    <div class="intro">${title2('Before you<br><em>add your ID</em>')}<p class="b">Preparing your ID now can save time when you meet Mark. It’s optional and doesn’t affect the decision.</p></div>
+    <div class="intro">${title2('Before you<br><em>add your ID</em>')}<p class="b text-body">Preparing your ID now can save time when you meet Mark. It’s optional and doesn’t affect the decision.</p></div>
     ${leadRow('camera','Two photos of your ID','Front and back, taken here')}
     ${leadRow('scan','We read the details','Name, ID number, date of birth')}
     ${leadRow('check','You check them yourself','Nothing is saved before you confirm')}
-    <button class="row" style="margin-top:var(--space-16)" data-act="agree" role="checkbox" aria-checked="${S.agree}" style="align-items:flex-start"><span class="chk ${S.agree?'on':''}" style="margin-top:var(--space-2)">${ic('check')}</span><span class="tx"><span class="b">I agree to prepare my ID</span><span class="c">Salmon may capture and use my ID images and the details read from them.</span></span></button>
+    <button class="row" style="margin-top:var(--space-16)" data-act="agree" role="checkbox" aria-checked="${S.agree}" style="align-items:flex-start"><span class="chk ${S.agree?'on':''}" style="margin-top:var(--space-2)">${ic('check')}</span><span class="tx"><span class="b text-body">I agree to prepare my ID</span><span class="c text-caption">Salmon may capture and use my ID images and the details read from them.</span></span></button>
   </div></div>
   ${foot(btn('Prepare my ID',`data-go="i6" ${S.agree?'':'disabled'} id="prep"`)+btn('Skip for now','data-go="m6"','paper'),'By continuing, you agree to let Salmon use these photos to prepare your ID details.')}`};
 
@@ -2326,9 +2339,9 @@ SC.i6 = {flow:'id', label:'Get your licence ready', parent:'i5', render:()=>{
   const n = (IDS.find(i=>i[0]===S.idType)||IDS[1])[1].replace('’','’');
   return `${topbar({t:'Prepare your ID', right:R.info()+R.exit('m6',''), tight:true})}
   <div class="scroll"><div class="body">
-    <div class="intro">${title2(`Get your<br><em>${({licence:'licence',passport:'passport',umid:'UMID'})[S.idType]||'ID'} ready</em>`)}<p class="b">We’ll need the front and back of your ${n.toLowerCase().replace('philsys national id','PhilSys ID').replace('umid','UMID')}. You’ll review both photos before anything is saved.</p></div>
+    <div class="intro">${title2(`Get your<br><em>${({licence:'licence',passport:'passport',umid:'UMID'})[S.idType]||'ID'} ready</em>`)}<p class="b text-body">We’ll need the front and back of your ${n.toLowerCase().replace('philsys national id','PhilSys ID').replace('umid','UMID')}. You’ll review both photos before anything is saved.</p></div>
     <img src="${A.hands}" alt="Hands holding an ID next to a phone" style="width:100%;height:222px;object-fit:cover;border-radius:var(--radius-12)">
-    <p class="h4" style="margin:var(--space-40) var(--space-2) var(--space-24)">Before you start</p>
+    <p class="h4 text-card-title" style="margin:var(--space-40) var(--space-2) var(--space-24)">Before you start</p>
     <div class="rows-c">${leadRow('focus','All four corners visible','Keep the whole document inside the frame')}
     ${leadRow('image','No glare or blur','Lay the ID flat in even light')}
     ${leadRow('scan','Text is readable','We’ll tell you if the photo needs another try')}</div>
@@ -2340,7 +2353,7 @@ function camScreen(title, hint, next, side){
     ${topbar({t:title, right:R.close(), cls:'paper'})}
     <div class="cam"><div class="cam-scene" aria-hidden="true"><div class="cam-card"><img src="${A[side==='front'?'idfront':'idback']}" alt=""></div></div><div class="cam-vig" aria-hidden="true"></div>
       <div class="corners"><i></i><i></i><i></i><i></i><span class="hint">${hint}</span></div>
-      <p class="c cam-tip" style="color:#b3a9ac;margin-top:var(--space-28);text-align:center;position:relative">Hold steady — we’ll capture it automatically when the ID fits.</p>
+      <p class="c cam-tip text-caption" style="color:#b3a9ac;margin-top:var(--space-28);text-align:center;position:relative">Hold steady — we’ll capture it automatically when the ID fits.</p>
       <button class="shutter" data-act="shoot" data-v="${next}" aria-label="Take photo"></button><div class="flash"></div></div>`,
     mount(el){
       const card = el.querySelector('.cam-card'), scene = el.querySelector('.cam-scene'), hintEl = el.querySelector('.hint'), tip = el.querySelector('.cam-tip'), corners = el.querySelector('.corners');
@@ -2383,7 +2396,7 @@ SC.i7 = camScreen('Front of ID · 1 of 2','Center the front of your ID','i8','fr
 SC.i8 = {flow:'id', label:'Is everything clear?', parent:'i6', render:()=>`
   ${topbar({t:'Prepare your ID', right:R.info()+R.exit('m6','id'), tight:true})}
   <div class="scroll">${hz('soft')}<div class="body" style="padding-top:171px">
-    <div class="stack g8 center"><p class="h3">Is everything clear?</p><p class="b sec">All four corners visible · text readable</p></div>
+    <div class="stack g8 center"><p class="h3 text-place-title">Is everything clear?</p><p class="b sec text-body">All four corners visible · text readable</p></div>
     <div id="idshot" style="margin-top:var(--space-24);border-radius:var(--radius-12);overflow:hidden;position:relative;aspect-ratio:345/213"><img src="${A.idfront}" alt="Photo of the front of the ID" style="position:absolute;max-width:none;width:110.31%;height:119.45%;left:-5.16%;top:-9.69%"></div>
   </div></div>
   ${foot(btn('Use front photo','data-go="i9"')+btn('Retake','data-go="i7"','paper'))}`};
@@ -2391,9 +2404,9 @@ SC.i9 = camScreen('Back of ID · 2 of 2','Center the back of your ID','i10','bac
 SC.i10 = {flow:'id', label:'Scanning your ID', parent:'i8', render:()=>`
   ${topbar({t:'Prepare your ID', right:R.exit('m6','id')})}
   <div class="scroll">${scanHaze()}<div class="body" style="padding-top:178px">
-    <div class="stack" style="align-items:center;text-align:center">${heroScan(80)}<h1 class="h2 rise" style="margin-top:var(--space-16)">Scanning<br><em>your ID</em></h1></div>
-    <p class="c sec center" style="margin-top:var(--space-16)">Nothing is saved until you review the details</p>
-    <div class="card mt40" style="padding:var(--space-16);background:rgba(255,255,255,.7)"><div class="progress"><i id="pg"></i></div><p class="c sec center" style="margin-top:var(--space-12)" id="pgt">Reading the front…</p></div>
+    <div class="stack" style="align-items:center;text-align:center">${heroScan(80)}<h1 class="h2 rise text-screen-title" style="margin-top:var(--space-16)">Scanning<br><em>your ID</em></h1></div>
+    <p class="c sec center text-caption" style="margin-top:var(--space-16)">Nothing is saved until you review the details</p>
+    <div class="card mt40" style="padding:var(--space-16);background:rgba(255,255,255,.7)"><div class="progress"><i id="pg"></i></div><p class="c sec center text-caption" style="margin-top:var(--space-12)" id="pgt">Reading the front…</p></div>
   </div></div>
   <span class="scanbeam" aria-hidden="true"></span>`,
   mount(el){
@@ -2405,13 +2418,13 @@ SC.i10 = {flow:'id', label:'Scanning your ID', parent:'i8', render:()=>`
 SC.i11 = {flow:'id', label:'Check your ID details', parent:'i8', render:()=>`
   ${topbar({t:'Prepare your ID', right:R.info()+R.exit('m6','id'), tight:true})}
   <div class="scroll"><div class="body">
-    <div class="intro">${title2('Check your<br><em>ID details</em>')}<p class="b">We read this from the photos you added. Check it against your original ID.</p></div>
-    <p class="h4" style="margin-bottom:var(--space-12)">Photos you added</p>
+    <div class="intro">${title2('Check your<br><em>ID details</em>')}<p class="b text-body">We read this from the photos you added. Check it against your original ID.</p></div>
+    <p class="h4 text-card-title" style="margin-bottom:var(--space-12)">Photos you added</p>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-12)">
-      <figure style="margin:0" class="stack g8"><span style="display:block;position:relative;overflow:hidden;aspect-ratio:167/102"><img src="${A.idfront}" alt="Front side" style="position:absolute;max-width:none;width:110.31%;height:119.45%;left:-5.16%;top:-9.69%"></span><figcaption class="c sec">Front side</figcaption></figure>
-      <figure style="margin:0" class="stack g8"><span style="display:block;position:relative;overflow:hidden;aspect-ratio:167/102"><img src="${A.idback}" alt="Back side" style="position:absolute;max-width:none;width:108.98%;height:118.95%;left:-4.8%;top:-9.37%"></span><figcaption class="c sec">Back side</figcaption></figure>
+      <figure style="margin:0" class="stack g8"><span style="display:block;position:relative;overflow:hidden;aspect-ratio:167/102"><img src="${A.idfront}" alt="Front side" style="position:absolute;max-width:none;width:110.31%;height:119.45%;left:-5.16%;top:-9.69%"></span><figcaption class="c sec text-caption">Front side</figcaption></figure>
+      <figure style="margin:0" class="stack g8"><span style="display:block;position:relative;overflow:hidden;aspect-ratio:167/102"><img src="${A.idback}" alt="Back side" style="position:absolute;max-width:none;width:108.98%;height:118.95%;left:-4.8%;top:-9.37%"></span><figcaption class="c sec text-caption">Back side</figcaption></figure>
     </div>
-    <p class="h4" style="margin:var(--space-28) var(--space-2) var(--space-18)">Information we read</p>
+    <p class="h4 text-card-title" style="margin:var(--space-28) var(--space-2) var(--space-18)">Information we read</p>
     <div class="card kvl" style="padding:var(--space-12) var(--space-16);background:var(--color-background-muted)">
       <div class="kv"><span>Name</span><span>Jamie Santos</span></div>
       <div class="kv"><span>ID type</span><span>${(IDS.find(i=>i[0]===S.idType)||IDS[1])[1]}</span></div>
@@ -2427,8 +2440,8 @@ SC.i12 = {flow:'id', label:'Your ID is ready', parent:'m6', render:()=>`
   <div class="scroll">${hz('soft')}<div class="body">
     ${screenResult({hero:heroParts('idready'), title:'<em>Your ID is</em><br>ready', text:'Mark will see it when you meet — nothing else to prepare.'})}
     <div class="reward" id="rw" style="margin-top:var(--space-48)">${rewardGlow}${decoSvg.replace('class="deco"','class="deco" style="position:absolute;left:0;top:6px;width:100%;height:140px"')}
-      <div class="stack" style="align-items:center;gap:var(--space-6)">${rays}${gemBig}</div><p class="num" id="rwn" style="margin-top:var(--space-28)">60</p><p class="h4">Congrats!</p>
-      <p class="c sec" style="margin:var(--space-16) auto var(--space-32);max-width:240px">You got 60 Salmon Points for preparing your ID before the meeting. You can spend them in the Salmon app.</p>
+      <div class="stack" style="align-items:center;gap:var(--space-6)">${rays}${gemBig}</div><p class="num" id="rwn" style="margin-top:var(--space-28)">60</p><p class="h4 text-card-title">Congrats!</p>
+      <p class="c sec text-caption" style="margin:var(--space-16) auto var(--space-32);max-width:240px">You got 60 Salmon Points for preparing your ID before the meeting. You can spend them in the Salmon app.</p>
       <button class="rw-cta" data-go="m8">See my rewards</button></div>
   </div></div>
   ${foot(btn('Go to my ticket','data-go="m6"'))}`,
@@ -2443,9 +2456,9 @@ const DELIVERY_FEE = 150;
 const dueToday = () => 4400 + (S.fulfil === 'delivery' ? DELIVERY_FEE : 0);
 const payWith = () => S.payBy === 'card' ? 'Card ··· 1290' : 'GCash · +63 917 ··· 0142';
 const payWithShort = () => S.payBy === 'card' ? 'Card ··· 1290' : 'GCash';
-const prodCard = () => `<div class="prod-card"><img src="${A.phonehand}" alt=""><span class="stack" style="gap:var(--space-8);flex:1;min-width:0"><span class="stack" style="gap:var(--space-8)"><b class="h4">iPhone 14 256GB · Midnight</b><span class="c sec">MobileWorld · SM Megamall</span></span><span class="b sec">₱21,999</span></span></div>`;
-const payIntro = (l1, l2, sub) => `<div class="intro">${title2(`<em>${l1}</em><br>${l2}`)}<p class="b">${sub}</p></div>`;
-const pRow = (icon, t, s, attrs='', chev=false) => `<${attrs?'button':'div'} class="row" ${attrs}><span class="lead-ic">${ic(icon)}</span><span class="tx"><span class="b">${t}</span><span class="c">${s}</span></span>${chev?ic('chevR','chev'):''}</${attrs?'button':'div'}>`;
+const prodCard = () => `<div class="prod-card"><img src="${A.phonehand}" alt=""><span class="stack" style="gap:var(--space-8);flex:1;min-width:0"><span class="stack" style="gap:var(--space-8)"><b class="h4 text-card-title">iPhone 14 256GB · Midnight</b><span class="c sec text-row-subtitle">MobileWorld · SM Megamall</span></span><span class="b sec text-body">₱21,999</span></span></div>`;
+const payIntro = (l1, l2, sub) => `<div class="intro">${title2(`<em>${l1}</em><br>${l2}`)}<p class="b text-body">${sub}</p></div>`;
+const pRow = (icon, t, s, attrs='', chev=false) => `<${attrs?'button':'div'} class="row" ${attrs}><span class="lead-ic">${ic(icon)}</span><span class="tx"><span class="b text-body">${t}</span><span class="c text-caption">${s}</span></span>${chev?ic('chevR','chev'):''}</${attrs?'button':'div'}>`;
 
 
 /* ---------- PP · Your purchase (before the meeting): built from the flow 4 components — product card, fulfilment cards, row cards ---------- */
@@ -2454,24 +2467,24 @@ const pRow = (icon, t, s, attrs='', chev=false) => `<${attrs?'button':'div'} cla
 SC.ab = {flow:'main', label:'About Salmon', parent:'m6', render:()=>`
   ${topbar({t:'About Salmon', right:R.info()})}
   <div class="scroll"><div class="body">
-    <div class="intro">${title2('<em>Smart loans</em><br>for Filipinos')}<p class="b">Salmon finances your iPhone. MobileWorld sells it — you pay Salmon in monthly parts.</p></div>
+    <div class="intro">${title2('<em>Smart loans</em><br>for Filipinos')}<p class="b text-body">Salmon finances your iPhone. MobileWorld sells it — you pay Salmon in monthly parts.</p></div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-16)">
-      <div class="tile ab-stat"><span class="lead-ic" style="background:var(--color-background-muted)">${ic('people')}</span><span class="stack g12"><b class="h3" style="font-weight:var(--font-weight-semibold);letter-spacing:var(--tracking-tight)">1.5M+</b><span class="b sec">Filipinos use Salmon</span></span></div>
-      <div class="tile ab-stat"><span class="lead-ic" style="background:var(--color-background-muted)">${ic('sparkle')}</span><span class="stack g12"><b class="h3" style="font-weight:var(--font-weight-semibold);letter-spacing:var(--tracking-tight)">4.8</b><span class="b sec">App Store rating</span></span></div>
+      <div class="tile ab-stat"><span class="lead-ic" style="background:var(--color-background-muted)">${ic('people')}</span><span class="stack g12"><b class="h3 text-place-title" style="font-weight:var(--font-weight-semibold);letter-spacing:var(--tracking-tight)">1.5M+</b><span class="b sec text-body">Filipinos use Salmon</span></span></div>
+      <div class="tile ab-stat"><span class="lead-ic" style="background:var(--color-background-muted)">${ic('sparkle')}</span><span class="stack g12"><b class="h3 text-place-title" style="font-weight:var(--font-weight-semibold);letter-spacing:var(--tracking-tight)">4.8</b><span class="b sec text-body">App Store rating</span></span></div>
     </div>
-    <div class="sec-h" style="margin-top:var(--space-32)"><p class="h4">How you’re protected</p></div>
+    <div class="sec-h" style="margin-top:var(--space-32)"><p class="h4 text-section-title">How you’re protected</p></div>
     <div class="card rows-c" style="padding:var(--space-20) var(--space-16);--g:20px">
       ${leadRow('shield','Licensed and regulated','SEC-registered · bank supervised by BSP')}
       ${leadRow('receipt','No hidden fees','Every payment shown before you sign')}
       ${leadRow('lock','Your data stays private','Data Privacy Act · never sold')}
       ${leadRow('idcard','Bank-grade security','Face ID, encryption, 24/7 monitoring')}
     </div>
-    <div class="sec-h" style="margin-top:var(--space-32)"><p class="h4">Need help?</p></div>
+    <div class="sec-h" style="margin-top:var(--space-32)"><p class="h4 text-section-title">Need help?</p></div>
     <div class="card rows-c" style="padding:var(--space-20) var(--space-16);--g:20px">
       ${leadRow('msg','Chat with a real person','In the Salmon app · 24/7',ic('chevR','chev'),'data-act="msgMark" role="button" tabindex="0" style="cursor:pointer"')}
       ${leadRow('phone','Call us','+63 49 534 1126 · head office')}
     </div>
-    <div class="stack ab-legal"><p class="c sec">Salmon Finance Inc.<br>SEC Reg. No. CS201916698 · C.A. No. 1241</p><p class="c sec">FHL Financing Company, Inc.<br>SEC Reg. No. <span class="nw">2022100071291-07</span> · C.A. <span class="nw">F-22-0038-29</span></p><p class="c sec">Salmon Bank (Rural Bank) Inc. is regulated by the Bangko Sentral ng Pilipinas.</p></div>
+    <div class="stack ab-legal"><p class="c sec text-caption">Salmon Finance Inc.<br>SEC Reg. No. CS201916698 · C.A. No. 1241</p><p class="c sec text-caption">FHL Financing Company, Inc.<br>SEC Reg. No. <span class="nw">2022100071291-07</span> · C.A. <span class="nw">F-22-0038-29</span></p><p class="c sec text-caption">Salmon Bank (Rural Bank) Inc. is regulated by the Bangko Sentral ng Pilipinas.</p></div>
   </div></div>
   ${foot(btn('Back to my ticket','data-back'))}`};
 SC.pp = {flow:'pay', label:'Your purchase · before the meeting', parent:'m6', render:()=>{ const del = S.fulfil === 'delivery';
@@ -2479,23 +2492,23 @@ SC.pp = {flow:'pay', label:'Your purchase · before the meeting', parent:'m6', r
   return `
   ${topbar({t:'Your purchase', right:R.info()})}
   <div class="scroll"><div class="body" style="padding-top:var(--space-8)">
-    <div class="pp-hero"><img src="${A.product}" alt="iPhone 14 in Midnight"><span class="badge" style="position:absolute;right:12px;bottom:12px;background:#fff;color:var(--color-text-text);font-size:var(--font-size-14);font-weight:var(--font-weight-semibold);padding:var(--space-8) var(--space-12);gap:var(--space-8)"><i class="dot pulse"></i>Reserved until 3:45</span></div>
+    <div class="pp-hero"><img src="${A.product}" alt="iPhone 14 in Midnight"><span class="badge" style="position:absolute;right:12px;bottom:12px;background:var(--color-background-white);color:var(--color-text-text);font-size:var(--font-size-14);font-weight:var(--font-weight-semibold);padding:var(--space-8) var(--space-12);gap:var(--space-8)"><i class="dot pulse"></i>Reserved until 3:45</span></div>
     <div style="display:flex;justify-content:space-between;gap:var(--space-24);margin:var(--space-24) 0">
-      <div class="stack g12"><p class="h4">iPhone 14 256GB · Midnight</p><p class="c sec">MobileWorld · SM Megamall</p></div>
-      <p class="h3" style="font-weight:var(--font-weight-semibold)">₱21,999</p>
+      <div class="stack g12"><p class="h4 text-card-title">iPhone 14 256GB · Midnight</p><p class="c sec text-caption">MobileWorld · SM Megamall</p></div>
+      <p class="h3 text-place-title" style="font-weight:var(--font-weight-semibold)">₱21,999</p>
     </div>
     <div class="card kvl" style="padding:var(--space-4) var(--space-16);background:var(--color-background-muted)">
       <div class="kv"><span>Sold by</span><span>MobileWorld · SM Megamall</span></div>
       <div class="kv"><span>Financed by</span><span>Salmon · approved</span></div>
       <div class="kv"><span>Warranty</span><span>1 year · Apple</span></div>
     </div>
-    <div class="sec-h" style="margin-top:var(--space-32)"><p class="h4">In the box</p></div>
+    <div class="sec-h" style="margin-top:var(--space-32)"><p class="h4 text-section-title">In the box</p></div>
     <div class="card rows-c" style="padding:var(--space-20) var(--space-16);--g:20px;background:var(--color-background-muted)">
       ${leadRow('phone','iPhone 14','256GB · Midnight')}
       ${leadRow('link','USB-C to Lightning cable','No power adapter included')}
       ${leadRow('receipt','Documents','Warranty card and official receipt')}
     </div>
-    <div class="sec-h" style="margin-top:var(--space-32)"><p class="h4">How to get it</p><p class="c">Choose now or decide with Mark.</p></div>
+    <div class="sec-h" style="margin-top:var(--space-32)"><p class="h4 text-section-title">How to get it</p><p class="c text-caption">Choose now or decide with Mark.</p></div>
     <div class="stack" style="gap:var(--space-16)" role="radiogroup" aria-label="How to get it">
       ${opt('pickup','store','Pick up in store','Ready today · Free')}
       ${opt('delivery','box','Delivery','2–3 business days · ₱150')}
@@ -2514,10 +2527,10 @@ SC.p1 = {flow:'pay', label:'1 · Approved', parent:'m6', render:()=>`
     ${screenResult({hero:heroParts('app'), title:'Approved!<br><em>Your financing<br>is ready</em>', text:'Complete the purchase to keep your reserved price.', tc:'bl'})}
     <div class="stack" style="gap:var(--space-24);margin-top:var(--space-32)">
       ${prodCard()}
-      <div><p class="h4" style="margin:0 var(--space-2) var(--space-16)">Your payment</p>
+      <div><p class="h4 text-card-title" style="margin:0 var(--space-2) var(--space-16)">Your payment</p>
       <div class="card rows-c" style="padding:var(--space-20) var(--space-16);--g:20px">
-        ${leadRow('pct','You pay today','Down payment · set at approval','<span class="b sec">₱4,400</span>')}
-        ${leadRow('cal','Remaining balance',`${peso(monthly())}/month × ${S.term} · 0% interest`,'<span class="b sec">₱17,599</span>')}
+        ${leadRow('pct','You pay today','Down payment · set at approval','<span class="b sec text-body">₱4,400</span>')}
+        ${leadRow('cal','Remaining balance',`${peso(monthly())}/month × ${S.term} · 0% interest`,'<span class="b sec text-body">₱17,599</span>')}
       </div></div>
       ${''/* hidden for now: statusBanner('gift','Updated after approval','A ₱4,400 down payment lowers your monthly from ₱3,666.50 to ₱2,933.','background:#fff') */}
     </div>
@@ -2583,7 +2596,7 @@ SC.p3b = {flow:'pay', label:'3b · Card details', parent:'p3', render:()=>{
       ${f('num','Card number','4386 2810 7752 1290','inputmode="numeric" autocomplete="cc-number"')}
       <div class="pf-row">${f('exp','Expiry','09 / 29','inputmode="numeric" autocomplete="cc-exp"')}${f('cvc','CVC','•••','inputmode="numeric" autocomplete="cc-csc"')}</div>
       ${f('name','Name on card','JAMIE SANTOS','autocomplete="cc-name"')}
-      <button class="tgl-row" data-act="cardMonthly" role="switch" aria-checked="${S.cardMonthly!==false}" style="margin-top:var(--space-8)"><span class="stack" style="gap:var(--space-8);flex:1"><span class="bm">Use this card for monthly payments</span><span class="c sec">${peso(monthly())} on the 7th of each month. Change anytime in the app.</span></span><span class="tgl ${S.cardMonthly!==false?'on':''}"></span></button>
+      <button class="tgl-row" data-act="cardMonthly" role="switch" aria-checked="${S.cardMonthly!==false}" style="margin-top:var(--space-8)"><span class="stack" style="gap:var(--space-8);flex:1"><span class="bm text-row-title">Use this card for monthly payments</span><span class="c sec text-caption">${peso(monthly())} on the 7th of each month. Change anytime in the app.</span></span><span class="tgl ${S.cardMonthly!==false?'on':''}"></span></button>
     </div>
   </div></div>
   ${foot(payBtn(),'Price held until 3:45 · secured by 3-D Secure')}`;}};
@@ -2612,13 +2625,13 @@ SC.p5 = {flow:'pay', label:'5 · Pickup code', parent:'p4', render:()=>`
     ${payIntro('Show this','at the counter','SM Megamall, Level 3 · releasing counter')}
     <div class="pk-card">
       <span class="pk-st">${ic('check')}Ready now · held until 14 Oct</span>
-      <span class="pk-code"><span class="c">Pickup code</span><b>SAL-4821</b></span>
+      <span class="pk-code"><span class="c text-caption">Pickup code</span><b>SAL-4821</b></span>
       <img class="pk-qr" src="${A.pk_qr}" alt="Pickup QR code">
       <span class="pk-perf"></span>
       <div class="pk-kv">
-        <div><span class="c">Order</span><b class="bm">MW-20931 · iPhone 14 256GB</b></div>
-        <div><span class="c">Name on the order</span><b class="bm">Jamie Santos</b></div>
-        <div><span class="c">Bring</span><b class="bm">Driver’s licence ··· 4821</b></div>
+        <div><span class="c text-caption">Order</span><b class="bm text-row-title">MW-20931 · iPhone 14 256GB</b></div>
+        <div><span class="c text-caption">Name on the order</span><b class="bm text-row-title">Jamie Santos</b></div>
+        <div><span class="c text-caption">Bring</span><b class="bm text-row-title">Driver’s licence ··· 4821</b></div>
       </div>
     </div>
     <div class="prows" style="margin-top:var(--space-32)">
@@ -2636,7 +2649,7 @@ SC.p6 = {flow:'pay', label:'6 · Check it with the staff', parent:'p5', render:(
     ${payIntro('Check it','with the staff','They open the box in front of you.')}
     <div class="stack" style="gap:var(--space-16)">
       ${prodCard()}
-      <div class="chk-card" role="group" aria-label="Handover checklist">${HANDOVER.map(([k,t,s]) => `<div class="row" data-act="handover" data-v="${k}" role="checkbox" aria-checked="${!!c[k]}" tabindex="0"><span class="chk ${c[k]?'on':''}">${ic('check')}</span><span class="tx"><span class="b">${t}</span><span class="c">${s}</span></span></div>`).join('')}</div>
+      <div class="chk-card" role="group" aria-label="Handover checklist">${HANDOVER.map(([k,t,s]) => `<div class="row" data-act="handover" data-v="${k}" role="checkbox" aria-checked="${!!c[k]}" tabindex="0"><span class="chk ${c[k]?'on':''}">${ic('check')}</span><span class="tx"><span class="b text-body">${t}</span><span class="c text-caption">${s}</span></span></div>`).join('')}</div>
       <p class="notice">Don’t confirm until everything checks out.</p>
     </div>
   </div></div>
@@ -2650,7 +2663,7 @@ SC.p7 = {flow:'pay', label:'7 · It’s yours', parent:'p6', render:()=>{
   return `${topbar({t:'Purchase complete', back:false, cls:'clear', right:R.pts().replace('class="pts sm"','class="pts sm dim"')})}
   <div class="scroll">${hz('blushGlow')}<div class="body" style="padding-top:var(--space-20)">
     <div class="stack sr-hero" style="align-items:center;text-align:center">${HERO_UNBOX}
-    <div class="stack center" style="gap:var(--space-24);margin-top:-4px"><h1 class="h2"><em>All done.</em><br>It's yours</h1><p class="bl sec">${del?'Your iPhone 14 arrives in 2–3 days.':'Your iPhone 14 is in your hands.'}<br>The rest happens in the Salmon app.</p></div></div>
+    <div class="stack center" style="gap:var(--space-24);margin-top:-4px"><h1 class="h2 text-screen-title"><em>All done.</em><br>It's yours</h1><p class="bl sec text-screen-lead">${del?'Your iPhone 14 arrives in 2–3 days.':'Your iPhone 14 is in your hands.'}<br>The rest happens in the Salmon app.</p></div></div>
     <div class="card rows-c" style="margin-top:var(--space-32);padding:var(--space-16) var(--space-16) var(--space-20);--g:4px">
       ${leadRow('calclock',`First payment · ${peso(monthly())}`,'7 Nov 2026 · we’ll remind you','','style="min-height:44px;padding:var(--space-8) 0"')}
       ${leadRow('shield','Receipt & warranty','Saved in one place','','style="min-height:44px;padding:var(--space-8) 0"')}
@@ -2670,14 +2683,14 @@ SC.w2 = {flow:'wait', label:'Wait comfortably', parent:'m6', render:()=>{
   const best = PLACES.findIndex(p=>p.cat===S.cat);
   const order = [best, ...PLACES.map((_,i)=>i).filter(i=>i!==best)];
   const card = (i, hero) => { const p = PLACES[i], on = S.place===i;
-    return `<button class="card row" data-act="place" data-v="${i}" aria-pressed="${on}" style="padding:var(--space-16);gap:var(--space-12);height:104px;transition:background .25s;${on?'background:var(--gradient-tile)':''}"><img src="${A[p.img]}" alt="" class="place-photo"><span class="tx" style="gap:var(--space-8)"><b class="h4">${p.name}</b><span class="c ${on?'tint':'sec'}">${p.meta}</span><span class="b ${on?'tint':'sec'}">${p.desc}</span></span>${ic('chevR','chev')}</button>`; };
+    return `<button class="card row" data-act="place" data-v="${i}" aria-pressed="${on}" style="padding:var(--space-16);gap:var(--space-12);height:104px;transition:background .25s;${on?'background:var(--gradient-tile)':''}"><img src="${A[p.img]}" alt="" class="place-photo"><span class="tx" style="gap:var(--space-8)"><b class="h4 text-card-title">${p.name}</b><span class="c ${on?'tint':'sec'}">${p.meta}</span><span class="b ${on?'tint':'sec'}">${p.desc}</span></span>${ic('chevR','chev')}</button>`; };
   return `${topbar({t:'Where to wait', right:R.info(), tight:true})}
   <div class="scroll"><div class="body">
-    <div class="intro" style="margin-bottom:0">${title2('Wait comfortably')}<p class="b">About 5 minutes to spare. Pick a spot nearby — Mark can meet you there.</p></div>
+    <div class="intro" style="margin-bottom:0">${title2('Wait comfortably')}<p class="b text-body">About 5 minutes to spare. Pick a spot nearby — Mark can meet you there.</p></div>
     <div class="chips" role="tablist" style="margin-top:var(--space-32)">${CATS.map(([c,i])=>`<button class="chip lg wcat ${S.cat===c?'on':''}" role="tab" aria-selected="${S.cat===c}" data-act="cat" data-v="${c}">${ic(i)}${c}</button>`).join('')}</div>
-    <p class="h4" style="margin:0 var(--space-2) var(--space-16)">Best for your wait</p>
+    <p class="h4 text-card-title" style="margin:0 var(--space-2) var(--space-16)">Best for your wait</p>
     ${card(order[0])}
-    <p class="h4" style="margin:var(--space-24) var(--space-2) var(--space-10)">Other nearby places</p>
+    <p class="h4 text-card-title" style="margin:var(--space-24) var(--space-2) var(--space-10)">Other nearby places</p>
     <div class="stack g8 places-list">${order.slice(1).map(i=>card(i)).join('')}</div>
   </div></div>
   ${foot(btn(`Wait at ${PLACES[S.place].short}`,'data-act="toPlace"'))}`;}};
@@ -2692,8 +2705,8 @@ SC.w3 = {flow:'wait', label:'Meeting point', parent:'m6', render:()=>{ const p =
   <div class="scroll">${hz('soft')}<div class="body">
     <div style="position:relative;border-radius:var(--radius-20);overflow:hidden;height:196px;margin-bottom:var(--space-32)"><img src="${A[p.img]}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;max-width:none">
       <span class="badge" style="position:absolute;left:12px;bottom:12px;background:rgba(255,255,255,.92);color:var(--color-text-text);gap:var(--space-6)"><i class="dot ${busy?'':'pulse'}" style="background:${busy?'var(--color-status-busy)':'var(--color-status-live)'}"></i>${p.live}</span></div>
-    <div class="intro">${title2(`<em>Meet Mark at</em><br>${p.name}`)}<p class="b">${p.meta}</p></div>
-    <div style="display:flex;flex-wrap:wrap;gap:var(--space-8);margin:-8px 0 var(--space-24)">${p.am.map(([icn,t])=>`<span class="chip" style="height:32px;background:#fff;gap:var(--space-6)">${ic(icn,'i14')}${t}</span>`).join('')}</div>
+    <div class="intro">${title2(`<em>Meet Mark at</em><br>${p.name}`)}<p class="b text-body">${p.meta}</p></div>
+    <div style="display:flex;flex-wrap:wrap;gap:var(--space-8);margin:-8px 0 var(--space-24)">${p.am.map(([icn,t])=>`<span class="chip" style="height:32px;background:var(--color-background-white);gap:var(--space-6)">${ic(icn,'i14')}${t}</span>`).join('')}</div>
     <div class="card rows-c" style="padding:var(--space-20) var(--space-16);--g:20px">
       ${leadRow('clock','When', tkPhase()==='coming' ? `Mark is ready in about ${etaMins()} min` : 'Mark is ready for you')}
       ${leadRow('user','Who to look for','Mark Reyes · red Salmon shirt, ID badge')}
@@ -2719,14 +2732,14 @@ SC.w4 = {flow:'wait', label:'Directions', parent:'w2', render:()=>{ const p = to
       <g id="me"><circle r="20" fill="#7a5cf0" opacity=".15"/><circle r="7" fill="#5b45d6" stroke="#fff" stroke-width="2.5"/></g>
     </svg>
     <div style="position:absolute;left:24px;top:max(calc(var(--sbh) - 6px), calc(env(safe-area-inset-top,0px) + 8px));display:flex;gap:var(--space-12);align-items:center;right:24px">
-      <button class="ib" data-back aria-label="Back" style="width:44px;height:44px;margin:0;background:#fff;box-shadow:none">${ic('arrowL')}</button>
-      <div class="card" style="display:flex;gap:var(--space-12);align-items:center;padding:var(--space-18) var(--space-16);border-radius:var(--radius-20);flex:none;max-width:calc(100% - 56px);box-shadow:none"><span class="lead-ic" style="width:36px;height:36px;flex:none">${ic('stairs','i16')}</span><span class="stack" style="gap:var(--space-4);min-width:184px"><b class="bm" id="instr">Go to the escalator</b><span class="c sec" id="instr2">${meet ? 'Then continue on Level 2 · 40 m' : 'Then continue on Level 1 · 40 m'}</span></span></div>
+      <button class="ib" data-back aria-label="Back" style="width:44px;height:44px;margin:0;background:var(--color-background-white);box-shadow:none">${ic('arrowL')}</button>
+      <div class="card" style="display:flex;gap:var(--space-12);align-items:center;padding:var(--space-18) var(--space-16);border-radius:var(--radius-20);flex:none;max-width:calc(100% - 56px);box-shadow:none"><span class="lead-ic" style="width:36px;height:36px;flex:none">${ic('stairs','i16')}</span><span class="stack" style="gap:var(--space-4);min-width:184px"><b class="bm text-row-title" id="instr">Go to the escalator</b><span class="c sec text-row-subtitle" id="instr2">${meet ? 'Then continue on Level 2 · 40 m' : 'Then continue on Level 1 · 40 m'}</span></span></div>
     </div>
-    <div style="position:absolute;right:24px;top:345px;background:#fff;border-radius:var(--radius-20);padding:var(--space-4);display:flex;flex-direction:column;gap:var(--space-4);box-shadow:none"><span class="chip on" style="height:30px;padding:0 var(--space-10)">L2</span><span class="chip" style="height:30px;padding:0 var(--space-10);background:var(--color-background-muted)">L1</span></div>
+    <div style="position:absolute;right:24px;top:345px;background:var(--color-background-white);border-radius:var(--radius-20);padding:var(--space-4);display:flex;flex-direction:column;gap:var(--space-4);box-shadow:none"><span class="chip on" style="height:30px;padding:0 var(--space-10)">L2</span><span class="chip" style="height:30px;padding:0 var(--space-10);background:var(--color-background-muted)">L1</span></div>
   </div>
-  <div class="ft sheet-ft" style="background:#fff;border-radius:var(--radius-32) var(--radius-32) 0 0;padding:var(--space-6) var(--space-24) var(--space-32);box-shadow:none">
+  <div class="ft sheet-ft" style="background:var(--color-background-white);border-radius:var(--radius-32) var(--radius-32) 0 0;padding:var(--space-6) var(--space-24) var(--space-32);box-shadow:none">
     <div class="grab" style="margin-bottom:var(--space-10)"></div>
-    <div class="stack g12" style="margin-bottom:var(--space-12)">${meet?'<p class="c sec">Meeting point</p>':''}<p class="h3" style="font-weight:var(--font-weight-semibold)">${p.name}</p><p class="b sec">${meet ? p.meta : `${p.meta.split(' · ').slice(2).join(' · ')||'2 min walk'} · Level ${p.lvl.slice(1)}`}</p><p class="b sec">${meet ? p.how : 'Take the escalator down to Level 1. The lounge is beside the central atrium.'}</p></div>
+    <div class="stack g12" style="margin-bottom:var(--space-12)">${meet?'<p class="c sec text-caption">Meeting point</p>':''}<p class="h3 text-place-title" style="font-weight:var(--font-weight-semibold)">${p.name}</p><p class="b sec text-body">${meet ? p.meta : `${p.meta.split(' · ').slice(2).join(' · ')||'2 min walk'} · Level ${p.lvl.slice(1)}`}</p><p class="b sec text-body">${meet ? p.how : 'Take the escalator down to Level 1. The lounge is beside the central atrium.'}</p></div>
     ${meet ? meetBanner('margin:var(--space-20) 0 var(--space-24)') : statusBanner('cal',meetIn(),`Original meeting point · ${S.where.name}`,'margin:var(--space-20) 0 var(--space-32)')}
     <div class="stack w4-acts" style="gap:0">${btn('Start walking','data-act="walk" id="walkb"')}${meet ? btn('Chat with Mark','data-act="msgMark" id="chatb"','soft') : ''}</div>
   </div>`;},
@@ -2748,13 +2761,13 @@ SC.w4m = {flow:'wait', label:'You’re at the meeting point', parent:'m6', rende
     <div class="ya-map" style="position:absolute;left:-140px;top:-240px;width:551px;height:766px;background:url(${A.map}) center/cover"></div>
     <div style="position:absolute;left:-128px;top:-240px;width:514px;height:604px;background:linear-gradient(rgba(255,255,255,.3),rgba(255,255,255,.12))"></div>
     <span class="ya-here" style="position:absolute;left:243px;top:115px;width:46px;height:46px;border-radius:var(--radius-20);background:var(--color-map-halo);display:grid;place-items:center"><i style="width:18px;height:18px;border-radius:var(--radius-full);background:var(--color-map-me)"></i></span>
-    <button class="ib" data-back aria-label="Back" style="position:absolute;left:19px;top:max(17px, calc(env(safe-area-inset-top,0px) + 8px));width:44px;height:44px;margin:0;background:#fff;z-index:3">${ic('arrowL')}</button>
+    <button class="ib" data-back aria-label="Back" style="position:absolute;left:19px;top:max(17px, calc(env(safe-area-inset-top,0px) + 8px));width:44px;height:44px;margin:0;background:var(--color-background-white);z-index:3">${ic('arrowL')}</button>
   </div>
   <div class="ya-sheet">
     <div class="grab"></div>
     <div class="ya-in">
-      <div class="stack" style="align-items:center;text-align:center"><span class="w4m-av ya-r"><img src="${A.mark}" alt=""></span><h1 class="h2 ya-r" style="margin-top:var(--space-16)"><em>You’re here.</em><br>${ready ? 'Look for Mark' : 'Mark is almost ready'}</h1><p class="bl sec ya-r" style="max-width:297px;margin-top:var(--space-24)">${ready ? 'Red Salmon shirt and an ID badge. He’ll say your meeting code.' : `He’ll come to ${d.name} in about ${etaMins()} min — we’ll buzz you.`}</p></div>
-      <div class="ya-r w4m-code"><span class="stack" style="gap:var(--space-8);flex:1"><b class="bm">Meeting code</b><span class="c sec">Mark says it when he greets you</span></span><span class="w6-digits">${MEET_CODE.split('').map(n=>`<b>${n}</b>`).join('')}</span></div>
+      <div class="stack" style="align-items:center;text-align:center"><span class="w4m-av ya-r"><img src="${A.mark}" alt=""></span><h1 class="h2 ya-r text-screen-title" style="margin-top:var(--space-16)"><em>You’re here.</em><br>${ready ? 'Look for Mark' : 'Mark is almost ready'}</h1><p class="bl sec ya-r text-screen-lead" style="max-width:297px;margin-top:var(--space-24)">${ready ? 'Red Salmon shirt and an ID badge. He’ll say your meeting code.' : `He’ll come to ${d.name} in about ${etaMins()} min — we’ll buzz you.`}</p></div>
+      <div class="ya-r w4m-code"><span class="stack" style="gap:var(--space-8);flex:1"><b class="bm text-row-title">Meeting code</b><span class="c sec text-row-subtitle">Mark says it when he greets you</span></span><span class="w6-digits">${MEET_CODE.split('').map(n=>`<b>${n}</b>`).join('')}</span></div>
     </div>
     <div class="sh-ft ya-r">${ready ? btn('I’m with Mark','data-go="m9"') + btn('I can’t find him','data-act="msgMark"','paper') : btn('Back to my ticket','data-act="helpSkip"') + btn('Ask a question','data-act="msgMark"','paper')}</div>
   </div>`;},
@@ -2770,12 +2783,12 @@ SC.w4a = {flow:'wait', label:'You’re here · move the meeting?', parent:'w2', 
     <div class="ya-map" style="position:absolute;left:-140px;top:-240px;width:551px;height:766px;background:url(${A.map}) center/cover"></div>
     <div style="position:absolute;left:-128px;top:-240px;width:514px;height:604px;background:linear-gradient(rgba(255,255,255,.3),rgba(255,255,255,.12))"></div>
     <span class="ya-here" style="position:absolute;left:243px;top:115px;width:46px;height:46px;border-radius:var(--radius-20);background:var(--color-map-halo);display:grid;place-items:center"><i style="width:18px;height:18px;border-radius:var(--radius-full);background:var(--color-map-me)"></i></span>
-    <button class="ib" data-back aria-label="Back" style="position:absolute;left:19px;top:max(17px, calc(env(safe-area-inset-top,0px) + 8px));width:44px;height:44px;margin:0;background:#fff;z-index:3">${ic('arrowL')}</button>
+    <button class="ib" data-back aria-label="Back" style="position:absolute;left:19px;top:max(17px, calc(env(safe-area-inset-top,0px) + 8px));width:44px;height:44px;margin:0;background:var(--color-background-white);z-index:3">${ic('arrowL')}</button>
   </div>
   <div class="ya-sheet">
     <div class="grab"></div>
     <div class="ya-in">
-      <div class="stack" style="align-items:center;text-align:center">${heroMeeting(80)}<h1 class="h2 ya-r" style="margin-top:var(--space-16)"><em>You’re here.</em><br>Move the meeting?</h1><p class="bl sec ya-r" style="max-width:297px;margin-top:var(--space-24)">Mark can come straight to this table instead of the meeting point.</p></div>
+      <div class="stack" style="align-items:center;text-align:center">${heroMeeting(80)}<h1 class="h2 ya-r text-screen-title" style="margin-top:var(--space-16)"><em>You’re here.</em><br>Move the meeting?</h1><p class="bl sec ya-r text-screen-lead" style="max-width:297px;margin-top:var(--space-24)">Mark can come straight to this table instead of the meeting point.</p></div>
       <div class="ya-r">${statusBanner('cal',meetIn(),`Original meeting point · ${S.where.name}`,'margin-top:var(--space-48)')}</div>
     </div>
     <div class="sh-ft ya-r">${btn('Move meeting here','data-act="move"')}${btn('I’ll head back later','data-go="m6"','paper')}</div>
@@ -2790,14 +2803,14 @@ SC.w4a = {flow:'wait', label:'You’re here · move the meeting?', parent:'w2', 
 SC.w4h = {flow:'wait', label:'Help Mark find you', parent:'m6', render:()=>{ const p = PLACES[S.place]; return `
   ${topbar({t:'', back:false, right:R.exit('m6','')})}
   <div class="scroll">${hz('soft')}<div class="body">
-    <div class="w4h-ok">${statusBanner('check',`Meeting moved to ${p.name}`,`Mark has the new spot · Level ${p.lvl.slice(1)}`,'background:#fff')}</div>
-    <div class="intro" style="margin-top:var(--space-32)">${title2('<em>Help Mark</em><br>find you')}<p class="b">A photo and a short note — both optional, both help.</p></div>
+    <div class="w4h-ok">${statusBanner('check',`Meeting moved to ${p.name}`,`Mark has the new spot · Level ${p.lvl.slice(1)}`,'background:var(--color-background-white)')}</div>
+    <div class="intro" style="margin-top:var(--space-32)">${title2('<em>Help Mark</em><br>find you')}<p class="b text-body">A photo and a short note — both optional, both help.</p></div>
     ${S.photoTaken
       ? `<div class="w4h-photo"><img src="${A.chair}" alt="Your photo of the spot"><button class="chip" data-go="w4c">${ic('camera','i16')}Retake</button></div>`
-      : `<button class="w4h-add" data-go="w4c"><span class="lead-ic" style="width:44px;height:44px">${ic('camera','w4h-cam')}</span><span class="tx"><b class="bm">Add a photo of your spot</b><span class="c">Show the table or what’s around you</span></span><span class="plus10 ${S.photoAdded?'on':''}">${S.photoAdded?'Added':'+10'}</span></button>`}
+      : `<button class="w4h-add" data-go="w4c"><span class="lead-ic" style="width:44px;height:44px">${ic('camera','w4h-cam')}</span><span class="tx"><b class="bm text-row-title">Add a photo of your spot</b><span class="c text-row-subtitle">Show the table or what’s around you</span></span><span class="plus10 ${S.photoAdded?'on':''}">${S.photoAdded?'Added':'+10'}</span></button>`}
     <div class="pf" style="margin-top:var(--space-24)"><label for="w4h-note">Note for Mark <span class="plus10 ${S.noteAdded?'on':''}" style="margin-left:var(--space-6)">${S.noteAdded?'Added':'+10'}</span></label>
-      <textarea class="field" id="w4h-note" rows="3" placeholder="E.g. “Table beside the escalator, grey jacket”" data-input="note" style="background:#fff;border-width:2px">${S.note}</textarea></div>
-    <p class="c sec" style="margin-top:var(--space-12)">Only Mark sees this. It disappears when the meeting ends.</p>
+      <textarea class="field" id="w4h-note" rows="3" placeholder="E.g. “Table beside the escalator, grey jacket”" data-input="note" style="background:var(--color-background-white);border-width:2px">${S.note}</textarea></div>
+    <p class="c sec text-caption" style="margin-top:var(--space-12)">Only Mark sees this. It disappears when the meeting ends.</p>
   </div></div>
   ${foot(btn('Done','data-act="helpDone"')+btn('Skip','data-act="helpSkip"','paper'))}`;},
   mount(el){ if (reduce) return; const ok = el.querySelector('.w4h-ok'); ok && ok.animate([{opacity:0, transform:'translateY(-8px) scale(.98)'},{opacity:1, transform:'none'}], {duration:520, easing:'cubic-bezier(.2,1.1,.3,1)'}); }};
@@ -2806,13 +2819,13 @@ SC.w4c = {flow:'wait', label:'Take a photo of your spot', parent:'w4h', dark:tru
   <div class="cam" style="justify-content:flex-start">
     <img src="${A.chair}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55;filter:saturate(.9)">
     <div class="corners" style="width:322px;height:500px;margin-top:var(--space-32)"><i></i><i></i><i></i><i></i></div>
-    <span class="hint" style="position:absolute;bottom:120px;left:50%;transform:translateX(-50%);background:rgba(40,38,41,.85);color:#fff;font-size:var(--font-size-12);padding:var(--space-8) var(--space-12);border-radius:var(--radius-full);white-space:nowrap">Show Mark where to find you</span>
+    <span class="hint" style="position:absolute;bottom:120px;left:50%;transform:translateX(-50%);background:rgba(40,38,41,.85);color:var(--color-text-on-inverse);font-size:var(--font-size-12);padding:var(--space-8) var(--space-12);border-radius:var(--radius-full);white-space:nowrap">Show Mark where to find you</span>
     <button class="shutter" data-act="shootSpot" aria-label="Take photo"></button><div class="flash"></div>
   </div>`};
 const whoCard = (line, sub) => `
-  <p class="h4" style="margin:var(--space-32) var(--space-2) var(--space-16)">Who is coming</p>
-  <button class="card" style="display:flex;gap:var(--space-12);align-items:center;padding:var(--space-12) var(--space-16) var(--space-12) var(--space-12);width:100%" data-act="mark"><img src="${A.mark}" alt="" style="width:88px;height:88px;border-radius:var(--radius-12);object-fit:cover"><span class="stack g8" style="flex:1"><b class="h4">Mark Reyes</b><span class="badge" style="align-self:flex-start">${ic('shield')}Verified ambassador</span><span class="c sec">Salmon ID badge · red Salmon shirt · English, Filipino</span></span>${ic('chevR','chev')}</button>
-  <div class="card" style="display:flex;gap:var(--space-12);align-items:center;padding:var(--space-16) var(--space-12);border-radius:var(--radius-12);margin-top:var(--space-24)"><i class="dot pulse" style="flex:none"></i><span class="stack" style="gap:var(--space-8);flex:1"><b class="bm">${line}</b><span class="c sec">${sub}</span></span></div>`;
+  <p class="h4 text-card-title" style="margin:var(--space-32) var(--space-2) var(--space-16)">Who is coming</p>
+  <button class="card" style="display:flex;gap:var(--space-12);align-items:center;padding:var(--space-12) var(--space-16) var(--space-12) var(--space-12);width:100%" data-act="mark"><img src="${A.mark}" alt="" style="width:88px;height:88px;border-radius:var(--radius-12);object-fit:cover"><span class="stack g8" style="flex:1"><b class="h4 text-card-title">Mark Reyes</b><span class="badge" style="align-self:flex-start">${ic('shield')}Verified ambassador</span><span class="c sec text-caption">Salmon ID badge · red Salmon shirt · English, Filipino</span></span>${ic('chevR','chev')}</button>
+  <div class="card" style="display:flex;gap:var(--space-12);align-items:center;padding:var(--space-16) var(--space-12);border-radius:var(--radius-12);margin-top:var(--space-24)"><i class="dot pulse" style="flex:none"></i><span class="stack" style="gap:var(--space-8);flex:1"><b class="bm text-row-title">${line}</b><span class="c sec text-row-subtitle">${sub}</span></span></div>`;
 SC.w5b = {flow:'wait', label:'Mark is on his way', parent:'m6', render:()=>{ const p = PLACES[S.place]; return `
   ${topbar({t:'Mark is on his way', right:R.info(), tight:true})}
   <div class="scroll">${hz('soft')}<div class="body">
@@ -2846,15 +2859,15 @@ const MEET_CODE = '48';
 SC.w6 = {flow:'wait', label:'Your meeting · what Mark is doing', parent:'m6', render:()=>{ const ph = tkPhase(), [h, sub] = w6Head(ph), seg = w6Segs(ph), [k, now, hint] = w6Now(ph);
   // the meeting code matters when Mark is about to greet you: right under his profile then, at the end of the page before that
   const near = ['ready','onway','moved'].includes(ph);
-  const codeCard = `<div class="card w6-code"><span class="stack" style="gap:var(--space-8);flex:1"><b class="bm">Meeting code</b><span class="c sec">Mark says it when he greets you — so you know it’s him.</span></span><span class="w6-digits">${MEET_CODE.split('').map(d=>`<b>${d}</b>`).join('')}</span></div>`;
+  const codeCard = `<div class="card w6-code"><span class="stack" style="gap:var(--space-8);flex:1"><b class="bm text-row-title">Meeting code</b><span class="c sec text-row-subtitle">Mark says it when he greets you — so you know it’s him.</span></span><span class="w6-digits">${MEET_CODE.split('').map(d=>`<b>${d}</b>`).join('')}</span></div>`;
   const place = ph === 'moved' ? PLACES[S.place] : null;
   return `
   ${topbar({t:'Your meeting', right:R.info(), tight:true})}
   <div class="scroll">${hz('soft')}<div class="body">
-    <div class="intro" style="margin-bottom:var(--space-24)">${title2(h)}<p class="b sec w6-sub" style="margin:0">${sub}</p></div>
+    <div class="intro" style="margin-bottom:var(--space-24)">${title2(h)}<p class="b sec w6-sub text-body" style="margin:0">${sub}</p></div>
     <div class="w6-prog" role="progressbar" aria-valuemin="0" aria-valuemax="3" aria-valuenow="${k+1}" aria-label="What Mark is doing">
       <div class="w6-segs">${seg.map((f,i)=>`<span class="w6-seg ${i===k && f<1 ? 'live' : ''} ${ph==='ready'||ph==='onway' ? (i===2?'live':'') : ''}"><i style="width:${(f*100).toFixed(1)}%"></i></span>`).join('')}</div>
-      <div class="w6-now"><i class="dot pulse"></i><span class="b">${now}</span>${hint?`<span class="c sec">· ${hint}</span>`:''}<span class="sp"></span><span class="c sec">${k+1} of 3</span></div>
+      <div class="w6-now"><i class="dot pulse"></i><span class="b text-body">${now}</span>${hint?`<span class="c sec text-caption">· ${hint}</span>`:''}<span class="sp"></span><span class="c sec text-caption">${k+1} of 3</span></div>
     </div>
     ${ph === 'moved' ? `<div class="w6-map" aria-label="Mark walking to you" style="background-image:url(${A.map})">
       <svg viewBox="0 0 345 180" aria-hidden="true"><path id="w6route" d="M298 150 C 262 132, 250 96, 214 88 C 176 80, 150 108, 112 92 C 90 82, 80 64, 66 52" stroke="#1b1a1b" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="2 7" opacity=".5"/></svg>
@@ -2862,8 +2875,8 @@ SC.w6 = {flow:'wait', label:'Your meeting · what Mark is doing', parent:'m6', r
       <span class="w6-mk" id="w6mk"><img src="${A.mark}" alt=""></span>
     </div>` : ''}
     <div class="card w6-who">
-      <div class="w6-who-top"><img src="${A.mark}" alt=""><span class="stack" style="gap:var(--space-8);flex:1;min-width:0"><b class="h4">Mark Reyes</b><span class="badge" style="align-self:flex-start">${ic('shield')}Verified ambassador</span></span></div>
-      <p class="c sec" style="margin:0">Look for a red Salmon shirt and an ID badge on a lanyard.</p>
+      <div class="w6-who-top"><img src="${A.mark}" alt=""><span class="stack" style="gap:var(--space-8);flex:1;min-width:0"><b class="h4 text-card-title">Mark Reyes</b><span class="badge" style="align-self:flex-start">${ic('shield')}Verified ambassador</span></span></div>
+      <p class="c sec text-caption" style="margin:0">Look for a red Salmon shirt and an ID badge on a lanyard.</p>
       <div class="w6-acts"><button class="chip" data-act="msgMark">${ic('help','i16')}Ask a question</button><button class="chip" data-act="mark">${ic('user','i16')}Profile</button></div>
     </div>
     ${near ? codeCard : ''}
@@ -2871,7 +2884,7 @@ SC.w6 = {flow:'wait', label:'Your meeting · what Mark is doing', parent:'m6', r
       ${ph === 'coming' ? leadRow('clock', `Around ${protoClock(etaMins())}`, 'When you meet · Change the time', ic('chevR','chev'), 'data-act="timeSheet" role="button" tabindex="0"') : ''}
       ${leadRow('pin', place ? place.name : S.where.name, place ? 'You’re here · Mark is coming' : `${S.where.sub} · View place`, ic('chevR','chev'), 'data-go="w3" role="button" tabindex="0"')}
       ${leadRow('msgPlus', S.note ? 'Your note for Mark' : 'Add a note for Mark', S.note ? S.note : 'E.g. “table beside the escalator”', ic('chevR','chev'), 'data-act="note" role="button" tabindex="0"')}
-      ${ph === 'coming' || ph === 'moved' ? `<button class="row" data-act="buzz" role="switch" aria-checked="${S.buzz!==false}"><span class="lead-ic">${ic('phone')}</span><span class="tx"><span class="b">Buzz me when he’s ready</span><span class="c">Your phone vibrates once</span></span><span class="tgl ${S.buzz!==false?'on':''}"></span></button>` : ''}
+      ${ph === 'coming' || ph === 'moved' ? `<button class="row" data-act="buzz" role="switch" aria-checked="${S.buzz!==false}"><span class="lead-ic">${ic('phone')}</span><span class="tx"><span class="b text-body">Buzz me when he’s ready</span><span class="c text-caption">Your phone vibrates once</span></span><span class="tgl ${S.buzz!==false?'on':''}"></span></button>` : ''}
     </div>
     ${near ? '' : codeCard}
   </div></div>
@@ -2888,8 +2901,8 @@ function timeSheet(){
   const now = etaMins();
   const opts = [['0','As soon as he’s free',`Around ${protoClock(now)}`],['15','In 15 minutes',`Around ${protoClock(15)}`],['30','In 30 minutes',`Around ${protoClock(30)}`]];
   sheet(sheetDoc({title:'Change the time', sub:'Mark plans around it and gets a message right away.',
-    body:`<div class="stack g8" role="radiogroup" style="margin-top:var(--space-16)">${opts.map(([v,t,sub],i)=>`<button class="boxrow ${i===0?'on':''}" data-tm="${v}" role="radio" aria-checked="${i===0}"><span class="radio"></span><span class="tx"><b class="bm">${t}</b><span class="c">${sub}</span></span></button>`).join('')}
-      <button class="boxrow" data-tm="later"><span class="lead-ic" style="width:20px;height:20px;background:none">${ic('cal','i16')}</span><span class="tx"><b class="bm">Another time or day</b><span class="c">Pick a slot that suits you</span></span>${ic('chevR','chev')}</button></div>`,
+    body:`<div class="stack g8" role="radiogroup" style="margin-top:var(--space-16)">${opts.map(([v,t,sub],i)=>`<button class="boxrow ${i===0?'on':''}" data-tm="${v}" role="radio" aria-checked="${i===0}"><span class="radio"></span><span class="tx"><b class="bm text-row-title">${t}</b><span class="c text-row-subtitle">${sub}</span></span></button>`).join('')}
+      <button class="boxrow" data-tm="later"><span class="lead-ic" style="width:20px;height:20px;background:none">${ic('cal','i16')}</span><span class="tx"><b class="bm text-row-title">Another time or day</b><span class="c text-row-subtitle">Pick a slot that suits you</span></span>${ic('chevR','chev')}</button></div>`,
     buttons:btn('Save','data-tsave')+btn('Cancel','data-close','paper')}), o => {
       let pick = '0';
       o.addEventListener('click', e => { const b = e.target.closest('[data-tm]');
@@ -2902,8 +2915,8 @@ function timeSheet(){
 }
 function moreSheet(){
   sheet(sheetDoc({title:'Need a few more minutes?', sub:'Mark will wait — the meeting simply moves.',
-    body:`<div class="stack" style="gap:var(--space-8);margin-top:var(--space-16)">${[['5','5 more minutes'],['10','10 more minutes']].map(([v,t])=>`<button class="boxrow" data-more="${v}"><span class="lead-ic" style="width:36px;height:36px">${ic('clock','i16')}</span><span class="tx"><b class="bm">${t}</b><span class="c">Mark gets a message right away</span></span>${ic('chevR','chev')}</button>`).join('')}
-      <button class="boxrow" data-go="x3" data-close><span class="lead-ic" style="width:36px;height:36px">${ic('cal','i16')}</span><span class="tx"><b class="bm">I can’t make it now</b><span class="c">Pick another time or place</span></span>${ic('chevR','chev')}</button></div>`,
+    body:`<div class="stack" style="gap:var(--space-8);margin-top:var(--space-16)">${[['5','5 more minutes'],['10','10 more minutes']].map(([v,t])=>`<button class="boxrow" data-more="${v}"><span class="lead-ic" style="width:36px;height:36px">${ic('clock','i16')}</span><span class="tx"><b class="bm text-row-title">${t}</b><span class="c text-row-subtitle">Mark gets a message right away</span></span>${ic('chevR','chev')}</button>`).join('')}
+      <button class="boxrow" data-go="x3" data-close><span class="lead-ic" style="width:36px;height:36px">${ic('cal','i16')}</span><span class="tx"><b class="bm text-row-title">I can’t make it now</b><span class="c text-row-subtitle">Pick another time or place</span></span>${ic('chevR','chev')}</button></div>`,
     buttons:''}), o => {
       o.addEventListener('click', e => { const b = e.target.closest('[data-more]'); if (!b) return;
         const m = +b.dataset.more; S.etaEnd = Date.now() + WAIT_MS * m / 5; S.onWay = false; S.pushed = false;
@@ -2919,17 +2932,17 @@ const GAMES = [
   ['escape','Escape room','Find the way out before Mark arrives','1–4 players · 3 rooms','gr-escape'],
   ['tangram','Tangram','Fold the shapes into the picture','1–3 players · about 4 min','gr-tangram'],
 ];
-const strip = (size=84, add=true) => { const n = S.players.length + (add?1:0); if (n>3) size = Math.min(size,70); const gap = Math.max(10, Math.min(32, Math.floor((329 - n*size)/(n-1||1)))); return `<div style="display:flex;gap:${gap}px;align-items:center;justify-content:center">${S.players.map(p=>av(p,size)).join('')}${add?`<button data-act="invite" aria-label="Add someone" style="width:${size}px;height:${size}px;border-radius:var(--radius-full);border:2px dashed var(--color-border-dashed);background:#fff;display:grid;place-items:center;color:var(--color-text-text)">${ic('plus','i20')}</button>`:''}</div>`; };
+const strip = (size=84, add=true) => { const n = S.players.length + (add?1:0); if (n>3) size = Math.min(size,70); const gap = Math.max(10, Math.min(32, Math.floor((329 - n*size)/(n-1||1)))); return `<div style="display:flex;gap:${gap}px;align-items:center;justify-content:center">${S.players.map(p=>av(p,size)).join('')}${add?`<button data-act="invite" aria-label="Add someone" style="width:${size}px;height:${size}px;border-radius:var(--radius-full);border:2px dashed var(--color-border-dashed);background:var(--color-background-white);display:grid;place-items:center;color:var(--color-text-text)">${ic('plus','i20')}</button>`:''}</div>`; };
 SC.a1 = {flow:'games', label:'Pick a tiny escape', parent:'m6', render:()=>`
   ${topbar({t:'Quick break', right:R.live()+R.exit('m6',''), tight:true})}
   <div class="scroll">${hz('top')}<div class="body" style="padding-bottom:140px">
-    <div class="intro" style="margin-bottom:var(--space-32)">${title2('Pick a tiny escape')}<p class="b">5 minutes to play — solo or together.</p></div>
-    <p class="cm sec" style="margin:0 0 var(--space-12)">Playing</p>
+    <div class="intro" style="margin-bottom:var(--space-32)">${title2('Pick a tiny escape')}<p class="b text-body">5 minutes to play — solo or together.</p></div>
+    <p class="cm sec text-label" style="margin:0 0 var(--space-12)">Playing</p>
     <button class="row" data-act="invite" style="padding:0;gap:var(--space-16)">
-      <span style="display:flex">${S.players.map((p,i)=>`<span style="margin-left:${i?6:0}px">${av(p,44)}</span>`).join('')}<span class="g-add" style="margin-left:var(--space-6);width:44px;height:44px;box-sizing:border-box;border-radius:var(--radius-full);border:2px dashed var(--color-border-dashed);background:#fff;display:grid;place-items:center">${ic('plus','i20')}</span></span>
-      <span class="tx" style="gap:var(--space-8)"><b class="bm">${S.players.length>1?S.players.slice(1).map(p=>PL[p].name).join(', ')+' joined':'Add someone'}</b><span class="c sec">${S.players.length>1?'Add more from their phone':'They join from their phone'}</span></span>
+      <span style="display:flex">${S.players.map((p,i)=>`<span style="margin-left:${i?6:0}px">${av(p,44)}</span>`).join('')}<span class="g-add" style="margin-left:var(--space-6);width:44px;height:44px;box-sizing:border-box;border-radius:var(--radius-full);border:2px dashed var(--color-border-dashed);background:var(--color-background-white);display:grid;place-items:center">${ic('plus','i20')}</span></span>
+      <span class="tx" style="gap:var(--space-8)"><b class="bm text-row-title">${S.players.length>1?S.players.slice(1).map(p=>PL[p].name).join(', ')+' joined':'Add someone'}</b><span class="c sec text-row-subtitle">${S.players.length>1?'Add more from their phone':'They join from their phone'}</span></span>
     </button>
-    <div class="stack g12" style="margin-top:var(--space-24)">${GAMES.map(([k,t,s,m,bg])=>`<button class="tile ${bg}" data-act="game" data-v="${k}" style="flex-direction:row;align-items:center;gap:var(--space-16);padding:var(--space-16) var(--space-24) var(--space-16) var(--space-16);height:118px">${gameSlot(k, GAMES.findIndex(g=>g[0]===k))}<span class="stack" style="gap:var(--space-24);flex:1"><span class="stack g8"><b class="h4">${t}</b><span class="b sec">${s}</span></span><span class="cm">${m}</span></span></button>`).join('')}</div>
+    <div class="stack g12" style="margin-top:var(--space-24)">${GAMES.map(([k,t,s,m,bg])=>`<button class="tile ${bg}" data-act="game" data-v="${k}" style="flex-direction:row;align-items:center;gap:var(--space-16);padding:var(--space-16) var(--space-24) var(--space-16) var(--space-16);height:118px">${gameSlot(k, GAMES.findIndex(g=>g[0]===k))}<span class="stack" style="gap:var(--space-24);flex:1"><span class="stack g8"><b class="h4 text-card-title">${t}</b><span class="b sec text-body">${s}</span></span><span class="cm text-label">${m}</span></span></button>`).join('')}</div>
   </div></div>
   ${foot(btn(`${ic('userplus','i16')}Invite a friend`,'data-act="invite"'))}`,
   mount(el){ el.classList.add('scr-white'); stagger(el.querySelectorAll('[data-act="game"]'), RISE, {step:60, delay:120}); }};
@@ -2940,10 +2953,10 @@ function inviteSheet(){
       else on = rnd()>.52;
       cells.push(`<i class="${on?'':'o'}"></i>`); } return cells.join(''); };
   const MAX = 4, next = () => ['jb','tuna'].filter(p=>!S.players.includes(p))[0];
-  const slot = (p, i) => p ? `<span class="jm" data-p="${p}">${av(p,40)}<span class="c">${p==='you'?'You':PL[p].name}</span></span>`
-                           : `<span class="jm empty ${i===S.players.length && next()?'waiting':''}"><span class="jm-wait">${i===S.players.length && next()?'<i></i><i></i><i></i>':''}</span><span class="c">${i===S.players.length && next()?'Waiting…':'Free'}</span></span>`;
+  const slot = (p, i) => p ? `<span class="jm" data-p="${p}">${av(p,40)}<span class="c text-caption">${p==='you'?'You':PL[p].name}</span></span>`
+                           : `<span class="jm empty ${i===S.players.length && next()?'waiting':''}"><span class="jm-wait">${i===S.players.length && next()?'<i></i><i></i><i></i>':''}</span><span class="c text-caption">${i===S.players.length && next()?'Waiting…':'Free'}</span></span>`;
   const slots = () => Array.from({length:MAX}, (_,i) => slot(S.players[i], i)).join('');
-  const head = (t, sub) => `<div class="inv-hd"><p class="bm">${t}</p><p class="c">${sub}</p></div>`;
+  const head = (t, sub) => `<div class="inv-hd"><p class="bm text-row-title">${t}</p><p class="c text-caption">${sub}</p></div>`;
   sheet(sheetDoc({title:'Invite players', sub:'Friends scan this code to join you. Up to three.', body:`
     <div class="inv-card inv-qr">
       <div class="qr-frame"><div class="qr-wrap" style="position:relative;width:max-content;margin:0 auto"><div class="qr" aria-label="QR code to join">${qrCells()}</div><span class="qr-scan" aria-hidden="true"></span></div></div></div>
@@ -2985,7 +2998,7 @@ SC.a3 = {flow:'games', label:'Set up · Pinoy Henyo', parent:'a1', render:()=>`
   <div class="scroll">${hz('soft')}<div class="body">
     <div class="stack" style="align-items:center;text-align:center">
       <div class="pic g-pic" style="width:80px;height:80px"><img class="g-bob" src="${A.g_henyo}" alt="" style="width:96px;height:96px;max-width:none;margin:-8px"></div>
-      <h1 class="h2" style="margin-top:var(--space-24)">Pinoy Henyo</h1><p class="b sec" style="margin-top:var(--space-16);max-width:297px">Guess the secret word by asking questions.</p>
+      <h1 class="h2 text-screen-title" style="margin-top:var(--space-24)">Pinoy Henyo</h1><p class="b sec text-body" style="margin-top:var(--space-16);max-width:297px">Guess the secret word by asking questions.</p>
     </div>
     <div style="margin-top:var(--space-48)">${strip(84)}</div>
     <div class="card help-card rows44" style="padding:var(--space-16) var(--space-16) var(--space-20);margin-top:var(--space-24)">
@@ -3005,10 +3018,10 @@ const CAT_IC = {Food:'bowl',Objects:'box',Places:'pin',Animals:'paw',Culture:'la
 SC.a4 = {flow:'games', label:'Game settings', parent:'a3', render:()=>{ const n = Object.values(S.cats).filter(Boolean).length; return `
   ${topbar({t:'Set up game', right:R.live()+R.exit('m6',''), tight:true})}
   <div class="scroll"><div class="body">
-    <div class="sec-h" style="margin:0 var(--space-2) var(--space-16)"><p class="h4">Round length</p></div>
+    <div class="sec-h" style="margin:0 var(--space-2) var(--space-16)"><p class="h4 text-section-title">Round length</p></div>
     <div class="seg seg36" role="radiogroup" aria-label="Round length"><span class="knob" style="left:calc(4px + (100% - 8px)/3*${S.len-1});width:calc((100% - 8px)/3 - 2px)"></span>${[1,2,3].map(v=>`<button role="radio" aria-checked="${S.len===v}" data-act="len" data-v="${v}">${v} min</button>`).join('')}</div>
-    <div class="sec-h" style="margin:var(--space-48) var(--space-2) var(--space-16)"><p class="h4">Categories</p><p class="c" id="catn">Pick as many as you like — ${n} chosen</p></div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-12)">${Object.keys(S.cats).map(c=>`<button class="tile cat-tile ${S.cats[c]?'on':''}" data-act="catT" data-v="${c}" role="checkbox" aria-checked="${S.cats[c]}"><span style="display:flex;justify-content:space-between;align-items:center;width:100%;height:24px"><span style="width:24px;height:24px;display:grid;place-items:center;color:var(--color-text-text)">${ic(CAT_IC[c],'i20')}</span><span class="sel">${ic('check')}</span></span><b class="bm">${c}</b></button>`).join('')}</div>
+    <div class="sec-h" style="margin:var(--space-48) var(--space-2) var(--space-16)"><p class="h4 text-section-title">Categories</p><p class="c text-caption" id="catn">Pick as many as you like — ${n} chosen</p></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-12)">${Object.keys(S.cats).map(c=>`<button class="tile cat-tile ${S.cats[c]?'on':''}" data-act="catT" data-v="${c}" role="checkbox" aria-checked="${S.cats[c]}"><span style="display:flex;justify-content:space-between;align-items:center;width:100%;height:24px"><span style="width:24px;height:24px;display:grid;place-items:center;color:var(--color-text-text)">${ic(CAT_IC[c],'i20')}</span><span class="sel">${ic('check')}</span></span><b class="bm text-row-title">${c}</b></button>`).join('')}</div>
   </div></div>
   ${foot(btn('Start game',`data-act="startGame" ${n?'':'disabled'}`))}`;}};
 const guesser = () => S.players[(S.round + 1) % S.players.length];
@@ -3016,8 +3029,8 @@ const word = () => WORDS[S.round % WORDS.length];
 SC.c1 = {flow:'games', label:'Round intro', parent:'a3', render:()=>{ const g = guesser(), gn = PL[g].name, you = g==='you'; return `
   ${topbar({t:`Round ${S.round+1}`, right:S.round>0?R.exit('m6','game'):R.exit('m6',''), tight:true})}
   <div class="scroll">${hz('game')}<div class="body">
-    <div class="stack" style="align-items:center;text-align:center">${av(g,84)}<h1 class="h2" style="margin-top:var(--space-16)"><em>Round ${S.round+1}</em><br>${you?'You are':gn+' is'} guessing</h1><p class="bl sec" style="max-width:297px;margin-top:var(--space-24)">${you?'You guess':gn+' guesses'} this round. Hold the screen facing away from ${you?'you':'them'}.</p></div>
-    <div class="sec-h" style="margin:var(--space-48) var(--space-2) var(--space-16)"><p class="h4">How it works</p></div>
+    <div class="stack" style="align-items:center;text-align:center">${av(g,84)}<h1 class="h2 text-screen-title" style="margin-top:var(--space-16)"><em>Round ${S.round+1}</em><br>${you?'You are':gn+' is'} guessing</h1><p class="bl sec text-screen-lead" style="max-width:297px;margin-top:var(--space-24)">${you?'You guess':gn+' guesses'} this round. Hold the screen facing away from ${you?'you':'them'}.</p></div>
+    <div class="sec-h" style="margin:var(--space-48) var(--space-2) var(--space-16)"><p class="h4 text-section-title">How it works</p></div>
     <div class="card" style="padding:var(--space-16) var(--space-16) var(--space-20)">${leadRow('phone',`${you?'You hold':gn+' holds'} the phone facing out`,'')}${leadRow('scan','Everyone else reads the word','')}${leadRow('msg','Answer Yes, No or Maybe out loud','')}</div>
   </div></div>
   ${foot(btn('Start — 3, 2, 1','data-go="c2"'))}`;},
@@ -3031,8 +3044,8 @@ SC.c2 = {flow:'games', label:'Countdown', parent:'c1', render:()=>`
   <div class="scroll" style="display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;padding-top:264px">
     <div id="cblob" style="position:absolute;left:50%;top:44%;width:330px;height:330px;margin:-165px 0 0 -165px;border-radius:50%;filter:blur(40px);background:radial-gradient(closest-side at 40% 45%,var(--color-haze-warm),transparent),radial-gradient(closest-side at 62% 55%,var(--color-haze-gather-candy),transparent),radial-gradient(closest-side at 50% 70%,var(--color-haze-gather-lilac),transparent)"></div>
     <b id="cnum" style="position:relative;font-size:var(--font-size-180);font-weight:var(--font-weight-medium);line-height:var(--leading-solid);letter-spacing:var(--tracking-tight);text-box:trim-both cap alphabetic">3</b>
-    <p class="h3" style="position:relative;margin-top:76px">Screen facing away from ${guesser()==='you'?'you':PL[guesser()].name}</p>
-    <p class="bl sec" style="position:relative;margin-top:var(--space-12)">The word appears when the count ends</p>
+    <p class="h3 text-place-title" style="position:relative;margin-top:76px">Screen facing away from ${guesser()==='you'?'you':PL[guesser()].name}</p>
+    <p class="bl sec text-screen-lead" style="position:relative;margin-top:var(--space-12)">The word appears when the count ends</p>
   </div>`,
   mount(el){ const n = el.querySelector('#cnum'), b = el.querySelector('#cblob');
     const pop = () => { n.animate([{transform:'scale(1.35)',opacity:0},{transform:'scale(1)',opacity:1}],{duration:reduce?1:420,easing:'cubic-bezier(.2,1.4,.4,1)'}); b.animate([{transform:'scale(.85)'},{transform:'scale(1.08)'},{transform:'scale(1)'}],{duration:900}); };
@@ -3044,11 +3057,11 @@ SC.c3 = {flow:'games', label:'Round · secret word', parent:'c1', render:()=>{ c
   <div class="scroll"><div class="body" style="display:flex;flex-direction:column;min-height:100%;box-sizing:border-box">
     <div style="width:100%">
       <div class="progress" style="height:8px"><i id="tbar" style="width:100%"></i></div>
-      <div style="display:flex;justify-content:space-between;margin-top:var(--space-12)" class="cm"><span class="sec">Round ${S.round+1} of ${S.players.length}</span><b id="tleft" style="font-weight:var(--font-weight-medium)">${S.len}:00</b></div>
+      <div style="display:flex;justify-content:space-between;margin-top:var(--space-12)" class="cm text-label"><span class="sec">Round ${S.round+1} of ${S.players.length}</span><b id="tleft" style="font-weight:var(--font-weight-medium)">${S.len}:00</b></div>
     </div>
     <div style="margin-top:113px">
       <div style="height:274px;border-radius:var(--radius-28);display:grid;place-items:center;position:relative;background:#eab6bf" id="secret"><span class="secret-bg" aria-hidden="true"><i class="sb1"></i><i class="sb2"></i><i class="sb3"></i><i class="sb4"></i></span><b style="position:relative;font-size:var(--font-size-48);font-weight:var(--font-weight-regular);letter-spacing:-.03em;line-height:var(--leading-tight);text-box:trim-both cap alphabetic">${w.w}</b></div>
-      <div class="center stack" style="gap:var(--space-12);margin-top:var(--space-48)"><p class="h3">${w.clue}</p><p class="bl sec">Answer Yes, No or Maybe</p></div>
+      <div class="center stack" style="gap:var(--space-12);margin-top:var(--space-48)"><p class="h3 text-place-title">${w.clue}</p><p class="bl sec text-screen-lead">Answer Yes, No or Maybe</p></div>
     </div>
   </div></div>
   ${foot(btn('Got it','data-act="gotIt"')+btn('Skip word','data-act="pass"','plain'))}`;},
@@ -3076,13 +3089,13 @@ const factTile = (tone, icon, label, value, detail, valAttr='') => `<div class="
 SC.c5 = {flow:'games', label:'Round result', parent:'a3', render:()=>{ const L = S.last || {g:'jb',secs:38,pts:150,got:true}; const gn = L.g==='you'?'You':PL[L.g].name; const lastRound = S.round+1 >= S.players.length; return `
   ${topbar({t:`Round ${S.round+1}`, right:R.exit('m6','game'), tight:true})}
   <div class="scroll">${hz('soft')}<div class="body">
-    <div class="stack" style="align-items:center;text-align:center">${av(L.g,84)}<h1 class="h2" style="margin-top:var(--space-16)"><em>Round ${S.round+1}</em><br>${L.got?`${gn} got it`:'Time ran out'}</h1></div>
+    <div class="stack" style="align-items:center;text-align:center">${av(L.g,84)}<h1 class="h2 text-screen-title" style="margin-top:var(--space-16)"><em>Round ${S.round+1}</em><br>${L.got?`${gn} got it`:'Time ran out'}</h1></div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-10);margin-top:var(--space-32)">
       ${factTile('ft-ambient','clock','Time taken', fmtT(L.secs), L.got ? `of ${S.len}:00 on the clock` : 'Nobody guessed it')}
       ${factTile('ft-gradient','gem','Points', '+0', L.got?(L.pts>100?'100 + 50 for speed':'100 for the word'):'Nobody scored', 'id="rpts"')}
     </div>
-    <div class="sec-h" style="margin:var(--space-32) var(--space-2) var(--space-16)"><p class="h4">Score so far</p></div>
-    <div class="card" style="padding:var(--space-16) var(--space-16) var(--space-20)">${[...S.players].sort((a,b)=>(S.scores[b]||0)-(S.scores[a]||0)).map(p=>`<div class="row">${av(p,36)}<span class="tx b">${PL[p].name}</span><b class="b" style="font-weight:var(--font-weight-regular);color:var(--color-text-muted)">${S.scores[p]||0}</b></div>`).join('')}</div>
+    <div class="sec-h" style="margin:var(--space-32) var(--space-2) var(--space-16)"><p class="h4 text-section-title">Score so far</p></div>
+    <div class="card" style="padding:var(--space-16) var(--space-16) var(--space-20)">${[...S.players].sort((a,b)=>(S.scores[b]||0)-(S.scores[a]||0)).map(p=>`<div class="row">${av(p,36)}<span class="tx b text-body">${PL[p].name}</span><b class="b text-body" style="font-weight:var(--font-weight-regular);color:var(--color-text-muted)">${S.scores[p]||0}</b></div>`).join('')}</div>
   </div></div>
   ${foot(btn(lastRound?'See final results':'Next player',`data-act="${lastRound?'final':'nextRound'}"`)+btn('Stop here','data-act="final"','paper'))}`;},
   mount(el){ const L = S.last; if (L) countUp(el.querySelector('#rpts'),0,L.pts,800,v=>'+'+Math.round(v));
@@ -3112,7 +3125,7 @@ function podiumHTML(ranked){
     const P = PLACES[rank+1], cx = P.x + P.w/2, nx = P.x + (P.nameX||0), nw = P.w - (P.nameX||0);
     return `<div class="col pod-${rank+1}" style="position:absolute;left:${P.x}px;top:${P.y}px;width:${P.w}px;height:${P.h}px;border-radius:${P.r};overflow:hidden;transform-origin:50% 100%;z-index:${rank===0?2:1};background-size:100% 100%">
         <b class="pod-n" style="left:${P.nx}px;width:${P.w}px;top:${P.ny}px;font-size:${P.nf}px;color:rgba(255,255,255,${P.na})">${rank+1}</b></div>
-      <div style="position:absolute;left:${nx}px;width:${nw}px;top:${P.nameY}px;text-align:center;z-index:3"><b style="display:block;font-size:${P.nameF}px;font-weight:var(--font-weight-semibold);line-height:var(--leading-snug);text-box:trim-both cap alphabetic">${PL[p].name}</b><span class="c sec" style="display:block;margin-top:var(--space-8)">${S.scores[p]||0} pts</span></div>
+      <div style="position:absolute;left:${nx}px;width:${nw}px;top:${P.nameY}px;text-align:center;z-index:3"><b style="display:block;font-size:${P.nameF}px;font-weight:var(--font-weight-semibold);line-height:var(--leading-snug);text-box:trim-both cap alphabetic">${PL[p].name}</b><span class="c sec text-row-subtitle" style="display:block;margin-top:var(--space-8)">${S.scores[p]||0} pts</span></div>
       <div class="pod-av" style="left:${cx - P.ring/2}px;top:${P.ringY}px;width:${P.ring}px;height:${P.ring}px;border:1.25px solid ${P.rc};z-index:3">${av(p, P.ring-4)}</div>`; }).join('');
 }
 SC.c6 = {flow:'games', label:'Final results', parent:'a1', render:()=>{
@@ -3120,11 +3133,11 @@ SC.c6 = {flow:'games', label:'Final results', parent:'a1', render:()=>{
   const played = S.played.length ? S.played : [{w:'Mango',who:'JB',t:38,pts:150},{w:'Jeepney',who:'You',t:42,pts:100},{w:'Carabao',who:null}];
   return `${topbar({t:'Final results', right:R.live()+R.exit('m6',''), tight:true})}
   <div class="scroll">${hz('actions')}<div class="body">
-    <div class="center stack" style="gap:var(--space-16)"><h1 class="h2">Final results</h1><p class="bl sec">Great game! Here’s how you did.</p></div>
+    <div class="center stack" style="gap:var(--space-16)"><h1 class="h2 text-screen-title">Final results</h1><p class="bl sec text-screen-lead">Great game! Here’s how you did.</p></div>
     <div class="podium2" style="position:relative;height:254px;margin-top:var(--space-40)">${podiumHTML(ranked)}</div>
-    <div class="sec-h" style="margin:var(--space-24) var(--space-2) var(--space-16)"><p class="h4">Words played</p></div>
+    <div class="sec-h" style="margin:var(--space-24) var(--space-2) var(--space-16)"><p class="h4 text-section-title">Words played</p></div>
     <div class="card" style="padding:var(--space-16) var(--space-16) var(--space-20)">${played.map((r,i)=>`<div class="kv" style="padding:var(--space-18) 0;border:0;${i?'margin-top:var(--space-12)':''}"><span style="color:var(--color-text-text)">${r.w}</span><span style="color:var(--color-text-muted)">${r.who?`${r.who} · ${fmtT(r.t)} · +${r.pts}`:'Nobody — time ran out'}</span></div>`).join('')}</div>
-    <button class="card row" data-go="c7" style="padding:var(--space-16);gap:var(--space-12);margin-top:var(--space-24);background:#fff"><span style="width:36px;height:36px;border-radius:var(--radius-full);background:var(--gradient-peach);display:grid;place-items:center;color:var(--color-text-muted);flex:none">${ic('gem','i16')}</span><span class="tx"><b class="bm">Keep your scores, play in teams</b><span class="c">Everything else lives in the Salmon app</span></span>${ic('chevR','chev')}</button>
+    <button class="card row" data-go="c7" style="padding:var(--space-16);gap:var(--space-12);margin-top:var(--space-24);background:var(--color-background-white)"><span style="width:36px;height:36px;border-radius:var(--radius-full);background:var(--gradient-peach);display:grid;place-items:center;color:var(--color-text-muted);flex:none">${ic('gem','i16')}</span><span class="tx"><b class="bm text-row-title">Keep your scores, play in teams</b><span class="c text-row-subtitle">Everything else lives in the Salmon app</span></span>${ic('chevR','chev')}</button>
   </div></div>
   ${foot(btn('Play again','data-act="again"')+btn('Back to games','data-go="a1"','paper'))}`;},
   mount(el){ if (reduce) return;
@@ -3138,7 +3151,7 @@ SC.c6 = {flow:'games', label:'Final results', parent:'a1', render:()=>{
 SC.c7 = {flow:'games', label:'Keep this going in Salmon app', parent:'c6', render:()=>`
   ${topbar({t:'Salmon app', right:R.info()+R.exit('m6',''), tight:true})}
   <div class="scroll">${hz('soft')}<div class="body">
-    <div class="stack" style="align-items:center;text-align:center">${pic('a_app',80)}<h1 class="h2" style="margin-top:var(--space-24)">Keep this going<br><em>in Salmon app</em></h1><p class="b sec" style="max-width:297px;margin-top:var(--space-16)">Today’s scores stay on this device until you close the tab.</p></div>
+    <div class="stack" style="align-items:center;text-align:center">${pic('a_app',80)}<h1 class="h2 text-screen-title" style="margin-top:var(--space-24)">Keep this going<br><em>in Salmon app</em></h1><p class="b sec text-body" style="max-width:297px;margin-top:var(--space-16)">Today’s scores stay on this device until you close the tab.</p></div>
     <div style="margin-top:var(--space-48)">${strip(84)}</div>
     <div class="card" style="padding:var(--space-16) var(--space-16) var(--space-20);margin-top:var(--space-24)">${leadRow('gem','Scores that stick between days','')}${leadRow('userplus','Play in teams, not just solo','')}${leadRow('plus','More categories and your own words','')}${leadRow('image','The other games in one place','')}</div>
   </div></div>
@@ -3154,8 +3167,8 @@ const MISSING = [
 SC.x1 = {flow:'miss', label:'What’s missing?', parent:'i1', render:()=>`
   ${topbar({t:'Missing something', right:R.info()})}
   <div class="scroll">${hz('warm')}<div class="body">
-    <div class="intro">${title2('What’s<br><em>missing?</em>')}<p class="b">Tell us what you don’t have — there’s usually a way around it. You don’t have to answer.</p></div>
-    <div class="stack g8">${MISSING.map(([k,i,t,s])=>`<button class="boxrow" data-act="missing" data-v="${k}"><span class="lead-ic">${ic(i)}</span><span class="tx"><b class="bm">${t}</b><span class="c">${s}</span></span>${ic('chevR','chev')}</button>`).join('')}</div>
+    <div class="intro">${title2('What’s<br><em>missing?</em>')}<p class="b text-body">Tell us what you don’t have — there’s usually a way around it. You don’t have to answer.</p></div>
+    <div class="stack g8">${MISSING.map(([k,i,t,s])=>`<button class="boxrow" data-act="missing" data-v="${k}"><span class="lead-ic">${ic(i)}</span><span class="tx"><b class="bm text-row-title">${t}</b><span class="c text-row-subtitle">${s}</span></span>${ic('chevR','chev')}</button>`).join('')}</div>
   </div></div>
   ${foot(btn('Leave anyway','data-go="x7"'))}`};
 
@@ -3167,11 +3180,11 @@ const HELD = () => `<div class="card" style="padding:var(--space-4) var(--space-
 SC.x2 = {flow:'miss', label:'No ID with you', parent:'x1', render:()=>`
   ${topbar({t:'Missing something', right:R.info()+R.exit('i1','')})}
   <div class="scroll">${hz('warm')}<div class="body">
-    <div class="intro">${title2('No ID<br><em>with you?</em>')}<p class="b">Your price and discounts can wait. Go get your ID — we’ll move the meeting so you don’t lose your place.</p></div>
-    <div class="sec-h"><p class="h4">Held for you</p><p class="c">Nothing changes while you’re away.</p></div>
+    <div class="intro">${title2('No ID<br><em>with you?</em>')}<p class="b text-body">Your price and discounts can wait. Go get your ID — we’ll move the meeting so you don’t lose your place.</p></div>
+    <div class="sec-h"><p class="h4 text-section-title">Held for you</p><p class="c text-caption">Nothing changes while you’re away.</p></div>
     ${HELD()}
-    <div class="sec-h mt32"><p class="h4">Any one of these works</p><p class="c">Bring the original — valid and not expired.</p></div>
-    <div class="stack g8">${IDS.map(([k,t,s])=>`<div class="boxrow"><span class="tx"><b class="bm">${t}</b><span class="c">${s}</span></span></div>`).join('')}</div>
+    <div class="sec-h mt32"><p class="h4 text-section-title">Any one of these works</p><p class="c text-caption">Bring the original — valid and not expired.</p></div>
+    <div class="stack g8">${IDS.map(([k,t,s])=>`<div class="boxrow"><span class="tx"><b class="bm text-row-title">${t}</b><span class="c text-row-subtitle">${s}</span></span></div>`).join('')}</div>
   </div></div>
   ${foot(btn('Move the meeting','data-go="x3"')+btn('Leave','data-go="x7"','paper'))}`};
 
@@ -3179,8 +3192,8 @@ const SLOTS = [['1h','In 1 hour','4:20 PM · same place'],['eve','Later today','
 SC.x3 = {flow:'miss', label:'Move the meeting', parent:'x2', render:()=>{ const sel = S.slot||'eve'; return `
   ${topbar({t:'Move the meeting', right:R.info()+R.exit('i1','')})}
   <div class="scroll"><div class="body">
-    <div class="intro">${title2('When can you<br><em>be back?</em>')}<p class="b">Mark keeps your item, price and discounts until then.</p></div>
-    <div class="stack g8" role="radiogroup" aria-label="New time">${SLOTS.map(([k,t,s])=>`<button class="boxrow ${sel===k?'on':''}" data-act="slot" data-v="${k}" role="radio" aria-checked="${sel===k}"><span class="radio"></span><span class="tx"><b class="bm">${t}</b><span class="c">${s}</span></span></button>`).join('')}</div>
+    <div class="intro">${title2('When can you<br><em>be back?</em>')}<p class="b text-body">Mark keeps your item, price and discounts until then.</p></div>
+    <div class="stack g8" role="radiogroup" aria-label="New time">${SLOTS.map(([k,t,s])=>`<button class="boxrow ${sel===k?'on':''}" data-act="slot" data-v="${k}" role="radio" aria-checked="${sel===k}"><span class="radio"></span><span class="tx"><b class="bm text-row-title">${t}</b><span class="c text-row-subtitle">${s}</span></span></button>`).join('')}</div>
   </div></div>
   ${foot(btn('Move meeting','data-act="moveTime"'),'Mark gets a note — no need to call.')}`;}};
 SC.x4 = {flow:'miss', label:'Meeting moved', parent:'m6', render:()=>{ const s = SLOTS.find(x=>x[0]===(S.slot||'eve')); return `
@@ -3194,7 +3207,7 @@ SC.x4 = {flow:'miss', label:'Meeting moved', parent:'m6', render:()=>{ const s =
 SC.x7 = {flow:'miss', label:'Leave', parent:'x1', render:()=>`
   ${topbar({t:'Leave', back:false, right:R.exit('restart',''), tight:true})}
   <div class="scroll">${hz('soft')}<div class="body" style="padding-top:120px">
-    <div class="stack" style="align-items:center;text-align:center"><h1 class="h2"><em>Ticket</em><br>closed</h1><p class="bl sec" style="max-width:297px;margin-top:var(--space-24)">Mark won’t come to the meeting point. Thanks for letting us know.</p></div>
+    <div class="stack" style="align-items:center;text-align:center"><h1 class="h2 text-screen-title"><em>Ticket</em><br>closed</h1><p class="bl sec text-screen-lead" style="max-width:297px;margin-top:var(--space-24)">Mark won’t come to the meeting point. Thanks for letting us know.</p></div>
   </div></div>
   ${foot(btn('Done','data-act="leaveDone"'))}`};
 const ALT = {
@@ -3205,7 +3218,7 @@ const ALT = {
 SC.x8 = {flow:'miss', label:'Other missing items', parent:'x1', render:()=>{ const a = ALT[S.missing]||ALT.phone; return `
   ${topbar({t:'Missing something', right:R.info()+R.exit('i1','')})}
   <div class="scroll">${hz('warm')}<div class="body">
-    <div class="intro">${title2(a[0])}<p class="b">${a[1]}</p></div>
+    <div class="intro">${title2(a[0])}<p class="b text-body">${a[1]}</p></div>
   </div></div>
   ${foot(btn('Continue','data-go="m4"')+btn('Leave','data-go="x7"','paper'))}`;}};
 
@@ -3218,12 +3231,12 @@ SC.m9 = {flow:'wait', label:'Meeting in progress', parent:'m6', render:()=>{ con
   ${topbar({t:'With Mark', back:false, right:'<span class="livel" style="color:var(--color-text-text)"><i class="dot pulse"></i>Live</span>', tight:true})}
   <div class="scroll">${hz('soft')}<div class="body">
     <div class="stack" style="align-items:center;text-align:center">
-      <div class="mp-duo"><span class="mp-a">${av('you',72)}</span><span class="mp-link"><i></i><i></i><i></i></span><span class="mp-b"><img src="${A.mark}" alt="" style="width:72px;height:72px;border-radius:var(--radius-full);object-fit:cover;box-shadow:0 0 0 3px #fff"></span></div>
-      <h1 class="h2" style="margin-top:var(--space-24)"><em>Meeting</em><br>in progress</h1>
-      <p class="b sec" style="max-width:297px;margin-top:var(--space-16)">Mark is with you now. Keep this screen open — approval arrives here.</p>
+      <div class="mp-duo"><span class="mp-a">${av('you',72)}</span><span class="mp-link"><i></i><i></i><i></i></span><span class="mp-b"><img src="${A.mark}" alt="" style="width:72px;height:72px;border-radius:var(--radius-full);object-fit:cover;box-shadow:0 0 0 3px var(--color-paper)"></span></div>
+      <h1 class="h2 text-screen-title" style="margin-top:var(--space-24)"><em>Meeting</em><br>in progress</h1>
+      <p class="b sec text-body" style="max-width:297px;margin-top:var(--space-16)">Mark is with you now. Keep this screen open — approval arrives here.</p>
     </div>
     <div class="card help-card" style="padding:var(--space-16) var(--space-16) var(--space-20);margin-top:var(--space-40)" id="mpSteps">
-      ${steps.map(([i,t,sub,st],k)=>`<div class="row mp-step ${st}" data-k="${k}"><span class="lead-ic">${ic(i)}</span><span class="tx"><b class="bm">${t}</b><span class="c">${sub}</span></span><span class="mp-st">${st==='done'?ic('check'):st==='now'?'<i class="mp-spin"></i>':''}</span></div>`).join('')}
+      ${steps.map(([i,t,sub,st],k)=>`<div class="row mp-step ${st}" data-k="${k}"><span class="lead-ic">${ic(i)}</span><span class="tx"><b class="bm text-row-title">${t}</b><span class="c text-row-subtitle">${sub}</span></span><span class="mp-st">${st==='done'?ic('check'):st==='now'?'<i class="mp-spin"></i>':''}</span></div>`).join('')}
     </div>
   </div></div>
   ${foot(btn('Need help?','data-act="mpHelp"','plain'),'','solo')}`;},
@@ -3351,7 +3364,7 @@ const ACT = {
   shared:()=>toast('Link copied'),
   term:b=>{ const old = TERMS[S.term]; S.term = +b.dataset.v; groupToggle(b,'.tile'); centerTerm(cur.el, true); countUp(cur.el.querySelector('#mpay'), old, TERMS[S.term], 600, v=>v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})); },
   when:b=>{ S.when = b.dataset.v; groupToggle(b,'.tile'); if (S.when==='later') toast('Pick a time — Mark’s next free slot is 4:00 PM'); },
-  mark:()=>sheet(`<!--S--><div class="sh-in flush"><div style="display:flex;gap:var(--space-16);align-items:center"><img src="${A.mark}" alt="" style="width:88px;height:88px;border-radius:var(--radius-20);object-fit:cover"><div class="stack g8"><b class="h3">Mark Reyes</b><span class="badge" style="align-self:flex-start">${ic('shield')}Verified ambassador</span></div></div>
+  mark:()=>sheet(`<!--S--><div class="sh-in flush"><div style="display:flex;gap:var(--space-16);align-items:center"><img src="${A.mark}" alt="" style="width:88px;height:88px;border-radius:var(--radius-20);object-fit:cover"><div class="stack g8"><b class="h3 text-place-title">Mark Reyes</b><span class="badge" style="align-self:flex-start">${ic('shield')}Verified ambassador</span></div></div>
     <div class="card mt24" style="background:var(--color-background-muted);padding:var(--space-4) var(--space-16)">${leadRow('idcard','How to spot him','Salmon ID badge · red Salmon shirt')}${leadRow('msg','Speaks','English, Filipino')}${leadRow('sparkle','Meetings this month','42 · rated 4.9')}</div>
     </div><div class="sh-ft">${btn(ic('msg','i16')+'Chat with Mark','data-chat')}</div>`, o=>{
       o.querySelector('[data-chat]').addEventListener('click', ()=>{ o.close(); setTimeout(()=>toast('Chat with Mark opens in the Salmon app'), 200); });
@@ -3377,7 +3390,7 @@ const ACT = {
   agree:b=>{ S.agree = !S.agree; b.setAttribute('aria-checked',S.agree); b.querySelector('.chk').classList.toggle('on',S.agree); cur.el.querySelector('#prep').disabled = !S.agree; },
   shoot:b=>shoot(cur.el,b.dataset.v),
   fulfil:b=>{ S.fulfil = b.dataset.v; rerender(); },
-  payMethod:()=>{ const opt = (k,icn,t,sub) => `<button class="boxrow ${S.payBy===k?'on':''}" data-pm="${k}" role="radio" aria-checked="${S.payBy===k}"><span class="lead-ic" style="width:36px;height:36px">${ic(icn,'i16')}</span><span class="tx"><b class="bm">${t}</b><span class="c">${sub}</span></span><span class="radio"></span></button>`;
+  payMethod:()=>{ const opt = (k,icn,t,sub) => `<button class="boxrow ${S.payBy===k?'on':''}" data-pm="${k}" role="radio" aria-checked="${S.payBy===k}"><span class="lead-ic" style="width:36px;height:36px">${ic(icn,'i16')}</span><span class="tx"><b class="bm text-row-title">${t}</b><span class="c text-row-subtitle">${sub}</span></span><span class="radio"></span></button>`;
     sheet(sheetDoc({title:'Payment method', sub:'Pay the down payment with GCash or a card.', body:`<div class="stack g8" role="radiogroup" style="margin-top:var(--space-16)">${opt('gcash','landmark','GCash','+63 917 ··· 0142')}${opt('card','wallet','Credit or debit card', S.payBy==='card'?'Card ··· 1290':'Visa, Mastercard, JCB')}</div>`, buttons:btn('Done','data-close')}), o => {
       o.addEventListener('click', e => { const b = e.target.closest('[data-pm]'); if (!b) return; const k = b.dataset.pm; o.close();
         if (k === 'card') setTimeout(() => go('p3b'), 220); else { S.payBy = 'gcash'; rerender(); } }); }); },
@@ -3414,7 +3427,7 @@ const ACT = {
   toPlace:()=>{ S.dest = 'place'; go('w4'); },
   timeSheet:()=>timeSheet(),
   buzz:b=>{ S.buzz = S.buzz === false; b.setAttribute('aria-checked', S.buzz); b.querySelector('.tgl').classList.toggle('on', S.buzz); toast(S.buzz ? 'We’ll buzz you when Mark is ready' : 'No buzz — the ticket still updates'); },
-  manage:()=>{ const row = (go, icn, t, sub, extra='') => `<button class="boxrow" ${go} ${extra}><span class="lead-ic" style="width:36px;height:36px">${ic(icn,'i16')}</span><span class="tx"><b class="bm">${t}</b><span class="c">${sub}</span></span>${ic('chevR','chev')}</button>`;
+  manage:()=>{ const row = (go, icn, t, sub, extra='') => `<button class="boxrow" ${go} ${extra}><span class="lead-ic" style="width:36px;height:36px">${ic(icn,'i16')}</span><span class="tx"><b class="bm text-row-title">${t}</b><span class="c text-row-subtitle">${sub}</span></span>${ic('chevR','chev')}</button>`;
     sheet(sheetDoc({title:'Manage this meeting', sub:'Mark sees every change right away.', body:`<div class="stack g8" style="margin-top:var(--space-16)">
       ${tkPhase() === 'coming' ? row('data-mg="time"','clock','Change the time',`Now around ${protoClock(etaMins())}`) : row('data-mg="more"','clock','I need a few more minutes','Mark will wait')}
       ${row('data-mg="w2"','pin','Change the place', `Now at ${S.where.name}`)}
@@ -3543,7 +3556,7 @@ const start = location.hash.slice(1);
 if (window.STUDY === 'swap') window.__studyPlay(); else jump(!TEST && SC[start] ? start : 'm1');
 /* ?debug: shows the real visible area on the phone, to check that nothing hides behind the browser's bars */
 if (/[?&]debug\b/.test(location.search)) (()=>{ const d = document.createElement('div');
-  d.style.cssText = 'position:fixed;left:8px;right:8px;top:50%;z-index:9999;transform:translateY(-50%);background:rgba(27,26,27,.88);color:#fff;font:12px/1.5 ui-monospace,monospace;padding:var(--space-10) var(--space-12);border-radius:var(--radius-12);pointer-events:none;white-space:pre-wrap';
+  d.style.cssText = 'position:fixed;left:8px;right:8px;top:50%;z-index:9999;transform:translateY(-50%);background:rgba(27,26,27,.88);color:var(--color-text-on-inverse);font:12px/1.5 ui-monospace,monospace;padding:var(--space-10) var(--space-12);border-radius:var(--radius-12);pointer-events:none;white-space:pre-wrap';
   const box = document.createElement('div'); box.style.cssText = 'position:fixed;inset:0;z-index:9998;pointer-events:none;box-shadow:inset 0 0 0 3px var(--color-status-danger)';
   document.body.append(box, d);
   const upd = () => { const st = document.querySelector('.stage').getBoundingClientRect(), b = cur && cur.el.querySelector(':scope > .ft .btn'), t = cur && cur.el.querySelector(':scope > .top'), vv = window.visualViewport;
