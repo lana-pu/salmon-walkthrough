@@ -33,7 +33,7 @@
   --font-size-32:32px;--font-weight-regular:400;--font-weight-medium:500;--font-weight-semibold:600;--leading-none:.82;--leading-solid:1;--leading-tight:1.1;--leading-snug:1.2;--leading-normal:1.3;--leading-relaxed:1.45;--tracking-tightest:-.06em;--tracking-tighter:-.05em;--tracking-tight:-.04em;--tracking-snug:-.02em;--tracking-wide:.3px;--tracking-wider:1px;
   --font-size-12:12px;--font-size-14:14px;--font-size-16:16px;--font-size-17:17px;--font-size-24:24px;--font-size-36:36px;--font-size-48:48px;--font-size-110:110px;--font-size-180:180px;
   --radius-8:8px;--radius-12:12px;--radius-20:20px;--radius-28:28px;--radius-32:32px;--radius-40:40px;--radius-full:999px;
-  --size-4:4px;--size-8:8px;--size-10:10px;--size-12:12px;--size-14:14px;--size-16:16px;--size-18:18px;--size-20:20px;--size-22:22px;--size-24:24px;--size-26:26px;--size-28:28px;--size-32:32px;--size-36:36px;--size-40:40px;--size-44:44px;--size-46:46px;--size-48:48px;--size-56:56px;--size-72:72px;--size-88:88px;--size-345:345px;--size-393:393px;
+  --size-4:4px;--size-8:8px;--size-10:10px;--size-12:12px;--size-14:14px;--size-16:16px;--size-18:18px;--size-20:20px;--size-22:22px;--size-24:24px;--size-26:26px;--size-28:28px;--size-32:32px;--size-36:36px;--size-40:40px;--size-44:44px;--size-46:46px;--size-48:48px;--size-56:56px;--size-70:70px;--size-72:72px;--size-84:84px;--size-88:88px;--size-345:345px;--size-393:393px;
   --stroke-100:1px;--stroke-125:1.25px;--stroke-150:1.5px;--stroke-160:1.6px;--stroke-200:2px;
   /* ── Semantic: Figma "Salmon Design" names (color/secondary → --color-secondary), pointing at foundations ── */
   --color-base-bg:var(--neutral-50);--color-paper:var(--neutral-0);--color-ink:var(--neutral-900);--color-secondary:var(--mauve-700);--color-muted:var(--mauve-500);--color-hairline:var(--mauve-100);
@@ -60,8 +60,8 @@
   --size-screen-mobile:var(--size-393);--size-content-mobile:var(--size-345);--size-tap:var(--size-44);--size-button-height:var(--size-46);--size-button-text-height:var(--size-40);--size-button-icon:var(--size-44);--size-chip-height:var(--size-32);--size-close:var(--size-28);
   --size-icon-xs:var(--size-12);--size-icon-sm:var(--size-14);--size-icon-md:var(--size-16);--size-icon-lg:var(--size-18);--size-icon-topbar:var(--size-20);--size-icon-xl:var(--size-22);--size-icon-holder-sm:var(--size-24);--size-icon-holder-md:var(--size-36);
   --size-icon-holder-lg:var(--size-44);--size-control-checkbox:var(--size-24);--size-control-radio:var(--size-20);--size-control-radio-core:var(--size-10);--size-status-dot:var(--size-8);--size-chip-height-sm:var(--size-28);--size-chip-height-lg:var(--size-36);--size-progress:var(--size-8);--size-toggle-width:var(--size-44);--size-toggle-height:var(--size-26);--size-toggle-knob:var(--size-20);--size-grabber-width:var(--size-46);--size-grabber-height:var(--size-4);--size-field-input:var(--size-48);
-  --size-field-textarea:var(--size-88);--size-row-compact:var(--size-44);--size-row-default:var(--size-56);--size-avatar-row:var(--size-24);--size-avatar-photo:var(--size-72);
-  --stroke-icon:var(--stroke-150);--stroke-field:var(--stroke-150);--stroke-divider:var(--stroke-100);--stroke-control:var(--stroke-200);--stroke-select:var(--stroke-150);--stroke-artwork-card:var(--stroke-200);
+  --size-field-textarea:var(--size-88);--size-row-compact:var(--size-44);--size-row-default:var(--size-56);--size-avatar-list:var(--size-44);--size-avatar-profile:var(--size-72);--size-avatar-player:var(--size-84);--size-avatar-player-compact:var(--size-70);--size-avatar-podium-lead:var(--size-70);--size-avatar-podium:var(--size-56);--size-avatar-ring:var(--size-4);
+  --stroke-icon:var(--stroke-150);--stroke-field:var(--stroke-150);--stroke-dashed:var(--stroke-150);--stroke-podium-ring:var(--stroke-125);--stroke-divider:var(--stroke-100);--stroke-control:var(--stroke-200);--stroke-select:var(--stroke-150);--stroke-artwork-card:var(--stroke-200);
   /* ── Gradient colours: used only inside layered gradients, not part of the palette ── */
   --glow-lilac-1:#eaddf0;--glow-lilac-2:#dcc8f0;--glow-lilac-3:#c8bef0;--glow-lilac-4:#c2b8e2;
   --glow-peach-1:#fffaf7;--glow-peach-2:#fffaf3;--glow-peach-3:#ffe9e0;--glow-peach-4:#fff2dd;--glow-peach-5:#fbeadf;--glow-peach-6:#ffe5d4;--glow-peach-7:#ffedd4;--glow-peach-8:#ffedcc;--glow-peach-9:#ffdcc8;--glow-peach-10:#f5c3af;--glow-peach-11:#ffaa8c;
@@ -162,6 +162,9 @@ svg[data-ic]{stroke-width:var(--stroke-icon)}
 .chip svg,.btn.paper svg,.btn.plain svg,.sticky-pg .earn svg,.g-add svg{color:var(--color-icon)}
 .chip.on svg,.btn.ink svg,.pts svg{color:var(--color-icon-on-inverse)}
 .badge svg,.pk-st svg{color:var(--color-icon-muted)}
+.badge.on-photo{background:var(--color-glass);color:var(--color-text-text);gap:var(--space-pill-icon-gap)}.badge.offer{background:var(--color-background-white);color:var(--color-text-text);font-size:var(--font-size-14);font-weight:var(--font-weight-semibold);padding:var(--space-pill-pad-y) var(--space-pill-pad-x)}
+.ib.float{width:var(--size-tap);height:var(--size-tap);margin:0;background:var(--color-background-white);box-shadow:none}.ib.sm{width:var(--size-icon-md);height:var(--size-icon-md)}
+.field.paper{background:var(--color-background-white);border-width:var(--stroke-control)}
 .ib svg{width:var(--size-icon-topbar);height:var(--size-icon-topbar)}
 .ib svg.i14{width:var(--size-icon-sm);height:var(--size-icon-sm)}
 .info{position:relative;width:var(--size-icon-topbar);height:var(--size-icon-topbar);border-radius:var(--radius-pill);background:var(--color-background-inverse);color:var(--color-text-on-inverse);display:grid;place-items:center;font-size:var(--font-size-12);font-weight:var(--font-weight-semibold);font-style:normal}
@@ -254,6 +257,8 @@ html.ft-warm{--ft-light:255,251,240}
 .row .tx .c{color:var(--color-text-muted)}
 .lead-ic{width:var(--size-icon-holder-sm);height:var(--size-icon-holder-sm);border-radius:var(--radius-pill);display:grid;place-items:center;flex:none;background:var(--gradient-holder)}
 .lead-ic svg{width:var(--size-icon-sm);height:var(--size-icon-sm);color:var(--color-icon-muted)}
+.lead-ic.md{width:var(--size-icon-holder-md);height:var(--size-icon-holder-md)}.lead-ic.md svg{width:var(--size-icon-md);height:var(--size-icon-md)}.lead-ic.lg svg{width:var(--size-icon-topbar);height:var(--size-icon-topbar)}.lead-ic.lg{width:var(--size-icon-holder-lg);height:var(--size-icon-holder-lg)}.lead-ic.bare{width:var(--size-icon-topbar);height:var(--size-icon-topbar);background:none}.lead-ic.ink{background:var(--color-background-inverse)}.lead-ic.ink svg{color:var(--color-icon-on-inverse)}
+.done-mark{width:var(--size-control-radio);height:var(--size-control-radio);border-radius:var(--radius-pill);background:var(--color-background-inverse);color:var(--color-icon-on-inverse);display:grid;place-items:center}
 .chev{width:var(--size-icon-md);height:var(--size-icon-md);color:var(--color-icon-soft);flex:none}
 .tile{border-radius:var(--radius-card);background:var(--color-background-white);padding:var(--space-card-pad-lg);display:flex;flex-direction:column;justify-content:space-between;text-align:left;transition:transform .15s}
 .tile:active{transform:scale(.98)}
@@ -280,6 +285,7 @@ html.ft-warm{--ft-light:255,251,240}
 .chip{flex:none;height:var(--size-chip-height);display:inline-flex;align-items:center;gap:var(--space-pill-icon-gap);padding:0 var(--space-pill-pad-x);border-radius:var(--radius-pill);background:var(--color-background-white);font-size:var(--text-chip-size);font-weight:var(--text-chip-weight);transition:all .2s}
 .chip svg{width:var(--size-icon-md);height:var(--size-icon-md)}
 .chip.on{background:var(--color-background-interactive);color:var(--color-text-on-inverse)}
+.chip.sm{height:var(--size-chip-height-sm);padding:0 var(--space-10)}.chip.muted{background:var(--color-background-muted)}
 .chip.lg{height:var(--size-chip-height-lg);padding:0 var(--space-14)}
 .seg{display:flex;background:var(--color-background-white);border-radius:var(--radius-pill);padding:var(--space-text-inline);position:relative}
 .seg button{text-align:center;flex:1;height:32px;border-radius:var(--radius-pill);font-size:var(--type-body-size);position:relative;z-index:1;transition:color .2s}
@@ -296,6 +302,8 @@ html.ft-warm{--ft-light:255,251,240}
 @keyframes breathe{50%{transform:scale(1.1) translate(3%,-3%);opacity:1}}
 .avatar{border-radius:var(--radius-pill);background:var(--color-background-white);overflow:hidden;flex:none;display:grid;place-items:center}
 .avatar img{width:100%;height:100%;object-fit:cover}
+.avatar--list{width:var(--size-avatar-list);height:var(--size-avatar-list)}.avatar--profile{width:var(--size-avatar-profile);height:var(--size-avatar-profile)}.avatar--player{width:var(--size-avatar-player);height:var(--size-avatar-player)}.avatar--player-compact{width:var(--size-avatar-player-compact);height:var(--size-avatar-player-compact)}.avatar--podium-lead{width:var(--size-avatar-podium-lead);height:var(--size-avatar-podium-lead)}.avatar--podium{width:var(--size-avatar-podium);height:var(--size-avatar-podium)}
+.avatar.ring{box-shadow:0 0 0 var(--size-avatar-ring) var(--color-paper)}
 /* avatars: no ring — holders carry no stroke */
 
 /* ---------- overlays ---------- */
@@ -514,8 +522,6 @@ html.sec-compact{--ft-gap:8px;--ft-b:24px}
 .w6-mk{position:absolute;left:0;top:0;width:40px;height:40px;border-radius:var(--radius-pill);background:var(--color-background-white);padding:var(--space-4);box-sizing:border-box;box-shadow:none;transition:transform 1s linear}
 .w6-mk img{width:100%;height:100%;border-radius:var(--radius-pill);object-fit:cover;display:block}
 
-.w4m-av{width:80px;height:80px;border-radius:var(--radius-pill);padding:var(--space-4);background:var(--color-background-white);box-shadow:none;display:block}
-.w4m-av img{width:100%;height:100%;border-radius:var(--radius-pill);object-fit:cover;display:block}
 .w4m-code{display:flex;gap:var(--space-16);align-items:center;margin-top:var(--space-group-break);padding:var(--space-card-pad-lg);border-radius:var(--radius-card);background:var(--color-background-muted)}
 .w4m-code .w6-digits b{background:var(--color-background-white)}
 
@@ -1003,7 +1009,7 @@ html.ac-colour .ac-tile[data-ac="game"] .ac-ctrl-ink{display:none}
 .jm-row{display:flex;gap:var(--space-16);align-items:flex-start;flex-wrap:wrap}
 .jm{display:flex;flex-direction:column;align-items:center;gap:var(--space-8);min-width:48px}
 .jm .c{white-space:nowrap}
-.jm-wait{width:40px;height:40px;border-radius:var(--radius-pill);border:1.5px dashed var(--color-border-dashed);display:flex;align-items:center;justify-content:center;gap:var(--space-4)}
+.jm-wait{width:var(--size-avatar-list);height:var(--size-avatar-list);border-radius:var(--radius-pill);border:var(--stroke-dashed) dashed var(--color-border-dashed);display:flex;align-items:center;justify-content:center;gap:var(--space-4)}
 .jm-wait i{width:4px;height:4px;border-radius:var(--radius-pill);background:var(--color-muted);animation:mpdot 1.2s ease-in-out infinite}
 .jm-wait i:nth-child(2){animation-delay:.15s}.jm-wait i:nth-child(3){animation-delay:.3s}
 
@@ -1158,7 +1164,7 @@ const fresh = () => ({
   round:0, scores:{}, played:[], rewardFilter:'All'
 });
 let S = fresh();
-const PL = {you:{name:'You',img:'you'}, jb:{name:'JB',img:'jb'}, tuna:{name:'Blue Tuna',img:'tuna'}};
+const PL = {mark:{name:'Mark',img:'mark'}, you:{name:'You',img:'you'}, jb:{name:'JB',img:'jb'}, tuna:{name:'Blue Tuna',img:'tuna'}};
 const WORDS = [{w:'Mango',clue:'Food · yellow · sweet'},{w:'Jeepney',clue:'Transport · colourful · loud'},{w:'Carabao',clue:'Animal · strong · farm'},{w:'Sinigang',clue:'Food · sour · soup'}];
 const PLACES = [
   {name:'North Atrium Lounge',short:'North Atrium',cat:'Rest areas',meta:'Rest area · Level 1 · 2 min walk',desc:'Open seating close to your meeting point.',img:'place1',lvl:'L1', live:'Quiet now', hours:'Open until 10:00 PM', am:[['sofa','Soft seating'],['wifi','Free Wi-Fi'],['battery','Charging points']], about:'Calm seating beside the central atrium, two minutes from where you meet Mark.'},
@@ -1188,7 +1194,9 @@ const pic = (art, size=80, cls='breathe') => `<div class="pic ${cls}" style="wid
 const Bc = (cx,cy,w,h,rot,c,op,r) => `<i style="left:${cx-w/2}px;top:${cy-h/2}px;width:${w}px;height:${h}px;transform:rotate(${rot}deg);background:${c};opacity:${op};filter:blur(${r/2}px)"></i>`;
 const B = (x,y,w,h,c,op,r) => `<i style="left:${x}px;top:${y}px;width:${w}px;height:${h}px;background:${c};opacity:${op};filter:blur(${r/2}px)"></i>`;
 const rewardGlow = `<span class="blob" aria-hidden="true" style="position:absolute;inset:0;overflow:hidden;border-radius:inherit">${B(227,-50,180,150,'#d1bfff',.23,42)}${B(59,166,165,135,'#ffd1b2',.16,44)}${B(-61,172,205,155,'#ffb5d1',.18,46)}${B(122,33,72,68,'#ffc99e',.18,20)}${B(167,34,70,68,'#b89cff',.18,21)}${B(133,39,82,70,'#ffbac7',.22,22)}</span>`;
-const av = (who, size=44) => `<span class="avatar av-${who}" style="width:${size}px;height:${size}px"><img src="${A[PL[who].img]}" alt=""></span>`;
+/* Avatar atom: a person from the Avatars library, in one of the size variants. */
+const av = (who, v='list', cls='') => `<span class="avatar avatar--${v} av-${who}${cls?' '+cls:''}"><img src="${A[PL[who].img]}" alt=""></span>`;
+const tok = n => parseFloat(getComputedStyle(document.documentElement).getPropertyValue(n));
 const leadRow = (icon, title, sub, trail='', attrs='', lined=false) => `<div class="row ${lined?'lined':''}" ${attrs}><span class="lead-ic">${ic(icon)}</span><span class="tx"><span class="b text-body">${title}</span>${sub?`<span class="c text-caption">${sub}</span>`:''}</span>${trail}</div>`;
 const HZ = {
   // Salmon / Screen background · scene=actions (Final results)
@@ -1902,7 +1910,7 @@ function earnSheet(){
   ];
   const o = sheet(sheetDoc({title:'Earn more points', sub:'Every step that saves time at the meeting adds points.',
     body:`<div class="stack g8">${rows.map(r => `<button class="boxrow" ${r.done ? 'disabled aria-disabled="true"' : `data-earn="${r.go}"`} style="${r.done?'opacity:.6':''}">
-        <span class="lead-ic" style="width:36px;height:36px">${ic(r.icon,'i16')}</span>
+        <span class="lead-ic md">${ic(r.icon,'i16')}</span>
         <span class="tx"><b class="bm text-row-title">${r.t}</b><span class="c text-row-subtitle">${r.s}</span></span>
         ${r.done ? `<span class="badge" style="background:var(--color-background-muted);color:var(--color-icon);gap:var(--space-pill-icon-gap)">${ic('check')}Done</span>` : `<span class="pts" style="font-size:var(--font-size-12);padding:var(--space-6) var(--space-10) var(--space-6) var(--space-8)">${ic('gem')}${r.pts}</span>${ic('chevR','chev')}`}
       </button>`).join('')}</div>`,
@@ -1917,9 +1925,9 @@ function placeSheet(i){
   const p = PLACES[i], busy = /busy/i.test(p.live);
   sheet(`<!--S--><div class="sh-in flush ph-first">
       <div style="position:relative;border-radius:var(--radius-card);overflow:hidden;height:176px;margin-bottom:var(--space-20)"><img src="${A[p.img]}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;max-width:none">
-        <span class="badge" style="position:absolute;left:12px;bottom:12px;background:var(--color-glass);color:var(--color-text-text);gap:var(--space-pill-icon-gap)"><i class="dot ${busy?'':'pulse'}" style="background:${busy?'var(--color-status-busy)':'var(--color-status-live)'}"></i>${p.live}</span></div>
+        <span class="badge on-photo" style="position:absolute;left:var(--space-12);bottom:var(--space-12)"><i class="dot ${busy?'':'pulse'}" style="background:${busy?'var(--color-status-busy)':'var(--color-status-live)'}"></i>${p.live}</span></div>
       <div class="sh-hd" style="margin-bottom:var(--space-20)"><p class="h3 text-place-title" style="font-weight:var(--font-weight-semibold)">${p.name}</p><p class="c text-caption">${p.meta} · ${p.hours}</p></div>
-      <div style="display:flex;flex-wrap:wrap;gap:var(--space-8);margin-bottom:var(--space-20)">${p.am.map(([icn,t])=>`<span class="chip" style="height:32px;background:var(--color-background-muted);gap:var(--space-pill-icon-gap)">${ic(icn,'i14')}${t}</span>`).join('')}</div>
+      <div style="display:flex;flex-wrap:wrap;gap:var(--space-8);margin-bottom:var(--space-20)">${p.am.map(([icn,t])=>`<span class="chip muted">${ic(icn,'i14')}${t}</span>`).join('')}</div>
       <p class="b sec text-body" style="margin-bottom:var(--space-20)">${p.about}</p>
       ${statusBanner('cal',meetIn(),'Mark can come here, or you head back to the meeting point')}
     </div>
@@ -1988,7 +1996,7 @@ SC.m1 = {flow:'main', label:'Start · product', render:()=>`
   <div class="scroll"><div class="body">
     <div style="position:relative;height:302px;border-radius:var(--radius-card);overflow:hidden;background:var(--color-background-white)">
       <img src="${A.product}" alt="iPhone 14 in Midnight" style="width:100%;height:100%;object-fit:cover">
-      <span class="badge" style="position:absolute;right:12px;bottom:12px;background:var(--color-background-white);color:var(--color-text-text);font-size:var(--font-size-14);font-weight:var(--font-weight-semibold);padding:var(--space-pill-pad-y) var(--space-pill-pad-x)">Special store price</span>
+      <span class="badge offer" style="position:absolute;right:var(--space-12);bottom:var(--space-12)">Special store price</span>
     </div>
     <div style="display:flex;justify-content:space-between;gap:var(--space-24);margin:var(--space-24) 0 var(--space-24)">
       <div class="stack g12"><p class="h4 text-card-title">iPhone 14 256GB · Midnight</p><p class="c sec text-caption">MobileWorld · SM Megamall</p></div>
@@ -2039,7 +2047,7 @@ SC.m3 = {flow:'main', label:'Before you start', parent:'m2', render:()=>`
   <div class="scroll">${hz('warm')}<div class="body">
     <div class="intro">${title2('Make sure<br><em>you’re ready</em>')}<p class="b text-body">Check the essentials before you meet Mark. This doesn’t guarantee approval.</p></div>
     <div class="card rows" style="padding:var(--space-card-pad-lg) var(--space-card-pad-lg) var(--space-card-pad-bottom-lg)">
-      ${leadRow('idcard','A valid government ID', S.idType ? `${idName()} · you’ll bring it` : 'Passport, driver’s licence or UMID', S.idType ? `<span style="width:20px;height:20px;border-radius:var(--radius-pill);background:var(--color-background-inverse);color:var(--color-icon-on-inverse);display:grid;place-items:center;margin-right:var(--space-inline-tight)">${ic('check','i14')}</span>` : `<span class="ib" aria-hidden="true" style="color:var(--color-icon);width:16px;height:16px;margin-right:var(--space-4)">${ic('infoO','i14')}</span>`, 'data-act="idPick" role="button" tabindex="0" aria-label="Choose the ID you’ll bring" style="cursor:pointer"')}
+      ${leadRow('idcard','A valid government ID', S.idType ? `${idName()} · you’ll bring it` : 'Passport, driver’s licence or UMID', S.idType ? `<span class="done-mark" style="margin-right:var(--space-inline-tight)">${ic('check','i14')}</span>` : `<span class="ib sm" aria-hidden="true" style="margin-right:var(--space-4)">${ic('infoO','i14')}</span>`, 'data-act="idPick" role="button" tabindex="0" aria-label="Choose the ID you’ll bring" style="cursor:pointer"')}
       ${leadRow('phone','Your own Philippine mobile number','Registered in your name')}
       ${leadRow('mail','Access to your email','Make sure you can open it on this phone')}
       ${leadRow('battery','A charged smartphone','Keep enough battery to show your ticket at the meeting')}
@@ -2199,8 +2207,8 @@ function m6body(){
   <div class="intro tk-intro" data-phase="${tkPhase()}" style="margin-bottom:var(--space-28)">${tkIntro()}</div>
   <div class="facts-wrap" style="position:relative">
     <div class="stack g16" style="width:140px;position:relative">
-      <button class="card t-mark" style="padding:var(--space-card-pad-sm);height:145px;display:flex;flex-direction:column;gap:var(--space-12);text-align:left" data-act="mark"><img class="t-img" src="${A.mark}" alt="" style="width:44px;height:44px;border-radius:var(--radius-pill);object-fit:cover;flex:none"><span class="stack g8"><span class="c sec text-caption">Ambassador</span><b class="h4 t-lbl text-card-title">Mark Reyes</b></span><span style="border-top:1px solid var(--color-border-border);padding-top:var(--space-12);height:22px;box-sizing:border-box;line-height:var(--leading-none);display:flex;justify-content:space-between;align-items:center;flex:none" class="c sec text-caption">View profile ${ic('chevR','chev')}</span></button>
-      <button class="card t-where" style="padding:var(--space-card-pad-sm);min-height:155px;display:flex;flex-direction:column;gap:var(--space-12);text-align:left" data-go="w3"><span class="t-img" style="width:36px;height:36px;border-radius:var(--radius-pill);background:var(--color-background-inverse);display:grid;place-items:center;color:var(--color-icon-on-inverse);flex:none">${ic('pin','i18')}</span><span class="stack g8"><span class="c sec text-caption">Where</span><b class="h4 t-lbl text-card-title">${S.where.name}</b></span><span class="b sec text-body">${S.where.sub}</span><span style="border-top:1px solid var(--color-border-border);padding-top:var(--space-12);height:22px;box-sizing:border-box;line-height:var(--leading-none);display:flex;justify-content:space-between;align-items:center;flex:none;margin-top:auto" class="c sec text-caption">View place ${ic('chevR','chev')}</span></button>
+      <button class="card t-mark" style="padding:var(--space-card-pad-sm);height:145px;display:flex;flex-direction:column;gap:var(--space-12);text-align:left" data-act="mark">${av('mark','list','t-img')}<span class="stack g8"><span class="c sec text-caption">Ambassador</span><b class="h4 t-lbl text-card-title">Mark Reyes</b></span><span style="border-top:1px solid var(--color-border-border);padding-top:var(--space-12);height:22px;box-sizing:border-box;line-height:var(--leading-none);display:flex;justify-content:space-between;align-items:center;flex:none" class="c sec text-caption">View profile ${ic('chevR','chev')}</span></button>
+      <button class="card t-where" style="padding:var(--space-card-pad-sm);min-height:155px;display:flex;flex-direction:column;gap:var(--space-12);text-align:left" data-go="w3"><span class="t-img lead-ic md ink">${ic('pin','i18')}</span><span class="stack g8"><span class="c sec text-caption">Where</span><b class="h4 t-lbl text-card-title">${S.where.name}</b></span><span class="b sec text-body">${S.where.sub}</span><span style="border-top:1px solid var(--color-border-border);padding-top:var(--space-12);height:22px;box-sizing:border-box;line-height:var(--leading-none);display:flex;justify-content:space-between;align-items:center;flex:none;margin-top:auto" class="c sec text-caption">View place ${ic('chevR','chev')}</span></button>
     </div>
   </div>
   <div class="ac-block" id="acBlock">${acBlock(acFeatured())}</div>`;
@@ -2509,7 +2517,7 @@ SC.pp = {flow:'pay', label:'Your purchase · before the meeting', parent:'m6', r
   return `
   ${topbar({t:'Your purchase', right:R.info()})}
   <div class="scroll"><div class="body" style="padding-top:var(--space-8)">
-    <div class="pp-hero"><img src="${A.product}" alt="iPhone 14 in Midnight"><span class="badge" style="position:absolute;right:12px;bottom:12px;background:var(--color-background-white);color:var(--color-text-text);font-size:var(--font-size-14);font-weight:var(--font-weight-semibold);padding:var(--space-pill-pad-y) var(--space-pill-pad-x);gap:var(--space-8)"><i class="dot pulse"></i>Reserved until 3:45</span></div>
+    <div class="pp-hero"><img src="${A.product}" alt="iPhone 14 in Midnight"><span class="badge offer" style="position:absolute;right:var(--space-12);bottom:var(--space-12);gap:var(--space-8)"><i class="dot pulse"></i>Reserved until 3:45</span></div>
     <div style="display:flex;justify-content:space-between;gap:var(--space-24);margin:var(--space-24) 0">
       <div class="stack g12"><p class="h4 text-card-title">iPhone 14 256GB · Midnight</p><p class="c sec text-caption">MobileWorld · SM Megamall</p></div>
       <p class="h3 text-place-title" style="font-weight:var(--font-weight-semibold)">₱21,999</p>
@@ -2721,9 +2729,9 @@ SC.w3 = {flow:'wait', label:'Meeting point', parent:'m6', render:()=>{ const p =
   ${topbar({t:'Meeting point', right:R.info()})}
   <div class="scroll">${hz('soft')}<div class="body">
     <div style="position:relative;border-radius:var(--radius-card);overflow:hidden;height:196px;margin-bottom:var(--space-32)"><img src="${A[p.img]}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;max-width:none">
-      <span class="badge" style="position:absolute;left:12px;bottom:12px;background:var(--color-glass);color:var(--color-text-text);gap:var(--space-pill-icon-gap)"><i class="dot ${busy?'':'pulse'}" style="background:${busy?'var(--color-status-busy)':'var(--color-status-live)'}"></i>${p.live}</span></div>
+      <span class="badge on-photo" style="position:absolute;left:var(--space-12);bottom:var(--space-12)"><i class="dot ${busy?'':'pulse'}" style="background:${busy?'var(--color-status-busy)':'var(--color-status-live)'}"></i>${p.live}</span></div>
     <div class="intro">${title2(`<em>Meet Mark at</em><br>${p.name}`)}<p class="b text-body">${p.meta}</p></div>
-    <div style="display:flex;flex-wrap:wrap;gap:var(--space-8);margin:-8px 0 var(--space-24)">${p.am.map(([icn,t])=>`<span class="chip" style="height:32px;background:var(--color-background-white);gap:var(--space-pill-icon-gap)">${ic(icn,'i14')}${t}</span>`).join('')}</div>
+    <div style="display:flex;flex-wrap:wrap;gap:var(--space-8);margin:-8px 0 var(--space-24)">${p.am.map(([icn,t])=>`<span class="chip">${ic(icn,'i14')}${t}</span>`).join('')}</div>
     <div class="card rows-c" style="padding:var(--space-20) var(--space-card-pad-lg);--g:20px">
       ${leadRow('clock','When', tkPhase()==='coming' ? `Mark is ready in about ${etaMins()} min` : 'Mark is ready for you')}
       ${leadRow('user','Who to look for','Mark Reyes · red Salmon shirt, ID badge')}
@@ -2749,10 +2757,10 @@ SC.w4 = {flow:'wait', label:'Directions', parent:'w2', render:()=>{ const p = to
       <g id="me"><circle r="20" fill="#7a5cf0" opacity=".15"/><circle r="7" fill="#5b45d6" stroke="#fff" stroke-width="2.5"/></g>
     </svg>
     <div style="position:absolute;left:24px;top:max(calc(var(--sbh) - 6px), calc(env(safe-area-inset-top,0px) + 8px));display:flex;gap:var(--space-12);align-items:center;right:24px">
-      <button class="ib" data-back aria-label="Back" style="width:44px;height:44px;margin:0;background:var(--color-background-white);box-shadow:none">${ic('arrowL')}</button>
-      <div class="card" style="display:flex;gap:var(--space-12);align-items:center;padding:var(--space-18) var(--space-card-pad-lg);border-radius:var(--radius-card);flex:none;max-width:calc(100% - 56px);box-shadow:none"><span class="lead-ic" style="width:36px;height:36px;flex:none">${ic('stairs','i16')}</span><span class="stack" style="gap:var(--space-4);min-width:184px"><b class="bm text-row-title" id="instr">Go to the escalator</b><span class="c sec text-row-subtitle" id="instr2">${meet ? 'Then continue on Level 2 · 40 m' : 'Then continue on Level 1 · 40 m'}</span></span></div>
+      <button class="ib float" data-back aria-label="Back">${ic('arrowL')}</button>
+      <div class="card" style="display:flex;gap:var(--space-12);align-items:center;padding:var(--space-18) var(--space-card-pad-lg);border-radius:var(--radius-card);flex:none;max-width:calc(100% - 56px);box-shadow:none"><span class="lead-ic md">${ic('stairs','i16')}</span><span class="stack" style="gap:var(--space-4);min-width:184px"><b class="bm text-row-title" id="instr">Go to the escalator</b><span class="c sec text-row-subtitle" id="instr2">${meet ? 'Then continue on Level 2 · 40 m' : 'Then continue on Level 1 · 40 m'}</span></span></div>
     </div>
-    <div style="position:absolute;right:24px;top:345px;background:var(--color-background-white);border-radius:var(--radius-card);padding:var(--space-4);display:flex;flex-direction:column;gap:var(--space-4);box-shadow:none"><span class="chip on" style="height:30px;padding:0 var(--space-10)">L2</span><span class="chip" style="height:30px;padding:0 var(--space-10);background:var(--color-background-muted)">L1</span></div>
+    <div style="position:absolute;right:24px;top:345px;background:var(--color-background-white);border-radius:var(--radius-card);padding:var(--space-4);display:flex;flex-direction:column;gap:var(--space-4);box-shadow:none"><span class="chip sm on">L2</span><span class="chip sm muted">L1</span></div>
   </div>
   <div class="ft sheet-ft" style="background:var(--color-background-white);border-radius:var(--radius-screen) var(--radius-screen) 0 0;padding:var(--space-6) var(--space-24) var(--space-32);box-shadow:none">
     <div class="grab" style="margin-bottom:var(--space-10)"></div>
@@ -2778,12 +2786,12 @@ SC.w4m = {flow:'wait', label:'You’re at the meeting point', parent:'m6', rende
     <div class="ya-map" style="position:absolute;left:-140px;top:-240px;width:551px;height:766px;background:url(${A.map}) center/cover"></div>
     <div style="position:absolute;left:-128px;top:-240px;width:514px;height:604px;background:linear-gradient(color-mix(in srgb,var(--color-paper) 30%,transparent),color-mix(in srgb,var(--color-paper) 12%,transparent))"></div>
     <span class="ya-here" style="position:absolute;left:243px;top:115px;width:46px;height:46px;border-radius:var(--radius-card);background:var(--color-map-halo);display:grid;place-items:center"><i style="width:18px;height:18px;border-radius:var(--radius-pill);background:var(--color-map-me)"></i></span>
-    <button class="ib" data-back aria-label="Back" style="position:absolute;left:19px;top:max(17px, calc(env(safe-area-inset-top,0px) + 8px));width:44px;height:44px;margin:0;background:var(--color-background-white);z-index:3">${ic('arrowL')}</button>
+    <button class="ib float" data-back aria-label="Back" style="position:absolute;left:var(--space-20);top:max(var(--space-16), calc(env(safe-area-inset-top,0px) + var(--space-8)));z-index:3">${ic('arrowL')}</button>
   </div>
   <div class="ya-sheet">
     <div class="grab"></div>
     <div class="ya-in">
-      <div class="stack" style="align-items:center;text-align:center"><span class="w4m-av ya-r"><img src="${A.mark}" alt=""></span><h1 class="h2 ya-r text-screen-title" style="margin-top:var(--space-hero-title)"><em>You’re here.</em><br>${ready ? 'Look for Mark' : 'Mark is almost ready'}</h1><p class="bl sec ya-r text-screen-lead" style="max-width:297px;margin-top:var(--space-24)">${ready ? 'Red Salmon shirt and an ID badge. He’ll say your meeting code.' : `He’ll come to ${d.name} in about ${etaMins()} min — we’ll buzz you.`}</p></div>
+      <div class="stack" style="align-items:center;text-align:center"><span class="ya-r" style="display:block;padding:var(--size-avatar-ring)">${av('mark','profile','ring')}</span><h1 class="h2 ya-r text-screen-title" style="margin-top:var(--space-hero-title)"><em>You’re here.</em><br>${ready ? 'Look for Mark' : 'Mark is almost ready'}</h1><p class="bl sec ya-r text-screen-lead" style="max-width:297px;margin-top:var(--space-24)">${ready ? 'Red Salmon shirt and an ID badge. He’ll say your meeting code.' : `He’ll come to ${d.name} in about ${etaMins()} min — we’ll buzz you.`}</p></div>
       <div class="ya-r w4m-code"><span class="stack" style="gap:var(--space-card-line);flex:1"><b class="bm text-row-title">Meeting code</b><span class="c sec text-row-subtitle">Mark says it when he greets you</span></span><span class="w6-digits">${MEET_CODE.split('').map(n=>`<b>${n}</b>`).join('')}</span></div>
     </div>
     <div class="sh-ft ya-r">${ready ? btn('I’m with Mark','data-go="m9"') + btn('I can’t find him','data-act="msgMark"','paper') : btn('Back to my ticket','data-act="helpSkip"') + btn('Ask a question','data-act="msgMark"','paper')}</div>
@@ -2800,7 +2808,7 @@ SC.w4a = {flow:'wait', label:'You’re here · move the meeting?', parent:'w2', 
     <div class="ya-map" style="position:absolute;left:-140px;top:-240px;width:551px;height:766px;background:url(${A.map}) center/cover"></div>
     <div style="position:absolute;left:-128px;top:-240px;width:514px;height:604px;background:linear-gradient(color-mix(in srgb,var(--color-paper) 30%,transparent),color-mix(in srgb,var(--color-paper) 12%,transparent))"></div>
     <span class="ya-here" style="position:absolute;left:243px;top:115px;width:46px;height:46px;border-radius:var(--radius-card);background:var(--color-map-halo);display:grid;place-items:center"><i style="width:18px;height:18px;border-radius:var(--radius-pill);background:var(--color-map-me)"></i></span>
-    <button class="ib" data-back aria-label="Back" style="position:absolute;left:19px;top:max(17px, calc(env(safe-area-inset-top,0px) + 8px));width:44px;height:44px;margin:0;background:var(--color-background-white);z-index:3">${ic('arrowL')}</button>
+    <button class="ib float" data-back aria-label="Back" style="position:absolute;left:var(--space-20);top:max(var(--space-16), calc(env(safe-area-inset-top,0px) + var(--space-8)));z-index:3">${ic('arrowL')}</button>
   </div>
   <div class="ya-sheet">
     <div class="grab"></div>
@@ -2824,9 +2832,9 @@ SC.w4h = {flow:'wait', label:'Help Mark find you', parent:'m6', render:()=>{ con
     <div class="intro" style="margin-top:var(--space-group-break)">${title2('<em>Help Mark</em><br>find you')}<p class="b text-body">A photo and a short note — both optional, both help.</p></div>
     ${S.photoTaken
       ? `<div class="w4h-photo"><img src="${A.chair}" alt="Your photo of the spot"><button class="chip" data-go="w4c">${ic('camera','i16')}Retake</button></div>`
-      : `<button class="w4h-add" data-go="w4c"><span class="lead-ic" style="width:44px;height:44px">${ic('camera','w4h-cam')}</span><span class="tx"><b class="bm text-row-title">Add a photo of your spot</b><span class="c text-row-subtitle">Show the table or what’s around you</span></span><span class="plus10 ${S.photoAdded?'on':''}">${S.photoAdded?'Added':'+10'}</span></button>`}
+      : `<button class="w4h-add" data-go="w4c"><span class="lead-ic lg">${ic('camera','w4h-cam')}</span><span class="tx"><b class="bm text-row-title">Add a photo of your spot</b><span class="c text-row-subtitle">Show the table or what’s around you</span></span><span class="plus10 ${S.photoAdded?'on':''}">${S.photoAdded?'Added':'+10'}</span></button>`}
     <div class="pf" style="margin-top:var(--space-24)"><label for="w4h-note">Note for Mark <span class="plus10 ${S.noteAdded?'on':''}" style="margin-left:var(--space-6)">${S.noteAdded?'Added':'+10'}</span></label>
-      <textarea class="field" id="w4h-note" rows="3" placeholder="E.g. “Table beside the escalator, grey jacket”" data-input="note" style="background:var(--color-background-white);border-width:2px">${S.note}</textarea></div>
+      <textarea class="field paper" id="w4h-note" rows="3" placeholder="E.g. “Table beside the escalator, grey jacket”" data-input="note">${S.note}</textarea></div>
     <p class="c sec text-caption" style="margin-top:var(--space-12)">Only Mark sees this. It disappears when the meeting ends.</p>
   </div></div>
   ${foot(btn('Done','data-act="helpDone"')+btn('Skip','data-act="helpSkip"','paper'))}`;},
@@ -2919,7 +2927,7 @@ function timeSheet(){
   const opts = [['0','As soon as he’s free',`Around ${protoClock(now)}`],['15','In 15 minutes',`Around ${protoClock(15)}`],['30','In 30 minutes',`Around ${protoClock(30)}`]];
   sheet(sheetDoc({title:'Change the time', sub:'Mark plans around it and gets a message right away.',
     body:`<div class="stack g8" role="radiogroup" style="margin-top:var(--space-16)">${opts.map(([v,t,sub],i)=>`<button class="boxrow ${i===0?'on':''}" data-tm="${v}" role="radio" aria-checked="${i===0}"><span class="radio"></span><span class="tx"><b class="bm text-row-title">${t}</b><span class="c text-row-subtitle">${sub}</span></span></button>`).join('')}
-      <button class="boxrow" data-tm="later"><span class="lead-ic" style="width:20px;height:20px;background:none">${ic('cal','i16')}</span><span class="tx"><b class="bm text-row-title">Another time or day</b><span class="c text-row-subtitle">Pick a slot that suits you</span></span>${ic('chevR','chev')}</button></div>`,
+      <button class="boxrow" data-tm="later"><span class="lead-ic bare">${ic('cal','i16')}</span><span class="tx"><b class="bm text-row-title">Another time or day</b><span class="c text-row-subtitle">Pick a slot that suits you</span></span>${ic('chevR','chev')}</button></div>`,
     buttons:btn('Save','data-tsave')+btn('Cancel','data-close','paper')}), o => {
       let pick = '0';
       o.addEventListener('click', e => { const b = e.target.closest('[data-tm]');
@@ -2932,8 +2940,8 @@ function timeSheet(){
 }
 function moreSheet(){
   sheet(sheetDoc({title:'Need a few more minutes?', sub:'Mark will wait — the meeting simply moves.',
-    body:`<div class="stack" style="gap:var(--space-card-line);margin-top:var(--space-16)">${[['5','5 more minutes'],['10','10 more minutes']].map(([v,t])=>`<button class="boxrow" data-more="${v}"><span class="lead-ic" style="width:36px;height:36px">${ic('clock','i16')}</span><span class="tx"><b class="bm text-row-title">${t}</b><span class="c text-row-subtitle">Mark gets a message right away</span></span>${ic('chevR','chev')}</button>`).join('')}
-      <button class="boxrow" data-go="x3" data-close><span class="lead-ic" style="width:36px;height:36px">${ic('cal','i16')}</span><span class="tx"><b class="bm text-row-title">I can’t make it now</b><span class="c text-row-subtitle">Pick another time or place</span></span>${ic('chevR','chev')}</button></div>`,
+    body:`<div class="stack" style="gap:var(--space-card-line);margin-top:var(--space-16)">${[['5','5 more minutes'],['10','10 more minutes']].map(([v,t])=>`<button class="boxrow" data-more="${v}"><span class="lead-ic md">${ic('clock','i16')}</span><span class="tx"><b class="bm text-row-title">${t}</b><span class="c text-row-subtitle">Mark gets a message right away</span></span>${ic('chevR','chev')}</button>`).join('')}
+      <button class="boxrow" data-go="x3" data-close><span class="lead-ic md">${ic('cal','i16')}</span><span class="tx"><b class="bm text-row-title">I can’t make it now</b><span class="c text-row-subtitle">Pick another time or place</span></span>${ic('chevR','chev')}</button></div>`,
     buttons:''}), o => {
       o.addEventListener('click', e => { const b = e.target.closest('[data-more]'); if (!b) return;
         const m = +b.dataset.more; S.etaEnd = Date.now() + WAIT_MS * m / 5; S.onWay = false; S.pushed = false;
@@ -2949,14 +2957,14 @@ const GAMES = [
   ['escape','Escape room','Find the way out before Mark arrives','1–4 players · 3 rooms','gr-escape'],
   ['tangram','Tangram','Fold the shapes into the picture','1–3 players · about 4 min','gr-tangram'],
 ];
-const strip = (size=84, add=true) => { const n = S.players.length + (add?1:0); if (n>3) size = Math.min(size,70); const gap = Math.max(10, Math.min(32, Math.floor((329 - n*size)/(n-1||1)))); return `<div style="display:flex;gap:${gap}px;align-items:center;justify-content:center">${S.players.map(p=>av(p,size)).join('')}${add?`<button data-act="invite" aria-label="Add someone" style="width:${size}px;height:${size}px;border-radius:var(--radius-pill);border:2px dashed var(--color-border-dashed);background:var(--color-background-white);display:grid;place-items:center;color:var(--color-icon)">${ic('plus','i20')}</button>`:''}</div>`; };
+const strip = (add=true) => { const n = S.players.length + (add?1:0); const v = n>3 ? 'player-compact' : 'player', size = tok('--size-avatar-'+v); const gap = Math.max(10, Math.min(32, Math.floor((329 - n*size)/(n-1||1)))); return `<div style="display:flex;gap:${gap}px;align-items:center;justify-content:center">${S.players.map(p=>av(p,v)).join('')}${add?`<button data-act="invite" aria-label="Add someone" style="width:var(--size-avatar-${v});height:var(--size-avatar-${v});border-radius:var(--radius-pill);border:var(--stroke-control) dashed var(--color-border-dashed);background:var(--color-background-white);display:grid;place-items:center;color:var(--color-icon)">${ic('plus','i20')}</button>`:''}</div>`; };
 SC.a1 = {flow:'games', label:'Pick a tiny escape', parent:'m6', render:()=>`
   ${topbar({t:'Quick break', right:R.live()+R.exit('m6',''), tight:true})}
   <div class="scroll">${hz('top')}<div class="body" style="padding-bottom:140px">
     <div class="intro" style="margin-bottom:var(--space-32)">${title2('Pick a tiny escape')}<p class="b text-body">5 minutes to play — solo or together.</p></div>
     <p class="cm sec text-label" style="margin:0 0 var(--space-12)">Playing</p>
     <button class="row" data-act="invite" style="padding:0;gap:var(--space-16)">
-      <span style="display:flex">${S.players.map((p,i)=>`<span style="margin-left:${i?6:0}px">${av(p,44)}</span>`).join('')}<span class="g-add" style="margin-left:var(--space-6);width:44px;height:44px;box-sizing:border-box;border-radius:var(--radius-pill);border:2px dashed var(--color-border-dashed);background:var(--color-background-white);display:grid;place-items:center">${ic('plus','i20')}</span></span>
+      <span style="display:flex">${S.players.map((p,i)=>`<span style="margin-left:${i?6:0}px">${av(p)}</span>`).join('')}<span class="g-add" style="margin-left:var(--space-6);width:var(--size-avatar-list);height:var(--size-avatar-list);box-sizing:border-box;border-radius:var(--radius-pill);border:var(--stroke-control) dashed var(--color-border-dashed);background:var(--color-background-white);display:grid;place-items:center">${ic('plus','i20')}</span></span>
       <span class="tx" style="gap:var(--space-8)"><b class="bm text-row-title">${S.players.length>1?S.players.slice(1).map(p=>PL[p].name).join(', ')+' joined':'Add someone'}</b><span class="c sec text-row-subtitle">${S.players.length>1?'Add more from their phone':'They join from their phone'}</span></span>
     </button>
     <div class="stack g12" style="margin-top:var(--space-24)">${GAMES.map(([k,t,s,m,bg])=>`<button class="tile ${bg}" data-act="game" data-v="${k}" style="flex-direction:row;align-items:center;gap:var(--space-16);padding:var(--space-16) var(--space-24) var(--space-16) var(--space-16);height:118px">${gameSlot(k, GAMES.findIndex(g=>g[0]===k))}<span class="stack" style="gap:var(--space-24);flex:1"><span class="stack g8"><b class="h4 text-card-title">${t}</b><span class="b sec text-body">${s}</span></span><span class="cm text-label">${m}</span></span></button>`).join('')}</div>
@@ -2970,7 +2978,7 @@ function inviteSheet(){
       else on = rnd()>.52;
       cells.push(`<i class="${on?'':'o'}"></i>`); } return cells.join(''); };
   const MAX = 4, next = () => ['jb','tuna'].filter(p=>!S.players.includes(p))[0];
-  const slot = (p, i) => p ? `<span class="jm" data-p="${p}">${av(p,40)}<span class="c text-caption">${p==='you'?'You':PL[p].name}</span></span>`
+  const slot = (p, i) => p ? `<span class="jm" data-p="${p}">${av(p)}<span class="c text-caption">${p==='you'?'You':PL[p].name}</span></span>`
                            : `<span class="jm empty ${i===S.players.length && next()?'waiting':''}"><span class="jm-wait">${i===S.players.length && next()?'<i></i><i></i><i></i>':''}</span><span class="c text-caption">${i===S.players.length && next()?'Waiting…':'Free'}</span></span>`;
   const slots = () => Array.from({length:MAX}, (_,i) => slot(S.players[i], i)).join('');
   const head = (t, sub) => `<div class="inv-hd"><p class="bm text-row-title">${t}</p><p class="c text-caption">${sub}</p></div>`;
@@ -3017,7 +3025,7 @@ SC.a3 = {flow:'games', label:'Set up · Pinoy Henyo', parent:'a1', render:()=>`
       <div class="pic g-pic" style="width:80px;height:80px"><img class="g-bob" src="${A.g_henyo}" alt="" style="width:96px;height:96px;max-width:none;margin:-8px"></div>
       <h1 class="h2 text-screen-title" style="margin-top:var(--space-24)">Pinoy Henyo</h1><p class="b sec text-body" style="margin-top:var(--space-16);max-width:297px">Guess the secret word by asking questions.</p>
     </div>
-    <div style="margin-top:var(--space-page-pause)">${strip(84)}</div>
+    <div style="margin-top:var(--space-page-pause)">${strip()}</div>
     <div class="card help-card rows44" style="padding:var(--space-card-pad-lg) var(--space-card-pad-lg) var(--space-card-pad-bottom-lg);margin-top:var(--space-page-between)">
       ${leadRow('user','One player guesses, the rest see the word','')}
       ${leadRow('msg','The guesser asks yes-or-no questions','')}
@@ -3046,7 +3054,7 @@ const word = () => WORDS[S.round % WORDS.length];
 SC.c1 = {flow:'games', label:'Round intro', parent:'a3', render:()=>{ const g = guesser(), gn = PL[g].name, you = g==='you'; return `
   ${topbar({t:`Round ${S.round+1}`, right:S.round>0?R.exit('m6','game'):R.exit('m6',''), tight:true})}
   <div class="scroll">${hz('game')}<div class="body">
-    <div class="stack" style="align-items:center;text-align:center">${av(g,84)}<h1 class="h2 text-screen-title" style="margin-top:var(--space-hero-title)"><em>Round ${S.round+1}</em><br>${you?'You are':gn+' is'} guessing</h1><p class="bl sec text-screen-lead" style="max-width:297px;margin-top:var(--space-24)">${you?'You guess':gn+' guesses'} this round. Hold the screen facing away from ${you?'you':'them'}.</p></div>
+    <div class="stack" style="align-items:center;text-align:center">${av(g,'player')}<h1 class="h2 text-screen-title" style="margin-top:var(--space-hero-title)"><em>Round ${S.round+1}</em><br>${you?'You are':gn+' is'} guessing</h1><p class="bl sec text-screen-lead" style="max-width:297px;margin-top:var(--space-24)">${you?'You guess':gn+' guesses'} this round. Hold the screen facing away from ${you?'you':'them'}.</p></div>
     <div class="sec-h" style="margin:var(--space-page-pause) var(--space-inline-tight) var(--space-page-group)"><p class="h4 text-section-title">How it works</p></div>
     <div class="card" style="padding:var(--space-card-pad-lg) var(--space-card-pad-lg) var(--space-card-pad-bottom-lg)">${leadRow('phone',`${you?'You hold':gn+' holds'} the phone facing out`,'')}${leadRow('scan','Everyone else reads the word','')}${leadRow('msg','Answer Yes, No or Maybe out loud','')}</div>
   </div></div>
@@ -3073,7 +3081,7 @@ SC.c3 = {flow:'games', label:'Round · secret word', parent:'c1', render:()=>{ c
   ${topbar({t:`Round ${S.round+1}`, right:R.exit('m6','game'), tight:true})}
   <div class="scroll"><div class="body" style="display:flex;flex-direction:column;min-height:100%;box-sizing:border-box">
     <div style="width:100%">
-      <div class="progress" style="height:8px"><i id="tbar" style="width:100%"></i></div>
+      <div class="progress"><i id="tbar" style="width:100%"></i></div>
       <div style="display:flex;justify-content:space-between;margin-top:var(--space-12)" class="cm text-label"><span class="sec">Round ${S.round+1} of ${S.players.length}</span><b id="tleft" style="font-weight:var(--font-weight-medium)">${S.len}:00</b></div>
     </div>
     <div style="margin-top:113px">
@@ -3106,13 +3114,13 @@ const factTile = (tone, icon, label, value, detail, valAttr='') => `<div class="
 SC.c5 = {flow:'games', label:'Round result', parent:'a3', render:()=>{ const L = S.last || {g:'jb',secs:38,pts:150,got:true}; const gn = L.g==='you'?'You':PL[L.g].name; const lastRound = S.round+1 >= S.players.length; return `
   ${topbar({t:`Round ${S.round+1}`, right:R.exit('m6','game'), tight:true})}
   <div class="scroll">${hz('soft')}<div class="body">
-    <div class="stack" style="align-items:center;text-align:center">${av(L.g,84)}<h1 class="h2 text-screen-title" style="margin-top:var(--space-hero-title)"><em>Round ${S.round+1}</em><br>${L.got?`${gn} got it`:'Time ran out'}</h1></div>
+    <div class="stack" style="align-items:center;text-align:center">${av(L.g,'player')}<h1 class="h2 text-screen-title" style="margin-top:var(--space-hero-title)"><em>Round ${S.round+1}</em><br>${L.got?`${gn} got it`:'Time ran out'}</h1></div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-10);margin-top:var(--space-group-break)">
       ${factTile('ft-ambient','clock','Time taken', fmtT(L.secs), L.got ? `of ${S.len}:00 on the clock` : 'Nobody guessed it')}
       ${factTile('ft-gradient','gem','Points', '+0', L.got?(L.pts>100?'100 + 50 for speed':'100 for the word'):'Nobody scored', 'id="rpts"')}
     </div>
     <div class="sec-h" style="margin:var(--space-group-break) var(--space-inline-tight) var(--space-page-group)"><p class="h4 text-section-title">Score so far</p></div>
-    <div class="card" style="padding:var(--space-card-pad-lg) var(--space-card-pad-lg) var(--space-card-pad-bottom-lg)">${[...S.players].sort((a,b)=>(S.scores[b]||0)-(S.scores[a]||0)).map(p=>`<div class="row">${av(p,36)}<span class="tx b text-body">${PL[p].name}</span><b class="b text-body" style="font-weight:var(--font-weight-regular);color:var(--color-text-muted)">${S.scores[p]||0}</b></div>`).join('')}</div>
+    <div class="card" style="padding:var(--space-card-pad-lg) var(--space-card-pad-lg) var(--space-card-pad-bottom-lg)">${[...S.players].sort((a,b)=>(S.scores[b]||0)-(S.scores[a]||0)).map(p=>`<div class="row">${av(p)}<span class="tx b text-body">${PL[p].name}</span><b class="b text-body" style="font-weight:var(--font-weight-regular);color:var(--color-text-muted)">${S.scores[p]||0}</b></div>`).join('')}</div>
   </div></div>
   ${foot(btn(lastRound?'See final results':'Next player',`data-act="${lastRound?'final':'nextRound'}"`)+btn('Stop here','data-act="final"','paper'))}`;},
   mount(el){ const L = S.last; if (L) countUp(el.querySelector('#rpts'),0,L.pts,800,v=>'+'+Math.round(v));
@@ -3130,12 +3138,12 @@ function podiumHTML(ranked){
   const n = Math.min(ranked.length, 3);
   // per place: column box, corner radii, number (size, top, x-shift, white alpha), name block top/size, avatar ring (size, colour)
   const PLACES = n >= 3 ? {
-      1:{x:108, y:27,     w:131, h:219, r:'20px 20px 0 0',  nf:130, ny:107.46, nx:0,  na:.32, nameY:86.46,  nameF:17, ring:74, ringY:1,  rc:'#fcd4b7'},
-      2:{x:0,   y:94,     w:122, h:152, r:'20px 8px 0 20px', nf:68,  ny:87.46,  nx:0,  na:.2,  nameY:128.46, nameF:14, ring:60, ringY:59, rc:'#eadaf3'},
-      3:{x:239, y:110.46, w:106, h:136, r:'8px 20px 20px 0', nf:68,  ny:72,     nx:-4, na:.21, nameY:146.46, nameF:14, ring:60, ringY:82, rc:'#e5c3c5', nameX:-14} }
+      1:{x:108, y:27,     w:131, h:219, r:'20px 20px 0 0',  nf:130, ny:107.46, nx:0,  na:.32, nameY:86.46,  nameF:17, ring:74, ringY:1,  rc:'var(--color-haze-warm)'},
+      2:{x:0,   y:94,     w:122, h:152, r:'20px 8px 0 20px', nf:68,  ny:87.46,  nx:0,  na:.2,  nameY:128.46, nameF:14, ring:60, ringY:59, rc:'var(--color-haze-lilac)'},
+      3:{x:239, y:110.46, w:106, h:136, r:'8px 20px 20px 0', nf:68,  ny:72,     nx:-4, na:.21, nameY:146.46, nameF:14, ring:60, ringY:82, rc:'var(--color-haze-pink)', nameX:-14} }
     : {
-      1:{x:158, y:27,     w:187, h:219, r:'20px 20px 20px 0', nf:130, ny:107.46, nx:0, na:.32, nameY:86.46,  nameF:17, ring:74, ringY:1,  rc:'#fcd4b7'},
-      2:{x:0,   y:94,     w:172, h:152, r:'20px 8px 0 20px',  nf:68,  ny:87.46,  nx:0, na:.2,  nameY:128.46, nameF:14, ring:60, ringY:59, rc:'#eadaf3'} };
+      1:{x:158, y:27,     w:187, h:219, r:'20px 20px 20px 0', nf:130, ny:107.46, nx:0, na:.32, nameY:86.46,  nameF:17, ring:74, ringY:1,  rc:'var(--color-haze-warm)'},
+      2:{x:0,   y:94,     w:172, h:152, r:'20px 8px 0 20px',  nf:68,  ny:87.46,  nx:0, na:.2,  nameY:128.46, nameF:14, ring:60, ringY:59, rc:'var(--color-haze-lilac)'} };
   if (n === 1) Object.assign(PLACES[1], {x:107, w:131, r:'20px'});
   // columns in paint order: 2nd under 1st (1st overlaps it by 14px), then 3rd
   return ranked.slice(0, n).map((p, rank) => {
@@ -3143,7 +3151,7 @@ function podiumHTML(ranked){
     return `<div class="col pod-${rank+1}" style="position:absolute;left:${P.x}px;top:${P.y}px;width:${P.w}px;height:${P.h}px;border-radius:${P.r};overflow:hidden;transform-origin:50% 100%;z-index:${rank===0?2:1};background-size:100% 100%">
         <b class="pod-n" style="left:${P.nx}px;width:${P.w}px;top:${P.ny}px;font-size:${P.nf}px;color:color-mix(in srgb,var(--color-paper) ${P.na*100}%,transparent)">${rank+1}</b></div>
       <div style="position:absolute;left:${nx}px;width:${nw}px;top:${P.nameY}px;text-align:center;z-index:3"><b style="display:block;font-size:${P.nameF}px;font-weight:var(--font-weight-semibold);line-height:var(--leading-snug);text-box:trim-both cap alphabetic">${PL[p].name}</b><span class="c sec text-row-subtitle" style="display:block;margin-top:var(--space-8)">${S.scores[p]||0} pts</span></div>
-      <div class="pod-av" style="left:${cx - P.ring/2}px;top:${P.ringY}px;width:${P.ring}px;height:${P.ring}px;border:1.25px solid ${P.rc};z-index:3">${av(p, P.ring-4)}</div>`; }).join('');
+      <div class="pod-av" style="left:${cx - P.ring/2}px;top:${P.ringY}px;width:${P.ring}px;height:${P.ring}px;border:var(--stroke-podium-ring) solid ${P.rc};z-index:3">${av(p, rank===0?'podium-lead':'podium')}</div>`; }).join('');
 }
 SC.c6 = {flow:'games', label:'Final results', parent:'a1', render:()=>{
   const ranked = [...S.players].sort((a,b)=>(S.scores[b]||0)-(S.scores[a]||0));
@@ -3169,7 +3177,7 @@ SC.c7 = {flow:'games', label:'Keep this going in Salmon app', parent:'c6', rende
   ${topbar({t:'Salmon app', right:R.info()+R.exit('m6',''), tight:true})}
   <div class="scroll">${hz('soft')}<div class="body">
     <div class="stack" style="align-items:center;text-align:center">${pic('a_app',80)}<h1 class="h2 text-screen-title" style="margin-top:var(--space-hero-title)">Keep this going<br><em>in Salmon app</em></h1><p class="b sec text-body" style="max-width:297px;margin-top:var(--space-16)">Today’s scores stay on this device until you close the tab.</p></div>
-    <div style="margin-top:var(--space-page-pause)">${strip(84)}</div>
+    <div style="margin-top:var(--space-page-pause)">${strip()}</div>
     <div class="card" style="padding:var(--space-card-pad-lg) var(--space-card-pad-lg) var(--space-card-pad-bottom-lg);margin-top:var(--space-page-between)">${leadRow('gem','Scores that stick between days','')}${leadRow('userplus','Play in teams, not just solo','')}${leadRow('plus','More categories and your own words','')}${leadRow('image','The other games in one place','')}</div>
   </div></div>
   ${foot(btn('Get the Salmon app','data-act="app"')+btn('Maybe later','data-go="a1"','paper'))}`};
@@ -3248,7 +3256,7 @@ SC.m9 = {flow:'wait', label:'Meeting in progress', parent:'m6', render:()=>{ con
   ${topbar({t:'With Mark', back:false, right:'<span class="livel" style="color:var(--color-text-text)"><i class="dot pulse"></i>Live</span>', tight:true})}
   <div class="scroll">${hz('soft')}<div class="body">
     <div class="stack" style="align-items:center;text-align:center">
-      <div class="mp-duo"><span class="mp-a">${av('you',72)}</span><span class="mp-link"><i></i><i></i><i></i></span><span class="mp-b"><img src="${A.mark}" alt="" style="width:72px;height:72px;border-radius:var(--radius-pill);object-fit:cover;box-shadow:0 0 0 3px var(--color-paper)"></span></div>
+      <div class="mp-duo"><span class="mp-a">${av('you','profile')}</span><span class="mp-link"><i></i><i></i><i></i></span><span class="mp-b">${av('mark','profile','ring')}</span></div>
       <h1 class="h2 text-screen-title" style="margin-top:var(--space-hero-title)"><em>Meeting</em><br>in progress</h1>
       <p class="b sec text-body" style="max-width:297px;margin-top:var(--space-16)">Mark is with you now. Keep this screen open — approval arrives here.</p>
     </div>
@@ -3407,7 +3415,7 @@ const ACT = {
   agree:b=>{ S.agree = !S.agree; b.setAttribute('aria-checked',S.agree); b.querySelector('.chk').classList.toggle('on',S.agree); cur.el.querySelector('#prep').disabled = !S.agree; },
   shoot:b=>shoot(cur.el,b.dataset.v),
   fulfil:b=>{ S.fulfil = b.dataset.v; rerender(); },
-  payMethod:()=>{ const opt = (k,icn,t,sub) => `<button class="boxrow ${S.payBy===k?'on':''}" data-pm="${k}" role="radio" aria-checked="${S.payBy===k}"><span class="lead-ic" style="width:36px;height:36px">${ic(icn,'i16')}</span><span class="tx"><b class="bm text-row-title">${t}</b><span class="c text-row-subtitle">${sub}</span></span><span class="radio"></span></button>`;
+  payMethod:()=>{ const opt = (k,icn,t,sub) => `<button class="boxrow ${S.payBy===k?'on':''}" data-pm="${k}" role="radio" aria-checked="${S.payBy===k}"><span class="lead-ic md">${ic(icn,'i16')}</span><span class="tx"><b class="bm text-row-title">${t}</b><span class="c text-row-subtitle">${sub}</span></span><span class="radio"></span></button>`;
     sheet(sheetDoc({title:'Payment method', sub:'Pay the down payment with GCash or a card.', body:`<div class="stack g8" role="radiogroup" style="margin-top:var(--space-16)">${opt('gcash','landmark','GCash','+63 917 ··· 0142')}${opt('card','wallet','Credit or debit card', S.payBy==='card'?'Card ··· 1290':'Visa, Mastercard, JCB')}</div>`, buttons:btn('Done','data-close')}), o => {
       o.addEventListener('click', e => { const b = e.target.closest('[data-pm]'); if (!b) return; const k = b.dataset.pm; o.close();
         if (k === 'card') setTimeout(() => go('p3b'), 220); else { S.payBy = 'gcash'; rerender(); } }); }); },
@@ -3444,7 +3452,7 @@ const ACT = {
   toPlace:()=>{ S.dest = 'place'; go('w4'); },
   timeSheet:()=>timeSheet(),
   buzz:b=>{ S.buzz = S.buzz === false; b.setAttribute('aria-checked', S.buzz); b.querySelector('.tgl').classList.toggle('on', S.buzz); toast(S.buzz ? 'We’ll buzz you when Mark is ready' : 'No buzz — the ticket still updates'); },
-  manage:()=>{ const row = (go, icn, t, sub, extra='') => `<button class="boxrow" ${go} ${extra}><span class="lead-ic" style="width:36px;height:36px">${ic(icn,'i16')}</span><span class="tx"><b class="bm text-row-title">${t}</b><span class="c text-row-subtitle">${sub}</span></span>${ic('chevR','chev')}</button>`;
+  manage:()=>{ const row = (go, icn, t, sub, extra='') => `<button class="boxrow" ${go} ${extra}><span class="lead-ic md">${ic(icn,'i16')}</span><span class="tx"><b class="bm text-row-title">${t}</b><span class="c text-row-subtitle">${sub}</span></span>${ic('chevR','chev')}</button>`;
     sheet(sheetDoc({title:'Manage this meeting', sub:'Mark sees every change right away.', body:`<div class="stack g8" style="margin-top:var(--space-16)">
       ${tkPhase() === 'coming' ? row('data-mg="time"','clock','Change the time',`Now around ${protoClock(etaMins())}`) : row('data-mg="more"','clock','I need a few more minutes','Mark will wait')}
       ${row('data-mg="w2"','pin','Change the place', `Now at ${S.where.name}`)}
