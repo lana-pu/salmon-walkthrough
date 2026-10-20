@@ -1,0 +1,32 @@
+<!-- @dsCard height=288 -->
+<style>
+  html,body{margin:0;background:var(--color-base-bg)}
+  .cv{position:relative;width:960px;height:288px;overflow:hidden;background:var(--color-base-bg)}
+  .cv svg{position:absolute;inset:0}
+  .ink{fill:var(--color-text-text)} .lilac{fill:var(--color-haze-lilac)} .warm{fill:var(--color-haze-warm)} .sky{fill:var(--color-haze-blue)} .apricot{fill:var(--color-haze-apricot)} .ground{fill:var(--color-base-bg)} .paper{fill:var(--color-paper)}
+  .card{rx:var(--radius-card)}
+  .txt{position:absolute;left:40px;bottom:36px;max-width:440px}
+  .name{margin:0;font-family:var(--font-sans);font-weight:500;font-size:120px;line-height:.92;letter-spacing:-.06em;color:var(--color-text-text)}
+  .tag{margin:16px 0 0;font-family:var(--font-sans);font-size:14px;line-height:1.3;color:var(--color-text-muted)}
+</style>
+<div class="cv">
+  <!--
+    blocks: ink slab 160×296 (r-card), lilac 168×128, warm 168×120, blue 96×120, apricot 96×64 — all r-card
+    arrangement: a flush modular grid right of x=480, the ink slab and the blue block bleed off the top and right edges like the dark action tile beside pastel tiles
+    pattern: "soft, friendly, large radii" → pills and discs from r-pill: three bg pills on the ink slab (the button stack) and three paper discs on lilac (icon holders)
+    steps and radii: gaps space-16, pill height 46 (button) with rx 23, discs 36 (holder-sheet), corners r-card
+  -->
+  <svg width="960" height="288" viewBox="0 0 960 288" aria-hidden="true">
+    <rect class="lilac card" x="520" y="32" width="168" height="128"/>
+    <rect class="warm card" x="520" y="176" width="168" height="120"/>
+    <rect class="ink card" x="704" y="-8" width="160" height="304"/>
+    <rect class="sky card" x="880" y="32" width="96" height="120"/>
+    <rect class="apricot card" x="880" y="168" width="96" height="64"/>
+    <rect class="ground" x="720" y="150" width="128" height="46" rx="23"/>
+    <rect class="ground" x="720" y="204" width="128" height="46" rx="23"/>
+    <circle class="paper" cx="556" cy="68" r="18"/>
+    <circle class="paper" cx="556" cy="124" r="18"/>
+    <circle class="paper" cx="604" cy="68" r="18"/>
+  </svg>
+  <div class="txt"><p class="name">Salmon</p><p class="tag">Calm, warm and light. One clear next step on every screen.</p></div>
+</div>

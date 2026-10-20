@@ -1,0 +1,30 @@
+<!-- @dsCard group="Foundations" height=260 subtitle="Layered gradients, built live from palette tokens" -->
+<div id="gp" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px;padding:16px;font-family:var(--font-sans);background:var(--color-base-bg)">
+  <figure style="margin:0;display:grid;gap:8px"><div style="height:168px;border-radius:20px;background-image:var(--gradient-hero);background-size:100% 100%"></div><figcaption style="font-size:12px;color:var(--color-text-muted)"><b style="color:var(--color-text-text);font-weight:600">gradient-hero</b><br>Action tile, product card</figcaption></figure>
+  <figure style="margin:0;display:grid;gap:8px"><div style="height:168px;border-radius:20px;background-image:var(--gradient-ambient);background-size:100% 100%"></div><figcaption style="font-size:12px;color:var(--color-text-muted)"><b style="color:var(--color-text-text);font-weight:600">gradient-ambient</b><br>Take a seat, Trivia</figcaption></figure>
+  <figure style="margin:0;display:grid;gap:8px"><div style="height:120px;border-radius:20px;background-image:var(--gradient-feature);background-size:100% 100%"></div><figcaption style="font-size:12px;color:var(--color-text-muted)"><b style="color:var(--color-text-text);font-weight:600">gradient-feature</b><br>Get ready card</figcaption></figure>
+  <figure style="margin:0;display:grid;gap:8px"><div style="height:90px;border-radius:20px;background-image:var(--gradient-warm);background-size:100% 100%"></div><figcaption style="font-size:12px;color:var(--color-text-muted)"><b style="color:var(--color-text-text);font-weight:600">gradient-warm</b><br>Escape room, podium</figcaption></figure>
+  <figure style="margin:0;display:grid;gap:8px"><div style="height:90px;border-radius:20px;background-image:var(--gradient-plate);background-size:100% 100%"></div><figcaption style="font-size:12px;color:var(--color-text-muted)"><b style="color:var(--color-text-text);font-weight:600">gradient-plate</b><br>Colour together, Tangram</figcaption></figure>
+</div>
+<script>
+const GRAD={"hero":[["L",[["glow-lilac-3",1,0],["glow-peach-10",1,0.35],["glow-rose-7",1,0.7],["blue-350",1,1]],[0.94,-0.342,0,0.342,0.94,0.4],1],["R",[["glow-rose-9",0.65,0],["glow-peach-11",0.25,0.5],["glow-periwinkle-4",0,1]],[0.9,0,0.1,0,0.4,0.55],1],["R",[["glow-periwinkle-3",0.45,0],["glow-rose-6",0,1]],[0.5,0,-0.1,0,0.5,-0.05],1],["R",[["glow-peach-9",0.5,0],["glow-lilac-2",0,1]],[0.35,0,0.625,0,0.35,-0.025],1],["S","neutral-0",0.49]],"ambient":[["L",[["glow-lilac-3",1,0],["glow-peach-3",1,0.35],["glow-peach-6",1,0.7],["blue-350",1,1]],[0.94,-0.342,0,0.342,0.94,0.4],1],["R",[["glow-orchid-1",0.65,0],["glow-peach-11",0.25,0.5],["glow-periwinkle-4",0,1]],[0.9,0,0.1,0,0.4,0.55],1],["R",[["glow-rose-8",0.45,0],["glow-rose-6",0,1]],[0.5,0,-0.1,0,0.5,-0.05],1],["R",[["glow-orchid-2",0.5,0.25],["glow-lilac-2",0,0.861]],[0.35,0,0.625,0,0.35,-0.025],1],["L",[["blue-150",1,0.127],["glow-peach-4",0,0.889]],[0.964,1.609,-0.092,-1.955,0.793,0.687],1],["S","neutral-0",0.2]],"feature":[["L",[["glow-lilac-4",1,0],["glow-rose-2",1,0.397],["glow-peach-2",1,0.695],["glow-rose-5",1,1]],[0.705,0.165,0.068,-0.098,0.105,0.502],1],["R",[["glow-periwinkle-1",1,0.146],["glow-rose-1",0,0.814]],[-0.781,0.323,1.225,-0.323,-0.158,0.8],0.5],["R",[["glow-peach-8",1,0.482],["glow-rose-4",0,1]],[1.099,-1.162,1.22,2.038,0.389,-0.051],0.5],["R",[["glow-peach-1",1,0],["glow-peach-7",0,1]],[2.247,0.574,-0.449,-1.254,0.99,0.573],0.5],["S","glow-sky-1",0.2]],"warm":[["L",[["glow-peach-5",1,0],["glow-lilac-1",1,1]],[0.62,0.78,0,-0.78,0.62,0.5],1]],"plate":[["L",[["glow-rose-3",1,0],["glow-periwinkle-2",1,1]],[0.62,0.78,0,-0.78,0.62,0.5],1]]};
+function buildGradients(){
+  const cs=getComputedStyle(document.documentElement), v=n=>cs.getPropertyValue('--'+n).trim();
+  const f=x=>{let s=x.toFixed(5).replace(/0+$/,'').replace(/\.$/,'');return s===''||s==='-0'?'0':s;};
+  const inv=([a,b,tx,d,e,ty])=>{const det=a*e-b*d,A=e/det,B=-b/det,D=-d/det,E=a/det;return [A,D,B,E,-(A*tx+B*ty),-(D*tx+E*ty)];};
+  for(const [name,L] of Object.entries(GRAD)){
+    let defs='',rects='';
+    L.forEach((l,i)=>{
+      if(l[0]==='S'){rects+=`<rect width='1' height='1' fill='${v(l[1])}' opacity='${f(l[2])}'/>`;return;}
+      const [k,stops,t,op]=l, m=inv(t).map(f).join(' '), id='g'+i;
+      const st=stops.map(([c,a,o])=>`<stop offset='${f(o)}' stop-color='${v(c)}' stop-opacity='${f(a)}'/>`).join('');
+      defs+=k==='L'?`<linearGradient id='${id}' gradientUnits='objectBoundingBox' x1='0' y1='.5' x2='1' y2='.5' gradientTransform='matrix(${m})'>${st}</linearGradient>`
+                   :`<radialGradient id='${id}' gradientUnits='objectBoundingBox' cx='.5' cy='.5' r='.5' gradientTransform='matrix(${m})'>${st}</radialGradient>`;
+      rects+=`<rect width='1' height='1' fill='url(#${id})'${op!==1?` opacity='${f(op)}'`:''}/>`;
+    });
+    const svg=`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1' preserveAspectRatio='none'><defs>${defs}</defs>${rects}</svg>`;
+    document.getElementById('gp').style.setProperty('--gradient-'+name,'url("data:image/svg+xml,'+svg.replace(/#/g,'%23').replace(/</g,'%3C').replace(/>/g,'%3E')+'")');
+  }
+}
+buildGradients();
+</script>
