@@ -60,7 +60,7 @@
   --size-screen-mobile:var(--size-393);--size-content-mobile:var(--size-345);--size-tap:var(--size-44);--size-button-height:var(--size-46);--size-button-text-height:var(--size-40);--size-button-icon:var(--size-44);--size-chip-height:var(--size-32);--size-close:var(--size-28);
   --size-icon-xs:var(--size-12);--size-icon-sm:var(--size-14);--size-icon-md:var(--size-16);--size-icon-lg:var(--size-18);--size-icon-topbar:var(--size-20);--size-icon-xl:var(--size-22);--size-icon-holder-sm:var(--size-24);--size-icon-holder-md:var(--size-36);
   --size-icon-holder-lg:var(--size-44);--size-control-checkbox:var(--size-24);--size-control-radio:var(--size-20);--size-control-radio-core:var(--size-10);--size-status-dot:var(--size-8);--size-chip-height-sm:var(--size-28);--size-chip-height-lg:var(--size-36);--size-progress:var(--size-8);--size-toggle-width:var(--size-44);--size-toggle-height:var(--size-26);--size-toggle-knob:var(--size-20);--size-grabber-width:var(--size-46);--size-grabber-height:var(--size-4);--size-field-input:var(--size-48);
-  --size-field-textarea:var(--size-88);--size-row-compact:var(--size-44);--size-row-default:var(--size-56);--size-avatar-list:var(--size-44);--size-avatar-profile:var(--size-72);--size-avatar-player:var(--size-84);--size-avatar-player-compact:var(--size-70);--size-avatar-podium-lead:var(--size-70);--size-avatar-podium:var(--size-56);--size-avatar-ring:var(--size-4);
+  --size-field-textarea:var(--size-88);--size-row-compact:var(--size-44);--size-row-default:var(--size-56);--size-avatar-sm:var(--size-36);--size-avatar-md:var(--size-44);--size-avatar-lg:var(--size-72);--size-avatar-xl:var(--size-84);--size-avatar-xl-compact:var(--size-70);--size-avatar-podium-lead:var(--size-70);--size-avatar-podium:var(--size-56);--size-avatar-ring:var(--size-4);
   --stroke-icon:var(--stroke-150);--stroke-field:var(--stroke-150);--stroke-dashed:var(--stroke-150);--stroke-podium-ring:var(--stroke-125);--stroke-divider:var(--stroke-100);--stroke-control:var(--stroke-200);--stroke-select:var(--stroke-150);--stroke-artwork-card:var(--stroke-200);
   /* ── Gradient colours: used only inside layered gradients, not part of the palette ── */
   --glow-lilac-1:#eaddf0;--glow-lilac-2:#dcc8f0;--glow-lilac-3:#c8bef0;--glow-lilac-4:#c2b8e2;
@@ -302,7 +302,7 @@ html.ft-warm{--ft-light:255,251,240}
 @keyframes breathe{50%{transform:scale(1.1) translate(3%,-3%);opacity:1}}
 .avatar{border-radius:var(--radius-pill);background:var(--color-background-white);overflow:hidden;flex:none;display:grid;place-items:center}
 .avatar img{width:100%;height:100%;object-fit:cover}
-.avatar--list{width:var(--size-avatar-list);height:var(--size-avatar-list)}.avatar--profile{width:var(--size-avatar-profile);height:var(--size-avatar-profile)}.avatar--player{width:var(--size-avatar-player);height:var(--size-avatar-player)}.avatar--player-compact{width:var(--size-avatar-player-compact);height:var(--size-avatar-player-compact)}.avatar--podium-lead{width:var(--size-avatar-podium-lead);height:var(--size-avatar-podium-lead)}.avatar--podium{width:var(--size-avatar-podium);height:var(--size-avatar-podium)}
+.avatar--sm{width:var(--size-avatar-sm);height:var(--size-avatar-sm)}.avatar--md{width:var(--size-avatar-md);height:var(--size-avatar-md)}.avatar--lg{width:var(--size-avatar-lg);height:var(--size-avatar-lg)}.avatar--xl{width:var(--size-avatar-xl);height:var(--size-avatar-xl)}.avatar--xl-compact{width:var(--size-avatar-xl-compact);height:var(--size-avatar-xl-compact)}.avatar--podium-lead{width:var(--size-avatar-podium-lead);height:var(--size-avatar-podium-lead)}.avatar--podium{width:var(--size-avatar-podium);height:var(--size-avatar-podium)}
 .avatar.ring{box-shadow:0 0 0 var(--size-avatar-ring) var(--color-paper)}
 /* avatars: no ring — holders carry no stroke */
 
@@ -1009,7 +1009,7 @@ html.ac-colour .ac-tile[data-ac="game"] .ac-ctrl-ink{display:none}
 .jm-row{display:flex;gap:var(--space-16);align-items:flex-start;flex-wrap:wrap}
 .jm{display:flex;flex-direction:column;align-items:center;gap:var(--space-8);min-width:48px}
 .jm .c{white-space:nowrap}
-.jm-wait{width:var(--size-avatar-list);height:var(--size-avatar-list);border-radius:var(--radius-pill);border:var(--stroke-dashed) dashed var(--color-border-dashed);display:flex;align-items:center;justify-content:center;gap:var(--space-4)}
+.jm-wait{width:var(--size-avatar-md);height:var(--size-avatar-md);border-radius:var(--radius-pill);border:var(--stroke-dashed) dashed var(--color-border-dashed);display:flex;align-items:center;justify-content:center;gap:var(--space-4)}
 .jm-wait i{width:4px;height:4px;border-radius:var(--radius-pill);background:var(--color-muted);animation:mpdot 1.2s ease-in-out infinite}
 .jm-wait i:nth-child(2){animation-delay:.15s}.jm-wait i:nth-child(3){animation-delay:.3s}
 
@@ -1194,8 +1194,10 @@ const pic = (art, size=80, cls='breathe') => `<div class="pic ${cls}" style="wid
 const Bc = (cx,cy,w,h,rot,c,op,r) => `<i style="left:${cx-w/2}px;top:${cy-h/2}px;width:${w}px;height:${h}px;transform:rotate(${rot}deg);background:${c};opacity:${op};filter:blur(${r/2}px)"></i>`;
 const B = (x,y,w,h,c,op,r) => `<i style="left:${x}px;top:${y}px;width:${w}px;height:${h}px;background:${c};opacity:${op};filter:blur(${r/2}px)"></i>`;
 const rewardGlow = `<span class="blob" aria-hidden="true" style="position:absolute;inset:0;overflow:hidden;border-radius:inherit">${B(227,-50,180,150,'#d1bfff',.23,42)}${B(59,166,165,135,'#ffd1b2',.16,44)}${B(-61,172,205,155,'#ffb5d1',.18,46)}${B(122,33,72,68,'#ffc99e',.18,20)}${B(167,34,70,68,'#b89cff',.18,21)}${B(133,39,82,70,'#ffbac7',.22,22)}</span>`;
-/* Avatar atom: a person from the Avatars library, in one of the size variants. */
-const av = (who, v='list', cls='') => `<span class="avatar avatar--${v} av-${who}${cls?' '+cls:''}"><img src="${A[PL[who].img]}" alt=""></span>`;
+/* Avatar atom: any picture (a portrait, or an illustration from the Avatars library) in a size from the size-avatar tokens. */
+const av = (src, size='md', cls='') => `<span class="avatar avatar--${size}${cls?' '+cls:''}"><img src="${src}" alt=""></span>`;
+/* A player's picture comes from the Avatars library; size is chosen where it is used. */
+const pav = (p, size='md', cls='') => av(A[PL[p].img], size, 'av-'+p+(cls?' '+cls:''));
 const tok = n => parseFloat(getComputedStyle(document.documentElement).getPropertyValue(n));
 const leadRow = (icon, title, sub, trail='', attrs='', lined=false) => `<div class="row ${lined?'lined':''}" ${attrs}><span class="lead-ic">${ic(icon)}</span><span class="tx"><span class="b text-body">${title}</span>${sub?`<span class="c text-caption">${sub}</span>`:''}</span>${trail}</div>`;
 const HZ = {
@@ -2207,7 +2209,7 @@ function m6body(){
   <div class="intro tk-intro" data-phase="${tkPhase()}" style="margin-bottom:var(--space-28)">${tkIntro()}</div>
   <div class="facts-wrap" style="position:relative">
     <div class="stack g16" style="width:140px;position:relative">
-      <button class="card t-mark" style="padding:var(--space-card-pad-sm);height:145px;display:flex;flex-direction:column;gap:var(--space-12);text-align:left" data-act="mark">${av('mark','list','t-img')}<span class="stack g8"><span class="c sec text-caption">Ambassador</span><b class="h4 t-lbl text-card-title">Mark Reyes</b></span><span style="border-top:1px solid var(--color-border-border);padding-top:var(--space-12);height:22px;box-sizing:border-box;line-height:var(--leading-none);display:flex;justify-content:space-between;align-items:center;flex:none" class="c sec text-caption">View profile ${ic('chevR','chev')}</span></button>
+      <button class="card t-mark" style="padding:var(--space-card-pad-sm);height:145px;display:flex;flex-direction:column;gap:var(--space-12);text-align:left" data-act="mark">${av(A.mark,'md','t-img')}<span class="stack g8"><span class="c sec text-caption">Ambassador</span><b class="h4 t-lbl text-card-title">Mark Reyes</b></span><span style="border-top:1px solid var(--color-border-border);padding-top:var(--space-12);height:22px;box-sizing:border-box;line-height:var(--leading-none);display:flex;justify-content:space-between;align-items:center;flex:none" class="c sec text-caption">View profile ${ic('chevR','chev')}</span></button>
       <button class="card t-where" style="padding:var(--space-card-pad-sm);min-height:155px;display:flex;flex-direction:column;gap:var(--space-12);text-align:left" data-go="w3"><span class="t-img lead-ic md ink">${ic('pin','i18')}</span><span class="stack g8"><span class="c sec text-caption">Where</span><b class="h4 t-lbl text-card-title">${S.where.name}</b></span><span class="b sec text-body">${S.where.sub}</span><span style="border-top:1px solid var(--color-border-border);padding-top:var(--space-12);height:22px;box-sizing:border-box;line-height:var(--leading-none);display:flex;justify-content:space-between;align-items:center;flex:none;margin-top:auto" class="c sec text-caption">View place ${ic('chevR','chev')}</span></button>
     </div>
   </div>
@@ -2791,7 +2793,7 @@ SC.w4m = {flow:'wait', label:'You’re at the meeting point', parent:'m6', rende
   <div class="ya-sheet">
     <div class="grab"></div>
     <div class="ya-in">
-      <div class="stack" style="align-items:center;text-align:center"><span class="ya-r" style="display:block;padding:var(--size-avatar-ring)">${av('mark','profile','ring')}</span><h1 class="h2 ya-r text-screen-title" style="margin-top:var(--space-hero-title)"><em>You’re here.</em><br>${ready ? 'Look for Mark' : 'Mark is almost ready'}</h1><p class="bl sec ya-r text-screen-lead" style="max-width:297px;margin-top:var(--space-24)">${ready ? 'Red Salmon shirt and an ID badge. He’ll say your meeting code.' : `He’ll come to ${d.name} in about ${etaMins()} min — we’ll buzz you.`}</p></div>
+      <div class="stack" style="align-items:center;text-align:center"><span class="ya-r" style="display:block;padding:var(--size-avatar-ring)">${av(A.mark,'lg','ring')}</span><h1 class="h2 ya-r text-screen-title" style="margin-top:var(--space-hero-title)"><em>You’re here.</em><br>${ready ? 'Look for Mark' : 'Mark is almost ready'}</h1><p class="bl sec ya-r text-screen-lead" style="max-width:297px;margin-top:var(--space-24)">${ready ? 'Red Salmon shirt and an ID badge. He’ll say your meeting code.' : `He’ll come to ${d.name} in about ${etaMins()} min — we’ll buzz you.`}</p></div>
       <div class="ya-r w4m-code"><span class="stack" style="gap:var(--space-card-line);flex:1"><b class="bm text-row-title">Meeting code</b><span class="c sec text-row-subtitle">Mark says it when he greets you</span></span><span class="w6-digits">${MEET_CODE.split('').map(n=>`<b>${n}</b>`).join('')}</span></div>
     </div>
     <div class="sh-ft ya-r">${ready ? btn('I’m with Mark','data-go="m9"') + btn('I can’t find him','data-act="msgMark"','paper') : btn('Back to my ticket','data-act="helpSkip"') + btn('Ask a question','data-act="msgMark"','paper')}</div>
@@ -2957,14 +2959,14 @@ const GAMES = [
   ['escape','Escape room','Find the way out before Mark arrives','1–4 players · 3 rooms','gr-escape'],
   ['tangram','Tangram','Fold the shapes into the picture','1–3 players · about 4 min','gr-tangram'],
 ];
-const strip = (add=true) => { const n = S.players.length + (add?1:0); const v = n>3 ? 'player-compact' : 'player', size = tok('--size-avatar-'+v); const gap = Math.max(10, Math.min(32, Math.floor((329 - n*size)/(n-1||1)))); return `<div style="display:flex;gap:${gap}px;align-items:center;justify-content:center">${S.players.map(p=>av(p,v)).join('')}${add?`<button data-act="invite" aria-label="Add someone" style="width:var(--size-avatar-${v});height:var(--size-avatar-${v});border-radius:var(--radius-pill);border:var(--stroke-control) dashed var(--color-border-dashed);background:var(--color-background-white);display:grid;place-items:center;color:var(--color-icon)">${ic('plus','i20')}</button>`:''}</div>`; };
+const strip = (add=true) => { const n = S.players.length + (add?1:0); const v = n>3 ? 'xl-compact' : 'xl', size = tok('--size-avatar-'+v); const gap = Math.max(10, Math.min(32, Math.floor((329 - n*size)/(n-1||1)))); return `<div style="display:flex;gap:${gap}px;align-items:center;justify-content:center">${S.players.map(p=>pav(p,v)).join('')}${add?`<button data-act="invite" aria-label="Add someone" style="width:var(--size-avatar-${v});height:var(--size-avatar-${v});border-radius:var(--radius-pill);border:var(--stroke-control) dashed var(--color-border-dashed);background:var(--color-background-white);display:grid;place-items:center;color:var(--color-icon)">${ic('plus','i20')}</button>`:''}</div>`; };
 SC.a1 = {flow:'games', label:'Pick a tiny escape', parent:'m6', render:()=>`
   ${topbar({t:'Quick break', right:R.live()+R.exit('m6',''), tight:true})}
   <div class="scroll">${hz('top')}<div class="body" style="padding-bottom:140px">
     <div class="intro" style="margin-bottom:var(--space-32)">${title2('Pick a tiny escape')}<p class="b text-body">5 minutes to play — solo or together.</p></div>
     <p class="cm sec text-label" style="margin:0 0 var(--space-12)">Playing</p>
     <button class="row" data-act="invite" style="padding:0;gap:var(--space-16)">
-      <span style="display:flex">${S.players.map((p,i)=>`<span style="margin-left:${i?6:0}px">${av(p)}</span>`).join('')}<span class="g-add" style="margin-left:var(--space-6);width:var(--size-avatar-list);height:var(--size-avatar-list);box-sizing:border-box;border-radius:var(--radius-pill);border:var(--stroke-control) dashed var(--color-border-dashed);background:var(--color-background-white);display:grid;place-items:center">${ic('plus','i20')}</span></span>
+      <span style="display:flex">${S.players.map((p,i)=>`<span style="margin-left:${i?6:0}px">${pav(p,'md')}</span>`).join('')}<span class="g-add" style="margin-left:var(--space-6);width:var(--size-avatar-md);height:var(--size-avatar-md);box-sizing:border-box;border-radius:var(--radius-pill);border:var(--stroke-control) dashed var(--color-border-dashed);background:var(--color-background-white);display:grid;place-items:center">${ic('plus','i20')}</span></span>
       <span class="tx" style="gap:var(--space-8)"><b class="bm text-row-title">${S.players.length>1?S.players.slice(1).map(p=>PL[p].name).join(', ')+' joined':'Add someone'}</b><span class="c sec text-row-subtitle">${S.players.length>1?'Add more from their phone':'They join from their phone'}</span></span>
     </button>
     <div class="stack g12" style="margin-top:var(--space-24)">${GAMES.map(([k,t,s,m,bg])=>`<button class="tile ${bg}" data-act="game" data-v="${k}" style="flex-direction:row;align-items:center;gap:var(--space-16);padding:var(--space-16) var(--space-24) var(--space-16) var(--space-16);height:118px">${gameSlot(k, GAMES.findIndex(g=>g[0]===k))}<span class="stack" style="gap:var(--space-24);flex:1"><span class="stack g8"><b class="h4 text-card-title">${t}</b><span class="b sec text-body">${s}</span></span><span class="cm text-label">${m}</span></span></button>`).join('')}</div>
@@ -2978,7 +2980,7 @@ function inviteSheet(){
       else on = rnd()>.52;
       cells.push(`<i class="${on?'':'o'}"></i>`); } return cells.join(''); };
   const MAX = 4, next = () => ['jb','tuna'].filter(p=>!S.players.includes(p))[0];
-  const slot = (p, i) => p ? `<span class="jm" data-p="${p}">${av(p)}<span class="c text-caption">${p==='you'?'You':PL[p].name}</span></span>`
+  const slot = (p, i) => p ? `<span class="jm" data-p="${p}">${pav(p,'md')}<span class="c text-caption">${p==='you'?'You':PL[p].name}</span></span>`
                            : `<span class="jm empty ${i===S.players.length && next()?'waiting':''}"><span class="jm-wait">${i===S.players.length && next()?'<i></i><i></i><i></i>':''}</span><span class="c text-caption">${i===S.players.length && next()?'Waiting…':'Free'}</span></span>`;
   const slots = () => Array.from({length:MAX}, (_,i) => slot(S.players[i], i)).join('');
   const head = (t, sub) => `<div class="inv-hd"><p class="bm text-row-title">${t}</p><p class="c text-caption">${sub}</p></div>`;
@@ -3054,7 +3056,7 @@ const word = () => WORDS[S.round % WORDS.length];
 SC.c1 = {flow:'games', label:'Round intro', parent:'a3', render:()=>{ const g = guesser(), gn = PL[g].name, you = g==='you'; return `
   ${topbar({t:`Round ${S.round+1}`, right:S.round>0?R.exit('m6','game'):R.exit('m6',''), tight:true})}
   <div class="scroll">${hz('game')}<div class="body">
-    <div class="stack" style="align-items:center;text-align:center">${av(g,'player')}<h1 class="h2 text-screen-title" style="margin-top:var(--space-hero-title)"><em>Round ${S.round+1}</em><br>${you?'You are':gn+' is'} guessing</h1><p class="bl sec text-screen-lead" style="max-width:297px;margin-top:var(--space-24)">${you?'You guess':gn+' guesses'} this round. Hold the screen facing away from ${you?'you':'them'}.</p></div>
+    <div class="stack" style="align-items:center;text-align:center">${pav(g,'xl')}<h1 class="h2 text-screen-title" style="margin-top:var(--space-hero-title)"><em>Round ${S.round+1}</em><br>${you?'You are':gn+' is'} guessing</h1><p class="bl sec text-screen-lead" style="max-width:297px;margin-top:var(--space-24)">${you?'You guess':gn+' guesses'} this round. Hold the screen facing away from ${you?'you':'them'}.</p></div>
     <div class="sec-h" style="margin:var(--space-page-pause) var(--space-inline-tight) var(--space-page-group)"><p class="h4 text-section-title">How it works</p></div>
     <div class="card" style="padding:var(--space-card-pad-lg) var(--space-card-pad-lg) var(--space-card-pad-bottom-lg)">${leadRow('phone',`${you?'You hold':gn+' holds'} the phone facing out`,'')}${leadRow('scan','Everyone else reads the word','')}${leadRow('msg','Answer Yes, No or Maybe out loud','')}</div>
   </div></div>
@@ -3114,13 +3116,13 @@ const factTile = (tone, icon, label, value, detail, valAttr='') => `<div class="
 SC.c5 = {flow:'games', label:'Round result', parent:'a3', render:()=>{ const L = S.last || {g:'jb',secs:38,pts:150,got:true}; const gn = L.g==='you'?'You':PL[L.g].name; const lastRound = S.round+1 >= S.players.length; return `
   ${topbar({t:`Round ${S.round+1}`, right:R.exit('m6','game'), tight:true})}
   <div class="scroll">${hz('soft')}<div class="body">
-    <div class="stack" style="align-items:center;text-align:center">${av(L.g,'player')}<h1 class="h2 text-screen-title" style="margin-top:var(--space-hero-title)"><em>Round ${S.round+1}</em><br>${L.got?`${gn} got it`:'Time ran out'}</h1></div>
+    <div class="stack" style="align-items:center;text-align:center">${pav(L.g,'xl')}<h1 class="h2 text-screen-title" style="margin-top:var(--space-hero-title)"><em>Round ${S.round+1}</em><br>${L.got?`${gn} got it`:'Time ran out'}</h1></div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-10);margin-top:var(--space-group-break)">
       ${factTile('ft-ambient','clock','Time taken', fmtT(L.secs), L.got ? `of ${S.len}:00 on the clock` : 'Nobody guessed it')}
       ${factTile('ft-gradient','gem','Points', '+0', L.got?(L.pts>100?'100 + 50 for speed':'100 for the word'):'Nobody scored', 'id="rpts"')}
     </div>
     <div class="sec-h" style="margin:var(--space-group-break) var(--space-inline-tight) var(--space-page-group)"><p class="h4 text-section-title">Score so far</p></div>
-    <div class="card" style="padding:var(--space-card-pad-lg) var(--space-card-pad-lg) var(--space-card-pad-bottom-lg)">${[...S.players].sort((a,b)=>(S.scores[b]||0)-(S.scores[a]||0)).map(p=>`<div class="row">${av(p)}<span class="tx b text-body">${PL[p].name}</span><b class="b text-body" style="font-weight:var(--font-weight-regular);color:var(--color-text-muted)">${S.scores[p]||0}</b></div>`).join('')}</div>
+    <div class="card" style="padding:var(--space-card-pad-lg) var(--space-card-pad-lg) var(--space-card-pad-bottom-lg)">${[...S.players].sort((a,b)=>(S.scores[b]||0)-(S.scores[a]||0)).map(p=>`<div class="row">${pav(p,'sm')}<span class="tx b text-body">${PL[p].name}</span><b class="b text-body" style="font-weight:var(--font-weight-regular);color:var(--color-text-muted)">${S.scores[p]||0}</b></div>`).join('')}</div>
   </div></div>
   ${foot(btn(lastRound?'See final results':'Next player',`data-act="${lastRound?'final':'nextRound'}"`)+btn('Stop here','data-act="final"','paper'))}`;},
   mount(el){ const L = S.last; if (L) countUp(el.querySelector('#rpts'),0,L.pts,800,v=>'+'+Math.round(v));
@@ -3151,7 +3153,7 @@ function podiumHTML(ranked){
     return `<div class="col pod-${rank+1}" style="position:absolute;left:${P.x}px;top:${P.y}px;width:${P.w}px;height:${P.h}px;border-radius:${P.r};overflow:hidden;transform-origin:50% 100%;z-index:${rank===0?2:1};background-size:100% 100%">
         <b class="pod-n" style="left:${P.nx}px;width:${P.w}px;top:${P.ny}px;font-size:${P.nf}px;color:color-mix(in srgb,var(--color-paper) ${P.na*100}%,transparent)">${rank+1}</b></div>
       <div style="position:absolute;left:${nx}px;width:${nw}px;top:${P.nameY}px;text-align:center;z-index:3"><b style="display:block;font-size:${P.nameF}px;font-weight:var(--font-weight-semibold);line-height:var(--leading-snug);text-box:trim-both cap alphabetic">${PL[p].name}</b><span class="c sec text-row-subtitle" style="display:block;margin-top:var(--space-8)">${S.scores[p]||0} pts</span></div>
-      <div class="pod-av" style="left:${cx - P.ring/2}px;top:${P.ringY}px;width:${P.ring}px;height:${P.ring}px;border:var(--stroke-podium-ring) solid ${P.rc};z-index:3">${av(p, rank===0?'podium-lead':'podium')}</div>`; }).join('');
+      <div class="pod-av" style="left:${cx - P.ring/2}px;top:${P.ringY}px;width:${P.ring}px;height:${P.ring}px;border:var(--stroke-podium-ring) solid ${P.rc};z-index:3">${pav(p, rank===0?'podium-lead':'podium')}</div>`; }).join('');
 }
 SC.c6 = {flow:'games', label:'Final results', parent:'a1', render:()=>{
   const ranked = [...S.players].sort((a,b)=>(S.scores[b]||0)-(S.scores[a]||0));
@@ -3256,7 +3258,7 @@ SC.m9 = {flow:'wait', label:'Meeting in progress', parent:'m6', render:()=>{ con
   ${topbar({t:'With Mark', back:false, right:'<span class="livel" style="color:var(--color-text-text)"><i class="dot pulse"></i>Live</span>', tight:true})}
   <div class="scroll">${hz('soft')}<div class="body">
     <div class="stack" style="align-items:center;text-align:center">
-      <div class="mp-duo"><span class="mp-a">${av('you','profile')}</span><span class="mp-link"><i></i><i></i><i></i></span><span class="mp-b">${av('mark','profile','ring')}</span></div>
+      <div class="mp-duo"><span class="mp-a">${pav('you','lg')}</span><span class="mp-link"><i></i><i></i><i></i></span><span class="mp-b">${av(A.mark,'lg','ring')}</span></div>
       <h1 class="h2 text-screen-title" style="margin-top:var(--space-hero-title)"><em>Meeting</em><br>in progress</h1>
       <p class="b sec text-body" style="max-width:297px;margin-top:var(--space-16)">Mark is with you now. Keep this screen open — approval arrives here.</p>
     </div>
