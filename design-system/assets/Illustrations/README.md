@@ -1,0 +1,1 @@
+Hero and action-card illustrations from the prototype. Line drawings in `art-line` with pastel blooms. Shown at 80px in heroes (64px on short phone screens) over the warm haze recipe, and inside action cards.
