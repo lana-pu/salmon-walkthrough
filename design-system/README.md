@@ -165,7 +165,7 @@ The Figma kit "Salmon Design" (152 variables, 13 text styles, 13 gradient styles
 ## Components
 
 - Components are CSS classes, not scripts. Load `components/bundle.css` after the tokens and build screens from its classes; it reads the tokens by name.
-- Each component card shows the real markup from the prototype and its guideline: Button, Footer, TopBar, Card, ListRow, KeyValue, SectionHeader, Tile, SelectionControls, Toggle, Segmented, Chip, Badge, Field, Sheet, Toast, Progress, Avatar, Photo, Slot, Dots, Digit, Spinner, Notice.
+- Each component card shows the real markup from the prototype and its guideline: Button, Footer, TopBar, Card, ListRow, KeyValue, SectionHeader, Tile, SelectionControls, Toggle, Segmented, Chip, Badge, Field, Sheet, Toast, Progress, Avatar, Photo, Slot, Dots, Digit, Spinner, Notice. Functional components: Fact (chip · tile · card) and Action (tile · feature) on surfaces.
 - A screen is a TopBar, a scrolling body with 32 above the content and 24 at the sides, and a Footer; sheets bring their own footer.
 - State lives in a class on the element that owns it (`on`, `busy`, `disabled`) plus the matching ARIA attribute (`aria-checked`, `aria-selected`).
 - Screen-specific pieces (camera frame, QR, scratch card, podium, points toast, ticket) are not components yet; copy them from the prototype.
