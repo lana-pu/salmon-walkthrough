@@ -11,3 +11,7 @@ Full-width pill button, 46 tall, for the actions of a screen or sheet.
 **In a footer** a `paper` or `plain` right after an `ink` loses its fill, drops to 40 tall (`size-button-text-height`) and sits 8 below the main one, so the pair reads as one main action plus an alternative.
 
 Don’t: put two `ink` buttons together, shorten a button to fit text, or add borders.
+
+**Small** `btn sm`: 40 tall (`size-button-text-height`), `text-row-title` size, 14 icon. For buttons inside cards (“Earn more points”, “Got it”).
+
+**More fills.** `btn muted`: `color-background-muted` (“Got it” on the rewards intro). `btn link`: no fill, `text-caption` in `color-text-muted`, auto width (“See my rewards”).
