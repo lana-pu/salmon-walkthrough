@@ -54,9 +54,8 @@ svg[data-ic]{stroke-width:var(--stroke-icon)}
 .pts svg{width:var(--size-icon-sm);height:var(--size-icon-sm)}
 .pts.lg{padding:var(--space-pill-pad-y) var(--space-pill-pad-x);gap:var(--space-8);font-size:var(--type-body-large-size);margin:calc((var(--size-icon-topbar) - var(--size-chip-height)) / 2) 0;align-self:center}   /* centred on the back arrow, overhangs the 20px row equally */
 .pts.lg svg{width:var(--size-icon-md);height:var(--size-icon-md)}
-.pts.sm.dim{opacity:.8}
 .checklist .badge.points:not(.on){background:var(--color-background-muted)}
-.pts.sm{padding:var(--space-text-inline) var(--space-8);gap:var(--space-text-inline);font-size:var(--type-caption-size);font-weight:var(--type-caption-weight)}.pts.sm b{font-weight:var(--font-weight-regular)}.pts.sm svg{width:var(--size-icon-xs);height:var(--size-icon-xs)}
+.pts.sm{padding:var(--space-text-inline) var(--space-8);gap:var(--space-text-inline);font-size:var(--type-caption-size);font-weight:var(--type-caption-weight)}.pts b{font-weight:var(--font-weight-semibold)}.pts.sm svg{width:var(--size-icon-xs);height:var(--size-icon-xs)}
 .pts.bump{animation:bump .5s cubic-bezier(.3,1.6,.5,1)}
 @keyframes bump{40%{transform:scale(1.16)}}
 .live{display:inline-flex;align-items:center;gap:var(--space-card-line)}.livel{display:inline-flex;align-items:center;gap:var(--space-card-line);font-size:var(--type-body-size);color:var(--color-text-muted)}.livel.strong{color:var(--color-text-text)}
@@ -165,6 +164,7 @@ html.ft-warm{--ft-light:255,251,240}
 .badge svg{width:var(--size-icon-xs);height:var(--size-icon-xs)}
 .badge.points{font-size:var(--type-caption-size);color:var(--color-text-muted);padding:var(--space-text-inline) var(--space-8);border-radius:var(--radius-pill);transition:all .25s}
 .badge.points.on{background:var(--color-background-interactive);color:var(--color-text-on-inverse)}
+.badge.points.paper:not(.on){background:var(--color-background-white)}
 .field{width:100%;border:var(--stroke-field) solid var(--color-border-border);border-radius:var(--radius-inner);background:var(--color-background-muted);padding:var(--space-14) var(--space-16);line-height:var(--leading-relaxed);font-size:var(--type-body-size);color:var(--color-text-text);outline:none;resize:none}
 .field::placeholder{color:var(--color-text-soft)}input.field{height:var(--size-field-input);padding-block:0;min-width:0;outline:none}
 .field:focus{border-color:var(--color-muted);background:var(--color-background-white)}
