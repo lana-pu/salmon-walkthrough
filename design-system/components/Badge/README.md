@@ -7,3 +7,5 @@ Small pill that labels or reports status.
 **Points** `badge points`: “+10” in `text-caption`, muted until earned; add `on` for `color-background-interactive` once earned. On the grey page add `paper` so the pill stays visible (white instead of muted).
 
 **Ink** `badge ink`: `color-background-inverse`, `color-text-on-inverse`, radius `radius-inner`, padding 14 × 18 (`space-14` × `space-18`). For a standing note on a screen (“Estimation only”).
+
+**With an icon** `<span class="badge">` + a 12 icon before the text: status lines like “✓ Ready now · held until 14 Oct” on the pickup card.
