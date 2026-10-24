@@ -8,7 +8,7 @@ Full-width pill button, 46 tall, for the actions of a screen or sheet.
 
 **States.** Pressed scales to .98. `disabled` drops to opacity `disabled` (.35). Busy: add `busy` and put `<i class="spinner on-dark"></i>` before the label (“Paying…”); the Spinner atom, on-dark variant.
 
-**In a footer** a `paper` or `plain` right after an `ink` loses its fill, drops to 40 tall (`size-button-text-height`) and sits 8 below the main one, so the pair reads as one main action plus an alternative.
+**In a footer** a `paper` or `plain` right after an `ink` loses its fill, drops to 40 tall (`size-button-text-height`) and sits 8 below the main one: the text link. In `ft sec-w` the `paper` keeps its white fill and full height: the white pill. On a white sheet `btn soft` is the grey pill.
 
 Don’t: put two `ink` buttons together, shorten a button to fit text, or add borders.
 
