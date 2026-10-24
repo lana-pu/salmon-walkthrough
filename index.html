@@ -872,7 +872,7 @@ html.study .stage{flex-direction:column;gap:var(--space-20)}
 .mp-step .mp-st{width:var(--size-control-radio);height:var(--size-control-radio);display:grid;place-items:center;flex:none}
 
 
-.mp-step.next .lead-ic,.mp-step.next .mp-st{opacity:.45}.mp-step.next b{color:var(--color-text-muted)}
+.mp-step.next .lead-ic,.mp-step.next .mp-st{opacity:.45}.mp-step.next .tx>.b{color:var(--color-text-muted)}
 /* tap areas: small chips and the info dot catch taps in a 44px-tall zone, look unchanged */
 .info::after{content:"";position:absolute;inset:calc(var(--space-12) * -1)}
 .pts,.livel{position:relative}
@@ -1189,7 +1189,9 @@ const av = (src, size='md', cls='') => `<span class="avatar avatar--${size}${cls
 /* A player's picture comes from the Avatars library; size is chosen where it is used. */
 const pav = (p, size='md', cls='') => av(A[PL[p].img], size, 'av-'+p+(cls?' '+cls:''));
 const tok = n => parseFloat(getComputedStyle(document.documentElement).getPropertyValue(n));
-const leadRow = (icon, title, sub, trail='', attrs='', lined=false) => `<div class="row ${lined?'lined':''}" ${attrs}><span class="lead-ic">${ic(icon)}</span><span class="tx"><span class="b text-body">${title}</span>${sub?`<span class="c text-caption">${sub}</span>`:''}</span>${trail}</div>`;
+const tapRow = (attrs='', trail='') => /data-act|data-go|role="button"/.test(attrs) || trail.includes('chev');
+const rowTitle = (t, tap) => tap ? `<b class="bm text-row-title">${t}</b>` : `<span class="b text-body">${t}</span>`;
+const leadRow = (icon, title, sub, trail='', attrs='', lined=false) => `<div class="row ${lined?'lined':''}" ${attrs}><span class="lead-ic">${ic(icon)}</span><span class="tx">${rowTitle(title, tapRow(attrs, trail))}${sub?`<span class="c text-caption">${sub}</span>`:''}</span>${trail}</div>`;
 const HZ = {
   // Salmon / Screen background · scene=actions (Final results)
   actions: B(-48,-52,218,176,'var(--color-base-bg)',1,150)+B(-70,-109,227,171,'var(--color-haze-sky)',1,150)+B(283,186,300,391,'var(--color-haze-apricot)',.16,150)+B(139,297,320,326,'var(--color-haze-cream)',.16,150)+B(323,480,300,320,'var(--color-haze-apricot)',.16,150)+B(131,178,259,217,'var(--color-haze-apricot)',.16,150),
@@ -2304,7 +2306,7 @@ SC.i1 = {flow:'id', label:'Are you ready? · checklist', parent:'m6', render:()=
   <div class="scroll">${hz('check')}<div class="body">
     <div class="intro">${title2('Are you ready<br><em>for the meeting?</em>')}<p class="b text-body">Check the essentials before Mark arrives.</p></div>
     <div class="card checklist" style="padding:var(--space-card-pad-lg) var(--space-card-pad-lg) var(--space-card-pad-bottom-lg);background:var(--color-background-white);box-shadow:none">
-      ${CHECKS.map(([k,t,s])=>`<button class="row" data-act="check" data-v="${k}" role="checkbox" aria-checked="${S.checks[k]}"><span class="chk ${S.checks[k]?'on':''}">${ic('check')}</span><span class="tx"><span class="b text-body">${t}</span><span class="c text-caption">${k==='id' && S.idType ? idName()+' · you’ll bring it' : s}</span></span><span class="badge points ${S.checks[k]?'on':''}">+10</span></button>`).join('')}
+      ${CHECKS.map(([k,t,s])=>`<button class="row" data-act="check" data-v="${k}" role="checkbox" aria-checked="${S.checks[k]}"><span class="chk ${S.checks[k]?'on':''}">${ic('check')}</span><span class="tx"><b class="bm text-row-title">${t}</b><span class="c text-caption">${k==='id' && S.idType ? idName()+' · you’ll bring it' : s}</span></span><span class="badge points ${S.checks[k]?'on':''}">+10</span></button>`).join('')}
     </div>
   </div></div>
   ${foot(btn('Continue','data-act="toI4"')+btn('Missing something?','data-go="x1"','plain'),'This prepares you for the meeting — it doesn’t check eligibility.')}`};
@@ -2314,7 +2316,7 @@ const idShort = () => ({philsys:'PhilSys ID', licence:'driver’s licence', pass
 function idSheet(){
   let pick = S.idType;
   const o = sheet(sheetDoc({title:'Select your ID', sub:'Bring the original — valid and not expired.',
-    body:`<div class="stack g8" role="radiogroup" aria-label="ID type">${IDS.map(([k,t,s])=>`<button class="boxrow ${pick===k?'on':''}" data-pick="${k}" role="radio" aria-checked="${pick===k}"><span class="radio"></span><span class="tx"><b class="bm text-row-title">${t}</b><span class="c text-row-subtitle">${s}</span></span></button>`).join('')}</div>`,
+    body:`<div class="stack g8" role="radiogroup" aria-label="ID type">${IDS.map(([k,t,s])=>`<button class="boxrow ${pick===k?'on':''}" data-pick="${k}" role="radio" aria-checked="${pick===k}"><span class="lead-ic md">${ic('idcard','i16')}</span><span class="tx"><b class="bm text-row-title">${t}</b><span class="c text-row-subtitle">${s}</span></span><span class="radio"></span></button>`).join('')}</div>`,
     note:'Only Salmon sees it — the store never receives your document.',
     buttons: btn('Confirm',`data-confirm ${pick?'':'disabled'}`)+btn('I don’t have any of these','data-noid','paper')}), o=>{
       o.addEventListener('click', e=>{
@@ -2330,7 +2332,7 @@ function idSheet(){
 }
 function idListSheet(){
   sheet(sheetDoc({title:'Valid government IDs', sub:'Bring the original — valid and not expired.',
-    body:`<div class="stack g8">${IDS.map(([k,t,s])=>`<div class="boxrow"><span class="tx"><b class="bm text-row-title">${t}</b><span class="c text-row-subtitle">${s}</span></span></div>`).join('')}</div>`,
+    body:`<div class="card rows-c" style="margin-top:var(--space-16);padding:var(--space-20) var(--space-card-pad-lg);--g:20px;background:var(--color-background-muted)">${IDS.map(([k,t,s])=>leadRow('idcard',t,s)).join('')}</div>`,
     note:'Only Salmon sees it — the store never receives your document.',
     buttons: btn('Got it','data-close')}));
 }
@@ -2376,7 +2378,7 @@ SC.i5 = {flow:'id', label:'Before you add your ID', parent:'i4', render:()=>`
     ${leadRow('camera','Two photos of your ID','Front and back, taken here')}
     ${leadRow('scan','We read the details','Name, ID number, date of birth')}
     ${leadRow('check','You check them yourself','Nothing is saved before you confirm')}
-    <button class="row" style="margin-top:var(--space-16)" data-act="agree" role="checkbox" aria-checked="${S.agree}" style="align-items:flex-start"><span class="chk ${S.agree?'on':''}" style="margin-top:var(--space-inline-tight)">${ic('check')}</span><span class="tx"><span class="b text-body">I agree to prepare my ID</span><span class="c text-caption">Salmon may capture and use my ID images and the details read from them.</span></span></button>
+    <button class="row" style="margin-top:var(--space-16)" data-act="agree" role="checkbox" aria-checked="${S.agree}" style="align-items:flex-start"><span class="chk ${S.agree?'on':''}" style="margin-top:var(--space-inline-tight)">${ic('check')}</span><span class="tx"><b class="bm text-row-title">I agree to prepare my ID</b><span class="c text-caption">Salmon may capture and use my ID images and the details read from them.</span></span></button>
   </div></div>
   ${foot(btn('Prepare my ID',`data-go="i6" ${S.agree?'':'disabled'} id="prep"`)+btn('Skip for now','data-go="m6"','paper'),'By continuing, you agree to let Salmon use these photos to prepare your ID details.')}`};
 
@@ -2444,7 +2446,7 @@ SC.i8 = {flow:'id', label:'Is everything clear?', parent:'i6', render:()=>`
     <div class="stack g8 center"><p class="h3 text-place-title">Is everything clear?</p><p class="b sec text-body">All four corners visible · text readable</p></div>
     <div id="idshot" style="margin-top:var(--space-24);border-radius:var(--radius-inner);overflow:hidden;position:relative;aspect-ratio:345/213"><img src="${A.idfront}" alt="Photo of the front of the ID" style="position:absolute;max-width:none;width:110.31%;height:119.45%;left:-5.16%;top:-9.69%"></div>
   </div></div>
-  ${foot(btn('Use front photo','data-go="i9"')+btn('Retake','data-go="i7"','paper'))}`};
+  ${foot(btn('Use front photo','data-go="i9"')+btn('Retake','data-go="i7"','paper'),'','sec-w')}`};
 SC.i9 = camScreen('Back of ID · 2 of 2','Center the back of your ID','i10','back');
 SC.i10 = {flow:'id', label:'Scanning your ID', parent:'i8', render:()=>`
   ${topbar({t:'Prepare your ID', right:R.exit('m6','id')})}
@@ -2503,7 +2505,7 @@ const payWith = () => S.payBy === 'card' ? 'Card ··· 1290' : 'GCash · +63 91
 const payWithShort = () => S.payBy === 'card' ? 'Card ··· 1290' : 'GCash';
 const prodCard = () => `<div class="prod-card"><img class="photo" src="${A.phonehand}" alt=""><span class="stack" style="gap:var(--space-card-line);flex:1;min-width:0"><span class="stack" style="gap:var(--space-card-line)"><b class="h4 text-card-title">iPhone 14 256GB · Midnight</b><span class="c sec text-row-subtitle">MobileWorld · SM Megamall</span></span><span class="b sec text-body">₱21,999</span></span></div>`;
 const payIntro = (l1, l2, sub) => `<div class="intro">${title2(`<em>${l1}</em><br>${l2}`)}<p class="b text-body">${sub}</p></div>`;
-const pRow = (icon, t, s, attrs='', chev=false) => `<${attrs?'button':'div'} class="row" ${attrs}><span class="lead-ic">${ic(icon)}</span><span class="tx"><span class="b text-body">${t}</span><span class="c text-caption">${s}</span></span>${chev?ic('chevR','chev'):''}</${attrs?'button':'div'}>`;
+const pRow = (icon, t, s, attrs='', chev=false) => `<${attrs?'button':'div'} class="row" ${attrs}><span class="lead-ic">${ic(icon)}</span><span class="tx">${rowTitle(t, !!attrs)}<span class="c text-caption">${s}</span></span>${chev?ic('chevR','chev'):''}</${attrs?'button':'div'}>`;
 
 
 /* ---------- PP · Your purchase (before the meeting): built from the flow 4 components — product card, fulfilment cards, row cards ---------- */
@@ -2694,7 +2696,7 @@ SC.p6 = {flow:'pay', label:'6 · Check it with the staff', parent:'p5', render:(
     ${payIntro('Check it','with the staff','They open the box in front of you.')}
     <div class="stack" style="gap:var(--space-16)">
       ${prodCard()}
-      <div class="chk-card" role="group" aria-label="Handover checklist">${HANDOVER.map(([k,t,s]) => `<div class="row" data-act="handover" data-v="${k}" role="checkbox" aria-checked="${!!c[k]}" tabindex="0"><span class="chk ${c[k]?'on':''}">${ic('check')}</span><span class="tx"><span class="b text-body">${t}</span><span class="c text-caption">${s}</span></span></div>`).join('')}</div>
+      <div class="chk-card" role="group" aria-label="Handover checklist">${HANDOVER.map(([k,t,s]) => `<div class="row" data-act="handover" data-v="${k}" role="checkbox" aria-checked="${!!c[k]}" tabindex="0"><span class="chk ${c[k]?'on':''}">${ic('check')}</span><span class="tx"><b class="bm text-row-title">${t}</b><span class="c text-caption">${s}</span></span></div>`).join('')}</div>
       <p class="notice">Don’t confirm until everything checks out.</p>
     </div>
   </div></div>
@@ -2877,14 +2879,14 @@ SC.w5b = {flow:'wait', label:'Mark is on his way', parent:'m6', render:()=>{ con
     ${screenResult({art:'a_meeting', title:'<em>Mark is</em><br>on his way', text:`Mark has finished with the previous customer and is walking over to ${p.name} — about 2 minutes. Stay where you are.`})}
     ${whoCard('Mark is coming to you',`Stay at ${p.name} — we’ll let you know when he’s close.`)}
   </div></div>
-  ${foot(btn('Mark is here','data-go="m9"')+btn('I need a few more minutes','data-act="more"','paper'))}`;}};
+  ${foot(btn('Mark is here','data-go="m9"')+btn('I need a few more minutes','data-act="more"','paper'),'','sec-w')}`;}};
 SC.w5 = {flow:'wait', label:'Time to head back', parent:'m6', render:()=>`
   ${topbar({t:'Heading back', right:R.info(), tight:true})}
   <div class="scroll">${hz('soft')}<div class="body">
     ${screenResult({art:'a_meeting', title:'<em>Time<br>to</em> head back', text:'Mark is ready for you. The meeting point is about 2 minutes away.'})}
     ${whoCard('Running late?','Tell us and Mark waits — the meeting moves, nothing is lost.')}
   </div></div>
-  ${foot(btn('I’m at the meeting point','data-go="m9"')+btn('Show directions','data-go="w4"','paper'))}`};
+  ${foot(btn('I’m at the meeting point','data-go="m9"')+btn('Show directions','data-go="w4"','paper'),'','sec-w')}`};
 
 
 /* ---------- W6 · Your meeting: one calm page with what Mark is doing (Chick-fil-A / Wonder / Panera status pattern) ---------- */
@@ -2929,7 +2931,7 @@ SC.w6 = {flow:'wait', label:'Your meeting · what Mark is doing', parent:'m6', r
       ${ph === 'coming' ? leadRow('clock', `Around ${protoClock(etaMins())}`, 'When you meet · Change the time', ic('chevR','chev'), 'data-act="timeSheet" role="button" tabindex="0"') : ''}
       ${leadRow('pin', place ? place.name : S.where.name, place ? 'You’re here · Mark is coming' : `${S.where.sub} · View place`, ic('chevR','chev'), 'data-go="w3" role="button" tabindex="0"')}
       ${leadRow('msgPlus', S.note ? 'Your note for Mark' : 'Add a note for Mark', S.note ? S.note : 'E.g. “table beside the escalator”', ic('chevR','chev'), 'data-act="note" role="button" tabindex="0"')}
-      ${ph === 'coming' || ph === 'moved' ? `<button class="row" data-act="buzz" role="switch" aria-checked="${S.buzz!==false}"><span class="lead-ic">${ic('phone')}</span><span class="tx"><span class="b text-body">Buzz me when he’s ready</span><span class="c text-caption">Your phone vibrates once</span></span><span class="tgl ${S.buzz!==false?'on':''}"></span></button>` : ''}
+      ${ph === 'coming' || ph === 'moved' ? `<button class="row" data-act="buzz" role="switch" aria-checked="${S.buzz!==false}"><span class="lead-ic">${ic('phone')}</span><span class="tx"><b class="bm text-row-title">Buzz me when he’s ready</b><span class="c text-caption">Your phone vibrates once</span></span><span class="tgl ${S.buzz!==false?'on':''}"></span></button>` : ''}
     </div>
     ${near ? '' : codeCard}
   </div></div>
@@ -2946,8 +2948,8 @@ function timeSheet(){
   const now = etaMins();
   const opts = [['0','As soon as he’s free',`Around ${protoClock(now)}`],['15','In 15 minutes',`Around ${protoClock(15)}`],['30','In 30 minutes',`Around ${protoClock(30)}`]];
   sheet(sheetDoc({title:'Change the time', sub:'Mark plans around it and gets a message right away.',
-    body:`<div class="stack g8" role="radiogroup" style="margin-top:var(--space-16)">${opts.map(([v,t,sub],i)=>`<button class="boxrow ${i===0?'on':''}" data-tm="${v}" role="radio" aria-checked="${i===0}"><span class="radio"></span><span class="tx"><b class="bm text-row-title">${t}</b><span class="c text-row-subtitle">${sub}</span></span></button>`).join('')}
-      <button class="boxrow" data-tm="later"><span class="lead-ic bare">${ic('cal','i16')}</span><span class="tx"><b class="bm text-row-title">Another time or day</b><span class="c text-row-subtitle">Pick a slot that suits you</span></span>${ic('chevR','chev')}</button></div>`,
+    body:`<div class="stack g8" role="radiogroup" style="margin-top:var(--space-16)">${opts.map(([v,t,sub],i)=>`<button class="boxrow ${i===0?'on':''}" data-tm="${v}" role="radio" aria-checked="${i===0}"><span class="lead-ic md">${ic('clock','i16')}</span><span class="tx"><b class="bm text-row-title">${t}</b><span class="c text-row-subtitle">${sub}</span></span><span class="radio"></span></button>`).join('')}
+      <button class="boxrow" data-tm="later"><span class="lead-ic md">${ic('cal','i16')}</span><span class="tx"><b class="bm text-row-title">Another time or day</b><span class="c text-row-subtitle">Pick a slot that suits you</span></span>${ic('chevR','chev')}</button></div>`,
     buttons:btn('Save','data-tsave')+btn('Cancel','data-close','paper')}), o => {
       let pick = '0';
       o.addEventListener('click', e => { const b = e.target.closest('[data-tm]');
@@ -3229,7 +3231,7 @@ SC.x2 = {flow:'miss', label:'No ID with you', parent:'x1', render:()=>`
     <div class="sec-h"><p class="h4 text-section-title">Held for you</p><p class="c text-caption">Nothing changes while you’re away.</p></div>
     ${HELD()}
     <div class="sec-h mt32"><p class="h4 text-section-title">Any one of these works</p><p class="c text-caption">Bring the original — valid and not expired.</p></div>
-    <div class="stack g8">${IDS.map(([k,t,s])=>`<div class="boxrow"><span class="tx"><b class="bm text-row-title">${t}</b><span class="c text-row-subtitle">${s}</span></span></div>`).join('')}</div>
+    <div class="card rows-c" style="padding:var(--space-20) var(--space-card-pad-lg);--g:20px">${IDS.map(([k,t,s])=>leadRow('idcard',t,s)).join('')}</div>
   </div></div>
   ${foot(btn('Move the meeting','data-go="x3"')+btn('Leave','data-go="x7"','paper'))}`};
 
@@ -3238,7 +3240,7 @@ SC.x3 = {flow:'miss', label:'Move the meeting', parent:'x2', render:()=>{ const 
   ${topbar({t:'Move the meeting', right:R.info()+R.exit('i1','')})}
   <div class="scroll"><div class="body">
     <div class="intro">${title2('When can you<br><em>be back?</em>')}<p class="b text-body">Mark keeps your item, price and discounts until then.</p></div>
-    <div class="stack g8" role="radiogroup" aria-label="New time">${SLOTS.map(([k,t,s])=>`<button class="boxrow ${sel===k?'on':''}" data-act="slot" data-v="${k}" role="radio" aria-checked="${sel===k}"><span class="radio"></span><span class="tx"><b class="bm text-row-title">${t}</b><span class="c text-row-subtitle">${s}</span></span></button>`).join('')}</div>
+    <div class="stack g8" role="radiogroup" aria-label="New time">${SLOTS.map(([k,t,s])=>`<button class="boxrow ${sel===k?'on':''}" data-act="slot" data-v="${k}" role="radio" aria-checked="${sel===k}"><span class="lead-ic md">${ic(({'1h':'clock',eve:'sun',tmr:'cal'})[k]||'clock','i16')}</span><span class="tx"><b class="bm text-row-title">${t}</b><span class="c text-row-subtitle">${s}</span></span><span class="radio"></span></button>`).join('')}</div>
   </div></div>
   ${foot(btn('Move meeting','data-act="moveTime"'),'Mark gets a note — no need to call.')}`;}};
 SC.x4 = {flow:'miss', label:'Meeting moved', parent:'m6', render:()=>{ const s = SLOTS.find(x=>x[0]===(S.slot||'eve')); return `
@@ -3281,7 +3283,7 @@ SC.m9 = {flow:'wait', label:'Meeting in progress', parent:'m6', render:()=>{ con
       <p class="b sec text-body" style="max-width:var(--size-measure);margin-top:var(--space-16)">Mark is with you now. Keep this screen open — approval arrives here.</p>
     </div>
     <div class="card help-card" style="padding:var(--space-card-pad-lg) var(--space-card-pad-lg) var(--space-card-pad-bottom-lg);margin-top:var(--space-40)" id="mpSteps">
-      ${steps.map(([i,t,sub,st],k)=>`<div class="row mp-step ${st}" data-k="${k}"><span class="lead-ic">${ic(i)}</span><span class="tx"><b class="bm text-row-title">${t}</b><span class="c text-row-subtitle">${sub}</span></span><span class="mp-st">${st==='done'?`<span class="sel sm on">${ic('check','i14')}</span>`:st==='now'?'<i class="spinner"></i>':''}</span></div>`).join('')}
+      ${steps.map(([i,t,sub,st],k)=>`<div class="row mp-step ${st}" data-k="${k}"><span class="lead-ic">${ic(i)}</span><span class="tx"><span class="b text-body">${t}</span><span class="c text-caption">${sub}</span></span><span class="mp-st">${st==='done'?`<span class="sel sm on">${ic('check','i14')}</span>`:st==='now'?'<i class="spinner"></i>':''}</span></div>`).join('')}
     </div>
   </div></div>
   ${foot(btn('Need help?','data-act="mpHelp"','plain'),'','solo')}`;},

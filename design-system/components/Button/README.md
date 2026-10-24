@@ -15,3 +15,5 @@ Don’t: put two `ink` buttons together, shorten a button to fit text, or add bo
 **Small** `btn sm`: 40 tall (`size-button-text-height`), `text-row-title` size, 14 icon. For buttons inside cards (“Earn more points”, “Got it”).
 
 **More fills.** `btn muted`: `color-background-muted` (“Got it” on the rewards intro). `btn link`: no fill, `text-caption` in `color-text-muted`, auto width (“See my rewards”).
+
+**Under the main button.** Three looks with a meaning each. Ink: the main action. White pill (`btn paper` in `ft sec-w`; on a white sheet the grey `btn soft`): a second, equal-weight action (“Show directions”, “View receipt”, “Retake”). Text link (`btn plain` or `btn paper` without `sec-w`): leaving or undoing: cancel, skip, leave, back, “Something’s wrong”.

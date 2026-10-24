@@ -6,4 +6,10 @@ Row with a round icon holder, a title and a subtitle, and an optional trailing c
 
 **Trailing.** Chevron 16 in `color-text-soft`; info `.info` (20, ink circle); a value in `text-body`.
 
+**Title weight.** A row you can tap (chevron, checkbox, toggle, opens something) takes `text-row-title` (14 semibold); a row that only informs takes `text-body` (14 regular). Same rule in boxed option rows: they are always tappable, so always semibold.
+
+**Option lists.** Every option row has an icon holder at the start (`lead-ic md`) and the radio at the end, as in Payment method. A list you cannot tap is never boxed: it is plain rows in a card (`card rows-c`, muted on a white sheet, white on the grey page).
+
+**Density.** Two spacings on purpose: a list that is the main thing on the screen gets roomy rows (`space-card-pad-lg` padding); a list that supports something else is compact (`rows-c`, 20 between rows).
+
 Don’t: put two lines of subtitle under a short title if a Key–value line says it better.
