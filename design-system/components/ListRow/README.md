@@ -4,6 +4,10 @@ Row with a round icon holder, a title and a subtitle, and an optional trailing c
 
 **Anatomy.** Icon holder `lead-ic` on `gradient-holder` with the icon in `color-icon-muted`. Sizes: default 24 (`size-icon-holder-sm`) with a 14 icon; `lead-ic md` 36 with a 16 icon (sheet options, tiles); `lead-ic lg` 44 with a 20 icon (delivery options); `lead-ic xl` 56 with a 20 icon (`size-icon-holder-xl`, locked reward). Size and fill are independent: any size (sm · md · lg · xl) takes any fill (gradient · `muted` · `paper` · `peach` · `ink` · `bare`), 24 combinations. `ink` puts a white icon on ink; `bare` drops the disc but keeps the size. In a box row a bare holder is 20, to line up with the radios. Gap `space-card-icon-gap` (12); title to subtitle `space-card-line` (8). Rows are `space-card-pad-lg` (16) tall-padded and 12 apart. `rows-c` removes the row padding for compact lists.
 
+**Delivery option** `ful`: `size-option-row-lg` (128) tall, `lead-ic lg paper` holder, title `text-card-title` and line `text-body` 14 apart, radio at the end; off is muted, on is `gradient-hero`.
+
+**Status banner** `sbanner`: the same row on a muted fill, not tappable; `sbanner paper` (white) and `sbanner tint` (`gradient-tile`, padding 16 × 12, icon in `color-icon`).
+
 **Trailing.** Chevron 16 in `color-text-soft`; info `.info` (20, ink circle); a value in `text-body`.
 
 **Title weight.** A row you can tap (chevron, checkbox, toggle, opens something) takes `text-row-title` (14 semibold); a row that only informs takes `text-body` (14 regular). Same rule in boxed option rows: they are always tappable, so always semibold.

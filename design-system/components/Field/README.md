@@ -4,4 +4,4 @@ Text input and text area on a muted fill.
 
 On phones the field text is 16 so iOS does not zoom.
 
-**Inputs in forms** use the same atom: `<input class="field">` inside a `.pf` with its label. An input is 48 tall (`size-field-input`).
+**Inputs in forms** (address, card) use `<input class="field paper">` inside a `.pf` with its `text-label` label: white with the `stroke-control` border, 48 tall (`size-field-input`). The muted default is for a single field on its own (SMS number on m4, note in a sheet).
