@@ -56,6 +56,23 @@ Token names follow the Figma kit, with `/` written as `-`: `space/card/pad-lg` i
 - The top bar is a 20px row: back arrow left, title beside it, actions right. The points pill is centred on the back arrow.
 - Short phone screens (under 760px tall, as in a browser with its bars) tighten one-view screens so they fit without scrolling: smaller hero art, `space-page-pause` drops from 48 to 20 under heroes.
 
+## Screen templates
+
+Every screen and sheet uses one of ten layouts. The templates page shows each with a measured example.
+
+- **Step** (21 screens): top bar, intro (two-tone title and lead), content, footer. The content is a list, a form, a guide or a summary in sections. Examples: m3, p2a, x2.
+- **Collection** (m8, w2, a1): intro, a chips row from edge to edge, then a grid or a list.
+- **Result** (13 screens): clear top bar, hero (art, title, lead, centred), then a reward, a card, the person card or the podium.
+- **Message** (i4, i8, i10, x7): a short message in the middle of the free space.
+- **Detail** (m1, pp, w3, m2): a photo hero (`size-photo-hero` 302, `size-photo-cover` 196) or a hero number, the facts, then sections.
+- **Ticket** (m6): ticket title and live label, the fact column next to the art, the actions; a sticky chip bar on scroll.
+- **Camera** (i7, i9, w4c): dark ground, paper top bar, frame, shutter; no footer.
+- **Map** (w4, w4m, w4a): full-bleed map with the map sheet docked at the bottom.
+- **Play** (c2, c3): one big count or word card.
+- **Sheet** (13 sheets): grabber, heading, body (options, list card, person, photo, invite card), Button pair or none.
+
+Vertical rhythm for every scrolling template: `space-page-edge` (32) under the top bar; `space-group-break` (32) after the intro and above each section heading; `space-page-group` (16) under a heading; `space-page-between` (24) between blocks inside a section; `space-card-line` (8) between cards in a list. The scroll ends `size-footer-clear` (210) under the last block (`size-footer-clear-sm` 140 on short screens, `size-footer-clear-ticket` 150 on the ticket, `size-footer-clear-tall` 190 above the points footer). Sheets: `space-sheet-grabber` (6), `space-sheet-pad-top` (28), `space-sheet-head` (24), `space-sheet-end` (32).
+
 ## Footer and buttons
 
 - Primary action: one `color-background-interactive` button, `size-button-height` tall, full width, `radius-pill`.
