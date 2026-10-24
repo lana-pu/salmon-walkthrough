@@ -274,6 +274,7 @@ html.ft-warm{--ft-light:255,251,240}
 .tile{border-radius:var(--radius-card);background:var(--color-background-white);padding:var(--space-card-pad-lg);display:flex;flex-direction:column;justify-content:space-between;text-align:left;transition:transform .15s}
 .tile:active{transform:scale(.98)}
 .tile.on{background:var(--gradient-tile)}.tile.sm{height:var(--size-tile-sm)}.tile.md{height:var(--size-tile-md)}.tile.lg{height:var(--size-tile-lg)}.tile.tight{padding:var(--space-card-pad-sm)}.tile .num{font-weight:var(--font-weight-semibold);letter-spacing:var(--tracking-tight)}.tile.game{flex-direction:row;align-items:center;justify-content:flex-start;gap:var(--space-16);padding:var(--space-16) var(--space-24) var(--space-16) var(--space-16)}.tile.game .g-tx{gap:var(--space-24);flex:1}
+.tile.game{--on-surface-muted:var(--color-text-muted)}
 .sel{width:var(--size-control-checkbox);height:var(--size-control-checkbox);border-radius:var(--radius-pill);border:var(--stroke-select) solid var(--color-border-control);display:grid;place-items:center;flex:none;align-self:flex-end;transition:all .2s;background:color-mix(in srgb,var(--color-paper) 50%,transparent)}
 .sel svg{width:var(--size-icon-sm);height:var(--size-icon-sm);color:var(--color-icon-on-inverse);opacity:0;transform:scale(.5);transition:all .2s}
 .on .sel,.sel.on{background:var(--color-background-interactive);border-color:var(--color-border-strong)}
@@ -436,7 +437,7 @@ html.test .stage{gap:0}
 /* Fact: who / where in three layouts — tile (m6), chip (docked bar), card (media row) */
 .fact{text-align:left}
 .fact.tile-l{padding:var(--space-card-pad-sm);display:flex;flex-direction:column;gap:var(--space-12);min-height:var(--size-fact-tile)}
-.fact.tile-l .f-link{border-top:var(--stroke-divider) solid var(--color-border-border);padding-top:var(--space-12);height:var(--size-fact-link);box-sizing:border-box;line-height:var(--leading-none);display:flex;justify-content:space-between;align-items:center;flex:none;margin-top:auto}
+.fact.tile-l .f-link{border-top:var(--stroke-divider) solid var(--color-border-border);padding-top:var(--space-12);height:var(--size-fact-link);box-sizing:border-box;line-height:var(--leading-none);display:flex;justify-content:space-between;align-items:center;flex:none}
 .fact.chip-l{display:inline-flex;align-items:center;gap:var(--space-8);height:var(--size-tap);padding:var(--space-text-inline) var(--space-pill-pad-x) var(--space-text-inline) var(--space-text-inline);border-radius:var(--radius-pill);background:var(--color-background-white);font-size:var(--type-caption-medium-size);font-weight:var(--type-caption-medium-weight);line-height:var(--leading-normal);color:var(--color-text-text);white-space:nowrap}
 .fact.chip-l .f-pic{width:var(--size-avatar-sm);height:var(--size-avatar-sm);flex:none}
 .ghost{position:absolute;left:0;top:0;z-index:4;pointer-events:none;overflow:hidden;will-change:transform,width,height}
@@ -601,12 +602,13 @@ html.sec-compact{--ft-gap:8px;--ft-b:24px}
 .ful:active{transform:scale(.98)}
 .ful.on{background-image:var(--gradient-hero);background-size:100% 100%}
 .ful.on .ful-art svg{color:var(--color-icon)}
-.ful .tx{flex:1;display:flex;flex-direction:column;gap:var(--space-card-line);min-width:0}.ful .tx .b{color:var(--color-text-muted)}
+.ful .tx{flex:1;display:flex;flex-direction:column;gap:var(--space-14);min-width:0}.ful .tx .b{color:var(--color-text-muted)}
 
 
 
 
 .notice{font-size:var(--type-caption-size);line-height:var(--type-caption-leading);color:var(--color-text-muted);margin:0}
+.notice.text-caption{text-box:none}
 .pform{display:flex;flex-direction:column;gap:var(--space-16)}
 .pf{display:flex;flex-direction:column;gap:var(--space-10);min-width:0}
 .pf label{font-size:var(--type-caption-medium-size);font-weight:var(--type-caption-medium-weight);color:var(--color-text-muted);line-height:var(--type-caption-medium-leading);text-box:trim-both cap alphabetic}
@@ -884,7 +886,8 @@ html.study .stage{flex-direction:column;gap:var(--space-20)}
 .livel::after{content:"";position:absolute;inset:calc(var(--space-12) * -1) calc(var(--space-text-inline) * -1)}
 
 @media (prefers-reduced-motion:reduce){.dots i,.spinner{animation:none}}
-.sbanner{display:flex;gap:var(--space-12);align-items:flex-start;padding:var(--space-16) var(--space-pill-pad-x);border-radius:var(--radius-inner);background:var(--color-background-muted)}.sbanner.paper{background:var(--color-background-white)}.sbanner.tint{background:var(--gradient-tile)}.sbanner .sb-tx{gap:var(--space-card-line);flex:1}.sbanner .sb-tx>.b,.sbanner .sb-tx>.bm{color:var(--color-text-text)}
+.sbanner{display:flex;gap:var(--space-12);align-items:flex-start;padding:var(--space-16) var(--space-pill-pad-x);border-radius:var(--radius-inner);background:var(--color-background-muted)}.sbanner.paper{background:var(--color-background-white)}.sbanner.tint .lead-ic svg{color:var(--color-icon)}
+.sbanner.tint{padding:var(--space-16) var(--space-12);background:var(--gradient-tile)}.sbanner .sb-tx{gap:var(--space-card-line);flex:1}.sbanner .sb-tx>.b,.sbanner .sb-tx>.bm{color:var(--color-text-text)}
 .chips:has(.wcat){gap:var(--space-4)}
 .chip.wcat{height:var(--size-chip-height-lg);padding:0 var(--space-pill-pad-x);gap:var(--space-8);font-size:var(--type-caption-medium-size);font-weight:var(--type-caption-medium-weight)}
 .chip.wcat svg{width:var(--size-icon-md);height:var(--size-icon-md)}
@@ -1475,9 +1478,9 @@ function ticketMorph(el){
     const extra = tile.cloneNode(true); extra.className = 'fact tile-l'; extra.removeAttribute('data-act'); extra.removeAttribute('data-go');
     extra.style.cssText += `;position:absolute;left:0;top:0;width:${T.w}px;height:${T.h}px;margin:0;box-shadow:none;background:transparent`;
     extra.querySelectorAll('.t-img,.t-lbl').forEach(x=>x.style.visibility='hidden');
-    const img = ti.cloneNode(true); img.removeAttribute('class'); img.style.visibility='visible'; img.style.borderRadius='999px';
+    const img = ti.cloneNode(true); img.classList.remove('t-img'); img.style.visibility='visible'; img.style.borderRadius='999px'; img.style.overflow='hidden';
     let swap = null;
-    if (sp.icon2){ const svgs = img.querySelector('svg'); if (svgs){ svgs.style.position='absolute'; } img.style.position='absolute'; swap = document.createElement('span'); swap.innerHTML = ic(sp.icon2,'i16'); swap.style.cssText='position:absolute;inset:0;display:grid;place-items:center;opacity:0'; img.appendChild(swap); }
+    if (sp.icon2){ const svgs = img.querySelector('svg'); if (svgs){ svgs.style.position='absolute'; } img.style.position='absolute'; swap = document.createElement('span'); swap.innerHTML = ic(sp.icon2,'i16'); swap.firstElementChild.style.color='var(--color-icon-muted)'; swap.style.cssText='position:absolute;inset:-1px;display:grid;place-items:center;opacity:0;border-radius:999px;background:var(--gradient-holder);color:var(--color-icon-muted)'; img.appendChild(swap); }
     const lbl = document.createElement('span'); lbl.textContent = tl.textContent; lbl.style.cssText = 'line-height:var(--leading-normal);color:var(--color-text-text)';
     g.append(extra, img, lbl); layer.appendChild(g); g.style.zIndex = String(10 - SPEC.indexOf(sp));
     return {swap, first: img.querySelector('svg'), sp, tile, T, Ti:{x:Ti.x-T.x, y:Ti.y-T.y, s:Ti.w}, Tl:{x:Tl.x-T.x, y:Tl.y-T.y}, g, img, lbl, extra, len:110};
@@ -2039,9 +2042,9 @@ SC.m2 = {flow:'main', label:'Preliminary terms', parent:'m1', render:()=>{
       <div class="kv text-body"><span>What you pay</span><span>₱21,999</span></div>
       <div class="kv text-body"><span>First payment</span><span>7 Nov 2026</span></div>
     </div>
-    <div class="sec-h" style="margin-top:var(--space-page-pause)"><p class="h4 text-section-title">Choose how long to pay</p><p class="c text-caption">A longer term means a smaller monthly payment.</p></div>
+    <div class="sec-h" style="margin-top:calc(var(--space-page-pause) + var(--space-16))"><p class="h4 text-section-title">Choose how long to pay</p><p class="c text-caption">A longer term means a smaller monthly payment.</p></div>
     <div class="terms-row" role="radiogroup" aria-label="Term">
-      ${TERM_LIST.map(t=>`<button class="tile lg ${S.term==t?'on':''}" role="radio" aria-checked="${S.term==t}" data-act="term" data-v="${t}"><span class="stack g8"><b class="bm text-row-title">${t} months</b><span class="c sec text-row-subtitle">${peso(TERMS[t])} / mo</span></span><span class="sel">${ic('check')}</span></button>`).join('')}
+      ${TERM_LIST.map(t=>`<button class="tile lg ${S.term==t?'on':''}" role="radio" aria-checked="${S.term==t}" data-act="term" data-v="${t}"><span class="stack g12" style="padding-top:var(--space-4)"><b class="bm text-row-title">${t} months</b><span class="c sec text-row-subtitle">${peso(TERMS[t])} / mo</span></span><span class="sel">${ic('check')}</span></button>`).join('')}
     </div>
   </div></div>
   ${foot(btn('Set up meeting','data-go="m4"'),'Nothing is submitted yet — play with the terms')}`;},
@@ -2228,7 +2231,7 @@ const FACTS = {
   mark:{act:'data-act="mark"', label:'Ambassador', title:()=>'Mark Reyes', link:'View profile',
     pic:{tile:()=>av(A.mark,'md','t-img'), chip:()=>av(A.mark,'sm','f-pic'), card:()=>`<img class="photo lg" src="${A.mark}" alt="">`}},
   where:{act:'data-go="w3"', label:'Where', title:()=>S.where.name, sub:()=>S.where.sub, link:'View place', chipIcon:'sofa',
-    pic:{tile:()=>`<span class="t-img lead-ic md ink">${ic('pin','i18')}</span>`, chip:()=>`<span class="f-pic lead-ic md bare">${ic('sofa','i16')}</span>`, card:()=>`<span class="lead-ic lg">${ic('pin')}</span>`}},
+    pic:{tile:()=>`<span class="t-img lead-ic md ink">${ic('pin','i18')}</span>`, chip:()=>`<span class="f-pic lead-ic md">${ic('sofa','i16')}</span>`, card:()=>`<span class="lead-ic lg">${ic('pin')}</span>`}},
 };
 // one fact, three layouts
 function fact(key, {layout='tile'} = {}){ const f = FACTS[key];
@@ -2261,7 +2264,7 @@ SC.m6 = {flow:'main', label:'Live meeting ticket', parent:'m5', render:()=>`
   </div>
   <div class="stick" aria-hidden="true" data-time="${S.meetAt?(S.meetAt[0]==='tmr'?'Tomorrow':S.meetAt[2].split(' ·')[0]):'5 min'}" style="position:absolute;left:0;right:0;top:calc(var(--sbh) + 44px);height:92px;z-index:3;opacity:0;pointer-events:none;background:linear-gradient(color-mix(in srgb,var(--color-base-bg) 96%,transparent) 76%,transparent)"><span class="livel st-time ${S.meetAt?'':'st-chip'}" ${S.meetAt?'':'data-go="w6" role="button" tabindex="0"'} style="position:absolute;right:var(--space-page-margin);color:var(--color-text-text);font-size:var(--font-size-16);line-height:var(--leading-normal);gap:var(--space-8)">${(() => { const tmr = S.meetAt && S.meetAt[0]==='tmr', ch = tkChip(), v = S.meetAt ? (tmr ? 'Tomorrow' : S.meetAt[2].split(' ·')[0]) : ch ? ch[0] : `${S.etaEnd ? etaMins() : 5} min`;
       // one line when it fits, caption + value on two lines when the chips need the room (see ticketMorph layout)
-      return `<span class="st-1 live">${tmr?'':'<i class="dot pulse"></i>'}<span class="st-v text-body">${v}</span></span><span class="st-2" style="display:none;flex-direction:column;align-items:flex-end;line-height:var(--leading-normal);text-align:right"><span class="text-caption" style="color:var(--color-text-muted)">${tmr?'See you':S.meetAt?'Meet at':ch?ch[1]:'Arrives in'}</span><span class="st-v text-body">${tmr?'tomorrow':ch?ch[0].toLowerCase():v}</span></span>`; })()}</span></div>
+      return `<span class="st-1 live">${tmr?'':'<i class="dot pulse"></i>'}<span class="st-v text-label">${v}</span></span><span class="st-2" style="display:none;flex-direction:column;align-items:flex-end;line-height:var(--leading-normal);text-align:right"><span class="text-caption" style="color:var(--color-text-muted)">${tmr?'See you':S.meetAt?'Meet at':ch?ch[1]:'Arrives in'}</span><span class="st-v text-label">${tmr?'tomorrow':ch?ch[0].toLowerCase():v}</span></span>`; })()}</span></div>
   <div class="scroll" style="z-index:1">${m6body()&&''}<div class="body" style="padding-top:var(--space-20);padding-bottom:150px">${m6body()}</div></div>
   ${tkFoot()}`,
   mount(el){ if (!S.etaEnd && !S.meetAt) S.etaEnd = Date.now() + WAIT_MS; ticketMorph(el); if (S.idReady && !S.swapShown){ S.swapShown = true; ticketSwap(el); } }};
@@ -2359,7 +2362,7 @@ SC.i4 = {flow:'id', label:'You have all you need', parent:'i1', render:()=>`
   ${topbar({t:'Get ready', right:R.info()+R.pts()})}
   <div class="scroll">${hz('ready')}<div class="body" style="padding-top:127px">
     <div class="stack" id="hero" style="align-items:center;text-align:center">${heroPrepare(80)}<h1 class="h2 rise text-screen-title" style="margin-top:var(--space-hero-title)"><em>You have</em><br>all you need</h1><p class="b sec rise text-body" style="max-width:var(--size-measure);margin-top:var(--space-24);--d:.12s">You can photograph your ID now — then the meeting starts with the terms instead.</p></div>
-    <div class="sbanner tint" id="earn" style="margin-top:calc(var(--space-page-pause) * 2)"><span class="lead-ic md muted">${ic('gift','i14')}</span><span class="stack sb-tx"><b class="bm text-row-title">Earn +60 Salmon Points</b><span class="c tint text-row-subtitle">Mark arrives in 9 min — enough time to prepare your ID.</span></span></div>
+    <div class="sbanner tint" id="earn" style="margin-top:calc(var(--space-page-pause) * 2 + var(--space-4))"><span class="lead-ic md muted">${ic('gift','i14')}</span><span class="stack sb-tx"><b class="bm text-row-title">Earn +60 Salmon Points</b><span class="c tint text-row-subtitle">Mark arrives in 9 min — enough time to prepare your ID.</span></span></div>
   </div></div>
   ${foot(btn('Continue','data-go="i5"')+btn('I’ll just wait','data-go="m6"','paper'))}`,
   mount(el){
@@ -2612,7 +2615,7 @@ SC.p2 = {flow:'pay', label:'2 · How to get it', parent:'p1', render:()=>{
   mount(el){ el.classList.add('scr-white'); S.addrFrom = null; }};
 
 SC.p2a = {flow:'pay', label:'2a · Delivery details', parent:'p2', render:()=>{
-  const f = (k, label, ph='', val='', attrs='') => `<div class="pf"><label class="text-label" for="pf-${k}">${label}</label><input class="field" id="pf-${k}" data-input="addr_${k}" value="${S['addr_'+k] ?? val}" placeholder="${ph}" ${attrs}></div>`;
+  const f = (k, label, ph='', val='', attrs='') => `<div class="pf"><label class="text-label" for="pf-${k}">${label}</label><input class="field paper" id="pf-${k}" data-input="addr_${k}" value="${S['addr_'+k] ?? val}" placeholder="${ph}" ${attrs}></div>`;
   return `${topbar({t:'Complete purchase', right:R.info()})}
   <div class="scroll"><div class="body">
     ${payIntro('Where should we','deliver it?','MobileWorld delivers in 2–3 business days · '+peso(DELIVERY_FEE)+'.')}
@@ -2647,7 +2650,7 @@ SC.p3 = {flow:'pay', label:'3 · Review & pay', parent:'p2', render:()=>{
   mount(el){ el.classList.add('scr-white'); }};
 
 SC.p3b = {flow:'pay', label:'3b · Card details', parent:'p3', render:()=>{
-  const f = (k, label, val, attrs='') => `<div class="pf"><label class="text-label" for="cd-${k}">${label}</label><input class="field" id="cd-${k}" value="${val}" ${attrs}></div>`;
+  const f = (k, label, val, attrs='') => `<div class="pf"><label class="text-label" for="cd-${k}">${label}</label><input class="field paper" id="cd-${k}" value="${val}" ${attrs}></div>`;
   return `${topbar({t:'Payment', right:R.info()})}
   <div class="scroll"><div class="body">
     ${payIntro('Pay with','a card','Your bank may ask for a one-time code.')}
@@ -2742,7 +2745,7 @@ SC.w2 = {flow:'wait', label:'Wait comfortably', parent:'m6', render:()=>{
   const best = PLACES.findIndex(p=>p.cat===S.cat);
   const order = [best, ...PLACES.map((_,i)=>i).filter(i=>i!==best)];
   const card = (i, hero) => { const p = PLACES[i], on = S.place===i;
-    return `<button class="card media${on?' on':''}" data-act="place" data-v="${i}" aria-pressed="${on}"><img src="${A[p.img]}" alt="" class="photo"><span class="tx"><b class="h4 text-card-title">${p.name}</b><span class="c ${on?'tint':'sec'} text-caption">${p.meta}</span><span class="b ${on?'tint':'sec'} text-body">${p.desc}</span></span>${ic('chevR','chev')}</button>`; };
+    return `<button class="card media${on?' on':''}" data-act="place" data-v="${i}" aria-pressed="${on}"><img src="${A[p.img]}" alt="" class="photo"><span class="tx"><b class="h4 text-card-title">${p.name}</b><span class="c sec text-caption">${p.meta}</span><span class="b ${on?'tint':'sec'} text-body">${p.desc}</span></span>${ic('chevR','chev')}</button>`; };
   return `${topbar({t:'Where to wait', right:R.info(), tight:true})}
   <div class="scroll"><div class="body">
     <div class="intro" style="margin-bottom:0">${title2('Wait comfortably')}<p class="b text-body">About 5 minutes to spare. Pick a spot nearby — Mark can meet you there.</p></div>

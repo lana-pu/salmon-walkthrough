@@ -146,6 +146,7 @@ html.ft-warm{--ft-light:255,251,240}
 .tile{border-radius:var(--radius-card);background:var(--color-background-white);padding:var(--space-card-pad-lg);display:flex;flex-direction:column;justify-content:space-between;text-align:left;transition:transform .15s}
 .tile:active{transform:scale(.98)}
 .tile.on{background:var(--gradient-tile)}.tile.sm{height:var(--size-tile-sm)}.tile.md{height:var(--size-tile-md)}.tile.lg{height:var(--size-tile-lg)}.tile.tight{padding:var(--space-card-pad-sm)}.tile .num{font-weight:var(--font-weight-semibold);letter-spacing:var(--tracking-tight)}.tile.game{flex-direction:row;align-items:center;justify-content:flex-start;gap:var(--space-16);padding:var(--space-16) var(--space-24) var(--space-16) var(--space-16)}.tile.game .g-tx{gap:var(--space-24);flex:1}
+.tile.game{--on-surface-muted:var(--color-text-muted)}
 .sel{width:var(--size-control-checkbox);height:var(--size-control-checkbox);border-radius:var(--radius-pill);border:var(--stroke-select) solid var(--color-border-control);display:grid;place-items:center;flex:none;align-self:flex-end;transition:all .2s;background:color-mix(in srgb,var(--color-paper) 50%,transparent)}
 .sel svg{width:var(--size-icon-sm);height:var(--size-icon-sm);color:var(--color-icon-on-inverse);opacity:0;transform:scale(.5);transition:all .2s}
 .on .sel,.sel.on{background:var(--color-background-interactive);border-color:var(--color-border-strong)}
@@ -308,7 +309,7 @@ button.row{text-align:left}
 /* Fact: who / where in three layouts — tile (m6), chip (docked bar), card (media row) */
 .fact{text-align:left}
 .fact.tile-l{padding:var(--space-card-pad-sm);display:flex;flex-direction:column;gap:var(--space-12);min-height:var(--size-fact-tile)}
-.fact.tile-l .f-link{border-top:var(--stroke-divider) solid var(--color-border-border);padding-top:var(--space-12);height:var(--size-fact-link);box-sizing:border-box;line-height:var(--leading-none);display:flex;justify-content:space-between;align-items:center;flex:none;margin-top:auto}
+.fact.tile-l .f-link{border-top:var(--stroke-divider) solid var(--color-border-border);padding-top:var(--space-12);height:var(--size-fact-link);box-sizing:border-box;line-height:var(--leading-none);display:flex;justify-content:space-between;align-items:center;flex:none}
 .fact.chip-l{display:inline-flex;align-items:center;gap:var(--space-8);height:var(--size-tap);padding:var(--space-text-inline) var(--space-pill-pad-x) var(--space-text-inline) var(--space-text-inline);border-radius:var(--radius-pill);background:var(--color-background-white);font-size:var(--type-caption-medium-size);font-weight:var(--type-caption-medium-weight);line-height:var(--leading-normal);color:var(--color-text-text);white-space:nowrap}
 .fact.chip-l .f-pic{width:var(--size-avatar-sm);height:var(--size-avatar-sm);flex:none}
   .scr[data-id="c5"] .fact-tile{height:auto;min-height:0;gap:var(--space-8);padding-bottom:var(--space-card-pad-sm)}
