@@ -752,8 +752,7 @@ button.row{text-align:left}
 .rw-card.open .rw-cover i{transform:translateX(140px) rotate(-59.5deg) skewX(-5.38deg)!important}
 .rw-lock{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--space-16);height:100%;text-align:center}
 .sticky-pg{background:var(--color-background-inverse);color:var(--color-text-on-inverse);border-radius:var(--radius-card);padding:var(--space-16);box-shadow:none}
-.sticky-pg .track{width:300px;max-width:100%;height:8px;border-radius:var(--radius-pill);background:var(--color-fill-on-dark);overflow:hidden;margin-top:var(--space-14)}
-.sticky-pg .track i{display:block;height:100%;border-radius:var(--radius-pill);background:linear-gradient(90deg,#f0bfd2,#bfccee)}
+.sticky-pg .pbar{width:300px;max-width:100%;margin-top:var(--space-14)}
 .sticky-pg .earn{margin-top:var(--space-16)}
 
 .ft.custom{background:linear-gradient(rgba(var(--ft-light),0) 0,rgba(var(--ft-light),.6) var(--ft-fade))}
@@ -842,6 +841,8 @@ html.study .stage{flex-direction:column;gap:var(--space-20)}
 .cat-tile{height:var(--size-tile-sm);padding:var(--space-card-pad-lg);flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:var(--space-16);background:var(--color-background-white)}
 
 .cat-tile .sel{position:static}
+.cat-top{display:flex;justify-content:space-between;align-items:center;width:100%;height:var(--size-icon-holder-sm)}
+.cat-tile .lead-ic svg{color:var(--color-icon)}
 /* ---- games: idle motion ---- */
 .g-bob{animation:gbob 3.2s ease-in-out infinite}
 @keyframes gbob{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-4px) rotate(-2deg)}}
@@ -2276,7 +2277,7 @@ SC.m8 = {flow:'main', label:'Rewards', parent:'m6', render:()=>{
   </div></div>
   <div class="ft custom"><div class="sticky-pg">
     <div style="display:flex;gap:var(--space-12);align-items:flex-start"><span class="stack" style="gap:var(--space-card-line);flex:1"><b class="h4 text-card-title" style="color:var(--color-text-on-inverse)">${left} more points</b><span class="c mut text-row-subtitle">to unlock the next rewards</span></span><b class="h4 ptsv text-card-title" style="color:var(--color-text-on-inverse);margin-top:var(--space-8)">${S.points}</b></div>
-    <div class="track"><i style="width:${pct}%"></i></div>
+    <div class="pbar"><i style="width:${pct}%"></i></div>
     <button class="btn paper sm earn" data-act="earnSheet">${ic('sparkle')}Earn more points</button>
   </div></div>`;},
   mount(el){
@@ -3062,7 +3063,7 @@ SC.a4 = {flow:'games', label:'Game settings', parent:'a3', render:()=>{ const n 
     <div class="sec-h" style="margin:0 var(--space-inline-tight) var(--space-page-group)"><p class="h4 text-section-title">Round length</p></div>
     <div class="seg seg36" role="radiogroup" aria-label="Round length"><span class="knob" style="left:calc(var(--space-text-inline) + (100% - 2 * var(--space-text-inline))/3*${S.len-1});width:calc((100% - 2 * var(--space-text-inline))/3 - var(--space-inline-tight))"></span>${[1,2,3].map(v=>`<button role="radio" aria-checked="${S.len===v}" data-act="len" data-v="${v}">${v} min</button>`).join('')}</div>
     <div class="sec-h" style="margin:var(--space-page-pause) var(--space-inline-tight) var(--space-page-group)"><p class="h4 text-section-title">Categories</p><p class="c text-caption" id="catn">Pick as many as you like — ${n} chosen</p></div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-12)">${Object.keys(S.cats).map(c=>`<button class="tile cat-tile ${S.cats[c]?'on':''}" data-act="catT" data-v="${c}" role="checkbox" aria-checked="${S.cats[c]}"><span style="display:flex;justify-content:space-between;align-items:center;width:100%;height:24px"><span style="width:24px;height:24px;display:grid;place-items:center;color:var(--color-icon)">${ic(CAT_IC[c],'i20')}</span><span class="sel">${ic('check')}</span></span><b class="bm text-row-title">${c}</b></button>`).join('')}</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-12)">${Object.keys(S.cats).map(c=>`<button class="tile cat-tile ${S.cats[c]?'on':''}" data-act="catT" data-v="${c}" role="checkbox" aria-checked="${S.cats[c]}"><span class="cat-top"><span class="lead-ic lg bare">${ic(CAT_IC[c])}</span><span class="sel">${ic('check')}</span></span><b class="bm text-row-title">${c}</b></button>`).join('')}</div>
   </div></div>
   ${foot(btn('Start game',`data-act="startGame" ${n?'':'disabled'}`))}`;}};
 const guesser = () => S.players[(S.round + 1) % S.players.length];
