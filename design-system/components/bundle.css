@@ -342,11 +342,11 @@ button.row{text-align:left}
 .surface .ac-go{background:var(--go-surface)}
 .surface .ac-foot2>span:not(.ac-go) svg{color:var(--surface-icon)}
 .s-paper{--surface:var(--color-background-white);--surface-image:none;--on-surface:var(--color-text-text);--on-surface-muted:var(--color-text-muted);--go-surface:var(--color-background-muted);--surface-icon:var(--color-icon)}
-.s-tile,.s-ambient,.s-feature,.s-hero{--surface:transparent;--on-surface:var(--color-text-text);--on-surface-muted:var(--color-secondary-on-tint);--go-surface:var(--color-background-white);--surface-icon:var(--color-icon)}
+.s-tile,.s-ambient,.s-feature,.s-hero{--surface:transparent;--on-surface:var(--color-text-text);--on-surface-muted:var(--color-text-muted);--go-surface:var(--color-background-white);--surface-icon:var(--color-icon)}
 .s-tile{--surface-image:var(--gradient-tile)}
 .s-ambient{--surface-image:var(--gradient-ambient)}
 .s-feature{--surface-image:var(--gradient-feature)}
-.s-hero{--surface-image:var(--gradient-hero)}
+.s-hero{--surface-image:var(--gradient-hero);--on-surface-muted:var(--color-secondary-on-tint)}
 .s-ink{--surface:var(--color-background-inverse);--surface-image:none;--on-surface:var(--color-text-on-inverse);--on-surface-muted:var(--color-text-on-inverse-muted);--go-surface:var(--color-background-white);--surface-icon:var(--color-icon-on-inverse)}
 .s-ink .ac-ctrl-light{display:block}
 .s-ink .ac-ctrl-ink{display:none}
