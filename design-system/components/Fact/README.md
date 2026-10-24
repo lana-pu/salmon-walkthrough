@@ -5,3 +5,5 @@ Who or where — Mark, the meeting point — as one set of data in three layouts
 **Picture.** A person uses an avatar (md in the tile, sm in the chip); a place uses an icon holder (ink in the tile, bare in the chip).
 
 **Docking.** On scroll the tile morphs into the chip. The dock reads the chip's size, padding and label position from this component, so changing the chip changes the dock.
+
+**Text.** Tile label `text-caption`, value `text-stat-value` (24 semibold, tightest tracking), detail `text-body`.

@@ -1,6 +1,6 @@
 Screen header: the iPhone status bar, then a 20 tall row with back, title and right-side controls.
 
-**Use** `<div class="top">` with the status bar `.sb` and the row `.hd`: back `.ib` (20 icon, 44 tap area), optional title `.ht` in `text-topbar-title` (16 semibold), a spacer `.sp`, then right-side items.
+**Use** `<div class="top">` with the status bar `.sb` and the row `.hd` (`size-topbar-row`): back `.ib` (20 icon, 44 tap area), optional title `<span class="ht text-topbar-title">` (16 semibold), a spacer `.sp`, then right-side items.
 
 **Right side,** one of: points pill `.pts` (ink pill, gem + number; `.pts.lg` on the home screens), live label `.livel` (blue `.dot` + time in `color-text-muted`), share and info `.info`, close `.ib`.
 
