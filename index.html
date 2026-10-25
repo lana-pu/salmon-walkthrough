@@ -1460,6 +1460,16 @@ function ticketMorph(el){
   layer.style.cssText = `position:absolute;left:0;right:0;top:${st.offsetTop}px;bottom:0;z-index:4;overflow:hidden;pointer-events:none`;
   el.appendChild(layer);
   const top0 = st.offsetTop, topEl = el.querySelector('.top');
+  // docked (6.2) background: the screen haze (scene=actions) fades in behind the content, and a copy of it
+  // fills the header + chip strip, so the haze shows under the docked chips instead of a flat grey strip
+  const tkHz = el.querySelector('.tk-hz'); let hzTop = null;
+  if (tkHz){
+    const hTop = top0 + st.offsetHeight, solid = ((top0 + st.offsetHeight * .76) / hTop * 100).toFixed(1);
+    hzTop = document.createElement('div'); hzTop.className = 'tk-hz-top'; hzTop.setAttribute('aria-hidden','true');
+    hzTop.style.cssText = `position:absolute;left:0;right:0;top:0;height:${hTop}px;overflow:hidden;z-index:2;pointer-events:none;opacity:0;-webkit-mask-image:linear-gradient(#000 ${solid}%,transparent);mask-image:linear-gradient(#000 ${solid}%,transparent)`;
+    const c = tkHz.cloneNode(true); c.style.opacity = '1'; c.style.background = 'var(--color-base-bg)'; hzTop.appendChild(c); el.appendChild(hzTop);
+    st.style.background = 'none';
+  }
   // Figma 6.2 targets (screen coords)
   // the docked chip is the Fact component in its chip layout: measure it instead of hard-coding Figma numbers
   const CM = (() => { const w = document.createElement('div'); w.style.cssText = 'position:absolute;left:0;top:0;visibility:hidden'; w.innerHTML = fact('mark', {layout:'chip'}); layer.appendChild(w);
@@ -1623,7 +1633,8 @@ function ticketMorph(el){
   function frame(){
     raf = 0;
     const s = sc.scrollTop;
-    if (topEl) topEl.style.backgroundColor = `color-mix(in srgb,var(--color-base-bg) ${(clamp(s/24)*100).toFixed(1)}%,transparent)`;
+    if (hzTop){ hzTop.style.opacity = clamp(s/24).toFixed(3); tkHz.style.opacity = clamp(s/360).toFixed(3); }
+    else if (topEl) topEl.style.backgroundColor = `color-mix(in srgb,var(--color-base-bg) ${(clamp(s/24)*100).toFixed(1)}%,transparent)`;
     // header strip under the chips
     const first = items[0] ? items[0].dock - PRE : 0;
     const so = clamp((s - first + 10) / 40); st.style.opacity = so;
@@ -2252,6 +2263,7 @@ function m6body(){
 }
 SC.m6 = {flow:'main', label:'Live meeting ticket', parent:'m5', render:()=>`
   ${topbar({right:R.pts(true), cls:'clear'})}
+  <div class="tk-hz" aria-hidden="true" style="position:absolute;left:0;right:0;top:calc(var(--sbh) + 44px);bottom:0;z-index:0;pointer-events:none;opacity:0">${hz('actions')}</div>
   <div class="tk-bg" aria-hidden="true" style="position:absolute;left:0;right:0;top:0;height:900px;z-index:0;pointer-events:none;will-change:transform">${[
       [221,4,351,100,'var(--color-haze-lilac)',.42,140],[493,22,397,106,'var(--color-haze-blue)',.42,140],[32,-2,272,90,'var(--color-haze-cream)',.42,150],
       [220,351,150,157,'var(--color-haze-gather-peach)',.9,24],[280,389,138,146,'var(--color-haze-gather-lilac)',.85,24],[246,456,143,151,'var(--color-haze-gather-rose)',.85,80],
@@ -2288,7 +2300,7 @@ SC.m8 = {flow:'main', label:'Rewards', parent:'m6', render:()=>{
       <div class="rows-c" style="--g:var(--space-20)">${leadRow('gem','Earn points while you wait','Prepare your ID and help Mark find you')}${leadRow('gift','Unlock more perks','New scratch cards open as you level up')}${leadRow('phone','Redeem in the Salmon app','Claim a perk whenever you’re ready')}</div>
       <button class="btn muted sm rw-got" data-act="rwIntroClose">Got it</button>
     </div>`}
-    <div class="chips" role="tablist" style="margin-bottom:var(--space-16)">${['All','Food & Drinks','Shopping'].map(c=>`<button class="chip muted ${S.rewardFilter===c?'on':''}" role="tab" aria-selected="${S.rewardFilter===c}" data-act="rfilter" data-v="${c}">${c}</button>`).join('')}</div>
+    <div class="chips" role="tablist" style="margin-bottom:var(--space-16)">${['All','Food & Drinks','Shopping'].map(c=>`<button class="chip ${S.rewardFilter===c?'on':''}" role="tab" aria-selected="${S.rewardFilter===c}" data-act="rfilter" data-v="${c}">${c}</button>`).join('')}</div>
     <div class="rw-grid">
       ${showCoffee?`<button class="rw-card" data-act="claim"><span class="rw-photo"><img src="${A.rw_pic1}" alt=""><img src="${A.rw_pic2}" alt=""></span>${offer('5% off any drink','Coffee Bean, Metro Manila')}</button>`:''}
       ${cards.map(c=>`<div class="rw-card scratch-card" data-scratch="${c.id}" data-bg="${c.id==='c'?'lilac':'peach'}" ${S.scratched[c.id]?'data-act="claim" role="button" tabindex="0"':''}>${offer(c.t, c.s, c.img)}</div>`).join('')}
