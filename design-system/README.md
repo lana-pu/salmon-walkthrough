@@ -64,7 +64,7 @@ Every screen and sheet uses one of ten layouts. The templates page shows each wi
 - **Collection** (m8, w2, a1): intro, a chips row from edge to edge, then a grid or a list.
 - **Result** (13 screens): clear top bar, hero (art, title, lead, centred), then a reward, a card, the person card or the podium.
 - **Message** (i4, i8, i10, x7): a short message in the middle of the free space.
-- **Detail** (m1, pp, w3, m2): a photo hero (`size-photo-hero` 302, `size-photo-cover` 196) or a hero number, the facts, then sections.
+- **Detail** (m1, pp, w3, m2): photo first — a photo under a top bar starts `space-page-edge-photo` (8) below it (pp, w3); a photo hero (`size-photo-hero` 302, `size-photo-cover` 196) or a hero number, the facts, then sections.
 - **Ticket** (m6): ticket title and live label, the fact column next to the art, the actions; a sticky chip bar on scroll.
 - **Camera** (i7, i9, w4c): dark ground, paper top bar, frame, shutter; no footer.
 - **Map** (w4, w4m, w4a): full-bleed map with the map sheet docked at the bottom.
