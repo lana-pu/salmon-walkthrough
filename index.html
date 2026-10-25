@@ -52,7 +52,7 @@
   --color-glass:color-mix(in srgb,var(--color-paper) 92%,transparent);--color-glass-soft:color-mix(in srgb,var(--color-paper) 70%,transparent);--color-glass-dark:color-mix(in srgb,var(--color-ink) 85%,transparent);--color-scrim:color-mix(in srgb,var(--color-ink) 45%,transparent);--color-text-on-dark-soft:color-mix(in srgb,var(--color-paper) 70%,transparent);--color-fill-on-dark:color-mix(in srgb,var(--color-paper) 16%,transparent);
   --space-inline-tight:var(--space-2);--space-text-inline:var(--space-4);--space-card-tight:var(--space-4);--space-card-line:var(--space-8);--space-card-pad-sm:var(--space-12);--space-card-pad-lg:var(--space-16);
   --space-card-pad-bottom-lg:var(--space-20);--space-card-icon-gap:var(--space-12);--space-card-line-desc:var(--space-12);--space-card-before-action:var(--space-40);--space-page-edge:var(--space-32);--space-page-margin:var(--space-24);
-  --space-page-group:var(--space-16);--space-page-between:var(--space-24);--space-page-pause:var(--space-48);--space-overlay-bottom:var(--space-120);--space-group-break:var(--space-32);--space-hero-title:var(--space-16);--space-text-line-h1:var(--space-12);--space-control-pad-y:var(--space-14);--space-control-pad-y-lg:var(--space-18);
+  --space-page-group:var(--space-16);--space-page-between:var(--space-24);--space-page-pause:var(--space-48);--layout-message-anchor:42%;--space-overlay-bottom:var(--space-120);--space-group-break:var(--space-32);--space-hero-title:var(--space-16);--space-text-line-h1:var(--space-12);--space-control-pad-y:var(--space-14);--space-control-pad-y-lg:var(--space-18);
   --space-control-pad-x:var(--space-24);--space-pill-pad-y:var(--space-8);--space-pill-pad-x:var(--space-12);--space-pill-icon-gap:var(--space-6);--space-grid-gap:var(--space-16);--space-avatar-gap:var(--space-6);
   --space-sheet-grabber:var(--space-6);--space-sheet-pad-top:var(--space-28);--space-sheet-head:var(--space-24);--space-sheet-end:var(--space-32);--space-list-row-y:var(--space-24);--space-footer-x:var(--space-24);--space-footer-bottom:var(--space-32);
   --space-footer-gap:var(--space-16);--space-footer-fade:var(--space-28);
@@ -191,6 +191,7 @@ svg[data-ic]{stroke-width:var(--stroke-icon)}
 .body{position:relative;z-index:1;padding:var(--space-page-edge) var(--space-page-margin) var(--size-footer-clear)}
 .top.nohd+.scroll .body,.top.nohd~.scroll .body{padding-top:var(--space-32)}
 .body.short{padding-bottom:var(--size-footer-clear-sm)}
+.body.msg{transition-property:none}
 :root{--ft-x:var(--space-footer-x);--ft-b:var(--space-footer-bottom);--ft-gap:var(--space-footer-gap);--ft-fade:var(--space-footer-fade);--ft-light:255,255,255}
 html.ft-warm{--ft-light:255,251,240}
 /* Footer anatomy
@@ -2042,7 +2043,7 @@ SC.m2 = {flow:'main', label:'Preliminary terms', parent:'m1', render:()=>{
       <div class="kv text-body"><span>What you pay</span><span>₱21,999</span></div>
       <div class="kv text-body"><span>First payment</span><span>7 Nov 2026</span></div>
     </div>
-    <div class="sec-h" style="margin-top:calc(var(--space-page-pause) + var(--space-16))"><p class="h4 text-section-title">Choose how long to pay</p><p class="c text-caption">A longer term means a smaller monthly payment.</p></div>
+    <div class="sec-h" style="margin-top:var(--space-group-break)"><p class="h4 text-section-title">Choose how long to pay</p><p class="c text-caption">A longer term means a smaller monthly payment.</p></div>
     <div class="terms-row" role="radiogroup" aria-label="Term">
       ${TERM_LIST.map(t=>`<button class="tile lg ${S.term==t?'on':''}" role="radio" aria-checked="${S.term==t}" data-act="term" data-v="${t}"><span class="stack g12" style="padding-top:var(--space-4)"><b class="bm text-row-title">${t} months</b><span class="c sec text-row-subtitle">${peso(TERMS[t])} / mo</span></span><span class="sel">${ic('check')}</span></button>`).join('')}
     </div>
@@ -2076,12 +2077,12 @@ SC.m4 = {flow:'main', label:'Meeting details', parent:'m2',   /* m3 “Make sure
       <span class="stack g12" style="flex:1"><span class="stack g8"><b class="h4 text-card-title">Mark Reyes</b><span class="badge start">${ic('shield')}Verified ambassador</span></span><span class="cm sec text-label">English, Filipino</span></span>
       ${ic('chevR','chev')}
     </button>
-    <div class="sec-h" style="margin:var(--space-page-between) var(--space-inline-tight) var(--space-12)"><p class="h4 text-section-title">When</p><p class="c text-caption">Mark can meet you in about 5 min</p></div>
+    <div class="sec-h" style="margin:var(--space-group-break) var(--space-inline-tight) var(--space-page-group)"><p class="h4 text-section-title">When</p><p class="c text-caption">Mark can meet you in about 5 min</p></div>
     <div style="display:grid;grid-template-columns:2fr 1fr;gap:var(--space-12)" role="radiogroup" aria-label="When">
       <button class="tile md ${S.when=='asap'?'on':''}" data-act="when" data-v="asap" role="radio" aria-checked="${S.when=='asap'}"><span class="stack g8"><b class="bm text-row-title">Meet ASAP</b><span class="c tint text-row-subtitle">3:20 PM · recommended</span></span><span class="sel">${ic('check')}</span></button>
       <button class="tile md ${S.when=='later'?'on':''}" data-act="when" data-v="later" role="radio" aria-checked="${S.when=='later'}"><span class="stack g8"><b class="bm text-row-title">Later</b><span class="c sec text-row-subtitle">Choose time</span></span><span class="sel">${ic('check')}</span></button>
     </div>
-    <div class="sec-h mt24"><p class="h4 text-section-title">Where</p><p class="c text-caption">Find directions or change the meeting point.</p></div>
+    <div class="sec-h mt32"><p class="h4 text-section-title">Where</p><p class="c text-caption">Find directions or change the meeting point.</p></div>
     <button class="card rows" style="width:100%;padding:var(--space-4) var(--space-card-pad-lg)" data-go="w2">${leadRow('pin',`${S.where.name}, Level 2`,'Seats · Store Wi-Fi · 2 min walk',ic('chevR','chev'))}</button>
     <div class="sec-h" style="margin-top:var(--space-page-pause)"><p class="h4 text-section-title">SMS updates</p><p class="c text-caption">Add a Philippine mobile number if you want SMS meeting updates.</p></div>
     <input class="field" type="tel" inputmode="tel" placeholder="+63 mobile number" aria-label="Mobile number" value="${S.phone}" data-input="phone">
@@ -2360,7 +2361,7 @@ function setCheck(k, on){
 
 SC.i4 = {flow:'id', label:'You have all you need', parent:'i1', render:()=>`
   ${topbar({t:'Get ready', right:R.info()+R.pts()})}
-  <div class="scroll">${hz('ready')}<div class="body" style="padding-top:127px">
+  <div class="scroll">${hz('ready')}<div class="body msg">
     <div class="stack" id="hero" style="align-items:center;text-align:center">${heroPrepare(80)}<h1 class="h2 rise text-screen-title" style="margin-top:var(--space-hero-title)"><em>You have</em><br>all you need</h1><p class="b sec rise text-body" style="max-width:var(--size-measure);margin-top:var(--space-24);--d:.12s">You can photograph your ID now — then the meeting starts with the terms instead.</p></div>
     <div class="sbanner tint" id="earn" style="margin-top:calc(var(--space-page-pause) * 2 + var(--space-4))"><span class="lead-ic md muted">${ic('gift','i14')}</span><span class="stack sb-tx"><b class="bm text-row-title">Earn +60 Salmon Points</b><span class="c tint text-row-subtitle">Mark arrives in 9 min — enough time to prepare your ID.</span></span></div>
   </div></div>
@@ -2403,7 +2404,7 @@ SC.i6 = {flow:'id', label:'Get your licence ready', parent:'i5', render:()=>{
   <div class="scroll"><div class="body">
     <div class="intro">${title2(`Get your<br><em>${({licence:'licence',passport:'passport',umid:'UMID'})[S.idType]||'ID'} ready</em>`)}<p class="b text-body">We’ll need the front and back of your ${n.toLowerCase().replace('philsys national id','PhilSys ID').replace('umid','UMID')}. You’ll review both photos before anything is saved.</p></div>
     <img src="${A.hands}" alt="Hands holding an ID next to a phone" style="width:100%;height:var(--size-photo-guide);object-fit:cover;border-radius:var(--radius-inner)">
-    <p class="h4 text-card-title" style="margin:var(--space-40) var(--space-inline-tight) var(--space-page-between)">Before you start</p>
+    <p class="h4 text-card-title" style="margin:var(--space-page-pause) var(--space-inline-tight) var(--space-page-group)">Before you start</p>
     <div class="rows-c">${leadRow('focus','All four corners visible','Keep the whole document inside the frame')}
     ${leadRow('image','No glare or blur','Lay the ID flat in even light')}
     ${leadRow('scan','Text is readable','We’ll tell you if the photo needs another try')}</div>
@@ -2457,7 +2458,7 @@ function shoot(el,next){ if (el._shot || !el.isConnected || (cur && cur.el !== e
 SC.i7 = camScreen('Front of ID · 1 of 2','Center the front of your ID','i8','front');
 SC.i8 = {flow:'id', label:'Is everything clear?', parent:'i6', render:()=>`
   ${topbar({t:'Prepare your ID', right:R.info()+R.exit('m6','id'), tight:true})}
-  <div class="scroll">${hz('soft')}<div class="body" style="padding-top:171px">
+  <div class="scroll">${hz('soft')}<div class="body msg">
     <div class="stack g8 center"><p class="h3 text-place-title">Is everything clear?</p><p class="b sec text-body">All four corners visible · text readable</p></div>
     <div id="idshot" style="margin-top:var(--space-24);border-radius:var(--radius-inner);overflow:hidden;position:relative;aspect-ratio:345/213"><img src="${A.idfront}" alt="Photo of the front of the ID" style="position:absolute;max-width:none;width:110.31%;height:119.45%;left:-5.16%;top:-9.69%"></div>
   </div></div>
@@ -2465,7 +2466,7 @@ SC.i8 = {flow:'id', label:'Is everything clear?', parent:'i6', render:()=>`
 SC.i9 = camScreen('Back of ID · 2 of 2','Center the back of your ID','i10','back');
 SC.i10 = {flow:'id', label:'Scanning your ID', parent:'i8', render:()=>`
   ${topbar({t:'Prepare your ID', right:R.exit('m6','id')})}
-  <div class="scroll">${scanHaze()}<div class="body" style="padding-top:178px">
+  <div class="scroll">${scanHaze()}<div class="body msg">
     <div class="stack" style="align-items:center;text-align:center">${heroScan(80)}<h1 class="h2 rise text-screen-title" style="margin-top:var(--space-hero-title)">Scanning<br><em>your ID</em></h1></div>
     <p class="c sec center text-caption" style="margin-top:var(--space-16)">Nothing is saved until you review the details</p>
     <div class="card mt40" style="padding:var(--space-card-pad-lg);background:var(--color-glass-soft)"><div class="progress"><i id="pg"></i></div><p class="c sec center text-caption" style="margin-top:var(--space-12)" id="pgt">Reading the front…</p></div>
@@ -2481,12 +2482,12 @@ SC.i11 = {flow:'id', label:'Check your ID details', parent:'i8', render:()=>`
   ${topbar({t:'Prepare your ID', right:R.info()+R.exit('m6','id'), tight:true})}
   <div class="scroll"><div class="body">
     <div class="intro">${title2('Check your<br><em>ID details</em>')}<p class="b text-body">We read this from the photos you added. Check it against your original ID.</p></div>
-    <p class="h4 text-card-title" style="margin-bottom:var(--space-12)">Photos you added</p>
+    <p class="h4 text-card-title" style="margin-bottom:var(--space-page-group)">Photos you added</p>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-12)">
       <figure style="margin:0" class="stack g8"><span style="display:block;position:relative;overflow:hidden;aspect-ratio:167/102"><img src="${A.idfront}" alt="Front side" style="position:absolute;max-width:none;width:110.31%;height:119.45%;left:-5.16%;top:-9.69%"></span><figcaption class="c sec text-caption">Front side</figcaption></figure>
       <figure style="margin:0" class="stack g8"><span style="display:block;position:relative;overflow:hidden;aspect-ratio:167/102"><img src="${A.idback}" alt="Back side" style="position:absolute;max-width:none;width:108.98%;height:118.95%;left:-4.8%;top:-9.37%"></span><figcaption class="c sec text-caption">Back side</figcaption></figure>
     </div>
-    <p class="h4 text-card-title" style="margin:var(--space-28) var(--space-inline-tight) var(--space-18)">Information we read</p>
+    <p class="h4 text-card-title" style="margin:var(--space-group-break) var(--space-inline-tight) var(--space-page-group)">Information we read</p>
     <div class="card kvl" style="padding:var(--space-card-pad-sm) var(--space-card-pad-lg);background:var(--color-background-muted)">
       <div class="kv text-body"><span>Name</span><span>Jamie Santos</span></div>
       <div class="kv text-body"><span>ID type</span><span>${(IDS.find(i=>i[0]===S.idType)||IDS[1])[1]}</span></div>
@@ -2752,7 +2753,7 @@ SC.w2 = {flow:'wait', label:'Wait comfortably', parent:'m6', render:()=>{
     <div class="chips" role="tablist" style="margin-top:var(--space-group-break)">${CATS.map(([c,i])=>`<button class="chip lg wcat ${S.cat===c?'on':''}" role="tab" aria-selected="${S.cat===c}" data-act="cat" data-v="${c}">${ic(i)}${c}</button>`).join('')}</div>
     <p class="h4 text-card-title" style="margin:0 var(--space-inline-tight) var(--space-page-group)">Best for your wait</p>
     ${card(order[0])}
-    <p class="h4 text-card-title" style="margin:var(--space-page-between) var(--space-inline-tight) var(--space-10)">Other nearby places</p>
+    <p class="h4 text-card-title" style="margin:var(--space-page-between) var(--space-inline-tight) var(--space-page-group)">Other nearby places</p>
     <div class="stack g8 places-list">${order.slice(1).map(i=>card(i)).join('')}</div>
   </div></div>
   ${foot(btn(`Wait at ${PLACES[S.place].short}`,'data-act="toPlace"'))}`;}};
@@ -3082,7 +3083,7 @@ SC.a4 = {flow:'games', label:'Game settings', parent:'a3', render:()=>{ const n 
   <div class="scroll"><div class="body">
     <div class="sec-h" style="margin:0 var(--space-inline-tight) var(--space-page-group)"><p class="h4 text-section-title">Round length</p></div>
     <div class="seg seg36" role="radiogroup" aria-label="Round length"><span class="knob" style="left:calc(var(--space-text-inline) + (100% - 2 * var(--space-text-inline))/3*${S.len-1});width:calc((100% - 2 * var(--space-text-inline))/3 - var(--space-inline-tight))"></span>${[1,2,3].map(v=>`<button class="text-body" role="radio" aria-checked="${S.len===v}" data-act="len" data-v="${v}">${v} min</button>`).join('')}</div>
-    <div class="sec-h" style="margin:var(--space-page-pause) var(--space-inline-tight) var(--space-page-group)"><p class="h4 text-section-title">Categories</p><p class="c text-caption" id="catn">Pick as many as you like — ${n} chosen</p></div>
+    <div class="sec-h" style="margin:var(--space-group-break) var(--space-inline-tight) var(--space-page-group)"><p class="h4 text-section-title">Categories</p><p class="c text-caption" id="catn">Pick as many as you like — ${n} chosen</p></div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-12)">${Object.keys(S.cats).map(c=>`<button class="tile cat-tile ${S.cats[c]?'on':''}" data-act="catT" data-v="${c}" role="checkbox" aria-checked="${S.cats[c]}"><span class="cat-top"><span class="lead-ic lg bare">${ic(CAT_IC[c])}</span><span class="sel">${ic('check')}</span></span><b class="bm text-row-title">${c}</b></button>`).join('')}</div>
   </div></div>
   ${foot(btn('Start game',`data-act="startGame" ${n?'':'disabled'}`))}`;}};
@@ -3196,8 +3197,8 @@ SC.c6 = {flow:'games', label:'Final results', parent:'a1', render:()=>{
   return `${topbar({t:'Final results', right:R.live()+R.exit('m6',''), tight:true})}
   <div class="scroll">${hz('actions')}<div class="body">
     <div class="center stack" style="gap:var(--space-16)"><h1 class="h2 text-screen-title">Final results</h1><p class="bl sec text-screen-lead">Great game! Here’s how you did.</p></div>
-    <div class="podium2" style="position:relative;height:254px;margin-top:var(--space-40)">${podiumHTML(ranked)}</div>
-    <div class="sec-h" style="margin:var(--space-page-between) var(--space-inline-tight) var(--space-page-group)"><p class="h4 text-section-title">Words played</p></div>
+    <div class="podium2" style="position:relative;height:254px;margin-top:var(--space-group-break)">${podiumHTML(ranked)}</div>
+    <div class="sec-h" style="margin:var(--space-group-break) var(--space-inline-tight) var(--space-page-group)"><p class="h4 text-section-title">Words played</p></div>
     <div class="card" style="padding:var(--space-card-pad-lg) var(--space-card-pad-lg) var(--space-card-pad-bottom-lg)">${played.map((r,i)=>`<div class="kv text-body" style="padding:var(--space-18) 0;border:0;${i?'margin-top:var(--space-12)':''}"><span style="color:var(--color-text-text)">${r.w}</span><span style="color:var(--color-text-muted)">${r.who?`${r.who} · ${fmtT(r.t)} · +${r.pts}`:'Nobody — time ran out'}</span></div>`).join('')}</div>
     <button class="card row" data-go="c7" style="padding:var(--space-card-pad-lg);gap:var(--space-12);margin-top:var(--space-page-between);background:var(--color-background-white)"><span class="lead-ic md peach">${ic('gem','i16')}</span><span class="tx"><b class="bm text-row-title">Keep your scores, play in teams</b><span class="c text-row-subtitle">Everything else lives in the Salmon app</span></span>${ic('chevR','chev')}</button>
   </div></div>
@@ -3262,13 +3263,13 @@ SC.x4 = {flow:'miss', label:'Meeting moved', parent:'m6', render:()=>{ const s =
   ${topbar({t:'Meeting moved', back:false, right:R.info()+R.exit('m6',''), tight:true})}
   <div class="scroll">${hz('soft')}<div class="body">
     ${screenResult({hero:heroMeeting(80), title:`<em>Meeting moved</em><br>${s[0]==='tmr'?'See you tomorrow':'See you at '+s[2].split(' ·')[0]}`, text:`Bring any valid ID. Mark will meet you at ${S.where.name}.`})}
-    <div class="mt40">${HELD()}</div>
+    <div class="mt32">${HELD()}</div>
   </div></div>
   ${foot(btn('Go to my ticket','data-go="m6"'))}`;},
   mount(el){ successIntro(el); }};
 SC.x7 = {flow:'miss', label:'Leave', parent:'x1', render:()=>`
   ${topbar({t:'Leave', back:false, right:R.exit('restart',''), tight:true})}
-  <div class="scroll">${hz('soft')}<div class="body" style="padding-top:120px">
+  <div class="scroll">${hz('soft')}<div class="body msg">
     <div class="stack" style="align-items:center;text-align:center"><h1 class="h2 text-screen-title"><em>Ticket</em><br>closed</h1><p class="bl sec text-screen-lead" style="max-width:var(--size-measure);margin-top:var(--space-24)">Mark won’t come to the meeting point. Thanks for letting us know.</p></div>
   </div></div>
   ${foot(btn('Done','data-act="leaveDone"'))}`};
@@ -3297,7 +3298,7 @@ SC.m9 = {flow:'wait', label:'Meeting in progress', parent:'m6', render:()=>{ con
       <h1 class="h2 text-screen-title" style="margin-top:var(--space-hero-title)"><em>Meeting</em><br>in progress</h1>
       <p class="b sec text-body" style="max-width:var(--size-measure);margin-top:var(--space-16)">Mark is with you now. Keep this screen open — approval arrives here.</p>
     </div>
-    <div class="card help-card" style="padding:var(--space-card-pad-lg) var(--space-card-pad-lg) var(--space-card-pad-bottom-lg);margin-top:var(--space-40)" id="mpSteps">
+    <div class="card help-card" style="padding:var(--space-card-pad-lg) var(--space-card-pad-lg) var(--space-card-pad-bottom-lg);margin-top:var(--space-page-pause)" id="mpSteps">
       ${steps.map(([i,t,sub,st],k)=>`<div class="row mp-step ${st}" data-k="${k}"><span class="lead-ic">${ic(i)}</span><span class="tx"><span class="b text-body">${t}</span><span class="c text-caption">${sub}</span></span><span class="mp-st">${st==='done'?`<span class="sel sm on">${ic('check','i14')}</span>`:st==='now'?'<i class="spinner"></i>':''}</span></div>`).join('')}
     </div>
   </div></div>
@@ -3381,9 +3382,28 @@ function syncTopHaze(el){
 function fitBottom(el){
   syncTopHaze(el);
   const ft = el.querySelector(':scope > .ft'), body = el.querySelector('.body');
-  if (!ft || !body) return;
-  // content ends exactly where the footer's fade begins, so the last line is never washed out
-  body.style.paddingBottom = Math.max(24, Math.round(ft.offsetHeight)) + 'px';
+  if (ft && body) {
+    // content ends exactly where the footer's fade begins, so the last line is never washed out
+    body.style.paddingBottom = Math.max(24, Math.round(ft.offsetHeight)) + 'px';
+  }
+  fitMessage(el);
+}
+// Message template: the content's centre sits at --layout-message-anchor (42%) of the free space
+// between the top bar and the first footer button (or the screen bottom when there is no footer)
+function fitMessage(el){
+  const body = el.querySelector('.body.msg'); if (!body) return;
+  const sc = body.parentElement, ft = el.querySelector(':scope > .ft');
+  const kids = [...body.children].filter(c => c.offsetHeight > 2 && getComputedStyle(c).position !== 'absolute');
+  if (!kids.length) return;
+  body.style.paddingTop = '0px';
+  const btn = ft && ft.offsetHeight ? ft.querySelector('.btn, .ftn') : null;
+  const er = el.getBoundingClientRect(), k = er.height / el.offsetHeight || 1;
+  const top = (sc.getBoundingClientRect().top - er.top) / k;
+  const bottom = btn ? (btn.getBoundingClientRect().top - er.top) / k : el.offsetHeight;
+  const t0 = Math.min(...kids.map(c => c.offsetTop)), t1 = Math.max(...kids.map(c => c.offsetTop + c.offsetHeight));
+  const anchor = (parseFloat(getComputedStyle(el).getPropertyValue('--layout-message-anchor')) || 42) / 100;
+  const want = anchor * (bottom - top) - (t1 - t0) / 2;
+  body.style.paddingTop = Math.max(0, Math.round(want - t0 - body.offsetTop)) + 'px';
 }
 function back(){
   const id = hist.pop() || SC[cur.id].parent;

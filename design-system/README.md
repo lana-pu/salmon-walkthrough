@@ -71,6 +71,8 @@ Every screen and sheet uses one of ten layouts. The templates page shows each wi
 - **Play** (c2, c3): one big count or word card.
 - **Sheet** (13 sheets): grabber, heading, body (options, list card, person, photo, invite card), Button pair or none.
 
+Pause rule: `space-page-pause` (48) before a block of a different kind — a reward, the players, how it works, an optional extra; `space-group-break` (32) when the next block continues the same story (details, the next setting, the main choice). Message screens put the centre of their content at `layout-message-anchor` (42%) of the free height between the top bar and the first footer button.
+
 Vertical rhythm for every scrolling template: `space-page-edge` (32) under the top bar; `space-group-break` (32) after the intro and above each section heading; `space-page-group` (16) under a heading; `space-page-between` (24) between blocks inside a section; `space-card-line` (8) between cards in a list. The scroll ends `size-footer-clear` (210) under the last block (`size-footer-clear-sm` 140 on short screens, `size-footer-clear-ticket` 150 on the ticket, `size-footer-clear-tall` 190 above the points footer). Sheets: `space-sheet-grabber` (6), `space-sheet-pad-top` (28), `space-sheet-head` (24), `space-sheet-end` (32).
 
 ## Footer and buttons

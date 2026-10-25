@@ -44,7 +44,7 @@
   --color-glass:color-mix(in srgb,var(--color-paper) 92%,transparent);--color-glass-soft:color-mix(in srgb,var(--color-paper) 70%,transparent);--color-glass-dark:color-mix(in srgb,var(--color-ink) 85%,transparent);--color-scrim:color-mix(in srgb,var(--color-ink) 45%,transparent);--color-text-on-dark-soft:color-mix(in srgb,var(--color-paper) 70%,transparent);--color-fill-on-dark:color-mix(in srgb,var(--color-paper) 16%,transparent);
   --space-inline-tight:var(--space-2);--space-text-inline:var(--space-4);--space-card-tight:var(--space-4);--space-card-line:var(--space-8);--space-card-pad-sm:var(--space-12);--space-card-pad-lg:var(--space-16);
   --space-card-pad-bottom-lg:var(--space-20);--space-card-icon-gap:var(--space-12);--space-card-line-desc:var(--space-12);--space-card-before-action:var(--space-40);--space-page-edge:var(--space-32);--space-page-margin:var(--space-24);
-  --space-page-group:var(--space-16);--space-page-between:var(--space-24);--space-page-pause:var(--space-48);--space-overlay-bottom:var(--space-120);--space-group-break:var(--space-32);--space-hero-title:var(--space-16);--space-text-line-h1:var(--space-12);--space-control-pad-y:var(--space-14);--space-control-pad-y-lg:var(--space-18);
+  --space-page-group:var(--space-16);--space-page-between:var(--space-24);--space-page-pause:var(--space-48);--layout-message-anchor:42%;--space-overlay-bottom:var(--space-120);--space-group-break:var(--space-32);--space-hero-title:var(--space-16);--space-text-line-h1:var(--space-12);--space-control-pad-y:var(--space-14);--space-control-pad-y-lg:var(--space-18);
   --space-control-pad-x:var(--space-24);--space-pill-pad-y:var(--space-8);--space-pill-pad-x:var(--space-12);--space-pill-icon-gap:var(--space-6);--space-grid-gap:var(--space-16);--space-avatar-gap:var(--space-6);
   --space-sheet-grabber:var(--space-6);--space-sheet-pad-top:var(--space-28);--space-sheet-head:var(--space-24);--space-sheet-end:var(--space-32);--space-list-row-y:var(--space-24);--space-footer-x:var(--space-24);--space-footer-bottom:var(--space-32);
   --space-footer-gap:var(--space-16);--space-footer-fade:var(--space-28);
@@ -183,6 +183,7 @@ svg[data-ic]{stroke-width:var(--stroke-icon)}
 .body{position:relative;z-index:1;padding:var(--space-page-edge) var(--space-page-margin) var(--size-footer-clear)}
 .top.nohd+.scroll .body,.top.nohd~.scroll .body{padding-top:var(--space-32)}
 .body.short{padding-bottom:var(--size-footer-clear-sm)}
+.body.msg{transition-property:none}
 :root{--ft-x:var(--space-footer-x);--ft-b:var(--space-footer-bottom);--ft-gap:var(--space-footer-gap);--ft-fade:var(--space-footer-fade);--ft-light:255,255,255}
 html.ft-warm{--ft-light:255,251,240}
 /* Footer anatomy
