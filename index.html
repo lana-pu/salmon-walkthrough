@@ -251,6 +251,7 @@ html.ft-warm{--ft-light:255,251,240}
 .btn:active{transform:scale(.98)}
 .btn.ink{background:var(--color-background-interactive);color:var(--color-text-on-inverse)}
 .btn.paper{background:var(--color-background-white);color:var(--color-text-text)}
+.btn.sm.soft{background:var(--color-background-muted);color:var(--color-text-text)}
 .btn.plain{background:transparent}.btn.sm{height:var(--size-button-text-height);font-size:var(--type-body-medium-size);font-weight:var(--type-body-medium-weight)}.btn.sm svg{width:var(--size-icon-sm);height:var(--size-icon-sm)}.btn.muted{background:var(--color-background-muted);color:var(--color-text-text)}.btn.link{width:auto;height:var(--size-button-text-height);padding:0 var(--space-pill-pad-x);background:none;color:var(--color-text-muted);font-size:var(--type-caption-size);font-weight:var(--type-caption-weight)}
 .btn[disabled]{opacity:.35;pointer-events:none}
 .card{background:var(--color-background-white);border-radius:var(--radius-card)}
@@ -527,7 +528,6 @@ html.sec-compact{--ft-gap:8px;--ft-b:24px}
 .w4-acts #walkb[disabled]{opacity:1;color:var(--color-text-muted)}
 
 .ab-legal{gap:var(--space-card-icon-gap);margin-top:var(--space-group-break)}.ab-legal .c{line-height:var(--leading-relaxed);text-box:none}.nw{white-space:nowrap}
-.ab-stat{height:auto;padding:var(--space-card-pad-lg);gap:var(--space-20);justify-content:flex-start}
 
 .pp-hero{position:relative;height:var(--size-photo-hero);border-radius:var(--radius-card);overflow:hidden;background:var(--color-background-white)}
 .pp-hero img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;display:block}
@@ -561,7 +561,7 @@ html.sec-compact{--ft-gap:8px;--ft-b:24px}
 .w6-who-top{display:flex;gap:var(--space-card-icon-gap);align-items:center}
 
 .w6-acts{display:flex;gap:var(--space-8)}
-.w6-acts .chip{height:var(--size-chip-height-lg);background:var(--color-background-muted);gap:var(--space-pill-icon-gap);flex:1;justify-content:center;font-weight:var(--font-weight-medium)}
+.w6-acts .btn{flex:1}
 .w6-code{margin-top:var(--space-12);padding:var(--space-card-pad-lg);display:flex;gap:var(--space-16);align-items:center}
 .w6-digits{display:flex;gap:var(--space-4);flex:none}
 .w6-list{margin-top:var(--space-12);padding:var(--space-20) var(--space-card-pad-lg);--g:var(--space-20)}
@@ -1206,7 +1206,7 @@ const pav = (p, size='md', cls='') => av(A[PL[p].img], size, 'av-'+p+(cls?' '+cl
 const tok = n => parseFloat(getComputedStyle(document.documentElement).getPropertyValue(n));
 const tapRow = (attrs='', trail='') => /data-act|data-go|role="button"/.test(attrs) || trail.includes('chev');
 const rowTitle = (t, tap) => tap ? `<b class="bm text-row-title">${t}</b>` : `<span class="b text-body">${t}</span>`;
-const leadRow = (icon, title, sub, trail='', attrs='', lined=false) => `<div class="row ${lined?'lined':''}" ${attrs}><span class="lead-ic">${ic(icon)}</span><span class="tx">${rowTitle(title, tapRow(attrs, trail))}${sub?`<span class="c text-caption">${sub}</span>`:''}</span>${trail}</div>`;
+const leadRow = (icon, title, sub, trail='', attrs='', lined=false) => `<div class="row ${lined?'lined':''}" ${attrs}><span class="lead-ic">${ic(icon)}</span><span class="tx">${rowTitle(title, tapRow(attrs, trail) && !attrs.includes('data-plain'))}${sub?`<span class="c text-caption">${sub}</span>`:''}</span>${trail}</div>`;
 const HZ = {
   // Salmon / Screen background · scene=actions (Final results)
   actions: B(-48,-52,218,176,'var(--color-base-bg)',1,150)+B(-70,-109,227,171,'var(--color-haze-sky)',1,150)+B(283,186,300,391,'var(--color-haze-apricot)',.16,150)+B(139,297,320,326,'var(--color-haze-cream)',.16,150)+B(323,480,300,320,'var(--color-haze-apricot)',.16,150)+B(131,178,259,217,'var(--color-haze-apricot)',.16,150),
@@ -2060,7 +2060,7 @@ SC.m3 = {flow:'main', label:'Before you start', parent:'m2', render:()=>`
   <div class="scroll">${hz('warm')}<div class="body">
     <div class="intro">${title2('Make sure<br><em>you’re ready</em>')}<p class="b text-body">Check the essentials before you meet Mark. This doesn’t guarantee approval.</p></div>
     <div class="card rows" style="padding:var(--space-card-pad-lg) var(--space-card-pad-lg) var(--space-card-pad-bottom-lg)">
-      ${leadRow('idcard','A valid government ID', S.idType ? `${idName()} · you’ll bring it` : 'Passport, driver’s licence or UMID', S.idType ? `<span class="sel sm on" style="margin-right:var(--space-inline-tight);align-self:center">${ic('check','i14')}</span>` : `<span class="ib sm" aria-hidden="true" style="margin-right:var(--space-4)">${ic('infoO','i14')}</span>`, 'data-act="idPick" role="button" tabindex="0" aria-label="Choose the ID you’ll bring" style="cursor:pointer"')}
+      ${leadRow('idcard','A valid government ID', S.idType ? `${idName()} · you’ll bring it` : 'Passport, driver’s licence or UMID', S.idType ? `<span class="sel sm on" style="margin-right:var(--space-inline-tight);align-self:center">${ic('check','i14')}</span>` : `<span class="ib sm" aria-hidden="true" style="margin-right:var(--space-4)">${ic('infoO','i14')}</span>`, 'data-act="idPick" data-plain role="button" tabindex="0" aria-label="Choose the ID you’ll bring" style="cursor:pointer"')}
       ${leadRow('phone','Your own Philippine mobile number','Registered in your name')}
       ${leadRow('mail','Access to your email','Make sure you can open it on this phone')}
       ${leadRow('battery','A charged smartphone','Keep enough battery to show your ticket at the meeting')}
@@ -2532,8 +2532,8 @@ SC.ab = {flow:'main', label:'About Salmon', parent:'m6', render:()=>`
   <div class="scroll"><div class="body">
     <div class="intro">${title2('<em>Smart loans</em><br>for Filipinos')}<p class="b text-body">Salmon finances your iPhone. MobileWorld sells it — you pay Salmon in monthly parts.</p></div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-grid-gap)">
-      <div class="tile ab-stat"><span class="lead-ic muted">${ic('people')}</span><span class="stack g12"><b class="h3 text-place-title num">1.5M+</b><span class="b sec text-body">Filipinos use Salmon</span></span></div>
-      <div class="tile ab-stat"><span class="lead-ic muted">${ic('sparkle')}</span><span class="stack g12"><b class="h3 text-place-title num">4.8</b><span class="b sec text-body">App Store rating</span></span></div>
+      <div class="tile md tight"><span class="lead-ic muted">${ic('people')}</span><span class="stack g12"><b class="h3 text-place-title num">1.5M+</b><span class="b sec text-body">Filipinos use Salmon</span></span></div>
+      <div class="tile md tight"><span class="lead-ic muted">${ic('sparkle')}</span><span class="stack g12"><b class="h3 text-place-title num">4.8</b><span class="b sec text-body">App Store rating</span></span></div>
     </div>
     <div class="sec-h" style="margin-top:var(--space-group-break)"><p class="h4 text-section-title">How you’re protected</p></div>
     <div class="card rows-c" style="padding:var(--space-20) var(--space-card-pad-lg);--g:var(--space-20)">
@@ -2940,7 +2940,7 @@ SC.w6 = {flow:'wait', label:'Your meeting · what Mark is doing', parent:'m6', r
     <div class="card w6-who">
       <div class="w6-who-top"><img class="photo sm" src="${A.mark}" alt=""><span class="stack" style="gap:var(--space-card-line);flex:1;min-width:0"><b class="h4 text-card-title">Mark Reyes</b><span class="badge start">${ic('shield')}Verified ambassador</span></span></div>
       <p class="c sec text-caption" style="margin:0">Look for a red Salmon shirt and an ID badge on a lanyard.</p>
-      <div class="w6-acts"><button class="chip" data-act="msgMark">${ic('help','i16')}Ask a question</button><button class="chip" data-act="mark">${ic('user','i16')}Profile</button></div>
+      <div class="w6-acts"><button class="btn sm soft" data-act="msgMark">${ic('help','i16')}Ask a question</button><button class="btn sm soft" data-act="mark">${ic('user','i16')}Profile</button></div>
     </div>
     ${near ? codeCard : ''}
     <div class="card rows-c w6-list">

@@ -17,3 +17,5 @@ Row with a round icon holder, a title and a subtitle, and an optional trailing c
 **Density.** Two spacings on purpose: a list that is the main thing on the screen gets roomy rows (`space-card-pad-lg` padding); a list that supports something else is compact (`rows-c`, 20 between rows).
 
 Don’t: put two lines of subtitle under a short title if a Key–value line says it better.
+
+**One weight per list.** When a static list has a single row that opens something and that row already shows it with a trailing icon (m3, the ID row with ⓘ), the row keeps the regular title so the list reads as one. In code: `data-plain` on the row.

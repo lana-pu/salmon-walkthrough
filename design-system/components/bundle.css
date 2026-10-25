@@ -123,6 +123,7 @@ html.ft-warm{--ft-light:255,251,240}
 .btn:active{transform:scale(.98)}
 .btn.ink{background:var(--color-background-interactive);color:var(--color-text-on-inverse)}
 .btn.paper{background:var(--color-background-white);color:var(--color-text-text)}
+.btn.sm.soft{background:var(--color-background-muted);color:var(--color-text-text)}
 .btn.plain{background:transparent}.btn.sm{height:var(--size-button-text-height);font-size:var(--type-body-medium-size);font-weight:var(--type-body-medium-weight)}.btn.sm svg{width:var(--size-icon-sm);height:var(--size-icon-sm)}.btn.muted{background:var(--color-background-muted);color:var(--color-text-text)}.btn.link{width:auto;height:var(--size-button-text-height);padding:0 var(--space-pill-pad-x);background:none;color:var(--color-text-muted);font-size:var(--type-caption-size);font-weight:var(--type-caption-weight)}
 .btn[disabled]{opacity:.35;pointer-events:none}
 .card{background:var(--color-background-white);border-radius:var(--radius-card)}
@@ -374,7 +375,6 @@ button.row{text-align:left}
 .hero-anim .pk-spark{transform-origin:center;animation:spark-in .55s cubic-bezier(.3,1.7,.5,1) 1.15s both,twinkle 3s ease-in-out 1.9s infinite}
 .w4h-add .lead-ic svg.w4h-cam{width:var(--size-icon-topbar);height:var(--size-icon-topbar)}
 .w4h-photo .chip{position:absolute;right:12px;bottom:12px;height:36px;background:var(--color-glass);gap:var(--space-pill-icon-gap)}
-.w6-acts .chip{height:var(--size-chip-height-lg);background:var(--color-background-muted);gap:var(--space-pill-icon-gap);flex:1;justify-content:center;font-weight:var(--font-weight-medium)}
 .ful{display:flex;align-items:center;gap:var(--space-14);height:var(--size-option-row-lg);padding:0 var(--space-18);border-radius:var(--radius-sheet);background:var(--color-background-muted);width:100%;text-align:left;transition:transform .15s}
 .ful:active{transform:scale(.98)}
 .ful.on{background-image:var(--gradient-hero);background-size:100% 100%}
