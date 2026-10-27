@@ -68,6 +68,7 @@ svg[data-ic]{stroke-width:var(--stroke-icon)}
 .top.nohd+.scroll .body,.top.nohd~.scroll .body{padding-top:var(--space-32)}
 .body.short{padding-bottom:var(--size-footer-clear-sm)}
 .body.msg{transition-property:none}
+.scr.fit-lead .body > .intro > p,.scr.fit-lead .body > .sr-hero > p,.scr.fit-lead .body > .stack > p.b{display:none}
 :root{--ft-x:var(--space-footer-x);--ft-b:var(--space-footer-bottom);--ft-gap:var(--space-footer-gap);--ft-fade:var(--space-footer-fade);--ft-light:255,255,255}
 html.ft-warm{--ft-light:255,251,240}
 /* Footer anatomy
@@ -318,6 +319,8 @@ button.row{text-align:left}
 .fact.tile-l .f-link{border-top:var(--stroke-divider) solid var(--color-border-border);padding-top:var(--space-12);height:var(--size-fact-link);box-sizing:border-box;line-height:var(--leading-none);display:flex;justify-content:space-between;align-items:center;flex:none}
 .fact.chip-l{display:inline-flex;align-items:center;gap:var(--space-8);height:var(--size-tap);padding:var(--space-text-inline) var(--space-pill-pad-x) var(--space-text-inline) var(--space-text-inline);border-radius:var(--radius-pill);background:var(--color-background-white);font-size:var(--type-caption-medium-size);font-weight:var(--type-caption-medium-weight);line-height:var(--leading-normal);color:var(--color-text-text);white-space:nowrap}
 .fact.chip-l .f-pic{width:var(--size-avatar-sm);height:var(--size-avatar-sm);flex:none}
+  /* ticket: a smaller fact column so "Get ready" shows in full on the first view */
+  .scr[data-id="m6"] .facts-wrap{zoom:.78}
   .scr[data-id="c5"] .fact-tile{height:auto;min-height:0;gap:var(--space-8);padding-bottom:var(--space-card-pad-sm)}
 /* Salmon / Game row tones — fills straight from Figma A1 · Quick break */
 

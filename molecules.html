@@ -184,6 +184,7 @@ svg[data-ic]{stroke-width:var(--stroke-icon)}
 .top.nohd+.scroll .body,.top.nohd~.scroll .body{padding-top:var(--space-32)}
 .body.short{padding-bottom:var(--size-footer-clear-sm)}
 .body.msg{transition-property:none}
+.scr.fit-lead .body > .intro > p,.scr.fit-lead .body > .sr-hero > p,.scr.fit-lead .body > .stack > p.b{display:none}
 :root{--ft-x:var(--space-footer-x);--ft-b:var(--space-footer-bottom);--ft-gap:var(--space-footer-gap);--ft-fade:var(--space-footer-fade);--ft-light:255,255,255}
 html.ft-warm{--ft-light:255,251,240}
 /* Footer anatomy
@@ -449,6 +450,10 @@ html.sec-compact{--ft-gap:8px;--ft-b:24px}
 .panel .opt-l{font-size:12px;color:var(--page-sec);margin:0 0 8px}
 /* ---- Short phone screens (a browser's bars take ~180px): one-view screens tighten so they fit without scrolling ---- */
 @media (max-width:500px) and (max-height:760px){
+  /* ticket: a smaller fact column so "Get ready" shows in full on the first view */
+  .scr[data-id="m6"] .facts-wrap{zoom:.78}
+  .scr[data-id="m6"] .tk-intro{margin-bottom:var(--space-16)}
+  .scr[data-id="m6"] .body{padding-top:var(--space-8)!important}
   /* success screens: smaller hero art, tighter rhythm, compact reward card */
   .scr .sr-hero .pic,.scr .sr-hero .hero-gen,.scr #hero .pic{zoom:.8}
   .scr .sr-hero h1,.scr #hero h1{margin-top:var(--space-12)!important}
