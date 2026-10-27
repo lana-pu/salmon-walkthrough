@@ -225,7 +225,7 @@ html.ft-warm{--ft-light:255,251,240}
 .c{font-size:var(--type-caption-size);line-height:var(--type-caption-leading);text-box:trim-both cap alphabetic;margin:0}
 .cm{font-size:var(--type-caption-medium-size);line-height:var(--type-caption-medium-leading);text-box:trim-both cap alphabetic;font-weight:var(--type-caption-medium-weight);margin:0}
 /* Text roles: what a piece of text is for → the style that draws it. Change a role here to restyle every element with that role. */
-.text-screen-title{font-size:var(--type-h2-size);line-height:var(--type-h2-leading);text-box:trim-both cap alphabetic;font-weight:var(--type-h2-weight);letter-spacing:var(--type-h2-tracking);margin:0}
+.text-screen-title{font-size:var(--type-h2-size);line-height:var(--type-h2-leading);text-box:trim-both cap alphabetic;font-weight:var(--type-h2-weight);letter-spacing:var(--type-h2-tracking);margin:0;text-wrap:balance}
 .text-screen-lead{font-size:var(--type-body-large-size);line-height:var(--type-body-large-leading);text-box:trim-both cap alphabetic;letter-spacing:var(--type-body-large-tracking);margin:0}
 .text-hero-number{font-size:var(--type-h1-size);line-height:var(--type-h1-leading);text-box:trim-both cap alphabetic;font-weight:var(--type-h1-weight);letter-spacing:var(--type-h1-tracking);margin:0}
 .text-place-title{font-size:var(--type-h3-size);line-height:var(--type-h3-leading);text-box:trim-both cap alphabetic;font-weight:var(--type-h3-weight);letter-spacing:var(--type-h3-tracking);margin:0}
@@ -3214,7 +3214,7 @@ SC.c6 = {flow:'games', label:'Final results', parent:'a1', render:()=>{
   return `${topbar({t:'Final results', right:R.live()+R.exit('m6',''), tight:true})}
   <div class="scroll">${hz('actions')}<div class="body">
     <div class="center stack" style="gap:var(--space-16)"><h1 class="h2 text-screen-title">Final results</h1><p class="bl sec text-screen-lead">Great game! Here’s how you did.</p></div>
-    <div class="podium2" style="position:relative;height:254px;margin-top:var(--space-group-break)">${podiumHTML(ranked)}</div>
+    <div class="podium2" style="position:relative;height:254px;width:var(--size-content-mobile);margin-inline:auto;margin-top:var(--space-group-break)">${podiumHTML(ranked)}</div>
     <div class="sec-h" style="margin:var(--space-group-break) var(--space-inline-tight) var(--space-page-group)"><p class="h4 text-section-title">Words played</p></div>
     <div class="card" style="padding:var(--space-card-pad-lg) var(--space-card-pad-lg) var(--space-card-pad-bottom-lg)">${played.map((r,i)=>`<div class="kv text-body" style="padding:var(--space-18) 0;border:0;${i?'margin-top:var(--space-12)':''}"><span style="color:var(--color-text-text)">${r.w}</span><span style="color:var(--color-text-muted)">${r.who?`${r.who} · ${fmtT(r.t)} · +${r.pts}`:'Nobody — time ran out'}</span></div>`).join('')}</div>
     <button class="card row" data-go="c7" style="padding:var(--space-card-pad-lg);gap:var(--space-12);margin-top:var(--space-page-between);background:var(--color-background-white)"><span class="lead-ic md peach">${ic('gem','i16')}</span><span class="tx"><b class="bm text-row-title">Keep your scores, play in teams</b><span class="c text-row-subtitle">Everything else lives in the Salmon app</span></span>${ic('chevR','chev')}</button>
@@ -3405,6 +3405,16 @@ function fitBottom(el){
   }
   fitMessage(el);
   fitLead(el);
+  fitPodium(el);
+}
+// the podium is laid out for the 345 content width: on a narrower phone it scales down to fit and stays centred
+function fitPodium(el){
+  const p = el.querySelector('.podium2'); if (!p) return;
+  p.style.zoom = '';
+  const base = parseFloat(getComputedStyle(p).zoom) || 1, par = getComputedStyle(p.parentElement);
+  const cw = p.parentElement.clientWidth - parseFloat(par.paddingLeft) - parseFloat(par.paddingRight);
+  const nat = p.offsetWidth || cw;
+  p.style.zoom = String(Math.min(base, cw / nat));
 }
 // Message template: the content's centre sits at --layout-message-anchor (42%) of the free space
 // between the top bar and the first footer button (or the screen bottom when there is no footer)

@@ -97,7 +97,7 @@ html.ft-warm{--ft-light:255,251,240}
 .c{font-size:var(--type-caption-size);line-height:var(--type-caption-leading);text-box:trim-both cap alphabetic;margin:0}
 .cm{font-size:var(--type-caption-medium-size);line-height:var(--type-caption-medium-leading);text-box:trim-both cap alphabetic;font-weight:var(--type-caption-medium-weight);margin:0}
 /* Text roles: what a piece of text is for → the style that draws it. Change a role here to restyle every element with that role. */
-.text-screen-title{font-size:var(--type-h2-size);line-height:var(--type-h2-leading);text-box:trim-both cap alphabetic;font-weight:var(--type-h2-weight);letter-spacing:var(--type-h2-tracking);margin:0}
+.text-screen-title{font-size:var(--type-h2-size);line-height:var(--type-h2-leading);text-box:trim-both cap alphabetic;font-weight:var(--type-h2-weight);letter-spacing:var(--type-h2-tracking);margin:0;text-wrap:balance}
 .text-screen-lead{font-size:var(--type-body-large-size);line-height:var(--type-body-large-leading);text-box:trim-both cap alphabetic;letter-spacing:var(--type-body-large-tracking);margin:0}
 .text-hero-number{font-size:var(--type-h1-size);line-height:var(--type-h1-leading);text-box:trim-both cap alphabetic;font-weight:var(--type-h1-weight);letter-spacing:var(--type-h1-tracking);margin:0}
 .text-place-title{font-size:var(--type-h3-size);line-height:var(--type-h3-leading);text-box:trim-both cap alphabetic;font-weight:var(--type-h3-weight);letter-spacing:var(--type-h3-tracking);margin:0}
