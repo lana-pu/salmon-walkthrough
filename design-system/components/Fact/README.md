@@ -7,3 +7,5 @@ Who or where — Mark, the meeting point — as one set of data in three layouts
 **Docking.** On scroll the tile morphs into the chip. The dock reads the chip's size, padding and label position from this component, so changing the chip changes the dock.
 
 **Text.** Tile label `text-caption`, value `text-stat-value` (24 semibold, tightest tracking), detail `text-body`.
+
+**Narrow phones.** Under 375 wide the chip layout shows the short title (`short`, a person by first name: “Mark”), so the docked row of chips stays on one line.

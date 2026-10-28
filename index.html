@@ -192,6 +192,8 @@ svg[data-ic]{stroke-width:var(--stroke-icon)}
 .top.nohd+.scroll .body,.top.nohd~.scroll .body{padding-top:var(--space-32)}
 .body.short{padding-bottom:var(--size-footer-clear-sm)}
 .body.msg{transition-property:none}
+/* narrow phones (360 wide — the most common in the Philippines): cards, tiles and list rows keep 12 inside instead of 16 */
+@media (max-width:374px){:root{--space-card-pad-lg:var(--space-12)}}
 .scr.fit-lead .body > .intro > p,.scr.fit-lead .body > .sr-hero > p,.scr.fit-lead .body > .stack > p.b{display:none}
 :root{--ft-x:var(--space-footer-x);--ft-b:var(--space-footer-bottom);--ft-gap:var(--space-footer-gap);--ft-fade:var(--space-footer-fade);--ft-light:255,255,255}
 html.ft-warm{--ft-light:255,251,240}
@@ -1483,7 +1485,7 @@ function ticketMorph(el){
     const m = {h:r.height/k, img:{x:(rp.left-r.left)/k, y:(rp.top-r.top)/k, s:rp.width/k}, lblX:(rl.left-r.left)/k, pad:parseFloat(cs.paddingRight), fs:parseFloat(cs.fontSize), lh:parseFloat(cs.lineHeight)/parseFloat(cs.fontSize)};
     w.remove(); return m; })();
   const capY = (CM.h - CM.fs*CM.lh)/2 + 0.292*CM.fs;
-  const SPEC = Object.entries(FACTS).map(([key, f]) => ({tile:'.t-'+key, chip:{x:0, y:108+DY, w:0, h:CM.h}, img:CM.img, lbl:{x:CM.lblX, cap:capY}, act:f.act, icon2:f.chipIcon}));
+  const SPEC = Object.entries(FACTS).map(([key, f]) => ({key, tile:'.t-'+key, chip:{x:0, y:108+DY, w:0, h:CM.h}, img:CM.img, lbl:{x:CM.lblX, cap:capY}, act:f.act, icon2:f.chipIcon}));
   const items = SPEC.map(sp => {
     const tile = el.querySelector(sp.tile); if (!tile) return null;
     const T = R(tile), ti = tile.querySelector('.t-img'), tl = tile.querySelector('.t-lbl');
@@ -1497,7 +1499,7 @@ function ticketMorph(el){
     const img = ti.cloneNode(true); img.classList.remove('t-img'); img.style.visibility='visible'; img.style.borderRadius='999px'; img.style.overflow='hidden';
     let swap = null;
     if (sp.icon2){ const svgs = img.querySelector('svg'); if (svgs){ svgs.style.position='absolute'; } img.style.position='absolute'; swap = document.createElement('span'); swap.innerHTML = ic(sp.icon2,'i16'); swap.firstElementChild.style.color='var(--color-icon-muted)'; swap.style.cssText='position:absolute;inset:-1px;display:grid;place-items:center;opacity:0;border-radius:999px;background:var(--gradient-holder);color:var(--color-icon-muted)'; img.appendChild(swap); }
-    const lbl = document.createElement('span'); lbl.textContent = tl.textContent; lbl.style.cssText = 'line-height:var(--leading-normal);color:var(--color-text-text)';
+    const lbl = document.createElement('span'); lbl.textContent = factChipTitle(sp.key); lbl.style.cssText = 'line-height:var(--leading-normal);color:var(--color-text-text)';
     g.append(extra, img, lbl); layer.appendChild(g); g.style.zIndex = String(10 - SPEC.indexOf(sp));
     return {swap, first: img.querySelector('svg'), sp, tile, T, Ti:{x:Ti.x-T.x, y:Ti.y-T.y, s:Ti.w}, Tl:{x:Tl.x-T.x, y:Tl.y-T.y}, g, img, lbl, extra, len:110};
   }).filter(Boolean);
@@ -2245,14 +2247,17 @@ const tkFoot = () => { const ph = tkPhase();
   return foot(btn('Manage this meeting','data-act="manage"')); };
 const tkChip = () => { const ph = tkPhase(); return ph === 'ready' || ph === 'onway' ? ['Ready','Mark is'] : ph === 'moved' ? ['Coming','Mark is'] : null; };
 const FACTS = {
-  mark:{act:'data-act="mark"', label:'Ambassador', title:()=>'Mark Reyes', link:'View profile',
+  mark:{act:'data-act="mark"', label:'Ambassador', title:()=>'Mark Reyes', short:()=>'Mark', link:'View profile',
     pic:{tile:()=>av(A.mark,'md','t-img'), chip:()=>av(A.mark,'sm','f-pic'), card:()=>`<img class="photo lg" src="${A.mark}" alt="">`}},
   where:{act:'data-go="w3"', label:'Where', title:()=>S.where.name, sub:()=>S.where.sub, link:'View place', chipIcon:'sofa',
     pic:{tile:()=>`<span class="t-img lead-ic md ink">${ic('pin','i18')}</span>`, chip:()=>`<span class="f-pic lead-ic md">${ic('sofa','i16')}</span>`, card:()=>`<span class="lead-ic lg">${ic('pin')}</span>`}},
 };
 // one fact, three layouts
+// Fact as a chip on a narrow phone shows the short title (a person by first name), so a row of chips stays on one line
+const NARROW = matchMedia('(max-width:374px)');
+const factChipTitle = key => { const f = FACTS[key]; return NARROW.matches && f.short ? f.short() : f.title(); };
 function fact(key, {layout='tile'} = {}){ const f = FACTS[key];
-  if (layout === 'chip') return `<button class="fact chip-l" ${f.act}>${f.pic.chip()}<span class="f-lbl">${f.title()}</span></button>`;
+  if (layout === 'chip') return `<button class="fact chip-l" ${f.act}>${f.pic.chip()}<span class="f-lbl">${factChipTitle(key)}</span></button>`;
   if (layout === 'card') return `<button class="card media fact" ${f.act}>${f.pic.card()}<span class="tx"><span class="c sec text-caption">${f.label}</span><b class="h4 text-card-title">${f.title()}</b>${f.sub?`<span class="b sec text-body">${f.sub()}</span>`:''}</span>${ic('chevR','chev')}</button>`;
   return `<button class="card fact tile-l t-${key}" ${f.act}>${f.pic.tile()}<span class="stack g8"><span class="c sec text-caption">${f.label}</span><b class="h4 t-lbl text-card-title">${f.title()}</b></span>${f.sub?`<span class="b sec text-body">${f.sub()}</span>`:''}<span class="c sec text-caption f-link">${f.link} ${ic('chevR','chev')}</span></button>`; }
 function m6body(){

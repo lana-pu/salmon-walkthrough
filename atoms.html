@@ -68,6 +68,8 @@ svg[data-ic]{stroke-width:var(--stroke-icon)}
 .top.nohd+.scroll .body,.top.nohd~.scroll .body{padding-top:var(--space-32)}
 .body.short{padding-bottom:var(--size-footer-clear-sm)}
 .body.msg{transition-property:none}
+/* narrow phones (360 wide — the most common in the Philippines): cards, tiles and list rows keep 12 inside instead of 16 */
+@media (max-width:374px){:root{--space-card-pad-lg:var(--space-12)}}
 .scr.fit-lead .body > .intro > p,.scr.fit-lead .body > .sr-hero > p,.scr.fit-lead .body > .stack > p.b{display:none}
 :root{--ft-x:var(--space-footer-x);--ft-b:var(--space-footer-bottom);--ft-gap:var(--space-footer-gap);--ft-fade:var(--space-footer-fade);--ft-light:255,255,255}
 html.ft-warm{--ft-light:255,251,240}
