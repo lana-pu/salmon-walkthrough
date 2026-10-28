@@ -19,3 +19,7 @@ Row with a round icon holder, a title and a subtitle, and an optional trailing c
 Don’t: put two lines of subtitle under a short title if a Key–value line says it better.
 
 **One weight per list.** When a static list has a single row that opens something and that row already shows it with a trailing icon (m3, the ID row with ⓘ), the row keeps the regular title so the list reads as one. In code: `data-plain` on the row.
+
+## Hit area and tinted rows
+
+A tappable row (link, button or `data-go`/`data-act`) reaches `size-tap` through the shared invisible `::after`. On a selected row (`gradient-peach`) the subtitle uses `color-text-muted-on-tint`, set by the row itself.

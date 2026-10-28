@@ -17,3 +17,7 @@ Don’t: put two `ink` buttons together, shorten a button to fit text, or add bo
 **More fills.** `btn muted`: `color-background-muted` (“Got it” on the rewards intro). `btn link`: no fill, `text-caption` in `color-text-muted`, auto width (“See my rewards”).
 
 **Under the main button.** Three looks with a meaning each. Ink: the main action. White pill (`btn paper` in `ft sec-w`; on a white sheet the grey `btn soft`): a second, equal-weight action (“Show directions”, “View receipt”, “Retake”). Text link (`btn plain` or `btn paper` without `sec-w`): leaving or undoing: cancel, skip, leave, back, “Something’s wrong”.
+
+## Hit area
+
+Every button reaches `size-tap` (44 × 44) through the shared invisible `::after`; `sm`, `paper` and `plain` buttons stay 40 tall visually.

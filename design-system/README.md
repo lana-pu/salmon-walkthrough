@@ -31,7 +31,8 @@ Token names follow the Figma kit, with `/` written as `-`: `space/card/pad-lg` i
 
 - Screens sit on `color-base-bg`. Cards, tiles and sheets are `color-paper`. Inside a white sheet, nested cards use `color-base-bg`.
 - Text is `color-text-text` for primary content and `color-text-muted` for everything secondary (sub-lines, captions, notes).
-- `color-text-soft` is only for the quiet first line of large headings (the `em` in `h1`/`h2`) and for functional states such as disabled. Never use it for small text.
+- `color-text-soft` (→ `color-quiet`, mauve-600) is only for the quiet first line of screen titles (the `em` in `h1`/`h2`) and for placeholders. Never for small labels and never on ink: small quiet labels use `color-text-muted`, labels on ink use `color-text-on-inverse-muted`.
+- On gradient surfaces (`surface s-*`, selected tile or row, product card, fact tile, tinted banner, podium) `color-text-muted` resolves to `color-text-muted-on-tint` (mauve-800) and `color-secondary-on-tint` is plum-800, so secondary text keeps 4.5:1. The surface sets it; components never pick it by hand.
 - The one strong surface is `color-ink`: the primary button, selected chips and pills, and the dark action tile. Text on `color-ink` is white; secondary text on `color-ink` is `color-text-on-inverse-muted`.
 - Selection is shown with `gradient-peach` (rows in sheets) or `gradient-tile` (tiles), with text in `color-ink`.
 - `color-status-live` marks live status (the pulsing dot), progress and the focus ring. It is never text.
@@ -43,7 +44,7 @@ Token names follow the Figma kit, with `/` written as `-`: `space/card/pad-lg` i
 - One family: DM Sans, weights 400–600 (`sans`).
 - All text styles trim their box to cap height and baseline (`text-box: trim-both cap alphabetic`). Spacing is measured from cap height to baseline, so a "16px" gap looks like 16px.
 - Type has the same layers as colour. Foundations: `font-size-*`, `font-weight-*`, `leading-*`, `tracking-*`. Styles (Figma text styles): `h1`, `h2`, `h3`, `h4`, `body-large`, `body`, `body-medium`, `caption`, `caption-medium`, and three display styles (`display-price`, `display-countdown`, `display-podium`). Roles name what a piece of text is for and point at a style; many roles share one style.
-- Screens pick a role: `text-screen-title` (→ `h2`, often two tones: the main part in `color-text-text`, supporting words in `color-text-soft` via `<em>`; either part can come first; 32/33 on short phones), `text-screen-lead` (→ `body-large`), `text-section-title`, `text-sheet-title` and `text-card-title` (→ `h4`), `text-place-title` (→ `h3`), `text-body` and `text-toast` (→ `body`), `text-row-title`, `text-button` and `text-topbar-title` (→ `body-medium`), `text-row-subtitle` and `text-caption` (→ `caption`, in `color-text-muted`), `text-label` and `text-chip` (→ `caption-medium`), `text-hero-number` (→ `h1`).
+- Screens pick a role: `text-screen-title` (→ `h2`, often two tones: the main part in `color-text-text`, supporting words in `color-text-soft` via `<em>`; the soft part is the lead-in and always comes first, the ink part is the point: "Mark arrives / **in 5 minutes**"; 32/33 on short phones), `text-screen-lead` (→ `body-large`), `text-section-title`, `text-sheet-title` and `text-card-title` (→ `h4`), `text-place-title` (→ `h3`), `text-body` and `text-toast` (→ `body`), `text-row-title`, `text-button` and `text-topbar-title` (→ `body-medium`), `text-row-subtitle` and `text-caption` (→ `caption`, in `color-text-muted`), `text-label` and `text-chip` (→ `caption-medium`), `text-hero-number` (→ `h1`).
 - In code each style is also a set of tokens (`--type-h4-size`, `--type-h4-weight`, `--type-h4-leading`, `--type-h4-tracking`); base styles, text roles and component text (`--text-button-*`, `--text-chip-*`, `--text-topbar-title-*`, `--text-toast-*`) read them, so restyling `h4` restyles every place that draws h4.
 - In code, text carries its role as a class next to the style (`class="h4 text-section-title"`); the role rules sit right after the styles, so a role can be restyled in one place. Buttons, chips, the top bar title and toasts take their role through the component (`.btn`, `.chip`, `.ht`, `.toast`).
 - The iPhone system look (status bar, push, lock screen) has its own styles and stays off the scale.
@@ -63,7 +64,7 @@ Every screen and sheet uses one of ten layouts. The templates page shows each wi
 - **Step** (21 screens): top bar, intro (two-tone title and lead), content, footer. The content is a list, a form, a guide or a summary in sections. Examples: m3, p2a, x2.
 - **Collection** (m8, w2, a1): intro, a chips row from edge to edge, then a grid or a list.
 - **Result** (13 screens): clear top bar, hero (art, title, lead, centred), then a reward, a card, the person card or the podium.
-- **Message** (i4, i8, i10, x7): a short message in the middle of the free space.
+- **Message** (i4, i8, i10, x7, x8): a short message in the middle of the free space.
 - **Detail** (m1, pp, w3, m2): photo first — a photo under a top bar starts `space-page-edge-photo` (8) below it (pp, w3); a photo hero (`size-photo-hero` 302, `size-photo-cover` 196) or a hero number, the facts, then sections.
 - **Ticket** (m6): ticket title and live label, the fact column next to the art, the actions; a sticky chip bar on scroll.
 - **Camera** (i7, i9, w4c): dark ground, paper top bar, frame, shutter; no footer.
@@ -124,7 +125,7 @@ Vertical rhythm for every scrolling template: `space-page-edge` (32) under the t
 
 ## Interaction and accessibility
 
-- Every control has a `size-tap` hit area, even when the visual is smaller (icons, the info dot, chips).
+- Every control has a `size-tap` hit area, even when the visual is smaller. Icon buttons and the sheet close extend with their own inset; buttons, chips, tappable rows, segments, the Live and ticket status links and toggle rows share one rule: an invisible `::after` grows the box to 44 × 44 from its centre. Nothing visible changes.
 - Focus is a 2px `color-status-live` ring with 2px offset, shown only for keyboard use.
 - Disabled buttons use the `disabled` opacity and stay in place.
 - When a screen changes, focus moves to its title; when a sheet opens, focus moves into it and returns to the opener when it closes.

@@ -9,3 +9,7 @@ Square-ish choice tile: a title, a line of detail and a select mark; the chosen 
 **Game tile** `tile lg game surface s-<surface>`: 118 tall, picture slot (`size-game-slot`) on the left, title, line and meta on the right. The line stays `color-text-muted` on every surface.
 
 Radius `radius-card` (20), padding `space-card-pad-lg` (16).
+
+## Text on a selected tile
+
+A selected tile (`gradient-tile`) switches `color-text-muted` to `color-text-muted-on-tint` for everything inside it, so captions keep 4.5:1.

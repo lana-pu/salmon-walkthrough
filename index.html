@@ -17,8 +17,8 @@
   padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
   /* ── Foundations: raw values, named by what they are. Change these to rebrand. ── */
   --neutral-0:#ffffff;--neutral-50:#f6f6f6;--neutral-900:#1b1a1b;--neutral-950:#0b0b0d;
-  --mauve-50:#e9e0e5;--mauve-100:#e7dfe1;--mauve-200:#cfc8cb;--mauve-300:#cdbdc1;--mauve-400:#b29aa0;--mauve-500:#a4878e;--mauve-600:#876e73;--mauve-700:#7e666b;
-  --plum-700:#6b5a76;
+  --mauve-50:#e9e0e5;--mauve-100:#e7dfe1;--mauve-200:#cfc8cb;--mauve-300:#cdbdc1;--mauve-400:#b29aa0;--mauve-500:#a4878e;--mauve-600:#876e73;--mauve-700:#7e666b;--mauve-800:#68525a;
+  --plum-800:#5a4a64;
   --blue-50:#eaf9ff;--blue-100:#d0d9f1;--blue-150:#c6dbff;--blue-200:#c1dfff;--blue-300:#b6c3e8;--blue-350:#b4c3eb;--blue-500:#5384ed;
   --lilac-100:#eadaf3;--lilac-150:#e7dbf1;--lilac-200:#e2dafc;--lilac-250:#e0d4fa;--lilac-300:#c9c4ef;--lilac-400:#c4bde5;--lilac-500:#c4a7ed;
   --violet-500:#7a5cf0;--violet-600:#634fed;
@@ -36,8 +36,8 @@
   --size-4:4px;--size-6:6px;--size-8:8px;--size-10:10px;--size-12:12px;--size-14:14px;--size-16:16px;--size-18:18px;--size-20:20px;--size-22:22px;--size-24:24px;--size-26:26px;--size-28:28px;--size-32:32px;--size-36:36px;--size-40:40px;--size-44:44px;--size-46:46px;--size-48:48px;--size-56:56px;--size-64:64px;--size-70:70px;--size-72:72px;--size-80:80px;--size-84:84px;--size-86:86px;--size-88:88px;--size-98:98px;--size-118:118px;--size-128:128px;--size-145:145px;--size-140:140px;--size-113:113px;--size-150:150px;--size-176:176px;--size-190:190px;--size-196:196px;--size-210:210px;--size-220:220px;--size-264:264px;--size-222:222px;--size-152:152px;--size-180:180px;--size-155:155px;--size-168:168px;--size-219:219px;--size-240:240px;--size-297:297px;--size-302:302px;--size-216:216px;--size-345:345px;--size-393:393px;
   --stroke-100:1px;--stroke-125:1.25px;--stroke-150:1.5px;--stroke-160:1.6px;--stroke-200:2px;
   /* ── Semantic: Figma "Salmon Design" names (color/secondary → --color-secondary), pointing at foundations ── */
-  --color-base-bg:var(--neutral-50);--color-paper:var(--neutral-0);--color-ink:var(--neutral-900);--color-secondary:var(--mauve-700);--color-muted:var(--mauve-500);--color-hairline:var(--mauve-100);
-  --color-secondary-on-tint:var(--plum-700);--color-secondary-on-ink:var(--mauve-400);--color-status-live:var(--blue-500);--color-status-busy:var(--amber-400);--color-status-danger:var(--red-500);--color-status-success:var(--green-200);
+  --color-base-bg:var(--neutral-50);--color-paper:var(--neutral-0);--color-ink:var(--neutral-900);--color-secondary:var(--mauve-700);--color-muted:var(--mauve-500);--color-quiet:var(--mauve-600);--color-secondary-deep:var(--mauve-800);--color-hairline:var(--mauve-100);
+  --color-secondary-on-tint:var(--plum-800);--color-secondary-on-ink:var(--mauve-400);--color-status-live:var(--blue-500);--color-status-busy:var(--amber-400);--color-status-danger:var(--red-500);--color-status-success:var(--green-200);
   --color-system-island:var(--neutral-950);--color-artwork-line:var(--mauve-600);--color-artwork-line-on-ink:var(--mauve-300);--color-artwork-sky:var(--blue-150);--color-artwork-blob-lilac:var(--lilac-500);--color-artwork-blob-pink:var(--pink-300);--color-artwork-blob-peach:var(--peach-450);--color-slot-line:var(--mauve-200);--color-control-line:var(--mauve-200);
   --color-progress-track:var(--mauve-50);--color-camera-focus:var(--yellow-400);--color-map-route:var(--violet-500);--color-map-me:var(--violet-600);--color-map-halo:var(--lilac-250);--color-place-bg:var(--lilac-200);
   --color-holder-from:var(--pink-100);--color-holder-to:var(--lilac-150);--color-select-from:var(--blue-200);--color-select-to:var(--peach-300);--color-haze-pink:var(--pink-200);--color-haze-lilac:var(--lilac-100);
@@ -46,7 +46,7 @@
   --color-haze-gather-candy:var(--pink-300);--color-haze-gather-coral:var(--peach-400);--color-haze-gather-orchid:var(--pink-450);--color-haze-gather-periwinkle:var(--lilac-300);--color-haze-gather-apricot:var(--peach-500);
   /* ── Roles: Figma "Salmon WF" names (color/text/muted → --color-text-muted), pointing at semantic tokens ── */
   --color-background-white:var(--color-paper);--color-background-sunken:var(--color-base-bg);--color-background-muted:var(--color-base-bg);--color-background-accent:var(--color-select-from);--color-background-inverse:var(--color-ink);--color-background-inverse-soft:var(--color-muted);
-  --color-background-interactive:var(--color-ink);--color-text-text:var(--color-ink);--color-text-muted:var(--color-secondary);--color-text-soft:var(--color-muted);--color-text-on-inverse:var(--color-paper);--color-text-on-inverse-muted:var(--color-secondary-on-ink);
+  --color-background-interactive:var(--color-ink);--color-text-text:var(--color-ink);--color-text-muted:var(--color-secondary);--color-text-soft:var(--color-quiet);--color-text-muted-on-tint:var(--color-secondary-deep);--color-text-on-inverse:var(--color-paper);--color-text-on-inverse-muted:var(--color-secondary-on-ink);
   --color-border-strong:var(--color-ink);--color-border-border:var(--color-hairline);--color-border-soft:var(--color-hairline);--color-border-dashed:var(--color-slot-line);--color-border-control:var(--color-control-line);--color-camera-frame:var(--color-system-island);
   --color-camera-bg:var(--color-system-island);--color-camera-on:var(--color-paper);--color-camera-on-muted:var(--color-muted);--color-camera-focus-mark:var(--color-camera-focus);--color-icon:var(--color-ink);--color-icon-muted:var(--color-secondary);--color-icon-soft:var(--color-muted);--color-icon-on-inverse:var(--color-paper);
   --color-glass:color-mix(in srgb,var(--color-paper) 92%,transparent);--color-glass-soft:color-mix(in srgb,var(--color-paper) 70%,transparent);--color-glass-dark:color-mix(in srgb,var(--color-ink) 85%,transparent);--color-scrim:color-mix(in srgb,var(--color-ink) 45%,transparent);--color-text-on-dark-soft:color-mix(in srgb,var(--color-paper) 70%,transparent);--color-fill-on-dark:color-mix(in srgb,var(--color-paper) 16%,transparent);
@@ -159,6 +159,9 @@ img{max-width:100%;display:block}
 .text-stat-value{font-size:var(--type-h3-size);font-weight:var(--type-h3-weight);line-height:var(--type-h3-leading);letter-spacing:var(--tracking-tightest);text-box:trim-both cap alphabetic;margin:0}
 .hd .ht{font-size:var(--text-topbar-title-size);line-height:var(--text-topbar-title-leading);font-weight:var(--text-topbar-title-weight);white-space:nowrap;text-box:trim-both cap alphabetic}
 .hd .sp{flex:1}
+/* Hit area: every interactive element reaches size-tap (44) without changing how it looks */
+:where(.btn,.chip,a.row,button.row,.row[data-go],.row[data-act],.seg>button,.tk-status,.tgl-row,.livel){position:relative}
+:where(.btn,.chip,a.row,button.row,.row[data-go],.row[data-act],.seg>button,.tk-status,.tgl-row,.livel)::after{content:"";position:absolute;top:min(0px,calc((100% - var(--size-tap)) / 2));bottom:min(0px,calc((100% - var(--size-tap)) / 2));left:min(0px,calc((100% - var(--size-tap)) / 2));right:min(0px,calc((100% - var(--size-tap)) / 2))}
 .ib{width:var(--size-icon-topbar);height:var(--size-icon-topbar);display:grid;place-items:center;border-radius:var(--radius-pill);position:relative}
 .ib::after{content:"";position:absolute;inset:calc(var(--space-12) * -1)}
 svg[data-ic]{stroke-width:var(--stroke-icon)}
@@ -239,7 +242,7 @@ html.ft-warm{--ft-light:255,251,240}
 .text-row-subtitle{font-size:var(--type-caption-size);line-height:var(--type-caption-leading);text-box:trim-both cap alphabetic;margin:0}
 .text-caption{font-size:var(--type-caption-size);line-height:var(--type-caption-leading);text-box:trim-both cap alphabetic;margin:0}
 .text-label{font-size:var(--type-caption-medium-size);line-height:var(--type-caption-medium-leading);text-box:trim-both cap alphabetic;font-weight:var(--type-caption-medium-weight);margin:0}
-.sec{color:var(--color-text-muted)}.mut{color:var(--color-text-soft)}.tint{color:var(--color-secondary-on-tint)}
+.sec{color:var(--color-text-muted)}.mut{color:var(--color-text-on-inverse-muted)}.tint{color:var(--color-secondary-on-tint)}
 .center{text-align:center}
 .intro{display:flex;flex-direction:column;gap:var(--space-16);margin-bottom:var(--space-group-break)}
 .intro .b{color:var(--color-text-muted)}
@@ -891,7 +894,7 @@ html.study .stage{flex-direction:column;gap:var(--space-20)}
 .info::after{content:"";position:absolute;inset:calc(var(--space-12) * -1)}
 .pts,.livel{position:relative}
 .pts::after{content:"";position:absolute;inset:calc(var(--space-12) * -1) calc(var(--space-4) * -1)}
-.livel::after{content:"";position:absolute;inset:calc(var(--space-12) * -1) calc(var(--space-text-inline) * -1)}
+
 
 @media (prefers-reduced-motion:reduce){.dots i,.spinner{animation:none}}
 .sbanner{display:flex;gap:var(--space-12);align-items:flex-start;padding:var(--space-16) var(--space-pill-pad-x);border-radius:var(--radius-inner);background:var(--color-background-muted)}.sbanner.paper{background:var(--color-background-white)}.sbanner.tint .lead-ic svg{color:var(--color-icon)}
@@ -978,6 +981,8 @@ html.study .stage{flex-direction:column;gap:var(--space-20)}
 .surface .ac-go{background:var(--go-surface)}
 .surface .ac-foot2>span:not(.ac-go) svg{color:var(--surface-icon)}
 .s-paper{--surface:var(--color-background-white);--surface-image:none;--on-surface:var(--color-text-text);--on-surface-muted:var(--color-text-muted);--go-surface:var(--color-background-muted);--surface-icon:var(--color-icon)}
+/* Tinted surfaces: muted text uses the deeper tone (color-text-muted-on-tint) */
+.s-tile,.s-ambient,.s-feature,.s-hero,.s-plate,.s-warm,.s-sunrise,.tile.on,.boxrow.on,.media.on,.ful.on,.prod-card,.ft-ambient,.ft-gradient,.sbanner.tint,.pod-1,.pod-2,.pod-3{--color-text-muted:var(--color-text-muted-on-tint)}
 .s-tile,.s-ambient,.s-feature,.s-hero,.s-plate,.s-warm,.s-sunrise{--surface:transparent;--on-surface:var(--color-text-text);--on-surface-muted:var(--color-text-muted);--go-surface:var(--color-background-white);--surface-icon:var(--color-icon)}
 .s-tile{--surface-image:var(--gradient-tile)}.s-ambient{--surface-image:var(--gradient-ambient)}.s-feature{--surface-image:var(--gradient-feature)}.s-plate{--surface-image:var(--gradient-plate)}.s-warm{--surface-image:var(--gradient-warm)}.s-sunrise{--surface-image:var(--gradient-sunrise)}.s-hero{--surface-image:var(--gradient-hero);--on-surface-muted:var(--color-secondary-on-tint)}
 .s-ink{--surface:var(--color-background-inverse);--surface-image:none;--on-surface:var(--color-text-on-inverse);--on-surface-muted:var(--color-text-on-inverse-muted);--go-surface:var(--color-background-white);--surface-icon:var(--color-icon-on-inverse)}
@@ -1012,7 +1017,7 @@ html.study .stage{flex-direction:column;gap:var(--space-20)}
 .jm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--space-8);margin-top:var(--space-16)}
 .jm-grid .jm{min-width:0}
 .jm-grid .jm .c{white-space:nowrap;color:var(--color-text-muted)}
-.jm.empty .c{color:var(--color-text-soft)}
+
 .jm.empty:not(.waiting) .jm-wait{border-style:dashed;opacity:.6}
 .jm-row{display:flex;gap:var(--space-16);align-items:flex-start;flex-wrap:wrap}
 .jm{display:flex;flex-direction:column;align-items:center;gap:var(--space-8);min-width:var(--size-people-cell)}
@@ -1358,7 +1363,7 @@ const tkPhase = () => { if (typeof S === 'undefined' || S.meetAt || S.inMeeting)
   if (!S.etaEnd || Date.now() < S.etaEnd) return 'coming'; if (S.moved) return 'moved'; return S.onWay ? 'onway' : 'ready'; };
 const waitLeft = () => Math.max(0, Math.round(GRACE - (Date.now() - S.etaEnd) / 1000 * (300 / (WAIT_MS / 1000))));
 const fmtWait = () => { const t = waitLeft(); return `${Math.floor(t/60)}:${String(t%60).padStart(2,'0')}`; };
-const etaMins = () => Math.max(1, Math.ceil(Math.max(0, S.etaEnd - Date.now()) / WAIT_MS * 5));
+const etaMins = () => Math.max(1, Math.ceil(Math.max(0, (S.etaEnd||0) - Date.now()) / WAIT_MS * 5));
 
 const liveLabel = () => { if (typeof S === 'undefined' || !S.etaEnd || S.meetAt) return '5 min'; const left = S.etaEnd - Date.now(); return left <= 0 ? (S.moved ? 'Mark is coming' : S.onWay ? 'On your way' : 'Mark is ready') : `${Math.max(1, Math.ceil(left / WAIT_MS * 5))} min`; };   // 5 minutes of waiting before Mark arrives, compressed for the prototype
 const meetIn = () => { if (typeof S === 'undefined') return 'Meeting in 5 min'; if (S.meetAt) return S.meetAt[0]==='tmr' ? 'Meeting tomorrow' : `Meeting at ${S.meetAt[2].split(' ·')[0]}`; const ph = tkPhase(); return ph === 'coming' ? `Meeting in ${S.etaEnd ? etaMins() : 5} min` : 'Mark is ready for you'; };
@@ -2076,7 +2081,7 @@ function centerTerm(el, smooth){ const row = el.querySelector('.terms-row'), on 
 SC.m3 = {flow:'main', label:'Before you start', parent:'m2', render:()=>`
   ${topbar({t:'Before you start', right:R.info()})}
   <div class="scroll">${hz('warm')}<div class="body">
-    <div class="intro">${title2('Make sure<br><em>you’re ready</em>')}<p class="b text-body">Check the essentials before you meet Mark. This doesn’t guarantee approval.</p></div>
+    <div class="intro">${title2('<em>Make sure</em><br>you’re ready')}<p class="b text-body">Check the essentials before you meet Mark. This doesn’t guarantee approval.</p></div>
     <div class="card rows" style="padding:var(--space-card-pad-lg) var(--space-card-pad-lg) var(--space-card-pad-bottom-lg)">
       ${leadRow('idcard','A valid government ID', S.idType ? `${idName()} · you’ll bring it` : 'Passport, driver’s licence or UMID', S.idType ? `<span class="sel sm on" style="margin-right:var(--space-inline-tight);align-self:center">${ic('check','i14')}</span>` : `<span class="ib sm" aria-hidden="true" style="margin-right:var(--space-4)">${ic('infoO','i14')}</span>`, 'data-act="idPick" data-plain role="button" tabindex="0" aria-label="Choose the ID you’ll bring" style="cursor:pointer"')}
       ${leadRow('phone','Your own Philippine mobile number','Registered in your name')}
@@ -2089,7 +2094,7 @@ SC.m3 = {flow:'main', label:'Before you start', parent:'m2', render:()=>`
 SC.m4 = {flow:'main', label:'Meeting details', parent:'m2',   /* m3 “Make sure you’re ready” is hidden from the flow for now (kept in code) */ render:()=>`
   ${topbar({t:'Meeting details', right:R.share()+R.info()})}
   <div class="scroll"><div class="body">
-    <div class="intro">${title2('Review <em>the details</em>')}<p class="b text-body">Confirm when and where to meet Mark. You can change it later.</p></div>
+    <div class="intro">${title2('<em>Review</em> the details')}<p class="b text-body">Confirm when and where to meet Mark. You can change it later.</p></div>
     <button class="card media lg" data-act="mark">
       <img class="photo lg" src="${A.mark}" alt="">
       <span class="stack g12" style="flex:1"><span class="stack g8"><b class="h4 text-card-title">Mark Reyes</b><span class="badge start">${ic('shield')}Verified ambassador</span></span><span class="cm sec text-label">English, Filipino</span></span>
@@ -2342,7 +2347,7 @@ const IDS = [['philsys','PhilSys National ID','The national ID card'],['licence'
 SC.i1 = {flow:'id', label:'Are you ready? · checklist', parent:'m6', render:()=>`
   ${topbar({t:'Get ready', right:R.info()+R.pts(), cls:'clear'})}
   <div class="scroll">${hz('check')}<div class="body">
-    <div class="intro">${title2('Are you ready<br><em>for the meeting?</em>')}<p class="b text-body">Check the essentials before Mark arrives.</p></div>
+    <div class="intro">${title2('<em>Are you ready</em><br>for the meeting?')}<p class="b text-body">Check the essentials before Mark arrives.</p></div>
     <div class="card checklist" style="padding:var(--space-card-pad-lg) var(--space-card-pad-lg) var(--space-card-pad-bottom-lg);background:var(--color-background-white);box-shadow:none">
       ${CHECKS.map(([k,t,s])=>`<button class="row" data-act="check" data-v="${k}" role="checkbox" aria-checked="${S.checks[k]}"><span class="chk ${S.checks[k]?'on':''}">${ic('check')}</span><span class="tx"><b class="bm text-row-title">${t}</b><span class="c text-caption">${k==='id' && S.idType ? idName()+' · you’ll bring it' : s}</span></span><span class="badge points ${S.checks[k]?'on':''}">+10</span></button>`).join('')}
     </div>
@@ -2412,7 +2417,7 @@ SC.i4 = {flow:'id', label:'You have all you need', parent:'i1', render:()=>`
 SC.i5 = {flow:'id', label:'Before you add your ID', parent:'i4', render:()=>`
   ${topbar({t:'Prepare your ID', right:R.info()+R.exit('m6',''), tight:true})}
   <div class="scroll">${hz('soft')}<div class="body">
-    <div class="intro">${title2('Before you<br><em>add your ID</em>')}<p class="b text-body">Preparing your ID now can save time when you meet Mark. It’s optional and doesn’t affect the decision.</p></div>
+    <div class="intro">${title2('<em>Before you</em><br>add your ID')}<p class="b text-body">Preparing your ID now can save time when you meet Mark. It’s optional and doesn’t affect the decision.</p></div>
     ${leadRow('camera','Two photos of your ID','Front and back, taken here')}
     ${leadRow('scan','We read the details','Name, ID number, date of birth')}
     ${leadRow('check','You check them yourself','Nothing is saved before you confirm')}
@@ -2424,7 +2429,7 @@ SC.i6 = {flow:'id', label:'Get your licence ready', parent:'i5', render:()=>{
   const n = (IDS.find(i=>i[0]===S.idType)||IDS[1])[1].replace('’','’');
   return `${topbar({t:'Prepare your ID', right:R.info()+R.exit('m6',''), tight:true})}
   <div class="scroll"><div class="body">
-    <div class="intro">${title2(`Get your<br><em>${({licence:'licence',passport:'passport',umid:'UMID'})[S.idType]||'ID'} ready</em>`)}<p class="b text-body">We’ll need the front and back of your ${n.toLowerCase().replace('philsys national id','PhilSys ID').replace('umid','UMID')}. You’ll review both photos before anything is saved.</p></div>
+    <div class="intro">${title2(`<em>Get your</em><br>${({licence:'licence',passport:'passport',umid:'UMID'})[S.idType]||'ID'} ready`)}<p class="b text-body">We’ll need the front and back of your ${n.toLowerCase().replace('philsys national id','PhilSys ID').replace('umid','UMID')}. You’ll review both photos before anything is saved.</p></div>
     <img src="${A.hands}" alt="Hands holding an ID next to a phone" style="width:100%;height:var(--size-photo-guide);object-fit:cover;border-radius:var(--radius-inner)">
     <p class="h4 text-card-title" style="margin:var(--space-page-pause) var(--space-inline-tight) var(--space-page-group)">Before you start</p>
     <div class="rows-c">${leadRow('focus','All four corners visible','Keep the whole document inside the frame')}
@@ -2489,7 +2494,7 @@ SC.i9 = camScreen('Back of ID · 2 of 2','Center the back of your ID','i10','bac
 SC.i10 = {flow:'id', label:'Scanning your ID', parent:'i8', render:()=>`
   ${topbar({t:'Prepare your ID', right:R.exit('m6','id')})}
   <div class="scroll">${scanHaze()}<div class="body msg">
-    <div class="stack" style="align-items:center;text-align:center">${heroScan(80)}<h1 class="h2 rise text-screen-title" style="margin-top:var(--space-hero-title)">Scanning<br><em>your ID</em></h1></div>
+    <div class="stack" style="align-items:center;text-align:center">${heroScan(80)}<h1 class="h2 rise text-screen-title" style="margin-top:var(--space-hero-title)"><em>Scanning</em><br>your ID</h1></div>
     <p class="c sec center text-caption" style="margin-top:var(--space-16)">Nothing is saved until you review the details</p>
     <div class="card mt40" style="padding:var(--space-card-pad-lg);background:var(--color-glass-soft)"><div class="progress"><i id="pg"></i></div><p class="c sec center text-caption" style="margin-top:var(--space-12)" id="pgt">Reading the front…</p></div>
   </div></div>
@@ -2503,7 +2508,7 @@ SC.i10 = {flow:'id', label:'Scanning your ID', parent:'i8', render:()=>`
 SC.i11 = {flow:'id', label:'Check your ID details', parent:'i8', render:()=>`
   ${topbar({t:'Prepare your ID', right:R.info()+R.exit('m6','id'), tight:true})}
   <div class="scroll"><div class="body">
-    <div class="intro">${title2('Check your<br><em>ID details</em>')}<p class="b text-body">We read this from the photos you added. Check it against your original ID.</p></div>
+    <div class="intro">${title2('<em>Check your</em><br>ID details')}<p class="b text-body">We read this from the photos you added. Check it against your original ID.</p></div>
     <p class="h4 text-card-title" style="margin-bottom:var(--space-page-group)">Photos you added</p>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-12)">
       <figure style="margin:0" class="stack g8"><span style="display:block;position:relative;overflow:hidden;aspect-ratio:167/102"><img src="${A.idfront}" alt="Front side" style="position:absolute;max-width:none;width:110.31%;height:119.45%;left:-5.16%;top:-9.69%"></span><figcaption class="c sec text-caption">Front side</figcaption></figure>
@@ -2609,7 +2614,7 @@ SC.pp = {flow:'pay', label:'Your purchase · before the meeting', parent:'m6', r
 SC.p1 = {flow:'pay', label:'1 · Approved', parent:'m6', render:()=>`
   ${topbar({t:'Complete purchase', right:R.info()})}
   <div class="scroll">${hz('soft')}<div class="body" style="padding-top:var(--space-page-edge)">
-    ${screenResult({hero:heroParts('app'), title:'Approved!<br><em>Your financing<br>is ready</em>', text:'Complete the purchase to keep your reserved price.', tc:'bl'})}
+    ${screenResult({hero:heroParts('app'), title:'<em>Approved!</em><br>Your financing<br>is ready', text:'Complete the purchase to keep your reserved price.', tc:'bl'})}
     <div class="stack" style="gap:var(--space-24);margin-top:var(--space-group-break)">
       ${prodCard()}
       <div><p class="h4 text-card-title" style="margin:0 var(--space-inline-tight) var(--space-page-group)">Your payment</p>
@@ -3236,7 +3241,7 @@ SC.c6 = {flow:'games', label:'Final results', parent:'a1', render:()=>{
 SC.c7 = {flow:'games', label:'Keep this going in Salmon app', parent:'c6', render:()=>`
   ${topbar({t:'Salmon app', right:R.info()+R.exit('m6',''), tight:true})}
   <div class="scroll">${hz('soft')}<div class="body">
-    <div class="stack" style="align-items:center;text-align:center">${pic('a_app',80)}<h1 class="h2 text-screen-title" style="margin-top:var(--space-hero-title)">Keep this going<br><em>in Salmon app</em></h1><p class="b sec text-body" style="max-width:var(--size-measure);margin-top:var(--space-16)">Today’s scores stay on this device until you close the tab.</p></div>
+    <div class="stack" style="align-items:center;text-align:center">${pic('a_app',80)}<h1 class="h2 text-screen-title" style="margin-top:var(--space-hero-title)"><em>Keep this going</em><br>in Salmon app</h1><p class="b sec text-body" style="max-width:var(--size-measure);margin-top:var(--space-16)">Today’s scores stay on this device until you close the tab.</p></div>
     <div style="margin-top:var(--space-page-pause)">${strip()}</div>
     <div class="card" style="padding:var(--space-card-pad-lg) var(--space-card-pad-lg) var(--space-card-pad-bottom-lg);margin-top:var(--space-page-between)">${leadRow('gem','Scores that stick between days','')}${leadRow('userplus','Play in teams, not just solo','')}${leadRow('plus','More categories and your own words','')}${leadRow('image','The other games in one place','')}</div>
   </div></div>
@@ -3252,7 +3257,7 @@ const MISSING = [
 SC.x1 = {flow:'miss', label:'What’s missing?', parent:'i1', render:()=>`
   ${topbar({t:'Missing something', right:R.info()})}
   <div class="scroll">${hz('warm')}<div class="body">
-    <div class="intro">${title2('What’s<br><em>missing?</em>')}<p class="b text-body">Tell us what you don’t have — there’s usually a way around it. You don’t have to answer.</p></div>
+    <div class="intro">${title2('<em>What’s</em><br>missing?')}<p class="b text-body">Tell us what you don’t have — there’s usually a way around it. You don’t have to answer.</p></div>
     <div class="stack g8">${MISSING.map(([k,i,t,s])=>`<button class="boxrow" data-act="missing" data-v="${k}"><span class="lead-ic">${ic(i)}</span><span class="tx"><b class="bm text-row-title">${t}</b><span class="c text-row-subtitle">${s}</span></span>${ic('chevR','chev')}</button>`).join('')}</div>
   </div></div>
   ${foot(btn('Leave anyway','data-go="x7"'))}`};
@@ -3265,7 +3270,7 @@ const HELD = () => `<div class="card" style="padding:var(--space-4) var(--space-
 SC.x2 = {flow:'miss', label:'No ID with you', parent:'x1', render:()=>`
   ${topbar({t:'Missing something', right:R.info()+R.exit('i1','')})}
   <div class="scroll">${hz('warm')}<div class="body">
-    <div class="intro">${title2('No ID<br><em>with you?</em>')}<p class="b text-body">Your price and discounts can wait. Go get your ID — we’ll move the meeting so you don’t lose your place.</p></div>
+    <div class="intro">${title2('<em>No ID</em><br>with you?')}<p class="b text-body">Your price and discounts can wait. Go get your ID — we’ll move the meeting so you don’t lose your place.</p></div>
     <div class="sec-h"><p class="h4 text-section-title">Held for you</p><p class="c text-caption">Nothing changes while you’re away.</p></div>
     ${HELD()}
     <div class="sec-h mt32"><p class="h4 text-section-title">Any one of these works</p><p class="c text-caption">Bring the original — valid and not expired.</p></div>
@@ -3277,7 +3282,7 @@ const SLOTS = [['1h','In 1 hour','4:20 PM · same place'],['eve','Later today','
 SC.x3 = {flow:'miss', label:'Move the meeting', parent:'x2', render:()=>{ const sel = S.slot||'eve'; return `
   ${topbar({t:'Move the meeting', right:R.info()+R.exit('i1','')})}
   <div class="scroll"><div class="body">
-    <div class="intro">${title2('When can you<br><em>be back?</em>')}<p class="b text-body">Mark keeps your item, price and discounts until then.</p></div>
+    <div class="intro">${title2('<em>When can you</em><br>be back?')}<p class="b text-body">Mark keeps your item, price and discounts until then.</p></div>
     <div class="stack g8" role="radiogroup" aria-label="New time">${SLOTS.map(([k,t,s])=>`<button class="boxrow ${sel===k?'on':''}" data-act="slot" data-v="${k}" role="radio" aria-checked="${sel===k}"><span class="lead-ic md">${ic(({'1h':'hourglass',eve:'sunset',tmr:'cal'})[k]||'clock','i16')}</span><span class="tx"><b class="bm text-row-title">${t}</b><span class="c text-row-subtitle">${s}</span></span><span class="radio"></span></button>`).join('')}</div>
   </div></div>
   ${foot(btn('Move meeting','data-act="moveTime"'),'Mark gets a note — no need to call.')}`;}};
@@ -3296,14 +3301,14 @@ SC.x7 = {flow:'miss', label:'Leave', parent:'x1', render:()=>`
   </div></div>
   ${foot(btn('Done','data-act="leaveDone"'))}`};
 const ALT = {
-  phone:['Use the ticket<br><em>instead</em>','No problem. Meeting updates stay in this ticket — Mark can find you without SMS.'],
-  email:['We’ll text<br><em>the ticket</em>','Your ticket lives in this link. We can send it by SMS instead of email.'],
-  battery:['Keep a copy<br><em>by SMS</em>','If your phone dies, show the text message at the meeting — it works as your ticket.'],
+  phone:['<em>No problem.</em><br>Use the ticket','Meeting updates stay in this ticket — Mark can find you without SMS.'],
+  email:['<em>No email?</em><br>We’ll text the ticket','Your ticket lives in this link. We can send it by SMS instead of email.'],
+  battery:['<em>Low battery?</em><br>Keep a copy by SMS','If your phone dies, show the text message at the meeting — it works as your ticket.'],
 };
 SC.x8 = {flow:'miss', label:'Other missing items', parent:'x1', render:()=>{ const a = ALT[S.missing]||ALT.phone; return `
   ${topbar({t:'Missing something', right:R.info()+R.exit('i1','')})}
-  <div class="scroll">${hz('warm')}<div class="body">
-    <div class="intro">${title2(a[0])}<p class="b text-body">${a[1]}</p></div>
+  <div class="scroll">${hz('warm')}<div class="body msg">
+    <div class="stack" style="align-items:center;text-align:center"><h1 class="h2 text-screen-title">${a[0]}</h1><p class="bl sec text-screen-lead" style="max-width:var(--size-measure);margin-top:var(--space-24)">${a[1]}</p></div>
   </div></div>
   ${foot(btn('Continue','data-go="m4"')+btn('Leave','data-go="x7"','paper'))}`;}};
 
