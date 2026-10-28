@@ -6,7 +6,7 @@ Square-ish choice tile: a title, a line of detail and a select mark; the chosen 
 
 **Icon tile** `tile cat-tile`: 86 tall (`size-tile-sm`); a `cat-top` row (24 high) with the icon in `lead-ic lg bare` (`color-icon`) on the left and the select mark on the right, title below; used for picking categories. On: `gradient-tile`, like every tile.
 
-**Game tile** `tile lg game surface s-<surface>`: 118 tall, picture slot (`size-game-slot`) on the left, title, line and meta on the right. The line stays `color-text-muted` on every surface.
+**Game tile** `tile lg game surface s-<surface>`: 118 tall, picture slot (`size-game-slot`) on the left, title, line and meta on the right. The line is `color-text-muted`, which on every gradient surface resolves to `color-text-muted-on-tint`.
 
 Radius `radius-card` (20), padding `space-card-pad-lg` (16).
 
