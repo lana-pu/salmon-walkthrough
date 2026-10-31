@@ -362,6 +362,8 @@ button.row{text-align:left}
 .surface .ac-go{background:var(--go-surface)}
 .surface .ac-foot2>span:not(.ac-go) svg{color:var(--surface-icon)}
 .s-paper{--surface:var(--color-background-white);--surface-image:none;--on-surface:var(--color-text-text);--on-surface-muted:var(--color-text-muted);--go-surface:var(--color-background-muted);--surface-icon:var(--color-icon)}
+/* Paper surfaces (white or muted fill) return to the regular muted tone */
+.scr.scr-white,.card,.tile,.cat-tile,.boxrow,.ful,.media,.field,.chip,.seg,.sbanner,.rw-card,.reward,.inv-card,.pk-card,.chk-card,.join-note,.w4m-code,.w4h-add,.w6-msg,.w6-mk,.top.paper,.eta-dock,.sheet,.ya-sheet,.s-paper,.badge,.slot.add,.pp-hero,.ptoast .pc{--color-text-muted:var(--color-secondary)}
 /* Tinted surfaces: muted text uses the deeper tone (color-text-muted-on-tint) */
 .s-tile,.s-ambient,.s-feature,.s-hero,.s-plate,.s-warm,.s-sunrise,.tile.on,.boxrow.on,.media.on,.ful.on,.prod-card,.ft-ambient,.ft-gradient,.sbanner.tint,.pod-1,.pod-2,.pod-3{--color-text-muted:var(--color-text-muted-on-tint)}
 .s-tile,.s-ambient,.s-feature,.s-hero,.s-plate,.s-warm,.s-sunrise{--surface:transparent;--on-surface:var(--color-text-text);--on-surface-muted:var(--color-text-muted);--go-surface:var(--color-background-white);--surface-icon:var(--color-icon)}
